@@ -1,0 +1,54 @@
+% section: 线性变换的矩阵表示
+\documentclass[main.tex]{subfiles}
+\begin{document}
+考虑$N$维向量空间$\mathcal{V}_N$的一组基$\mathcal{B}_\mathcal{V}=\{\mathbf{a}_i\}_{i=1}^N$，向量$\mathbf{x}\in\mathcal{V}$可表示成$\mathbf{x}=\sum_{i=1}^N\xi_i\mathbf{a}_i$或
+\[\left(\mathbf{x}\right)=\left(\begin{array}{ccc}\xi_1\\\vdots\\\xi_N\end{array}\right)\]
+我们称$\left(\mathbf{x}\right)$是向量$\mathbf{x}$在基$\mathcal{B}_\mathcal{V}$下的表示。$\xi_i$称为向量$\mathbf{x}$在基$\mathcal{B}_\mathcal{V}$下的坐标或分量。
+
+设从$\mathcal{V}_N$到$\mathcal{W}_M$的线性变换$\mathbf{A}\in\mathcal{L}\left(\mathcal{V}_N,\mathcal{W}_M\right)$将$\mathcal{V}_N$的一组基$\mathcal{B}_\mathcal{V}=\{\mathbf{a}_i\}_{i=1}^N$映射到$\mathcal{W}_M$中的$N$个向量$\mathbf{w}_k=\mathbf{Aa}_k,k=1,\cdots,N$。如果我们选取$\mathcal{W}_M$的基$\mathcal{B}_\mathcal{W}=\{\mathbf{b}_j\}_{j=1}^M$，则$\mathbf{w}_k$可表示为$\mathbf{w}_k=\sum_{j=1}^M\alpha_{jk}\mathbf{b}_j$。在本情况下，向量$\mathbf{w}_k$的坐标$\alpha_{jk}$有两个下标，可构成一个$M\times N$矩阵\footnote{我们用双下标的标量数组$\left\{\alpha_{ij}\right\},i=1,\cdots,N,j=1,\cdots,M$来表示如下$N\times M$矩阵
+
+\[\left(\alpha_{ij}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1M}\\\vdots&&\vdots\\\alpha_{N1}&\cdots&\alpha_{NM}\end{array}\right)\]}
+\[\left(\mathbf{A}\right)=\left(\alpha_{jk}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1N}\\\vdots&&\vdots\\\alpha_{M1}&\cdots&\alpha_{MN}\end{array}\right)\]
+我们称矩阵$\left(\mathbf{A}\right)$或$\left(\alpha_{jk}\right)$是线性变换$\mathbf{A}$在基$\mathcal{B}_\mathcal{V}$与$\mathcal{B}_\mathcal{W}$下的表示矩阵。$\alpha_{jk}$称为$\mathbf{A}$的在基$\mathcal{B}_\mathcal{V}$与$\mathcal{B}_\mathcal{W}$下的坐标或分量\footnote{请重视并不厌其烦地检查下标的正确顺序。在本定义中，$j$是线性变换的值域的维数计数，$k$是线性变换的定义域的维数计数。}。
+
+\[\left(\alpha_{ij}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1M}\\\vdots&&\vdots\\\alpha_{N1}&\cdots&\alpha_{NM}\end{array}\right)\]
+
+需要注意的是， 同一个向量或同一个线性变换在不同的基下的坐标是不同的。
+
+给定线性变换$\mathbf{A}:\mathcal{V}_N\rightarrow\mathcal{W}_M$、向量$\mathbf{x}\in\mathcal{V}_N,\mathbf{y}\in\mathcal{W}_M$和基向量$\{\mathbf{a}_i\}_{i=1}^N\subset\mathcal{V}_N,\{\mathbf{b}_j\}_{j=1}^M\subset\mathcal{W}_M$，则$\mathbf{x}$和$\mathbf{y}$可分别表示为$\mathbf{x}=\sum_{i=1}^N\xi_i\mathbf{a}_i$、$\mathbf{y}=\sum_{j=1}^M\eta_j\mathbf{b}_j$。若$\mathbf{A}$在基$\left\{\mathbf{a}_i\right\},\left\{\mathbf{b}_j\right\}$下的表示矩阵为$\left(\alpha_{ji}\right)$，则线性关系式$\mathbf{y}=\mathbf{Ax}$可写成关于$\mathbf{x}$、$\mathbf{y}$和$\mathbf{A}$的坐标之间的关系，推算如下：
+\begin{equation*}
+\begin{split}
+    \mathbf{y}&=\mathbf{Ax}\\
+    &=\mathbf{A}\sum_{i=1}^N\xi_i\mathbf{a}_i=\sum_{i=1}^N\xi_i\left(\sum_{j=1}^M\alpha_{ji}\mathbf{b}_j\right)\quad\text{仅利用线性变换定义中规定的性质}\\
+    &=\sum_{j=1}^M\left(\sum_{i=1}^N\xi_i\alpha_ji\right)\mathbf{b}_j\quad\text{变换求和顺序}\\
+    &=\sum_{j=1}^M\eta_j\mathbf{b}_j\\
+    \Leftrightarrow\\
+    \eta_j&=\sum_{i=1}^N\alpha_{ji}\xi_i,j=1,\cdots,M
+\end{split}
+\end{equation*}
+上面的结果可以写成如下矩阵乘：
+\[\left(\begin{array}{ccc}\eta_1\\\vdots\\\eta_M\end{array}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1N}\\\vdots&&\vdots\\\alpha_{M1}&\cdots&\alpha_{MN}\end{array}\right)\left(\begin{array}{ccc}\xi_1\\\vdots\\\xi_N\end{array}\right)\]
+或
+\[\left(\mathbf{y}\right)=\left(\mathbf{A}\right)\left(\mathbf{x}\right)\]
+这就是线性变换$\mathbf{y}=\mathbf{Ax}$在给定基下的坐标运算法则。
+
+\begin{theorem}
+从$\mathcal{V}_N$到$\mathcal{W}_M$的所有线性变换$\mathcal{L}\left(\mathcal{V}_N,\mathcal{W}_M\right)$与所有$M\times N$矩阵$\mathcal{M}^{M\times N}$这两个向量空间是同构的。
+\label{theo:lin_matrix_isomorphism}
+\end{theorem}
+
+定理\ref{theo:lin_matrix_isomorphism}说明，在给定的基下，每个线性变换都唯一对应一个矩阵。
+
+\begin{theorem}
+$\mathcal{L}\left(\mathcal{V}_N,\mathcal{W}_M\right)$的维数是$N\times M$。
+\end{theorem}
+
+\begin{theorem}
+设$\mathcal{V},\mathcal{W},\mathcal{Z}$是$\mathbb{F}$上的有限维向量空间，$\left\{\mathbf{e}_i\right\},\left\{\mathbf{f}_j\right\},\left\{\mathbf{g}_k\right\}$分别是$\mathcal{V},\mathcal{W},\mathcal{Z}$的基，$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W},\mathbf{U}:\mathcal{W}\rightarrow\mathcal{Z}$是线性变换。则复合线性变换$\mathbf{C}=\mathbf{TU}$在$\left\{\mathbf{e}_i\right\},\left\{\mathbf{g}_k\right\}$下的表示矩阵
+\[\left(\mathbf{C}\right)=\left(\mathbf{U}\right)\left(\mathbf{T}\right)\]
+其中$\left(\mathbf{T}\right)$是$\mathbf{T}$在$\left\{\mathbf{e}_i\right\},\left\{\mathbf{f}_j\right\}$下的表示矩阵,$\left(\mathbf{U}\right)$是$\mathbf{U}$在$\left\{\mathbf{f}_j\right\},\left\{\mathbf{g}_k\right\}$下的表示矩阵。
+\label{theo:comp_lin_matrix}
+\end{theorem}
+
+定理\ref{theo:comp_lin_matrix}就是复合线性变换的在给定基下的坐标运算法则。
+\end{document}

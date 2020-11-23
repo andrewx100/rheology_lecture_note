@@ -1,0 +1,220 @@
+\documentclass[zihao=-4,linespread=1.5,heading=true,a4paper,twoside]{ctexart}
+\usepackage[utf8]{inputenc}
+\pagestyle{empty}
+% packages for page layout
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={171.8mm,246.2mm},
+left=19.1mm,
+top=25.4mm,
+}
+
+% package for colors
+\usepackage{xcolor}
+
+% packages for fonts
+\usepackage{amsmath}
+\usepackage{amssymb}
+\usepackage{bm}
+
+% packages for graphics
+\usepackage{graphicx}
+\graphicspath{ {./images/}{./images/} }
+\usepackage{wrapfig}
+\usepackage{subcaption}
+\usepackage{capt-of}
+\usepackage{cutwin}
+
+% packages for page layout
+\usepackage{geometry}
+\geometry{
+a4paper,
+total={171.8mm,246.2mm},
+left=19.1mm,
+top=25.4mm,
+}
+\usepackage{fancyhdr}
+\pagestyle{fancy}
+\fancyhead{}
+\fancyhead[LE,RO]{\leftmark}
+\fancyfoot{}
+\fancyfoot[LE,RO]{\thepage}
+\fancyfoot[LO,RE]{更新至\today}
+
+% package for quotes
+\usepackage{csquotes}
+
+% redefine itemize
+\usepackage{enumitem}% http://ctan.org/pkg/enumitem
+\setlist{nosep}
+
+
+
+% package for hyperlinks
+\usepackage{hyperref}
+\hypersetup{colorlinks=true}
+
+% packages for footnotes
+\renewcommand{\thefootnote}{\fnsymbol{footnote}}
+\usepackage{perpage}
+\MakePerPage{footnote} 
+
+% packages for bibliography
+\usepackage[
+backend=biber,
+style=gb7714-2015,
+gbpub=false,
+sorting=none
+]{biblatex}
+\addbibresource{./ref/ref.bib}
+
+% packages for definitions, theorems, proofs.
+\usepackage{amsthm}
+\newtheorem{definition}{定义}
+\newtheorem*{definition*}{定义}
+\newtheorem{theorem}{定理}
+\newtheorem{lemma}{引理}
+\newtheorem{corollary}{推论}[theorem]
+\newtheorem{example}{例}
+\let\oldproof\proof
+\renewcommand{\proof}{\color{gray}\oldproof}
+% counter controlling
+\usepackage{chngcntr}
+\counterwithin{figure}{section}
+\counterwithin{equation}{section}
+\counterwithin{definition}{section}
+\counterwithin{theorem}{section}
+\counterwithin{lemma}{section}
+\counterwithin{example}{section}
+\counterwithin{section}{part}
+\setcounter{tocdepth}{1}
+
+% package for subfiles
+\usepackage{subfiles}
+
+\usepackage{datetime2}
+
+\title{《聚合物流变学基础》讲义}
+\author{孙尉翔\\mswxsun@scut.edu.cn}
+%=====================================================================================================================
+\begin{document}
+\begin{titlepage}
+\maketitle
+\end{titlepage}
+
+\part*{前言}\label{sec:preface}
+\subfile{preface.tex}
+
+\newpage\tableofcontents
+
+\newpage\part{引入}
+\section{流变学的定义和研究内容}\label{sec:I.1}
+\subfile{Part I/I.1.tex}
+\section{聚合物流体的复杂流动现象}\label{sec:I.2}
+\subfile{Part I/I.2.tex}
+\section{学习方法建议与参考书目}\label{sec:I.3}
+\subfile{Part I/I.3.tex}
+
+\newpage\part{数学准备}
+\section{集合与映射}\label{sec:II.1}
+\subfile{Part II/II.1.tex}
+
+\section{向量空间}\label{sec:II.2}
+\subfile{Part II/II.2.tex}
+
+\section{内积空间}\label{sec:II.3}
+\subfile{Part II/II.3.tex}
+
+\section{线性变换}\label{sec:II.4}
+\subfile{Part II/II.4.tex}
+
+\section{线性变换的矩阵表示}\label{sec:II.5}
+\subfile{Part II/II.5.tex}
+
+\section{基变换与坐标变换}\label{sec:II.6}
+\subfile{Part II/II.6.tex}
+
+\section{线性算符的特征值分解}\label{sec:II.7}
+\subfile{Part II/II.7.tex}
+
+\section{内积空间上的线性算符}
+\subfile{Part II/II.8.tex}
+
+\section{谱分解}
+\subfile{Part II/II.9.tex}
+
+\section{张量}
+\subfile{Part II/II.10.tex}
+
+\section{欧几里德几何}
+\subfile{Part II/II.11.tex}
+
+\section{向量函数及其图像}
+\subfile{Part II/II.12.tex}
+
+\section{函数的极限与连续性}
+\subfile{Part II/II.13.tex}
+
+\section{全微分与全导数}
+\subfile{Part II/II.14.tex}
+
+\section{链式法则、反函数定理、隐函数定理}
+\subfile{Part II/II.15.tex}
+
+\section{标量与向量场的积分定理}
+
+\section{雷诺传输定理}
+
+\newpage\part{连续介质力学基础}
+\section{标架与参考系}
+\subfile{Part III/III.1.tex}
+
+\section{物体的运动}
+\subfile{Part III/III.2.tex}
+
+\section{物体的形变}
+\subfile{Part III/III.3.tex}
+
+\section{物质描述与空间描述}
+\subfile{Part III/III.4.tex}
+
+\section{应变率张量}
+\subfile{Part III/III.5.tex}
+
+
+\section{应力张量}
+
+\section{守恒律}
+
+\section{Navier--Stokes方程}
+
+\section{流变测量学}
+
+\newpage\part{线性粘弹性本构方程}
+\section{线性粘弹性本构方程的建立}
+
+\section{线性粘弹性本构关系的一般预测}
+
+\section{记忆函数的具体形式}
+
+\section{松弛时间谱}
+
+\newpage\part{非线性粘弹性本构方程概览}
+\section{非线性粘弹性本构方程的构建原则}
+\section{准线性粘弹性}
+\section{广义牛顿流体}
+\section{微分形本构方程}
+\section{积分型本构方程}
+\section{屈服应力流体}
+
+\newpage\part{附录}
+\section{实数集的拓扑概念}
+\subfile{Part VI/VI.1.tex}
+
+\section{反函数定理的证明}\label{sect:VI.2}
+\subfile{Part VI/VI.2.tex}
+
+\newpage\part*{参考文献}
+\printbibliography[heading=none]
+\end{document}

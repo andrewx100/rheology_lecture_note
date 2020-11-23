@@ -1,0 +1,74 @@
+\documentclass[main.tex]{subfiles}
+% 谱分解
+\begin{document}
+\begin{theorem}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的正规算符（或设$\mathcal{V}$是数域$\mathbb{R}$上的有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的厄米算符），令$c_1,\cdot,c_k$是$\mathbf{T}$的两两不同特征值，$\mathcal{W}_i$是$c_i$对应的特征向量线性性成的子空间，$\mathbf{E}_i$是$\mathcal{V}$到$\mathcal{W}_i$的正交投影算符，则当$i\neq j$时$\mathcal{W}_i$与$\mathcal{W}_j$正交，$\mathcal{V}$是$\mathcal{W}_1,\cdots,\mathcal{W}_k$的直和，且$\mathbf{T}=c_a\mathbf{E}_1+\cdots+c_k\mathbf{E}_k$。
+\end{theorem}
+
+\begin{corollary}
+若
+\[
+e_j=\prod_i\left(\frac{x-c_i}{c_j-c_i}\right)\]
+则$\mathbf{E}_j=e_j\left(\mathbf{T}\right),j=1,\cdots,k$。
+\end{corollary}
+
+由于$\mathbf{E}_i$是由$\mathbf{T}$引出的且$\mathbf{E}_1+\cdots+\mathbf{E}_k=\mathbf{I}$，投影算符的集合$\left\{\mathbf{E}_1,\cdots,\mathbf{E}_k\right\}$称为由$\mathcal{T}$定义的单位变换$\mathbf{I}$的谱。
+
+\begin{definition}[谱分解]
+设$\mathcal{V}$是有限维内积空间，$\mathcal{T}$是$\mathcal{V}$上的（可对角化的）正规算符，$c_1,\cdot,c_k$是$\mathbf{T}$的两两不同特征值，$\mathbf{E}_i$是$\mathcal{V}$到$\mathcal{W}_i$的正交投影算符满足\[
+e_j=\prod_i\left(\frac{x-c_i}{c_j-c_i}\right)\]则
+\[\mathbf{T}=\sum_{j=1}^kc_j\mathbf{E}_j\]
+称为$\mathbf{T}$的谱分解。设映射$F:\mathcal{L}\left(\mathcal{V}\right)\rightarrow\mathcal{L}\left(\mathcal{V}\right)$的值域包含$\mathbf{T}$的谱值，则称
+\[F\left(\mathbf{T}\right)=\sum_{j=1}^kf\left(c_j\right)\mathbf{E}_j\]
+为$\mathbf{T}$的函数，其中$f:\mathbb{F}\rightarrow\mathbb{F}$与$F$的代数表达式相同。
+\end{definition}
+
+由于$f$与$F$代数形式相同，下面都不作区分地使用$f$作为线性变换或标量的同形式函数。
+
+\begin{theorem}
+接上一定义的记法和前提，则有$f\left(\mathbf{T}\right)$是一个可对角化的正规算符，其谱为$f\left(S\right)$其中$S$是$\mathbf{T}$的谱。若$\mathbf{U}:\mathcal{V}\rightarrow\mathcal{V}^\prime$是幺正映射，即$\mathbf{T}^\prime=\mathbf{UTU}^{-1}$，则$S$也是$\mathbf{T}^\prime$的谱且$f\left(\mathbf{T}^\prime\right)=\mathbf{U}f\left(\mathbf{T}\right)\mathbf{U}^{-1}$。
+\end{theorem}
+
+\begin{corollary}
+设$\mathcal{V}$是有限维内积空间，$\mathcal{T}$是$\mathcal{V}$上的（可对角化的）正规算符。若$\mathcal{V}$的基$B=\left\{\mathbf{a}_1,\cdots,\mathbf{a}_n\right\}$是$\mathbf{T}$的特征向量，$D$是$\mathbf{T}$的对角矩阵，对角元素是$\left\{d_1,\cdots,d_n\right\}$，则$f\left(\mathbf{T}\right)$在该基下的对角矩阵$f\left(D\right)$的对角元素是$\left\{f\left(d_1\right),\cdots,f\left(d_n\right)\right\}$。若$\mathcal{V}$的另一组基$B^\prime=\left\{\mathbf{a}^\prime_1,\cdots,\mathbf{a}^\prime_n\right\}$与$B$之间的基变换公式是$\mathbf{a}^\prime_j=\sum_jP_{ij}\mathbf{a}_i$则变换矩阵$P$满足$\left(f\left(\mathbf{T}\right)\right)_{B^\prime}=P^{-1}f\left(D\right)P$。
+\end{corollary}
+
+由此推论，若另有可逆矩阵$Q$满足$D^\prime=QAQ^{-1}$则有$P^{-1}f\left(D\right)P=Q^{-1}f\left(D^\prime\right)Q$，故$P^{-1}f\left(D\right)P$是不依赖$D$的，可作如下定义。
+
+\begin{definition}[矩阵的函数]
+对于$n\times n$矩阵$A$若有任一对角矩阵$D=PAP^{-1}$，则$A$的函数$f\left(A\right)=P^{-1}f\left(D\right)P$。
+\end{definition}
+
+以下定理给出矩阵的谱分解。
+
+\begin{theorem}
+令$A$是正规矩阵，$c_1,\cdots,c_k$是$\mathrm{det}\left(xI-A\right)$的不同复根，令
+\[e_i=\prod_{j\neq i}\left(\frac{x-c_j}{c_i-c_j}\right)\]
+且$E_i=e_i\left(A\right),i=1,\cdots,k$，则有$E_iE_j=0$当$i\neq j$，$E_i^2=E_i$，$E_i^*=E_i$，$E_1+\cdots+E+k=I$，$f\left(A\right)=\sum_if\left(c_i\right)E_i$。特别地$A=\sum_ic_iE_i$。
+\end{theorem}
+
+以下是正规算符类似于“复数$z$的模为1当且仅当$z\overline{z}=1$”的定理。
+
+\begin{theorem}
+若$\mathbf{T}$是有限维向量空间$\mathcal{V}$上的正规算符，则当$\mathbf{T}$的所有特征值——
+\begin{enumerate}
+    \item 为实数时，$\mathbf{T}$是厄米算符
+    \item 为非负实数时，$\mathbf{T}$是非负的，即$\left(\mathbf{Ta}|\mathbf{a}\right)\leq 0\forall\mathbf{a}\in\mathcal{V}$
+    \item 的绝对值为1时，$\mathbf{T}$是幺正算符
+\end{enumerate}
+\end{theorem}
+
+以下是正规算符类似于“每个非负实数佛教徒被唯一非负实平方根”的定理。
+
+\begin{theorem}
+设$\mathcal{V}$有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的非负线性算符，则$\mathbf{T}$有唯一非负平方根，即存在唯一非负线性算符$\mathbf{N}$满足$\mathbf{N}^2=\mathbf{T}$。
+\end{theorem}
+
+以下是正规算符类似于“每个复数$z$可表示成$z=ru$，其中$r$是非负实数，$\left|u\right|=1$”的定理，由于上述复数性质就是复数的极分解$z=re^{i\theta}$，故该定理又称线性算符的极分解。
+
+\begin{theorem}
+设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的线性算符，则存在幺正算符$\mathbf{U}$和非负算符$\mathbf{N}$满足$\mathbf{T}=\mathbf{UN}$，其中$\mathbf{N}$是维一的。若$\mathbf{T}$是可逆的，则$\mathbf{U}$也是唯一的。
+\end{theorem}
+
+一般地，若可逆线性算符$\mathbf{T}$的极分解是$\mathbf{T}=\mathbf{UN}$，则$\mathbf{UN}\neq\mathbf{NU}$。可证$\mathbf{UN}=\mathbf{NU}\Leftrightarrow\mathbf{T}^*\mathbf{T}=\mathbf{TT}^*$即$\mathbf{T}$是正规算符。
+\end{document}

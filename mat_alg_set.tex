@@ -1,0 +1,137 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+\begin{definition}[集合]
+集合是若干个事物组成的整体。构成集合的事物或对象称为元素。集合还必须满足：
+\begin{itemize}
+    \item 无序性：一个集合中，每个元素的地位是相同的，元素之间是无序的
+    \item 互异性：一个集合中，任何两个元素都不相同，即每个元素只出现一次
+    \item 确定性：给定一个集合，某一事物要么属于该集合，要么不属于该集合，不能模棱两可。
+\end{itemize}
+\end{definition}
+
+例：集合的表示方法。\(A=\{2,4,6,8\}\)。\(B=\{n|n\text{是偶数且}1<n<9\}\)。\(1\notin A\)。\(2\in B\)。
+
+我们能否说上例的两个集合是“相同”的或“相等”的？下一条定义将明确这一问题的答案。
+
+\begin{definition}[子集、包含]
+如果\(a\in A\forall a\in B\)，则称$B$是$A$的子集，或称$A$包含$B$，记为\(B\subseteq A\)，\(A\supseteq B\)。如果\(A\subseteq B\)且\(B\subseteq A\)则称\(A=B\)。
+\end{definition}
+
+例：可验证
+
+\begin{enumerate}
+\item \(S\subseteq S \forall S\)；
+\item 若\(A\subseteq B\)且\(B\subseteq A\)则称\(A=b\)（可视为“两集合相等”的定义。）
+\item 若\(A\subseteq B\)且\(B\subseteq C\)则\(A\subseteq C\)。
+\end{enumerate}
+
+
+\begin{definition}[真子集、真包含]
+若\(B\subseteq A\)且\(B\neq A\)，则称$B$是$A$的真子集，或称$A$真包含$B$，记为\(B\subset A\)，\(A\supset B\)。
+\end{definition}
+
+例：可验证
+
+\begin{enumerate}
+    \item $S\subset S$不成立$\forall S$。
+    \item 若$A\subset B$则$B\subset A$不成立。
+    \item 若$A\subset B$且$B\subset C$，则$A\subset C$。
+\end{enumerate}
+
+
+\begin{definition}[空集]
+空集$\emptyset = \{a|a\neq a\}$
+\end{definition}
+
+例：可验证
+
+\begin{enumerate}
+    \item $\emptyset\subseteq A,\forall A$。
+    \item $\emptyset\not\subseteq A,\forall A\neq\emptyset$。
+\end{enumerate}
+
+
+\begin{definition}[并集]
+若$a\in A$或$a\in B,\forall a,A,B$，则$a$属于$A$与$B$的并集，记为$a\in A\cup B$。
+\end{definition}
+
+例：可验证
+
+\begin{enumerate}
+    \item 结合律：$A\cup\left(B\cup C\right)=\left(A\cup B\right)\cup C$。
+    \item 交换律：$A\cup B=B\cup A$。
+    \item $\emptyset\cup A=A,\forall A$。
+\end{enumerate}
+
+
+\begin{definition}[交集]
+若$a\in A$且$a\in B,\forall a,A,B$，则$a\in A\cap B$，称$A$与$B$的交集。
+\end{definition}
+
+\begin{definition}[笛卡尔积]
+两个集合$A$和$B$的笛卡尔积是所有有序对$\left(a,b\right),a\in A,b\in B$的集合:
+
+$A\times B=\{\left(a,b\right)|a\in A\text{且}b\in B\}$
+\end{definition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.25\textwidth]{images/fig. 4.2.eps}
+\caption{映射}
+\label{fig:4.2}
+\end{figure}
+
+\begin{definition}[映射]
+（如图\ref{fig:4.2}所示）从集合$X$到集合$Y$的映射$f$，记为$f:X\rightarrow Y$，是$X$的所有元素与$Y$的部分或所有元素之间的对应关系，且每个$X$的元素只对应$Y$的一个元素。如果$y\in Y$是$x\in X$通过映射$f$的对应，则可写成：
+\[y=f\left(x\right)\text{或}x\mapsto f\left(x\right)\text{或}f:x\mapsto y\]
+并称$f\left(x\right)$是$x$的像。按上述定义，$x$只有一个像。$X$称为定义域，$Y$称为陪域或到达域。$x$的像$f\left(x\right)$是$Y$的子集，叫值域。
+\end{definition}
+
+\begin{definition}[映射的相等]
+若映射$f:X\rightarrow Y$和$g:X\rightarrow Y$满足$f\left(x\right)=g\left(x\right),\forall x\in X$，则这两个映射相等。
+\end{definition}
+
+\begin{definition}[函数]
+陪域是$\mathbb{R}$或$\mathbb{C}$的映射称为函数。
+\end{definition}
+
+\begin{definition}[恒等映射]
+恒等映射$\mathrm{id}_A:A\rightarrow A$是由集合$A$到其自身的如下映射：$\mathrm{id}_A\left(a\right)=a,\forall a\in A$。
+\end{definition}
+
+\begin{figure}[htbp]
+\centering
+\includegraphics[width=0.5\textwidth]{images/fig. 4.2a.eps}
+\caption{满射、单射和双射}
+\label{fig:sur_in_bijective}
+\end{figure}
+
+\begin{definition}[单射、双射、满射]
+（如图\ref{fig:sur_in_bijective}所示）对于映射$f:X\rightarrow Y$，若$f\left(x_1\right)=f\left(x_2\right)\Rightarrow x_1=x_2$，则映射$f$是单射。若$f\left(X\right)=Y$，则称$f$是满射。既是单射又是满射的映射叫双射。
+\end{definition}
+
+\begin{definition}
+令$f:X\rightarrow Y$和$g:Y\rightarrow Z$是两个映射。则$f$和$g$的复合映射，记为$g\circ f$，是从$X$到$Z$的映射：
+\[g\circ f\left(x\right)=g\left(f\left(x\right)\right),\forall x\in X\]
+\end{definition}
+
+\begin{theorem}
+对于映射$f:X\rightarrow Y$和$g: Y\rightarrow Z$，
+\begin{itemize}
+    \item 如果$f$和$g$都是满射，则$g\circ f$是满射
+    \item 如果$g\circ f$是满射，则$g$是满射
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}
+对于映射$f:X\rightarrow Y$和$g: Y\rightarrow Z$，
+\begin{itemize}
+    \item 如果$f$和$g$都是单射，则$g\circ f$是单射
+    \item 如果$g\circ f$是满射，则$f$是单射
+\end{itemize}
+\end{theorem}
+
+\begin{theorem}
+双射必存在逆映射。双射的逆映射也是双射。
+\end{theorem}
+\end{document}

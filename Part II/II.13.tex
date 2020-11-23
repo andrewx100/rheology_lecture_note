@@ -1,0 +1,124 @@
+\documentclass[main.tex]{subfiles}
+% 极限、连续与导数
+\begin{document}
+我们用“$\epsilon-\delta$语言”来定义函数极限
+
+\begin{definition}[函数的极限]
+给定函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$，如果对任意正实数$\epsilon$总存在正实数$\delta$使得只要$0<\left\|\mathbf{r}-\mathbf{r}_0\right\|<\delta,\mathbf{r},\mathbf{r}_0\in\mathbb{R}^n$总有$\left\|\mathbf{f}\left(\mathbf{r}\right)-\mathbf{y}_0\right\|<\epsilon,\mathbf{y}_0\in\mathbb{R}^m$，则称$\mathbf{y}_0$是函数$\mathbf{f}\left(\mathbf{r}\right)$在$\mathbf{r}_0$处的极限，记为
+\[\lim_{\mathbf{r} \to\mathbf{r}_0} \mathbf{f}\left(\mathbf{r}\right)=\mathbf{y}_0\]
+\end{definition}
+
+在极限的定义中用到了向量的范。但是前面讲过，向量的范可以有不同定义。我们先讨论，不同定义的范在此是等价的。此处所谓“等价”是指，对任意两种定义的范$\left\|\cdot\right\|_1,\left\|\cdot\right\|_2$，如果存在正实数$k$和$K$使得$k\left\|\mathbf{x}\right\|_1\leq\left\|\mathbf{x}\right\|_2\leq K\left\|\mathbf{x}\right\|_1,\forall\mathbf{x}$，则这两种定义的范等价。可以验证，这一等价的定义满足等价关系的一般要求：自反性、对称性和传递性。
+
+\begin{theorem}\label{thm:II.3.1}
+有限维向量空间$\mathcal{V}$上的任意两种范的定义等价。
+\end{theorem}
+\begin{proof}
+设$n=\mathrm{dim}\mathcal{V}$，$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组基，记该基下的欧几里德范为$\forall\mathbf{x}=\sum_{i=1}^nx_i\mathbf{\hat{e}}_i\in\mathcal{V}$
+\[\left\|\mathbf{x}\right\|_\mathrm{E}\equiv\sqrt{\sum_{i=1}^n x_i^2}\]
+由范的定义\ref{def:I.3.3}要求，
+\begin{align*}
+\left\|\mathbf{x}\right\|&=\left\|\sum_{i=1}^nx_i\mathbf{\hat{e}}_i\right\|\\
+&\leq \sum_{i=1}^n\left\|x_i\mathbf{\hat{e}}_i\right\|=\sum_{i=1}^nx_i\left\|\mathbf{\hat{e}}_i\right\|\\
+&\leq \left(\sum_{i=1}^n\left\|\mathbf{\hat{e}}_i\right\|\right)\mathrm{max}\left\{\left|x_i\right|\right\}\\
+&\leq \left(\sum_{i=1}^n\left\|\mathbf{\hat{e}}_i\right\|\right)\sqrt{\sum_{i=1}^nx_i^2}= K\left\|\mathbf{x}\right\|_\mathrm{E}
+\end{align*}
+其中$K=\sum_{i=1}^n\left\|\mathbf{\hat{e}}_i\right\|>0$。
+
+下面考虑一般范作为欧几里德范的函数：$\left\|\cdot\right\|:\mathbb{R}\rightarrow\mathbb{R}$，并考察其连续性\footnote{这个函数相当于向量值参数方程：$\mathbf{y}=\mathbf{f}\left(\mathbf{x}\right),\mathbf{y}=\left\|\mathbf{t}\right\|,\mathbf{x}=\left\|\mathbf{t}\right\|_\mathrm{E},\mathbf{t}\in\mathcal{V}$}。我们看到，对每一$\epsilon>0$，选择$\delta=\epsilon/K$，则只有$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$，就有
+\[
+\left|\left\|\mathbf{x}\right\|-\left\|\mathbf{x}_0\right\|\right|\leq\left\|\mathbf{x}-\mathbf{x}_0\right\|\leq K\left\|\mathbf{x}-\mathbf{x}_0\right\|_\mathrm{E}\leq\epsilon,\forall\mathbf{x}_0\]
+故一般范作为欧几里德范的函数是连续函数。令$k$等于一般范作为欧几里德范的函数在$\left\|\mathbf{x}\right\|=1$的$\mathcal{V}$的子集区域的极小值（闭区间上的连续函数必存在极小值），则对任一$\mathbf{x}\neq\mathbf{0}$有$\left\|\mathbf{x}/\left\|\mathbf{x}\right\|_\mathrm{E}\right\|\leq k$,故$\left\|\mathbf{x}\right\|\leq k\left\|\mathbf{x}\right\|_\mathrm{E},\forall \mathbf{x}\in\mathcal{V}$。
+\end{proof}
+
+\begin{theorem}\label{thm:II.2.2}
+函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在$\mathbf{r}_0\in\mathbb{R}^n$处存在极限$\lim_{\mathbf{r}\to\mathbf{r}_0}\mathbf{f}\left(\mathbf{r}\right)=\mathbf{a}$的充要条件是其坐标函数的极限$\lim_{\mathbf{r}\to\mathbf{r}_0}f_i\left(\mathbf{r}\right)=a_i,\forall i=1,\cdots,m$都存在。
+\end{theorem}
+\begin{proof}
+注意到$\mathbf{f}$与$f_i,i=1,\cdots,m$的定义域都相同。若极限$\lim_{\mathbf{r}\to\mathbf{r}_0}\mathbf{f}\left(\mathbf{r}\right)=\mathbf{a}$存在，则对任一实数$\epsilon>0$都存在实数$\delta>0$使得只要$\mathbf{f}$的定义域内一向量$\mathbf{r}$到$\mathbf{r}_0$的距离$0<\left\|\mathbf{r}-\mathbf{r}_0\right\|<\delta$便有$\left\|\mathbf{f}\left(\mathbf{r}\right)-\mathbf{a}\right\|<\epsilon$。由三角不等式有$\left\|f_i\left(\mathbf{r}\right)-a_i\right\|\leq\left\|\mathbf{f}\left(\mathbf{r}\right)-\mathbf{a}\right\|<\epsilon,i=1,\cdots,m$，即$\lim_{\mathbf{r}\to\mathbf{r}_0}f_i\left(\mathbf{r}\right)=a_i,i=1,\cdots,m$。
+
+反之，若极限$\lim_{\mathbf{r}\to\mathbf{r}_0}f_i\left(\mathbf{r}\right)=a_i,i=1,\cdots,m$都存在，即对任一实数$\epsilon>0$都能找到实数$\delta_i>0,i=1,\cdots,m$使得只要$f_i$的定义域内一向量$\mathbf{r}$到$\mathbf{r}_0$的距离$0<\left\|\mathbf{r}-\mathbf{r}_0\right\|<\delta_i$便有$\left|f_i\left(\mathbf{r}\right)-a_i\right|<\frac{\epsilon}{\sqrt{m}}$。令$\delta=\mathrm{min}\left\{\delta_1,\cdots,\delta_m\right\}$，则当$0<\left\|\mathbf{r}-\mathbf{r}_0\right\|<\delta$则有$\mathrm{max}\left\{\left|f_i\left(\mathbf{r}\right)-a_i\right|\right\}<\frac{\epsilon}{\sqrt{m}}$。
+
+利用事实\footnote{
+由$\left\|\mathbf{x}\right\|^2=\sum_{i=1}^nx_i^2\leq n\mathrm{max}\left\{x_1^2,\cdots,x_n^2\right\}$得到。
+}
+\[\left\|\mathbf{x}\right\|\leq\sqrt{n}\mathrm{max}\left\{\left|x_1\right|,\cdots,\left|x_n\right|\right\},\forall\mathbf{x}\in\mathbb{R}^n\]
+可得
+\[\left\|\mathbf{f}\left(\mathbf{r}\right)-\mathbf{a}\right\|\leq\sqrt{m}\mathrm{max}\left\{\left|f_i\left(\mathbf{r}\right)-a_i\right|\right\}<\epsilon\]
+\end{proof}
+
+\begin{definition}[函数的连续性]
+给定函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$，如果极限$\lim_{\mathbf{r}\to\mathbf{r}_0}\mathbf{f}\left(\mathbf{r}\right)=\mathbf{a}$存在，则称$\mathbf{f}\left(\mathbf{r}\right)$在$\mathbf{r}_0$处连续。
+\end{definition}
+
+\begin{theorem}\label{thm:II.2.3}
+函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在$\mathbf{r}_0\in\mathbb{R}^n$处连续的充要条件是其坐标函数在$\mathbf{r}_0$处都连续。
+\end{theorem}
+\begin{proof}
+由定理\ref{thm:II.2.2}直接得证。
+\end{proof}
+
+如果一个函数在其定义域内处处都连续，我们就直接称该函数在其定义域内是连续的，或称该函数是连续函数。
+
+\begin{theorem}\label{thm:II.2.4}
+设$\mathcal{V}_N$、$\mathcal{W}_M$分别是数域$\mathbb{F}$上的赋范向量空间，$\mathbf{L}:\mathcal{V}_N\rightarrow\mathcal{W}_M$是一个线性变换，则总存在$k\in\mathbb{R}$使得不等式$\left\|\mathbf{Lx}\right\|\leq k\left\|\mathbf{x}\right\|,\forall\mathbf{x}\in\mathcal{V}_N$成立。
+\end{theorem}
+\begin{proof}
+设$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}_N$的一个规范正交基，$\mathbf{x}\in\mathcal{V}_N$，则$\left\|\mathbf{Lx}\right\|=\left\|\sum_{i=1}^Nx_i\mathbf{L}\mathbf{\hat{e}}_i\right\|=\sum_{i=1}^N\left|x_i\right|\left\|\mathbf{L\hat{e}}_i\right\|$。又由柯西--施瓦茨不等式，$\left|x_i\right|=\left|\left(\mathbf{x}|\mathbf{\hat{e}}_i\right)\right|\leq\left\|\mathbf{x}\right\|\left\|\mathbf{\hat{e}}_i\right\|=\left\|\mathbf{x}\right\|$，故$\left\|\mathbf{Lx}\right\|\leq\left\|\mathbf{x}\right\|\sum_{i=1}^N\left\|\mathbf{L\hat{e}}_i\right\|=k\left\|\mathbf{x}\right\|$，其中$k=\sum_{i=1}^N\left\|\mathbf{L\hat{e}}_i\right\|$。
+\end{proof}
+
+\begin{corollary}
+线性变换是连续函数。
+\end{corollary}
+\begin{proof}
+由定理\ref{thm:II.2.3}有$\left\|\mathbf{Lx}-\mathbf{Lx}_0\right\|=\left\|\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\leq k\left\|\mathbf{x}-\mathbf{x}_0\right\|$，故当$\mathbf{x}$趋于$\mathbf{x}_0$，$\mathbf{Lx}$趋于$\mathbf{Lx}_0$\footnote{这里使用到与不等式有关的极限定理。}。
+\end{proof}
+
+\begin{definition}[一元向量函数的导数]
+设函数$\mathbf{f}:\mathbb{R}\rightarrow\mathbb{R}^n$的极限
+\[
+\lim_{h\to 0}\frac{\mathbf{f}\left(t+h\right)-\mathbf{f}\left(t\right)}{h}
+\]
+存在，则称函数$\mathbf{f}\left(x\right)$在$x=t$处可导。该极限是函数$\mathbf{f}\left(x\right)$在$x=t$处的导数，记为
+\[
+\frac{d\mathbf{f}}{dt}\equiv\lim_{h\to 0}\frac{\mathbf{f}\left(t+h\right)-\mathbf{f}\left(t\right)}{h}
+\]
+\end{definition}
+
+由一元标量函数求导的法则可证以下一元向量函数求导法则成立：对任意函数$\mathbf{f}:\mathbb{R}\rightarrow\mathbb{R}^n,\mathbf{g}:\mathbb{R}\rightarrow\mathbb{R}^n$，
+\begin{itemize}
+\item $\frac{d\mathbf{c}}{dt}=0,\mathbf{c}$是常向量
+\item $\frac{d}{dt}\left(\alpha\mathbf{f}+\beta\mathbf{g}\right)=\alpha\frac{d}{dt}\mathbf{f}+\beta\frac{d}{dt}\mathbf{g},\forall \alpha,\beta\in\mathbb{R}$
+\item $\frac{d}{dt}\left[u\left(t\right)\mathbf{f}\left(t\right)\right]=\frac{du}{dt}\mathbf{f}+u\frac{d}{dt}\mathbf{f},\forall u:\mathbb{R}\rightarrow\mathbb{R}$
+\item $\frac{d}{dt}\left(\mathbf{f}\cdot\mathbf{g}\right)=\frac{d\mathbf{f}}{dt}\cdot\mathbf{g}+\mathbf{f}\cdot\frac{d\mathbf{g}}{dt}$
+\item $\frac{d}{dt}\left(\mathbf{f}\times\mathbf{g}\right)=\frac{d\mathbf{f}}{dt}\times\mathbf{g}+\mathbf{f}\times\frac{d\mathbf{g}}{dt}$
+\end{itemize}
+
+\begin{definition}[多元标量函数的偏导数]
+给定函数$f:\mathbb{R}^n\rightarrow\mathbb{R}$，若对某一$i=1,\cdots,n$极限
+\[
+\lim_{t\to0}\frac{f\left(\cdots,x_{i}+h,\cdots\right)-f\left(\cdots,x_i,\cdots\right)}{t}
+\]
+存在，则称该极限为函数$f\left(\mathbf{x}\right)$对$\mathbf{x}$的第$i$个分量$x_i$的偏导数，记为
+\[\frac{\partial f}{\partial x_i}\equiv\lim_{t\to0}\frac{f\left(\cdots,x_{i}+h,\cdots\right)-f\left(\cdots,x_i,\cdots\right)}{t}
+\]
+\end{definition}
+
+\begin{theorem}\footnote{即高等数学\cite[p.~16]{华工高数2009下}定理7.2.1向$n$维的推广。}
+如果函数$f:\mathbb{R}^n\rightarrow\mathbb{R}$的一个二阶混合偏导数$\frac{\partial^2f}{\partial x_i\partial x_j}$在$\mathbb{R}^2$的一个开子集$S$上处处连续，则二阶混合偏导数$\frac{\partial^2f}{\partial x_j\partial x_i}$在$S$上处处存在，且$\frac{\partial^2f}{\partial x_i\partial x_j}=\frac{\partial^2f}{\partial x_j\partial x_i}$。
+\end{theorem}
+\begin{proof}
+略\footnote{进一步了解：\href{https://en.wikipedia.org/wiki/Symmetry_of_second_derivatives}{Symmetry of second derivatives}。}
+\end{proof}
+
+\begin{definition}[向量函数的偏导数]
+对于函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的偏导数
+\[
+\frac{\partial \mathbf{f}}{\partial x_i}\equiv\left(\begin{array}{l}
+\frac{\partial f_1}{\partial x_i}\\
+\vdots\\
+\frac{\partial f_m}{\partial x_i}\end{array}\right)\in\mathbb{R}^m
+\]
+其中，$\mathbf{x}=\left(x_1,\cdots,x_n\right)^\intercal\in\mathbb{R}^n$。
+\end{definition}
+\end{document}

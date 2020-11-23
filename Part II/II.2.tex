@@ -1,0 +1,94 @@
+\documentclass[main.tex]{subfiles}
+% 向量空间
+\begin{document}
+\begin{definition}[向量空间]\label{def:II.2.1}
+数域$\mathbb{F}$上的向量空间$\mathcal{V}$是向量的集合，且满足：
+\begin{enumerate}
+\item 加法运算。$\forall\mathbf{a},\mathbf{b},\mathbf{c}\in \mathcal{V}$：
+\begin{enumerate}
+    \item 封闭性：$\mathbf{a}+\mathbf{b}\in\mathcal{V}$
+    \item 交换律：$\mathbf{a}+\mathbf{b}=\mathbf{b}+\mathbf{a}$
+    \item 结合律：$\left(\mathbf{a}+\mathbf{b}\right)+\mathbf{c}=\mathbf{a}+\left(\mathbf{b}+\mathbf{c}\right)$
+    \item 恒等元素：$\exists \bm{0}\in\mathcal{V}:\mathbf{a}+\bm{0}=\mathbf{a}$
+    \item 逆：$\forall a\in\mathcal{V},\exists -\mathbf{a}:\mathbf{a}+-\mathbf{a}=\bm{0}$
+\end{enumerate}
+\item 标量乘法运算。$\forall\alpha,\beta\in\mathbb{F},\mathbf{a},\mathbf{b}\in\mathcal{V}$：
+\begin{enumerate}
+    \item $\alpha\mathbf{a}\in\mathcal{V}$
+    \item $\alpha\left(\beta\mathbf{a}\right)=\left(\alpha\beta\right)\mathbf{a}$
+    \item $1\mathbf{a}=\mathbf{a}$
+\end{enumerate}
+\item 标量乘法满足分配律：
+\begin{enumerate}
+    \item $\alpha\left(\mathbf{a}+\mathbf{b}\right)=\alpha\mathbf{a}+\alpha\mathbf{b}$
+    \item $\left(\alpha+\beta\right)\mathbf{a}=\alpha\mathbf{a}+\beta\mathbf{a}$
+\end{enumerate}
+\end{enumerate}
+\end{definition}
+
+在定义\ref{def:II.2.1}中，数域$\mathbb{F}$可以是实数域$\mathbb{R}$或复数域$\mathbb{C}$，它是关于标量乘的运算规定中的标量所属的数域。
+
+\begin{example}
+请根据定义\ref{def:II.2.1}验证
+\begin{itemize}
+    \item $\mathbb{R}$是$\mathbb{R}$上的向量空间
+    \item $\mathbb{C}$是$\mathbb{R}$上的向量空间
+    \item $\mathbb{C}$是$\mathbb{C}$上的向量空间
+    \item $\mathbb{R}$不是$\mathbb{C}$上的向量空间
+    \item 函数$f:\left(a,b\right)\subset \mathbb{R}\rightarrow\mathbb{C}$的集合是数域$\mathbb{C}$上的向量空间
+    \item $\mathbb{R}^n$是所有实数$n$元组$\{a\}=\left(\alpha_1,\cdots,\alpha_n\right),\alpha_i\in\mathbb{R},i=1,\cdots,n$的集合。若$\forall \{a\},\{b\}\in\mathbb{R}^n$：
+    \begin{enumerate}
+        \item $\{a\}+\{b\}=\left(\alpha_1+\beta_1,\cdots,\alpha_n+\beta_n\right)$
+        \item $\alpha\{a\}=\left(\alpha\alpha_1,\cdots,\alpha\alpha_n\right),\forall\alpha\in\mathbb{R}$
+        \item $\{0\}=\left(0,\cdots,0\right)$
+        \item $-\{a\}=\left(-\alpha_1,\cdots-\alpha_n\right)$
+    \end{enumerate}
+    则$\mathbb{R}^n$连同上述的运算规定形成$\mathbb{R}$上的向量空间，又称为实坐标空间
+    \item 数域$\mathbb{F}$上的所有$m\times n$矩阵的集合$\mathcal{M}^{m\times n}$（连同矩阵加和矩阵的标量乘法则\footnote{见\cite{周胜林2012线性代数}\S 2.1矩阵与矩阵的运算}）是一个向量空间。其零向量是全零矩阵。
+\end{itemize}
+\end{example}
+
+\begin{definition}[线性组合、线性表出、线性无关]\label{def:II.2.2}
+若$\mathcal{V}$是$\mathbb{F}$上的向量空间，$\mathbf{a}_1,\cdots,\mathbf{a}_n\in\mathcal{V}$。若$\alpha_1,\cdots,\alpha_n\in\mathbb{F}$，则$\sum_{i=1}^n\alpha_i\mathbf{a}_i$称为这$n$个向量$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_n\right\}$的线性组合。令$\mathbf{b}=\sum_{i=1}^n\alpha_i\mathbf{a}_i$，则称$\mathbf{b}$被$\left\{\mathbf{a}_i\right\}$线性表出\footnote{集合$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_n\right\}\subset\mathcal{V}$可写为$\left\{\mathbf{a}_i\right\}_{i=1}^n$或$\left\{\mathbf{a}_i\right\}$}。若$\sum_{i=1}^n\alpha_i\mathbf{a}_i=\bm{0}$当且仅当$\alpha_i=0\forall i$，则称向量$\left\{\mathbf{a}_i\right\}$线性无关。
+\end{definition}
+
+由定义\ref{def:II.2.2}易得如下结论：
+\begin{enumerate}
+    \item 任何真包含一组线性无关向量的向量集合是线性相关的\cite[定理3.1、3.2, p.~98]{周胜林2012线性代数}。
+    \item 任何线性无关向量组的子集也是线性无关向量组。
+    \item 任何含有$\mathbf{0}$向量的向量组线性相关，因为总有$1\neq 0$使得$1\mathbf{0}=\mathbf{0}$。
+    \item 一个向量组$S$是线性无关向量组当且仅当$S$的所有子集都是线性无关向量组。
+\end{enumerate}
+
+\begin{definition}[子空间]
+若向量空间$\mathcal{W}$是向量空间$\mathcal{V}$的非空子集，且满足$\alpha\mathbf{a}+\beta\mathbf{b}\in\mathcal{W},\forall\alpha,\beta\in\mathbb{F},\mathbf{a},\mathbf{b}\in\mathcal{W}$，则$\mathcal{W}$是$\mathcal{V}$的子空间。
+\end{definition}
+
+\begin{definition}[线性生成空间]
+若$S$是向量空间$\mathcal{V}$的非空子集，即$S\subseteq\mathcal{V},S\neq\emptyset$，那么$S$内的向量的所有线性组合的集合$\mathcal{W}_S$也是一个向量空间，称为$S$的线性生成空间。
+\end{definition}
+
+换句话说，$\mathcal{W}_S$中的向量都能由$S$的向量线性表出。
+
+\begin{definition}[基]
+如果向量空间$\mathcal{V}$是其子空间$\mathcal{B}$的线性生成空间，且$\mathcal{B}$内所有向量线性无关，则称$\mathcal{B}$是$\mathcal{V}$的一组基。若$\mathcal{B}$是有限集，则称$\mathcal{V}$是有限维向量空间。
+\end{definition}
+
+\begin{theorem}
+有限维向量空间的每组基具有相同个数的线性无关向量。这个个数叫向量空间的维数。$N$维向量空间记为$\mathcal{V}_N$。
+\end{theorem}
+\begin{proof}
+此略\cite[“(3)的证明”，p.~171]{周胜林2012线性代数}。
+\end{proof}
+
+\begin{definition}[向量在给定基下的坐标]\label{def:II.2.6}
+若$\mathbf{a}\in\mathcal{V}_N$且$\mathcal{B}=\{\mathbf{a}_i\}_{i=1}^N$是$\mathcal{V}$的一组基，按定义，存在一组标量$\{\alpha_i\}_{i=1}^N$使得$\mathbf{a}=\sum_{i=1}^N\alpha_i\mathbf{a}_i$。我们称$\{\mathbf{a}_i\}_{i=1}^N$是$\mathbf{a}$在基$\{\mathbf{a}_i\}_{i=1}^n$下的坐标或分量。
+\end{definition}
+
+例：
+\begin{itemize}
+    \item 1是$\mathbb{R}$的一个基，$\mathbb{R}$是一维向量空间
+    \item 1和$i$是在$\mathbb{R}$上的向量空间$\mathbb{C}$的一组基，在$\mathbb{R}$上的$\mathbb{C}$是二维的
+    \item 1是在$\mathbb{C}$上的向量空间$\mathbb{C}$的一组基，在$\mathbb{C}$上的$\mathbb{C}$是一维的
+\end{itemize}
+\end{document}

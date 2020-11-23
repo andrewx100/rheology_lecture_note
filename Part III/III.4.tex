@@ -1,0 +1,81 @@
+\documentclass[main.tex]{subfiles}
+% 物质描述与空间描述
+\begin{document}
+物体$\mathcal{B}$的元素——物质点$X\in\mathcal{B}$不仅可以具有“位置”的性质（通过放置映射$\kappa$），还能具有密度、温度等物理性质。在选定的标架下，某时刻物质点的性质
+\[f:\mathcal{B}\times\mathbb{R}\rightarrow \mathcal{F}\]
+可以是标量，向量或张量。由于人无法直接认识物体$\mathcal{B}$及其物质点$X\in\mathcal{B}$，故函数$f\left(X,t\right)$需要转化为关于物质点$X$在物体$\mathcal{B}$在某标架下的构型中的位置向量的函数。设物体$\mathcal{B}$在某标架下，参考时刻$t_0$时的构型$\Omega_0$是参考构型，当前时刻$t$的构型$\Omega_t$是当前构型，形变映射是$\chi\left(\cdot,t\right)$，$X$在$\Omega_0$中的位置向量是$\mathbf{X}$，则$X$在当前时刻$t$的位置向量是$\mathbf{x}\left(t\right)=\chi\left(\mathbf{X},t\right)$。如果把$f\left(X,t\right)$改写为参考构型中的位置$\mathbf{X}$的函数，即令
+\[f_\mathrm{m}:\Omega_0\times\mathbb{R}\rightarrow\mathcal{F},f_\mathrm{m}\left(\mathbf{X},t\right)=f\left(\kappa_0^{-1}\left(\mathbf{X}\right),t\right),\forall\mathbf{X}\in\Omega_0\]
+则称函数$f_\mathrm{m}$是物体性质$f$的物质描述，又称拉格朗日描述。
+
+如果，由于物体$\mathcal{B}$的运动，空间位置$\mathbf{r}\in\mathbf{R}^3$处某性质读数在不断变化，则这个由物体运导致的性质场函数
+\[f_\mathrm{s}:\mathbb{R}^{3+1}\rightarrow\mathcal{F},f_\mathrm{s}\left(\mathbf{r},t\right)=f\left(\kappa_t^{-1}\left(\mathbf{r}\right),t\right),\forall\mathbf{r}\in\Omega_t\]
+称函数$f_\mathrm{s}$是物体性质$f$的空间描述，又称欧拉描述。注意，$f_\mathrm{s}$的定义域$\Omega_t$是随时刻$t$变化的。
+
+物质函数描述与空间描述函数之间的关系：
+\begin{align*}    
+f_\mathrm{m}\left(\mathbf{X},t\right)&=f_\mathrm{s}\left(\chi\left(\mathbf{X},t\right),t\right)\\
+f_\mathrm{s}\left(\mathbf{r},t\right)&=f_\mathrm{m}\left(\chi^{-1}\left(\mathbf{r},t\right),t\right)
+\end{align*}
+其中，为了注意到当前时刻的形变映射$\chi_t$及其逆映射$\chi_t^{-1}$均依赖时刻$t$，故将它们写成了$\chi\left(\cdot,t\right),\chi^{-1}\left(\cdot,t\right)$。
+
+考虑物体在选定某标架下的运动的速度
+\[\mathbf{v}\left(X,t\right)=\frac{d\kappa\left(X,t\right)}{dt},X\in\mathcal{B}\]
+其中为了注意到当前时刻的放置映射$\kappa_t$依赖时刻$t$故将其写成$\kappa\left(\cdot,t\right)$。由定义，速度的物质描述是
+\begin{align*}
+\mathbf{v}_\mathrm{m}\left(\mathbf{X},t\right)&=\mathbf{v}\left(\kappa_0^{-1}\left(\mathbf{X}\right),t\right)\\
+&=\frac{\partial}{\partial t}\kappa\left(\kappa_0^{-1}\left(\mathbf{X}\right),t\right)\\
+&=\frac{\partial}{\partial t}\chi\left(\mathbf{X},t\right)
+\end{align*}
+我们在进行粒子示踪测速的时候，粒子的速度就是物质描述的速度函数。速度的空间描述是
+\begin{align*}
+\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)&=\mathbf{v}\left(\kappa^{-1}\left(\mathbf{r},t\right),t\right)\\
+&=\frac{\partial}{\partial t}\kappa\left(\kappa^{-1}\left(\mathbf{r},t\right),t\right)
+\end{align*}
+我们在进行粒子成像测速的时候，测量结果（速度场）是物体运动速度的空间描述。
+
+如果我们想知道速度场$\mathbf{v}_\mathrm{s}$在某处$\mathbf{r}$的变化率，直接对其求时间偏导数即可，但这不是物体$\mathcal{B}$的任一物质点的加速度。因为物体在运动中，所以$\mathbf{r}$处的物质点是一直变化的。而我们之所以想知道加速度，是为了将来运用牛顿第二定律。
+
+加速度是物质点的速度变化，即
+\[\mathbf{a}\left(X,t\right)=\frac{\partial\mathbf{v}\left(X,t\right)}{\partial t}=\frac{\partial^2}{\partial t^2}\kappa\left(X,t\right),X\in\mathcal{B}\]
+速度的物质描述$\mathbf{a}_\mathrm{m}\left(\mathbf{X},t\right)=\mathbf{a}\left(\kappa_0^{-1}\left(\mathbf{X}\right),t\right)=\frac{\partial^2}{\partial t}\chi\left(\mathbf{X},t\right)=\frac{\partial}{\partial t}\mathbf{v}_\mathrm{m}\left(\mathbf{X},t\right)$。如果我们只知道速度场$\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)$，要求加速度的物质描述，就需要用$\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)$来表出同一个物质点$X$（或关于参考构型中的同一个位置$\mathbf{X}$）在不同时刻的速度，即$\mathbf{v}_\mathrm{s}\left(\chi\left(\mathbf{X},t\right),t\right)$。对这个复合函数求时间导数，才是物质点$X$的加速度：
+\begin{align*}
+\mathbf{a}\left(X,t\right)&=\mathbf{a}_\mathrm{m}\left(\mathbf{X},t\right)=\frac{\partial}{\partial t}\mathbf{v}_\mathrm{s}\left(\chi\left(\mathbf{X},t\right),t\right)\\
+&=\left.\frac{\partial \mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)}{\partial t}\right|_{\mathbf{r}=\chi\left(\mathbf{X},t\right)}+\left.\frac{\partial\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)}{\partial\mathbf{r}}\right|_{\mathbf{r}=\chi\left(\mathbf{X},t\right)}\frac{\partial\chi\left(\mathbf{X},t\right)}{\partial t}\\
+&=\left.\frac{\partial \mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)}{\partial t}\right|_{\mathbf{r}=\chi\left(\mathbf{X},t\right)}+\left.\frac{\partial\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)}{\partial\mathbf{r}}\right|_{\mathbf{r}=\chi\left(\mathbf{X},t\right)}\mathbf{v}_\mathrm{m}\left(\mathbf{X},t\right)
+\end{align*}
+
+一般地，在选定某标架下，如果空间存在的某性质场$f_\mathrm{S}\left(\mathbf{r},t\right)$是由具有该性质的物体$\mathcal{B}$的运动造成的（即$f_\mathrm{s}$是该物体性质的空间描述），那么，对$f_\mathrm{s}\left(\mathbf{r},t\right)$进行r 以下计算
+\[
+\frac{D}{Dt}f_\mathrm{s}\left(\mathbf{r},t\right)=f_\mathrm{m}\left(\mathbf{X},t\right)=f\left(X,t\right)=\left.\frac{\partial}{\partial t}f_\mathrm{s}\left(\mathbf{r},t\right)\right|_{\mathbf{r}=\chi\left(\mathbf{X},t\right)}+\left.\frac{\partial}{\partial \mathbf{r}}f_\mathrm{s}\left(\mathbf{r},t\right)\right|_{\mathbf{r}=\chi\left(\mathbf{X},t\right)}\mathbf{v}_m\left(\mathbf{X},t\right),\mathbf{X}\in\Omega_0,X\in\mathcal{B}\]
+可以得到该物体性质的变化率（物质描述）。我们称这一计算为对物体性质的空间描述的物质导数。
+
+\begin{example}
+设物体$\mathcal{B}$的运动在某标架下满足
+\[
+\chi\left(\mathbf{X},t\right)=\left(X_1+X_2 t^2\right)\mathbf{\hat{e}}_1+\left(X_2-X_1t\right)\mathbf{\hat{e}}_2+X_3\mathbf{\hat{e}}_3
+\]
+则速度的物质描述
+\[\mathbf{v}_\mathrm{m}\left(\mathbf{X},t\right)=\frac{\partial\chi\left(\mathbf{X},t\right)}{\partial t}=2X_2t\mathbf{\hat{e}}_1-X_1\mathbf{\hat{e}}_2\]
+速度的空间描述
+\[\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)=\mathbf{v}_\mathrm{m}\left(\chi^{-1}\left(\mathbf{r},t\right),t\right)\]
+为求$\chi^{-1}\left(\mathrm{r},t\right)$，注意到，$t$时记刻，$\mathbf{r}=\chi\left(\mathbf{X},t\right)$，故由
+\[\left\{\begin{array}{l}r_1=X_1+X_2t^2\\r_2=X_2-X_1t\\r_3=X_3\end{array}\right.\]
+解得
+\[\left\{\begin{array}{l}X_1=\frac{r_1-r_2t^2}{1+t^3}\\X_2=\frac{r_2+r_1t}{1+t^3}\\X_3=r_3\end{array}\right.\]
+即
+\[\chi^{-1}\left(\mathbf{r},t\right)=\frac{r_1-r_2t^2}{1+t^3}\mathbf{\hat{e}}_1+\frac{r_2+r_1t}{1+t^3}\mathbf{\hat{e}}_2+r_3\mathbf{\hat{e}}_3\]
+故
+\[\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)=\frac{2r_2t+2r_1t^2}{1+t^3}\mathbf{\hat{e}}_1-\frac{r_1-r_2t^2}{1+t^3}\mathbf{\hat{e}}_2\]
+
+加速度的物质描述
+\[\mathbf{a}_\mathrm{m}\left(\mathbf{X},t\right)=\frac{\partial \mathbf{v}_m\left(\mathbf{X},t\right)}{\partial t}=2X_2\mathbf{\hat{e}}_1\]
+
+若速度场$\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)$是完全由物体$\mathcal{B}$的运动导致的，则加速度的物质描述
+\begin{align*}
+\mathbf{a}_\mathrm{m}\left(\mathbf{X},t\right)&=\frac{\partial\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)}{\partial t}+\left.\frac{\partial \mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)}{\partial\mathbf{r}}\right|_{
+\mathbf{r}=\chi\left(\mathbf{X},t\right)}\mathbf{v}_\mathrm{m}\left(\mathbf{X},t\right)\\
+&=\left(\begin{array}{c}\frac{2\left(t X_1+X_2-t^3 X_2\right)}{1+t^3}\\\frac{t\left(t X_1+2 X_2\right)}{1+t^3}\\0\end{array}\right)+\left(\begin{array}{ccc}\frac{2t^2}{1+t^3}&\frac{2t}{1+t^3}&0\\-\frac{1}{1+t^3}&\frac{t^2}{1+t^3}&0\\0&0&0\end{array}\right)\left(\begin{array}{c}2X_2t\\-X_1\\0\end{array}\right)\\
+&=2X_2\mathbf{\hat{e}}_1
+\end{align*}
+\end{example}
+\end{document}

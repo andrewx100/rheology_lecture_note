@@ -1,0 +1,76 @@
+\documentclass[main.tex]{subfiles}
+% 基变换与坐标变换
+\begin{document}
+本节讨论同一个向量或线性变换在不同基下的矩阵之间的关系。
+
+考虑数域$\mathbb{F}$上的$N$维向量空间$\mathcal{V}_N$中的两组基$\left\{\mathbf{e}_i\right\},\left\{\mathbf{e}^\prime_j\right\}$。用第一组基表示第二组基的每个基向量，可列出如下的$N$个等式：
+\[\mathbf{e}^\prime_j=\sum_{i=1}^NS_{ij}\mathbf{e}_i,j=1,\cdots,N\]
+称为从基$\left\{\mathbf{e}_i\right\}$到基$\left\{\mathbf{e}^\prime_j\right\}$的基变换公式。矩阵$\left(S_{ij}\right)$称为从基$\left\{\mathbf{e}_i\right\}$到基$\left\{\mathbf{e}^\prime_j\right\}$的过渡矩阵。
+
+\begin{theorem}
+设$\mathcal{V}_N$是数域$\mathbb{F}$上的$N$维向量空间，$\left\{\mathbf{e}_i\right\},\left\{\mathbf{e}^\prime_j\right\}$是$\mathcal{V}_N$的两组基，则从基$\left\{\mathbf{e}_i\right\}$到基$\left\{\mathbf{e}^\prime_j\right\}$的过渡矩阵是从基$\left\{\mathbf{e}^\prime_j\right\}$到基$\left\{\mathbf{e}_i\right\}$的过渡矩阵的逆矩阵。若$\mathbf{e}^\prime_j=\sum_{i=1}^NS_{ij}\mathbf{e}_i,\mathbf{e}_i=\sum_{i=1}^NT_{ji}\mathbf{e}^\prime_j$，则$S=T^{-1}$。
+\end{theorem}
+\begin{proof}
+如果我们把基向量$\left\{\mathbf{e}_i\right\}$排成一个列向量，则基变换关系可表示为\footnote{虽然这严格来说不是一个矩阵，但矩阵乘以向量的式子本质上是线性方程组的一种表示，故此入可视为一个线性方程组的简化表示。矩阵的互逆，本质上也是线性方程组的求解，故本命题也可通过矩阵运算法则得到的互逆性得以证明。}：
+\[
+\left(\begin{array}{c}
+\mathbf{e}^\prime_1\\
+\vdots\\
+\mathbf{e}^\prime_N
+\end{array}\right)=\left(\begin{array}{ccc}
+S_{11}&\cdots&S_{1N}\\
+\vdots&\ddots&\vdots\\
+S_{N1}&\cdots&S_{NN}
+\end{array}\right)\left(\begin{array}{c}
+\mathbf{e}_1\\
+\vdots\\
+\mathbf{e}_N
+\end{array}\right)
+\]
+由此易见$S=T^{-1}$。
+\end{proof}
+
+特别地，由$n$维向量空间的一组基到它自身的过渡矩阵是单位矩阵$I_n$。
+
+我们通过基的过渡矩阵，可以写出一个向量$\mathbf{v}\in\mathcal{V}_N$在两组基$\left\{\mathbf{e}_i\right\},\left\{\mathbf{e}^\prime_j\right\}$下的坐标之间的关系：
+
+\begin{align*}
+\mathbf{v}&=\sum_{j=1}^Nv^\prime_j\mathbf{e}^\prime_j\\
+&=\sum_{j=1}^Nv^\prime_j\left(\sum_{i=1}^NS_{ij}\mathbf{e}_i\right)\\
+&=\sum_{i=1}^N\left(\sum_{j=1}^N S_{ij}v^\prime_j\right)\mathbf{e}_i\\
+&=\sum_{i=1}^Nv_i\mathbf{e}_i\\
+\Leftrightarrow v_i&=\sum_{j=1}^NS_{ij}v^\prime_j,i=1,\cdots,N
+\end{align*}
+这$N$个式子称为向量$\mathbf{v}$从基$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的坐标变换公式，也可以写成矩阵乘：
+\[\left(\begin{array}{c}v_1\\\vdots\\v_N\end{array}\right)=\left(\begin{array}{ccc}S_{11}&\cdots&S_{1N}\\\vdots&&\vdots\\S_{N1}&\cdots&S_{NN}\end{array}\right)\left(\begin{array}{c}v^\prime_1\\\vdots\\v^\prime_N\end{array}\right)\]
+
+注意到，对于同一个矩阵$S_{ij}$，它是从$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的过渡矩阵，但却用于向量$\mathbf{v}$从$\left\{\mathbf{e}_i\right\}$下的坐标到$\left\{\mathbf{e}^\prime_j\right\}$下的坐标的变换公式中。按照相同的推算方法还可以得到，向量$\mathbf{v}$从$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的坐标变换公式是$v^\prime_j=\sum_{i=1}^NT_{ji}v_i,j=1,\cdots,N$，其中$T_{ji}=S_{ij}^{-1}$是从$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的过渡矩阵。
+
+接下来，我们看线性变换的矩阵在不同基下的变换公式。
+
+\begin{theorem}
+设$\mathcal{V}_N$、$\mathcal{W}_M$分别是数域$\mathbb{F}$上的$N$、$M$维向量空间，$\left\{\mathbf{a}_i\right\},\left\{\mathbf{a}^\prime_i\right\}\in\mathcal{V}_N$是$\mathcal{V}_N$的两组基，基变换公式为$\mathbf{a}^\prime_j=\sum_{i=1}^NS_{ij}\mathbf{a}_i$；$\left\{\mathbf{b}_j\right\},\left\{\mathbf{b}^\prime_j\right\}$是$\mathcal{W}_M$的两组基，基变换公式为$\mathbf{b}^\prime_j=\sum_{i=1}^MT_{ij}\mathbf{b}_i$。线性变换$\mathbf{A}:\mathcal{V}_N\rightarrow\mathcal{W}_M$在$\left\{\mathbf{a}_i\right\},\left\{\mathbf{b}_i\right\}$下的矩阵表示为$\left(\mathbf{A}\right)$，在$\left\{\mathbf{a}^\prime_i\right\},\left\{\mathbf{b}^\prime_i\right\}$下的矩阵表示为$\left(\mathbf{A}\right)^\prime$。则有
+\begin{align*}
+    \left(\mathbf{A}\right)&=T\left(\mathbf{A}\right)^\prime S^{-1}\\
+    \left(\mathbf{A}\right)^\prime&=T^{-1}\left(\mathbf{A}\right)S
+\end{align*}
+\end{theorem}
+\begin{proof}
+对于任一向量$\mathbf{v}\in\mathcal{V}_N$，$\mathbf{w}=\mathbf{Av}\in\mathcal{W}_M$。我们从向量$\mathbf{w}$的坐标变换出发：
+\begin{align*}
+    w_i&=\sum_{j=1}^MT_{ij}w^\prime_j\\
+    &=\sum_{j=1}^MT_{ij}\left(\sum_{k=1}^NA^\prime_{jk}v^\prime_k\right)\\
+    &=\sum_{j=1}^M\sum_{k=1}^NT_{ij}A^\prime_{jk}\left(\sum_{l=1}^NS^{-1}_{kl}v_l\right)\\
+    &=\sum_{j=1}^M\sum_{k=1}^N\sum_{l=1}^NT_{ij}A^\prime_{jk}S^{-1}_{kl}v_l\\
+    &=\sum_{j=1}^N\sum_{l=1}^M\sum_{k=1}^NT_{il}A^\prime_{lk}S^{-1}_{kl}v_j,\quad i=1,\cdots,M
+\end{align*}
+其中$A_{ij},A^\prime_{ij}$分别是$\left(\mathbf{A}\right),\left(\mathbf{A}\right)^\prime$的坐标。
+
+另一方面，$w_i=\sum_{j=1}^NA_{ij}v_j,i=1,\cdots,M$，与上面的结果比较可得：
+\[
+A_{ij}=\sum_{l=1}^M\sum_{k=1}^NT_{il}A^\prime_{lk}S^{-1}_{kj}
+\Leftrightarrow \left(\mathbf{A}\right)=T\left(\mathbf{A}\right)^\prime S^{-1}
+\]
+由$T^{-1}\left(\mathbf{A}\right)S=T^{-1}T\left(\mathbf{A}\right)^\prime S^{-1}S=\left(\mathbf{A}\right)^\prime$，可得$\left(\mathbf{A}\right)^\prime=T^{-1}\left(\mathbf{A}\right)S$。
+\end{proof}
+\end{document}

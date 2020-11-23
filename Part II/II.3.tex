@@ -1,0 +1,211 @@
+\documentclass[main.tex]{subfiles}
+% 内积空间
+\begin{document}
+\begin{definition}[内积]
+数域$\mathbb{F}$上的向量空间$\mathcal{V}$中两向量$\mathbf{a},\mathbf{b}\in\mathcal{V}$的内积记为$\left(\mathbf{a}|\mathbf{b}\right),\left(\cdot|\cdot\right):\mathcal{V}\times\mathcal{V}\rightarrow\mathbb{F}$，满足\footnote{上划线表示复数共轭}：$\forall\mathbf{a},\mathbf{b},\mathbf{c}\in\mathcal{V},\alpha\in\mathbb{F}$
+\begin{itemize}
+    \item $\left(\mathbf{a}|\mathbf{b}\right)=\overline{\left(\mathbf{b}|\mathbf{a}\right)}$
+    \item $\left(\alpha\mathbf{a}|\mathbf{b}\right)=\alpha\left(\mathbf{a}|\mathbf{b}\right)$
+    \item $\left(\mathbf{a}+\mathbf{b}|\mathbf{c}\right)=\left(\mathbf{a}|\mathbf{b}\right)+\left(\mathbf{a}|\mathbf{c}\right)$
+    \item $\left(\mathbf{a}|\mathbf{a}\right)\in\mathbb{R}$且$\left(\mathbf{a}|\mathbf{a}\right)\geq0$，当且仅当$\mathbf{a}=\mathbf{0}$时取等号。
+\end{itemize}
+\end{definition}
+
+\begin{definition}[内积空间]
+带有内积运算规定的向量空间叫做内积空间。
+\end{definition}
+
+由内积运算可推出以下性质：$\forall\mathbf{a},\mathbf{b},\mathbf{c}\in\mathcal{V},\alpha\in\mathbb{F}$
+\[\left(\mathbf{a}|\alpha\mathbf{b}+\mathbf{c}\right)=\overline{\alpha}\left(\mathbf{a}|\mathbf{b}\right)+\left(\mathbf{a}|\mathbf{c}\right)\]
+即从内积的后一个向量提出标量到内积之外时，这一标量要取复数共轭。
+
+内积的定义中设置复数共轭是必要的。否则将面临如下的矛盾：由$\left(\mathbf{a}|\mathbf{a}\right)>0\forall\mathbf{a}\neq\mathbf{0}$，竟然有$\left(i\mathbf{a}|i\mathbf{a}\right)=-1\left(\mathbf{a}|\mathbf{a}\right)>0$。
+
+\begin{example}
+在$\mathbb{F}^n$上可定义内积：对于$\mathbf{a}=\left(\alpha_1,\cdots,\alpha_n\right)^\intercal,\mathbf{b}=\left(\beta_1,\cdots,\beta_n\right)^\intercal\in\mathbb{F}$，$\left(\mathbf{a}|\mathbf{b}\right)\neq\sum_j\alpha_j\overline{\beta_j}$，称为$\mathbb{F}^n$上的标准内积。$\mathbb{R}^n$上的标准内积又可记为点乘$\mathbf{a}\cdot\mathbf{b}$。
+\end{example}
+
+由内积的一般定义可证明柯西--施瓦茨不等式。故该不等式对任一满足内积定义的一般要求的具体定义都成立。
+
+\begin{theorem}
+设$\mathcal{V}$是数域$\mathbb{F}$上的一个内积空间，则有$\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$，
+\begin{enumerate}
+    \item 柯西--施瓦茨不等式$\left|\left(\mathbf{a}|\mathbf{b}\right)\right|\leq\left(\mathbf{a}|\mathbf{a}\right)\left(\mathbf{b}|\mathbf{b}\right)$
+    \item $\left(\mathbf{a}|\mathbf{b}\right)=\mathrm{Re}\left(\mathbf{a}|\mathbf{b}\right)+\mathrm{Re}\left(\mathbf{a}|i\mathbf{b}\right)$
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+当$\mathbf{a}=\mathbf{0}$时，不等式取等号成立。当$\mathbf{a}\neq\mathbf{0}$时，令
+\[
+\mathbf{c}=\mathbf{b}-\frac{\left(\mathbf{b}|\mathbf{a}\right)}{\left(\mathbf{a}|\mathbf{a}\right)}\mathbf{a}
+\]
+则可验证$\left(\mathbf{c}|\mathbf{a}\right)=0$，且
+\begin{align*}
+0\leq\left(\mathbf{c}|\mathbf{c}\right)&=\left(\mathbf{b}-\frac{\left(\mathbf{b}|\mathbf{a}\right)}{\left(\mathbf{a}|\mathbf{a}\right)}\mathbf{a}\right|\left.\mathbf{b}-\frac{\left(\mathbf{b}|\mathbf{a}\right)}{\left(\mathbf{a}|\mathbf{a}\right)}\mathbf{a}\right)\\
+&=\left(\mathbf{b}|\mathbf{b}\right)-\frac{\left|\left(\mathbf{b}|\mathbf{a}\right)\right|^2}{\left(\mathbf{a}|\mathbf{a}\right)}\\
+\Leftrightarrow \left|\left(\mathbf{a}|\mathbf{b}\right)\right|&\leq\left(\mathbf{a}|\mathbf{a}\right)\left(\mathbf{b}|\mathbf{b}\right)
+\end{align*}
+
+由$\left(\mathbf{a}|\mathbf{b}\right)=\mathrm{Re}\left(\mathbf{a}|\mathbf{b}\right)+i\mathrm{Im}\left(\mathbf{a}|\mathbf{b}\right)$和$\mathrm{Im}\left(\alpha\right)=\mathrm{Re}\left(-i\alpha\right)\forall\alpha\in\mathbb{F}$，有$\mathrm{Im}\left(\mathbf{a}|\mathbf{b}\right)=\mathrm{Re}\left(-i\left(\mathbf{a}|\mathbf{b}\right)\right)=\mathrm{Re}\left(\mathbf{a}|i\mathbf{b}\right)$，故$\left(\mathbf{a}|\mathbf{b}\right)=\mathrm{Re}\left(\mathbf{a}|\mathbf{b}\right)+i\mathrm{Re}\left(\mathbf{a}|i\mathbf{b}\right)$。
+\end{proof}
+
+\begin{definition}[向量的范]\label{def:I.3.3}
+设$\mathcal{V}$是数域$\mathbb{F}$向量空间，则有$\forall\mathbf{x}\in\mathcal{V},\alpha\in\mathbb{F}$，
+\begin{enumerate}
+    \item 恒正性：$\left\|\mathbf{x}\right\|$
+    \item 调和性：$\left\|\alpha\mathbf{x}\right\|=\left|\alpha\right|\left\|\mathbf{x}\right\|$
+    \item 三角不等式：$\left\|\mathbf{x}+\mathbf{y}\right\|\leq\left\|\mathbf{x}\right\|+\left\|\mathbf{y}\right\|$
+\end{enumerate}
+带有范的定义的向量空间叫赋范向量空间。
+\end{definition}
+
+由于向量空间的内积定义本身就可以有多种，依赖内积的范的定义也会有多种；对于有些向量空间，范的定义可以不依赖内积。向量的范的其中一种常用的定义是：设$\mathcal{V}$是内积空间，向量$\mathbf{a}\in\mathcal{V}$的范$\left\|\mathbf{a}\right\|\equiv\left(\mathbf{a}|\mathbf{a}\right)^{\frac{1}{2}}$。易验证定义\ref{def:I.3.3}满足上述要求。我们把这一定义称为欧几里德范。其他范的定义则为非欧几里德范，例如在$\mathbf{R}^n$上，还可以有如下范的定义。对任一$\mathbf{x}=\left(x_1,\cdots,x_n\right)$，$\left\|\mathbf{x}\right\|=\mathrm{max}\left\{\left|x_1\right|,\cdots,\left|x_n\right|\right\}$。
+
+以下定理说明，在一定条件下，我们能够用范的一般定义构造一个内积，使任何一个尚未定义内积的赋范空间成为一个内积空间。
+
+\begin{theorem}\label{thm:I.3.1}
+一个赋范向量空间是内积空间当且仅当该空间的范满足平行四边形法则，即
+\[\left\|\mathbf{a}+\mathbf{b}\right\|^2+\left\|\mathbf{a}-\mathbf{b}\right\|^2=2\left\|\mathbf{a}\right\|^2+2\left\|\mathbf{b}\right\|^2\]
+\end{theorem}
+\begin{proof}
+设$\mathcal{V}$是数域$\mathbb{F}$上的一个赋范向量空间，若定义内积：
+\begin{align*}
+\left(\mathbf{a}|\mathbf{b}\right)&=\frac{1}{4}\left\|\mathbf{a}+\mathbf{b}\right\|^2-\frac{1}{4}\left\|\mathbf{a}-\mathbf{b}\right\|^2+\frac{i}{4}\left\|\mathbf{a}+i\mathbf{b}\right\|^2-\frac{i}{4}\left\|\mathbf{a}-i\mathbf{b}\right\|^2\\
+&=\frac{1}{4}\sum_{n=1}^4i^n\left\|\mathbf{a}+i^n\mathbf{b}\right\|^2,\forall\mathbf{a},\mathbf{b}\in\mathcal{V}
+\end{align*}
+可验证上式满足内积定义，且$\left\|\mathbf{a}\right\|^2=\left(\mathbf{a}|\mathbf{a}\right)^{\frac{1}{2}}$。
+\end{proof}
+
+上面的等式又称极化恒等式。对于$\mathbf{a},\mathbf{b}\in\mathbb{R}^n$则有$\mathbf{a}\cdot\mathbf{b}=\frac{1}{4}\left\|\mathbf{a}+\mathbf{b}\right\|^2-\frac{1}{4}\left\|\mathbf{a}-\mathbf{b}\right\|^2$。
+
+欧几里德范总满足三角不等式和平行四边形法则。
+
+\begin{definition}[正交]
+内积空间$\mathcal{V}$中的向量$\mathbf{a},\mathbf{b}\in\mathcal{V}$，若$\left(\mathbf{a}|\mathbf{b}\right)=0$，则称$\mathbf{a}$与$\mathbf{b}$是正交的。若$S$是$\mathcal{V}$的一个子集，且$S$中的向量两两正交，则称$S$是$\mathcal{V}$的一个正交集。若$\mathcal{V}$的一个正交集$S$中的向量均满足$\left\|\mathbf{a}\right\|=1\forall\mathbf{a}\in S$则称$S$是规范正交集。
+\end{definition}
+
+\begin{example}\label{exp:I.3.2}
+数域$\mathbb{F}$上的$n\times n$矩阵空间$\mathbb{F}^{n\times n}$中，记$E^{pq}$为仅第$p$行、第$q$列为1，其余为0的$n\times n$矩阵。则由$E^{pq},p=1,\cdots,n,q=1,\cdots,n$组成的集合是规范正交集。其中$\mathbb{F}^{n\times n}$上的内积定义是$\left(A|B\right)\equiv\sum_{j,k}A_{jk}\overline{B}_{jk},\forall A, B\in\mathbb{F}^{n\times n}$。
+\end{example}
+
+\begin{theorem}\label{thm:I.2.3}
+正交集中的所有非零向量线性无关。
+\end{theorem}
+\begin{proof}
+设$\mathcal{V}$是内积空间，$S$是$\mathcal{V}$的一个正交集，$\mathbf{a}_1,\cdots,\mathbf{a}_m\in S$。令$\mathbf{b}=\beta_1\mathbf{a}_1+\cdots+\beta_m\mathbf{a}_m$，则
+\begin{align*}
+\left(\mathbf{b}|\mathbf{a}_k\right)&=\left(\left.\sum_j\beta_j\mathbf{a}_j\right|\left.\mathbf{a}_k\right.\right)\\
+&=\sum_j\beta_j\left(\mathbf{a}_j|\mathbf{a}_k\right)\\
+&=\beta_j\left(\mathbf{a}_k|\mathbf{a}_k\right),k=1,\cdots,m\\
+\because \left(\mathbf{a}_k|\mathbf{a}_k\right)&\neq 0\\
+\therefore \beta_k&=\frac{\left(\mathbf{b}|\mathbf{a}\right)}{\left\|\mathbf{a}\right\|^2},k=1,\cdots,m
+\end{align*}
+考察上式可验证$\mathbf{b}=\mathbf{0}\Leftrightarrow\beta_1=\cdots=\beta_m=0$。
+\end{proof}
+
+由定理\ref{thm:II.2.3}，内积空间$\mathcal{V}$的正交集$S$总能线性生成$\mathcal{V}$的一个子空间。上面的证明也给出了格拉姆--施密特正交化过程，作为定理如下。
+
+\begin{theorem}
+设$\mathcal{V}$是内积空间，$\mathbf{b}_1,\cdots,\mathbf{b}_n\in\mathcal{V}$是一组线性无关向量。那么可以由它们构建一组两两正交的向量$\mathbf{a}_1,\cdots,\mathbf{a}_n\in\mathcal{V}$使得对于每一$k=1,\cdots,n$，向量组$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_k\right\}$都是由$\left\{\mathbf{b}_1,\cdots,\mathbf{b}_k\right\}$线性生成的空间的一组基。
+\end{theorem}
+\begin{proof}
+采用数学归纳法。作为$k=1$的情况，令$\mathbf{a}_1=\mathbf{b}_1$，则命题显然成立。假设当$k=m$时命题成立，即$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_m\right\},m<n$是已经构建好的满足命题要求的正交向量，则对每一$k=1,\cdots,m$，$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_k\right\}$是由$\left\{\mathbf{b}_1,\cdots,\mathbf{b}_k\right\}$线性生成的子空间的正交基。令
+\[
+\mathbf{a}_{m+1}=\mathbf{b}_{m+1}-\sum_{k=1}^m\frac{\left(\left.\mathbf{b}_{m+1}\right|\left.\mathbf{a}_k\right.\right)}{\left(\mathbf{a}_k|\mathbf{a}_k\right)}\mathbf{a}_k
+\]
+则有$\mathbf{a}_{m+1}\neq\mathbf{0}$，否则$\mathbf{b}_1,\cdots,\mathbf{b}_m,\mathbf{b}_{m+1}$线性相关，因$\mathbf{b}_{m+1}$可由$\mathbf{b}_1,\cdots,\mathbf{b}_m$线性表出。由上式还可知，对每一$j=1,\cdot,m$均有
+\begin{align*}
+\left(\mathbf{a}_{m+1}|\mathbf{a}_j\right)&=\left(\mathbf{b}_{m+1}|\mathbf{a}_j\right)-\sum_{k=1}^m\frac{\left(\mathbf{b}_{m+1}|\mathbf{a}_k\right)}{\left(\mathbf{a}_k|\mathbf{a}_k\right)}\left(\mathbf{a}_k|\mathbf{a}_j\right)\\
+&=\left(\mathbf{b}_{m+1}|\mathbf{a}_j\right)-\left(\mathbf{b}_{m+1}|\mathbf{a}_j\right)\\
+&=0
+\end{align*}
+所以$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_{m+1}\right\}$是一个非零正交集。由定理\ref{thm:II.2.3}，它们线性无关。故$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_{m+1}\right\}$也是由$\left\{\mathbf{b}_1,\cdots\mathbf{b}_{m+1}\right\}$线性生成的子空间的正交基。
+\end{proof}
+
+特别地，对$n=4$，
+\begin{align*}
+    \mathbf{a}_1&=\mathbf{b}_1\\
+    \mathbf{a}_2&=\mathbf{b}_2-\frac{\left(\mathbf{b}_2|\mathbf{a}_1\right)}{\left(\mathbf{a}_1|\mathbf{a}_1\right)}\mathbf{a}_1\\
+    \mathbf{a}_3&=\mathbf{b}_3-\frac{\left(\mathbf{b}_3|\mathbf{a}_1\right)}{\left(\mathbf{a}_1|\mathbf{a}_1\right)}\mathbf{a}_1-\frac{\left(\mathbf{b}_3|\mathbf{a}_2\right)}{\left(\mathbf{a}_2|\mathbf{a}_2\right)}\mathbf{a}_2\\
+    \mathbf{a}_4&=\mathbf{b}_4-\frac{\left(\mathbf{b}_4|\mathbf{a}_1\right)}{\left(\mathbf{a}_1|\mathbf{a}_1\right)}\mathbf{a}_1-\frac{\left(\mathbf{b}_4|\mathbf{a}_2\right)}{\left(\mathbf{a}_2|\mathbf{a}_2\right)}\mathbf{a}_2-\frac{\left(\mathbf{b}_4|\mathbf{a}_3\right)}{\left(\mathbf{a}_3|\mathbf{a}_3\right)}\mathbf{a}_3
+\end{align*}
+
+\begin{corollary}
+    每个有限维内积空间都有一组规范正交基。
+\end{corollary}
+\begin{proof}
+只需要对采用格接姆--施密特正交化过程得到的正交基再归一化即可。
+\end{proof}
+
+\begin{example}[$\mathbb{R}^n$内积空间]
+$n$元有序实数对的集合$\mathbb{R}^n$中可定义如下加法运算：
+\begin{align*}
+\left(x_1,\cdots,x_n\right)^\intercal+\left(y_1,\cdots,y_n\right)^\intercal=\left(x_1+y_1,\cdots,x_n+y_n\right)^\intercal,\\
+\alpha\left(x_1,\cdots,x_n\right)^\intercal=\left(\alpha x_1,\cdots,\alpha x_n\right)^\intercal,\forall x_i,y_i,\alpha\in\mathbb{R},i=1,\cdots,n
+\end{align*}
+可验证，带有上述运算规则的$\mathbb{R}^n$是一个向量空间。再引入如下内积运算：
+\[
+\left(x_1,\cdots,x_n\right)^\intercal\cdot\left(y_1,\cdots,y_n\right)^\intercal=\sum_{j=1}^nx_jy_j\]
+可验证，带有上述运算规则满足内积定义，$\mathbb{R}^n$成变一个内积空间。
+\end{example}
+
+\begin{example}
+考虑$\mathbb{R}^3$中的三个向量$\mathbf{b}_1=\left(3,0,4\right)^\intercal,\mathbf{b}_2=\left(-1,0,7\right)^\intercal,\mathbf{b}_3=\left(2,9,11\right)^\intercal$。首先可以验证它们线性无关，即
+\[
+\left\{\begin{array}{rl}
+3x_1-x_2+2x_3&=0\\ 
+9x_3&=0\\ 
+4x_1+7x_2+11x_3&=0
+\end{array}\right.
+\]
+只有唯一解$x_1=x_2=x_3=0$。
+
+通过格拉姆--斯密特正交化过程可由$\mathbf{b}_1,\mathbf{b}_2,\mathbf{b}_3$得到$\mathbf{R}^3$的一组正交基：
+\begin{align*}
+    \mathbf{a}_1&=\left(3,0,4\right)^\intercal\\
+    \mathbf{a}_2&=\left(1,0,7\right)^\intercal-\frac{\left(-1,0,7\right)^\intercal\cdot\left(3,0,4\right)^\intercal}{\left(3,0,4\right)^\intercal\cdot\left(3,0,4\right)^\intercal}\left(3,0,4\right)^\intercal\\
+    &=\left(-1,0,7\right)^\intercal-\left(3,0,4\right)^\intercal\\
+    &=\left(-4,0,3\right)^\intercal\\
+    \mathbf{a}_3&=\left(2,9,11\right)^\intercal-\frac{\left(2,9,11\right)^\intercal\cdot\left(3,0,4\right)^\intercal}{\left(3,0,4\right)^\intercal\cdot\left(3,0,4\right)^\intercal}\left(3,0,4\right)^\intercal-\frac{\left(2,9,11\right)^\intercal\cdot\left(-4,0,5\right)^\intercal}{\left(-4,0,3\right)^\intercal\cdot\left(-4,0,3\right)^\intercal}\left(-4,0,3\right)^\intercal\\
+    &=\left(2,9,11\right)^\intercal-2\left(3,0,4\right)^\intercal-\left(-4,0,3\right)^\intercal\\
+    &=\left(0,9,0\right)^\intercal
+\end{align*}
+可见$\mathbf{a}_1,\mathbf{a}_2,\mathbf{a}_3$均为非零向量，故它们是$\mathbb{R}^3$的一组正交基。归一化后得到$\mathbf{\hat{a}}_1=\frac{1}{5}\mathbf{a}_1,\mathbf{\hat{a}}_2=\frac{1}{5}\mathbf{a}_2,\mathbf{\hat{a}}_3=\left(0,1,0\right)^\intercal$是一组规范正交基。任一向量$\mathbf{x}=\left(x_1,x_2,x_3\right)^\intercal\in\mathbb{R}^3$在基$\left\{\mathbf{a}_1,\mathbf{a}_2,\mathbf{a}_3\right\}$下的坐标为：
+\[\left(x_1,x_2,x_3\right)^\intercal=\frac{3x_1+4x_3}{25}\mathbf{a}_1+\frac{-4x_1+3x_3}{25}\mathbf{a}_2+\frac{x_2}{9}\mathbf{a}_3\]
+
+由格拉姆--斯密特正交化过程可知，一般地，对于规范正交基$\left\{\mathbf{a}_i\right\}$有
+\[\mathbf{a}_i\cdot\mathbf{a}_j=\delta_{ij}\]
+其中
+\[\delta_{ij}=\left\{\begin{array}{ll}
+1,&i=j\\
+0,&i\neq j
+\end{array}\right.
+\]
+叫克劳内克符号。
+
+在选取什么基之下，向量$\mathbf{x}=\left(x_1,\cdots,x_n\right)$在该基下的坐标就恰好是$x_1,\cdots,x_n$呢？这样的基$\left\{\mathbf{\hat{e}}_i\right\}$叫标准基，其中
+\[\mathbf{\hat{e}}_i=\left(e_{i,1},\cdots,e_{i,n}\right)^\intercal,e_{i,j}=\delta_{ij}\]
+标准基是一个规范正交基。
+
+在选定任一规范正交基$\mathbf{a}$下，两向量$\mathbf{x}$和$\mathbf{y}$的标准内积计算，按定义有$\mathbf{x}\cdot\mathbf{y}=\sum_ix_iy_i$。另一方面，表达成给定基下的坐标后，则有
+\begin{align*}
+\mathbf{x}&=\sum_i\mu_i\mathbf{a}_i,\mathbf{y}=\sum_i\nu_i\mathbf{a}_i\\
+\mathbf{x}\cdot\mathbf{y}&=\sum_i\mu_i\mathbf{a}_i\cdot\left(\sum_j\nu_j\mathbf{a}_j\right)\\
+&=\sum_i\sum_j\left(\mu_i\mathbf{a}_i\right)\cdot\left(\nu_j\mathbf{a}_j\right)\\
+&=\sum_i\sum_j\mu_i\nu_j\left(\mathbf{a}_i\cdot\mathbf{a}_j\right)\\
+&=\sum_i\sum_j\mu_i\nu_j\delta_{ij}\\
+&=\sum_i\mu_i\nu_i
+\end{align*}
+\end{example}
+
+\begin{example}[$\mathbb{R}$内积空间]\label{exp:II.3.5}
+作为实数域上的内积空间，$\mathbb{R}$的每个元素都是向量。每一个向量都显然构成一个含有一个向量的线性无关向量组。每个向量都能被选定的某向量线性表出。选定向量$\mathbf{a}=a$为基，则每一向量$\mathbf{x}=x\in\mathbb{R}$都能表示为$\mathbf{x}=\left(x/a\right)\mathbf{a}$，其中$\left(x/a\right)$是向量$\mathbf{x}$在基$\mathbf{a}$下的坐标。两向量的标准内积$\mathbf{x}\cdot\mathbf{y}=xy$。在选定基$\mathbf{a}$下，
+\begin{align*}
+    \mathbf{x}\cdot\mathbf{y}&=\frac{x}{a}\mathbf{a}\cdot\left(\frac{y}{a}\mathbf{a}\right)\\
+    &=\frac{x}{a}\times\frac{y}{a}\left(\mathbf{a}\cdot\mathbf{a}\right)\\
+    &=\frac{xy}{a^2}a^2\\
+    &=xy
+\end{align*}
+虽然1维的结果是平凡的，但作为“向量与其在某基下的坐标是两回事”的一个强调。
+\end{example}
+\end{document}

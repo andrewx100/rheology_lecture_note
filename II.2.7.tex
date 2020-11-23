@@ -1,0 +1,42 @@
+\documentclass[main.tex]{subfiles}
+\begin{document}
+考虑$\mathbb{F}$上的$N$维向量空间$\mathcal{V}$中的两组基$\left\{\mathbf{e}_i\right\},\left\{\mathbf{e}^\prime_j\right\}$。用第一组基表示第二组基的每个基向量，列出如下的$N$个等式：
+\[\mathbf{e}^\prime_j=\sum_{i=1}^NS_{ij}\mathbf{e}_i,j=1,\cdots,N\]
+称为从基$\left\{\mathbf{e}_i\right\}$到基$\left\{\mathbf{e}^\prime_j\right\}$的基变换公式。矩阵$\left(S_{ij}\right)$称为从基$\left\{\mathbf{e}_i\right\}$到基$\left\{\mathbf{e}^\prime_j\right\}$的过渡矩阵。
+\begin{theorem}
+从基$\left\{\mathbf{e}_i\right\}$到基$\left\{\mathbf{e}^\prime_j\right\}$的过渡矩阵是从基$\left\{\mathbf{e}^\prime_j\right\}$到基$\left\{\mathbf{e}_i\right\}$的过渡矩阵的逆矩阵。具体地，若$\mathbf{e}^\prime_j=\sum_{i=1}^NS_{ij}\mathbf{e}_i,\mathbf{e}_i=\sum_{i=1}^NT_{ji}\mathbf{e}^\prime_j$，则$\left(S_{ij}\right)=\left(T_{ji}\right)^{-1}$。
+\end{theorem}
+
+特别地，由$n$维向量空间的一组基到它自身的过渡矩阵是单位矩阵$I_n$：
+\[I_n=\left(\begin{array}{cccc}
+ 1& 0 &\cdots  &0 \\ 
+ 0&1  &\cdots  &0 \\ 
+ \vdots&\vdots  &  &\vdots \\ 
+ 0&0  &\cdots  &1 
+\end{array}\right)\]
+
+我们通过过渡矩阵，可以写出一个向量$\mathbf{v}\in\mathcal{V}_N$在两组基$\left\{\mathbf{e}_i\right\},\left\{\mathbf{e}^\prime_j\right\}$下的坐标之间的关系：
+\begin{equation*}
+\begin{split}
+\mathbf{v}&=\sum_{j=1}^Nv^\prime_j\mathbf{e}^\prime_j\\
+&=\sum_{j=1}^Nv^\prime_j\left(\sum_{i=1}^NS_{ij}\mathbf{e}_i\right)\\
+&=\sum_{i=1}^N\left(\sum_{j=1}^N S_{ij}v^\prime_j\right)\mathbf{e}_i\\
+&=\sum_{i=1}^Nv_i\mathbf{e}_i
+\Leftrightarrow\\
+v_i&=\sum_{j=1}^NS_{ij}v^\prime_j,i=1,\cdots,N
+\end{split}
+\end{equation*}
+这$N$个式子称为向量$\mathbf{v}$从基$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的坐标变换公式，也可以写成矩阵乘：
+\[\left(\begin{array}{c}v_1\\\vdots\\v_N\end{array}\right)=\left(\begin{array}{ccc}S_{11}&\cdots&S_{1N}\\\vdots&&\vdots\\S_{N1}&\cdots&S_{NN}\end{array}\right)\left(\begin{array}{c}v^\prime_1\\\vdots\\v^\prime_N\end{array}\right)\]
+
+注意到，对于同一个矩阵$\left(S_{ij}\right)$，它是从$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的过渡矩阵，但却用于向量$\mathbf{v}$从$\left\{\mathbf{e}_i\right\}$下的坐标到$\left\{\mathbf{e}^\prime_j\right\}$下的坐标的变换公式中。按照相同的推算方法还可以得到，向量$\mathbf{v}$从$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的坐标变换公式是$v^\prime_j=\sum_{i=1}^NT_{ji}v_i,j=1,\cdots,N$，其中$\left(T_{ji}\right)=\left(S_{ij}\right)^{-1}$是从$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的过渡矩阵。
+
+\begin{theorem}
+给定线性变换$\mathbf{A}:\mathcal{V}_N\rightarrow\mathcal{W}_M$，基$\left\{\mathbf{a}_i\right\},\left\{\mathbf{a}^\prime_i\right\}\in\mathcal{V}_N,\left\{\mathbf{b}_j\right\},\left\{\mathbf{b}^\prime_j\right\}\in\mathcal{W}_M$。由基变换公式$\mathbf{a}^\prime_j=\sum_{i=1}^NS_{ij}\mathbf{a}_i$，可证$\mathbf{A}$在$\left\{\mathbf{a}_i\right\},\left\{\mathbf{b}_i\right\}$下的表示矩阵$\left(\mathbf{A}\right)$与其在$\left\{\mathbf{a}^\prime_j\right\},\left\{\mathbf{b}^\prime_j\right\}$下的表示矩阵$\left(\mathbf{A}\right)^\prime$之间满足以下关系：
+\[\left(\mathbf{A}\right)=\left(S_{ij}\right)\left(\mathbf{A}\right)^\prime\left(S_{ij}\right)^{-1}\\\left(\mathbf{A}\right)^\prime=\left(S_{ij}\right)^{-1}\left(\mathbf{A}\right)\left(S_{ij}\right)\]
+\end{theorem}
+
+\begin{theorem}
+恒等变换$\mathbf{I}:\mathcal{V}_N\rightarrow\mathcal{V}_N$在任意一组基下的矩阵表示都是单位矩阵$I_N$。
+\end{theorem}
+\end{document}

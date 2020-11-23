@@ -1,0 +1,37 @@
+\documentclass[main.tex]{subfiles}
+% 应变率张量
+\begin{document}
+对速度的空间描述（即速度场）$\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)$求当前构型下的空间导数得到的张量
+\[\mathbf{L}=\frac{\partial}{\partial\mathbf{r}}\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)=\mathbf{L}\left(\mathbf{r},t\right)\]
+称为速度梯度张量。它是关于物体运动的一个空间描述的线性变换值函数。在标准基下，
+\[\left(\mathbf{L}\right)=\left(\begin{array}{ccc}\frac{\partial v_{\mathrm{s}1}}{\partial r_1}&\frac{\partial v_{\mathrm{s}1}}{\partial r_2}&\frac{\partial v_{\mathrm{s}1}}{\partial r_3}\\\frac{\partial v_{\mathrm{s}2}}{\partial r_1}&\frac{\partial v_{\mathrm{s}2}}{\partial r_2}&\frac{\partial v_{\mathrm{s}2}}{\partial r_3}\\\frac{\partial v_{\mathrm{s}3}}{\partial r_1}&\frac{\partial v_{\mathrm{s}3}}{\partial r_2}&\frac{\partial v_{\mathrm{s}3}}{\partial r_3}\end{array}\right)\]
+
+对速度的物质描述求参考构型下的空间导数
+\begin{align*}\frac{\partial}{\partial\mathbf{X}}\mathbf{v}_\mathrm{m}\left(\mathbf{X},t\right)&=\frac{\partial}{\partial \mathbf{X}}\left(\frac{\partial}{\partial t}\chi\left(\mathbf{X},\right)\right)\\
+&=\frac{\partial}{\partial t}\left(\frac{\partial}{\partial\mathbf{X}}\chi\left(\mathbf{X},t\right)\right)\\
+&=\frac{\partial}{\partial t}\mathbf{F}
+\end{align*}
+
+如果用速度的物质描述来表出速度场
+\[\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)=\mathbf{v}_\mathrm{m}\left(\chi^{-1}\left(\mathbf{r},t\right),t\right)\]
+则
+\begin{align*}
+    \mathbf{L}&=\frac{\partial}{\partial\mathbf{r}}=\frac{\partial}{\partial \mathbf{r}}\mathbf{v}_\mathrm{m}\left(\chi^{-1}\left(\mathbf{r},t\right),t\right)\\
+    &=\left.\frac{\partial}{\partial\mathbf{X}}\mathbf{v}_\mathrm{m}\left(\mathbf{X},t\right)\right|_{\mathbf{X}=\chi^{-1}\left(\mathbf{r},t\right)}\frac{\partial}{\partial \mathbf{r}}\chi^{-1}\left(\mathbf{r},t\right)\\
+    &=\left.\frac{\partial}{\partial t}\mathbf{F}\left(\mathbf{X},t\right)\right|_{\mathbf{X}=\chi^{-1}\left(\mathbf{r},t\right)}\mathbf{F}^{-1}\left(\mathbf{r},t\right)=\dot{\mathbf{F}}\mathbf{F}^{-1}
+\end{align*}
+
+如果形变梯度张量$\mathbf{F}$可逆则$\mathbf{L}$也可逆，故$\mathbf{L}$可以写成如下对称张量和斜称张量的和：
+\[\mathbf{L}=\frac{1}{2}\left(\mathbf{L}+\mathbf{L}^\intercal\right)+\frac{1}{2}\left(\mathbf{L}-\mathbf{L}^\intercal\right)=\mathbf{D}+\mathbf{W}\]
+其中定义
+\begin{align*}
+    \mathbf{D}&=\mathbf{D}^\intercal=\frac{1}{2}\left(\mathbf{L}+\mathbf{L}^\intercal\right)&\text{应变速率张量}\\
+    \mathbf{W}&=-\mathbf{W}^\intercal=\frac{1}{2}\left(\mathbf{L}-\mathbf{L}^\intercal\right)&\text{旋度张量}
+\end{align*}
+
+\begin{example}
+请自行写出$\mathbf{D}$和$\mathbf{W}$在标准基下的矩阵式。
+\end{example}
+
+$\mathbf{D}$、$\mathbf{W}$都是空间描述的函数（场函数）。
+\end{document}

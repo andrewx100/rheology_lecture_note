@@ -1,0 +1,73 @@
+\documentclass[main.tex]{subfiles}
+%物体的运动
+\begin{document}
+\subsection{物体的运动}
+\begin{definition}[世界线与世界运动]
+设$\mathcal{W}$是事件世界，$l$是由时间$\mathcal{T}$到$\mathcal{W}$的一个单射$l:\mathcal{T}\rightarrow\mathcal{W}$，$\mathrm{ran}l\subset\mathcal{W}$称为一条世界线，也简记作$l$。一组两两不相交的世界线的集合$\psi$称为一个世界运动。
+\end{definition}
+
+事件世界，包括了所有时间上可以发生的所有事件。一个实际发生了的具体事件，总能在事件世界中找到对应。一个世界运动中的世界线两两不相交是经典力学中的要求，称为“信息守恒定律”。
+
+\begin{definition}[物体]
+一个物体是一个非空集合$\mathcal{B}$，其元素$X\in\mathcal{B}$称为物质点。
+\end{definition}
+
+\begin{definition}[运动学过程、物体的运动]
+设$\mathcal{B}$是一个物体，$\mathcal{W}$是事件世界，$\Upsilon$是时间$\mathcal{T}$的一个连通子集。映射$k:\mathcal{B}\times\Upsilon\rightarrow\mathcal{W}$称为一个运动学过程。对某物质点$X\in\mathcal{B}$，事件$k\left(X,a\right)=I_a,a\in\Upsilon$称$X$在时刻$a$经历的事件。集合$\left\{k\left(X,a\right)|a\in\Upsilon\right\}$是一条世界线的子集，记为$l_X$，称为物质点$X$的运动。$\mathcal{B}$的所有物质点的同一运动学过程$\left\{l_X|X\in\mathcal{B}\right\}$是一个世界运动的子集，记为$\psi_\mathcal{B}$，称为物体$\mathcal{B}$的运动。
+\end{definition}
+
+作为世界运动的子集，物体的运动中各物质点的运动也是两两不相交的。
+
+接下来，我们将看到，不选择参考系，我们无法具体给出一个物质点的运动的速度和加速度，即速度和加速度是依赖参考系的。
+
+\begin{definition}[事件世界的参考系]
+一个事件世界的参考系是一个满足以下要求的世界运动$\phi$：
+\begin{enumerate}
+    \item 平行：对任意两条世界线$l_1,l_2\in\phi$在任一时刻$a$下的两个事件$l_1\left(a\right),l_2\left(a\right)$的距离$d\left(l_1\left(a\right),l_2\left(a\right)\right)$都相等。故直接记两条世界线的距离为$d\left(l_1,l_2\right)$。
+    \item $\phi$的世界线包括$\mathcal{W}$的所有事件。即任一事件$w\in\mathcal{W}$都必在$\phi$的一条世界线上。
+\end{enumerate}
+事件世界的参考系$\phi$与其两条世界线的距离$d\left(l_1,l_2\right)$共同构成一个度量空间$\left(\phi,d\right)$，由于该距离$d$就是事件世界的距离度量，故为$d$为欧几里德度量，$\left(\phi,d\right)$是一个欧几里德离量空间，其对应的平移空间为$\mathcal{V}_\phi$。
+\end{definition}
+
+注意，作为度量空间的$\phi$中的一个“点”是一整条世界线。$\phi$中一点到另一点的平移是两条世界线间的平行平移。
+
+我们考虑物体$\mathcal{B}$的一个物质点$X\in\mathcal{B}$在时间间隔$\Upsilon$内的运动$l_X$。给定事件世界的参考系$\phi$，则$l_X$的每个事件$l_X\left(a\right),a\in\Upsilon$，都必属于$\phi$的一条世界线，可记为$\phi_l\left(l_X\left(a\right)\right)$。由于世界运动的世界线两两不相交，故映射$\phi_l$是单射。该物质点在某时刻$a\in\Upsilon$对时间的导数：
+\[
+\left.\frac{d l_X\left(t\right)}{dt}\right|_{t=a}=\lim_{s\to 0}\frac{l_X\left(a+s\right)-l_X\left(a\right)}{s}
+\]
+其中，分子的意义必须改用事件世界的参考系来表达才明确，即
+\[\left.\frac{d l_X\left(t\right)}{dt}\right|_{t=a}\equiv\lim_{s\to 0}\frac{\phi_l\left(l_X\left(a+s\right)\right)-\phi_l\left(l_X\left(a\right)\right)}{s}
+\]
+这时，分母是欧几里德度量空间$\left(\phi,d\right)$中两点之差，即$\mathcal{V}_\phi$中的一个平移向量。我们称上式为物质点$X$在时刻$a\in\Upsilon$的速度。同理可给出物质点$X$在时刻$a$的加速度。速度和加速度都是$\mathcal{V}_\phi$中的向量，故它们都依赖参考系$\phi$的选择。
+
+在前一节我们介绍过标架的概念。实际上，选定了标架，相当于选定了事件世界的参考系。
+
+\begin{definition}[构型]
+设$\mathcal{W}$是事件世界，$\mathcal{T}$是时间，$\mathcal{B}$是物体，$\psi_\mathcal{B}$是其在时间间隔$\Upsilon\subset\mathcal{T}$的运动。选定参考系$\phi$，$\phi_l$是把任一事件对应到$\phi$中的世界线的映射，则任一时刻$a\in\Upsilon$下集合$\Omega_a=\left\{\phi_l\left(l_X\left(a\right)\right)\right\}\subset I_a$称为$\mathcal{B}$在时间$a$的构型。映射$\kappa_\phi:\mathcal{B}\rightarrow\Omega_a,\kappa_\phi\left(X\right)=\phi_l\left(l_X\left(a\right)\right)$称为物体$\mathbf{B}$在时刻$a$按参考系$\phi$的放置。
+\end{definition}
+
+\begin{definition}[构型（简化）]
+设$\mathcal{B}$是物体，给定标架$\phi:\mathcal{W}\rightarrow\mathbb{R}^{3+1}$，则$\mathcal{B}$的运动的时间间隔在标架$\phi$是$\mathbb{R}$上的区间$\left[t_1,t_2\right]\subset\mathbb{R}$。则在某时刻$t\in\left[t_1,t_2\right]$物体$\mathcal{B}$在该时刻下的欧几里德空间$\mathcal{E}$中占据的区域在标架$\phi$下的坐标集$\Omega_t=\left\{\mathbf{x}|\left(\mathbf{x},t\right)=\phi\left(X,t\right),X\in\mathcal{B}\right\}$称为$\mathcal{B}$在时刻$t$下的构型。映射$\kappa_\phi:\mathcal{B}\rightarrow\Omega_t,\kappa_\phi\left(X\right)=\mathbf{x},X\in\mathcal{B},\mathbf{x}\in\mathbb{R}^3$称为物体$\mathcal{B}$按标架$\phi$在时刻$t$的放置。
+\end{definition}
+
+我们要求$\kappa$是可逆的。
+
+设某一时刻物体$\mathcal{B}$在不同标架$\phi,\phi^*$下的两个放置映射是$\kappa_t,\kappa_{t^*}^*$，则任一物质点$X\in\mathcal{B}$在两个标架下的位置向量$\mathbf{x}=\kappa_t\left(X\right),\mathbf{x}^*=\kappa_{t^*}^*\left(X\right)$之间有标架变换关系：
+\begin{align*}
+\mathbf{x}^*&=\mathbf{x}_0^*+\mathbf{Q}\left(\mathbf{x}-\mathbf{x}_0\right),\\
+t^*&=t_0^*+t-t_0=t+a,a=t_0^*-t_0
+\end{align*}
+其中$\mathbf{x}_0,\mathbf{x}_0^*$是选定某物质点$X_0\in\mathcal{B}$在标架$\phi,\phi^*$下的位置向量。
+
+我们考虑察时间导数。由上式可知$\frac{d}{dt^*}=\frac{d}{dt}$，故有
+\begin{align*}
+    \frac{d\mathbf{x}^*}{dt^*}=\frac{d\mathbf{x}^*}{dt}&=\frac{d\mathbf{x}_0^*}{dt}+\mathbf{Q}\left(t\right)\frac{d\mathbf{x}^*}{dt}+\frac{d\mathbf{Q}\left(t\right)}{dt}\left[\mathbf{x}^*-\mathbf{x}_0\right]\\
+    \mathbf{v}^*-\mathbf{Q}\left(t\right)\mathbf{v}&=\frac{d\mathbf{x}_0^*}{dt}+\frac{d\mathbf{Q}\left(t\right)}{dt}\left[\mathbf{x}^*-\mathbf{x}_0\right]\neq \mathbf{0}
+\end{align*}
+即速度不满足标架不变性。同理加速度也不满足：
+\begin{align*}
+\mathbf{a}^*-\mathbf{Q}\left(t\right)\mathbf{a}&=\frac{d^2\mathbf{x}_0^*}{dt^2}+2\mathbf{A}\left(t\right)\left[\frac{d\mathbf{x}^*}{dt}-\frac{d\mathbf{x}_0^*}{dt}\right]\\
+&+\frac{d\mathbf{A}\left(t\right)}{dt}\left[\mathbf{x}^*-\mathbf{x}_0^*\right]-\mathbf{A}^2\left(t\right)\left[\mathbf{x}^*-\mathbf{x}_0^*\right]\neq \mathbf{0}
+\end{align*}
+其中$\mathbf{A}\left(t\right)=\frac{d\mathbf{Q}\left(t\right)}{dt}\mathbf{Q}^\intercal\left(t\right)$。含$\mathbf{A}$的后三项分别为科里奥利加速度、角加速度和向心加速度。这三项是纯粹由于标架变换产生的，不是客观的运动。要使加速度满足标架不变性，除非$\frac{d^2\mathbf{x}_0^*}{dt^2}\equiv 0,\frac{d\mathbf{Q}_t}{dt}\equiv 0$。我们称满足这种标架变换的标架为伽俐略标架，这种标架变换称为伽俐略变换。任意两个伽俐略标架之间相对静止或相对作匀速直线运动。
+\end{document}

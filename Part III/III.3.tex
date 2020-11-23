@@ -1,0 +1,165 @@
+\documentclass[main.tex]{subfiles}
+%物体的形变
+\begin{document}
+\subsection{物体的形变}
+选定标架$\phi$，物体$\mathcal{B}$在该标架的参考时刻$t_0$的构型$\Omega_0$称作参考构型，在其他任意时刻$t$的构型$\Omega_t$称作当前构型。我们用罗巴斜体大写英文字母$X,Y,\cdots$表示物质点，用粗体大写英文字母$\mathbf{X},\mathbf{Y},\cdots$表示同字母的物质点在参考构型下的位置向量，用粗体小写英文字母$\mathbf{x},\mathbf{y},\cdots$表示同字母的物质点在当前构型下的位置向量。则任一物质点$X\in\mathcal{B}$在标架$\phi$下的运动轨迹是$\mathbf{x}\left(t\right),\mathbf{x}\in\Omega_t$。它的方程，可通过形变映射$\chi_t\left(\mathbf{X}\right)$表示为由参考构型$\Omega_0$到当前构型的形变。这时我们把当前时刻$t$也当作了变量，所以把形变映射写成$\chi\left(\mathbf{X},t\right)$。$\mathbf{X}$是已经选定了的某时刻的构型中的位置，所以$\mathbf{X}$是不依赖时间的，对时间是常量。但它可作为表示$\Omega_0$区域内不同位置的一个变量。只要知道了形变映射$\chi\left(\mathbf{X},t\right)$的形式，就知道了物体$\mathcal{B}$的运动在标架$\phi$下的总轨迹。
+
+设有两个时刻$a<b,a,b\in\mathbb{R}$，在给定标架$\phi$下，物体$\mathcal{B}$在这两个时刻的构型分别是$\Omega_a,\Omega_b$，则由$\Omega_a$到$\Omega_b$的映射为$\kappa^{}_{\phi,b}\circ\kappa_{\phi,a}^{-1}=\chi_{a\to b}$，称为物体$\mathcal{B}$在标架$\phi$下的形变\footnote{此处使用了构型的简化定义，这与采用构型的原始定义（即$\phi$从某标架替换为某事件世界的参考系）的结果无重要差别。}。如果在形变过程中没有发生标架变换，我们常将标架符号从放置映射的下标省去，但应牢记物体的放置总是在选定某标架下的映射。
+
+选定标架$\phi$，物体$\mathcal{B}$在该标架的参考时刻$t_0$的构型$\Omega_0$称作参考构型，在其他任意时刻$t$的构型$\Omega_t$称作当前构型。我们用罗马斜体大写英文字母$X,Y,\cdots$表示物质点，用粗体大写英文字母$\mathbf{X},\mathbf{Y},\cdots$表示同字母的物质点在参考构型下的位置向量，用粗体小写英文字母$\mathbf{x},\mathbf{y},\cdots$表示同字母的物质点在当前构型下的位置向量。则任一物质点$X\in\mathcal{B}$在标架$\phi$下的运动轨迹是$\mathbf{x}\left(t\right),\mathbf{x}\in\Omega_t$。它的方程，可通过形变映射$\chi_t\left(\mathbf{X}\right)$表示为由参考构型$\Omega_0$到当前构型的形变。这时我们把当前时刻$t$也当作了变量，所以可以把形变映写成$\chi\left(\mathbf{X},t\right)$，但是构成形变映射的放置映射$\kappa_0,\kappa_t$是依赖标架的，因此时刻$t$依赖标架。同一个物体的同一场形变过程在另一个标架$\phi
+^*$下的形变映射是$\chi^*_{t^*}=\chi^*\left(\cdot,t^*\right)$；记号$\chi^*\left(\cdot,t\right)$是无意义的。$\mathbf{X}$是已经选定了的某时刻的构型中的位置，所以$\mathbf{X}$是不依赖时刻的，即其对于时刻是一个常量，但它可作为表示$\Omega_0$区域内不同位置的一个变量。只要知道了形变映射$\chi\left(\mathbf{X},t\right)$的形式，就知道了物体$\mathcal{B}$的运动在标架$\phi$下的总轨迹。由信息守恒定律，形变映射是可逆的。
+
+\subsection{形变梯度张量}
+设物质点$X,Y\in\mathcal{B}$在参考时刻$t_0\in\Upsilon$经历的事件为$x_0,y_0\in I_0$，在当前时刻$t\in\Upsilon$经历的事件为$x,y\in I_t$。若导数
+\[\lim_{y_0\to x_0}\frac{y-x}{y_0-x_0}\]
+存在，则称其为物体$\mathcal{B}$在时刻$t$下$X$所在处的形变梯度。上式的分子和分母分别是$I_a$和$I_b$的两个平移空间$\mathcal{V}_0,\mathcal{V}_t$中的向量。故该导数是由$\mathcal{V}_0$到$\mathcal{V}_t$的线性变换。在选定标架$\phi$下，则形变梯度张量可表示为形变映射$\chi$的导数，
+\[\mathbf{F}=\frac{\partial\chi\left(\mathbf{X},t\right)}{\partial\mathbf{X}}=\mathbf{F}\left(\mathbf{X},t\right),\mathbf{X}\in\Omega_0
+\]
+其中$\mathbf{X}$是物质点$X\in\mathcal{B}$在标架$\phi$下的参考构型$\Omega_0$中的位置向量。形变梯度张量作为一个全导数，可满足以下全微分的意义：对于两个物质点$X,Y\in\mathcal{B}$，
+\[\mathbf{y}\left(t\right)-\mathbf{x}\left(t\right)=\chi\left(\mathbf{Y},t\right)-\chi\left(\mathbf{X},t\right)=\mathbf{F}\left(\mathbf{X},t\right)\left(\mathbf{Y}-\mathbf{X}\right)+\left\|\mathbf{Y}-\mathbf{X}\right\|\mathbf{z}\left(\mathbf{Y}-\mathbf{X}\right)\]
+其中函数$\mathbf{z}\left(\mathbf{x}\right)$具有性质$\lim_{\mathbf{x}\to\mathbf{0}}\mathbf{z}\left(\mathbf{x}\right)=\mathbf{0}$。
+
+我们连续介质力学中所考虑的大部分问题，都假设形变梯度张量定义中的导数都存在，即物体$\mathcal{B}$有某种“可微性”，使得其在任一标架下任一时刻的构型都可微。
+
+由于形变映射$\chi\left(\cdot,t\right)$是可逆的，由反函数定理，若$\mathbf{x}=\chi\left(\mathbf{X},t\right)$，$\mathbf{F}=\frac{\partial\chi}{\partial\mathbf{X}}$，则$\mathbf{F}^{-1}=\frac{\partial\chi^{-1}}{\partial\mathbf{x}}$。
+
+在基本坐标系下，若$\mathbf{x}=\left(x_1,x_2,x_3\right)=\chi\left(\mathbf{X},t\right),\mathbf{X}=\left(X_1,X_2,X_3\right)$且记$x_i=\chi_i\left(\mathbf{X},t\right)$，则形变梯度张量的矩阵
+\[
+\left(\mathbf{F}\right)=\left(\begin{array}{ccc}
+\frac{\partial\chi_1}{\partial X_1}&\cdots&\frac{\partial\chi_1}{\partial X_3}\\
+\vdots&\ddots&\vdots\\
+\frac{\partial\chi_3}{\partial X_1}&\cdots&\frac{\partial\chi_3}{\partial X_3}
+\end{array}\right)\]
+称为形变$\chi$的雅可比矩阵，行列式$\mathrm{det}\mathbf{F}=\mathrm{det}\left(\mathbf{F}\right)$称为形变$\chi$的雅可比行列式。
+
+设$\left(\phi,\phi^*\right)$是一个标架变换，物体$\mathcal{B}$在两个标架下的参考构型为$\Omega_0^{},\Omega_0^*$，当前构型为$\Omega_t^{},\Omega_t^*$。物质点$X,X_0\in\mathcal{B}$在参考时刻下的位置向量满足以下标架变换关系：
+\begin{align*}
+\mathbf{X}_{}^*&=\mathbf{X}_0^*+\mathbf{Q}_0\left(\mathbf{X}-\mathbf{X}_0\right)\\
+\Leftrightarrow\mathbf{X}&=\mathbf{X}_0+\mathbf{Q}_0^\intercal\left(\mathbf{X}_{}^*-\mathbf{X}_0^*\right)
+\end{align*}
+在当前时刻下的位置向量满足以下标架变换关系：
+\begin{align*}
+    \mathbf{x}_{}^*&=\mathbf{x}_0^*+\mathbf{Q}_t\left(\mathbf{x}-\mathbf{x}_0\right)\\
+    t^*&=t+a,a=t_0^*-t_0^{}
+\end{align*}
+设由构型$\Omega_0$到$\Omega_t$的形变映射为$\chi\left(\cdot,t\right)$，由构型$\Omega_0^*$到$\omega_t^*$的形变映射为$\chi^*\left(\cdot,t^*\right)$，则有
+\begin{align*}
+\mathbf{x}&=\chi\left(\mathbf{X},t\right)\\
+\mathbf{x}_0&=\chi\left(\mathbf{X}_0,t\right)\\
+\mathbf{x}^*&=\chi^*\left(\mathbf{X}^*,t^*\right)\\
+\mathbf{x}_0^*&=\chi^*\left(\mathbf{X}_0^*,t^*\right)
+\end{align*}
+代入上面的标架变换关系得
+\begin{align*}
+    \chi^*\left(\mathbf{X}^*,t^*\right)&=\mathbf{x}_{}^*=\mathbf{x}_0^*+\mathbf{Q}_t\left(\mathbf{x}-\mathbf{x}_0\right)\\
+    &=\chi\left(\mathbf{X}_0^*,t^*\right)+\mathbf{Q}_t\left(\chi\left(\mathbf{X},t\right)-\chi\left(\mathbf{X}_0,t\right)\right)    
+\end{align*}
+
+标架$\phi^*$下的形变梯度张量
+\begin{align*}
+    \mathbf{F}=\frac{\partial \chi^*\left(\mathbf{X}^*,t^*\right)}{\partial \mathbf{X}^*}&=\mathbf{Q}_t\frac{\partial\chi\left(\mathbf{X},t\right)}{\partial\mathbf{X}^*}\\
+    &=\mathbf{Q}_t\frac{\partial\chi\left(\mathbf{X},t\right)}{\partial \mathbf{X}}\frac{\partial\mathbf{X}}{\partial\mathbf{X}^*}\\
+    &=\mathbf{Q}_t\mathbf{F}\mathbf{Q}_0
+\end{align*}
+上面利用了复合函数求导的链式法则。这一结果说明，一般地形变梯度张量不具有标架变换不变性。但当这个标架变换是一个伽俐略变换（即有$\mathbf{Q}_t\equiv\mathbf{Q}_0$）时，形变梯度张量具有标架变换不变性。
+
+若$\mathbf{F}$对每一$\mathbf{X}\in\Omega_0$均相同，则称$\mathcal{B}$发生的是均匀形变。以下是一些二维均匀形变的例子。
+\begin{example}
+设对物体$\mathcal{B}$的每一物质点$X\in\mathcal{B}$，参考位置$\mathbf{X}=\left(X_1,X_2\right)$，当前位置$\mathbf{x}=\left(x_1,x_2\right),\mathbf{X}=\left(X_1,X_2\right)$。
+
+刚体平动：
+\[\begin{array}{l}
+x_1=X_2+5\\
+x2=X_1+2
+\end{array}\]
+即$\mathbf{F}=\mathbf{I}$。一般地，没有形变和刚体转运时，$\mathbf{F}=\mathbf{I}$。
+
+刚体转动：
+\[\begin{array}{l}
+x_1=X_1\cos\theta-X_2\sin\theta\\
+x2=X_1\sin\theta+X_2\cos\theta
+\end{array}\]
+即
+\[\left(\mathbf{F}\right)=\left(\begin{array}{cc}
+\cos\theta&-\sin\theta\\
+\sin\theta&\cos\theta\end{array}\right)\]
+一般地，没有形变但有刚体转动时，$\mathbf{F}\neq\mathbf{I}$。设物体中两物质点之间的平移向量在物体运动前、后是$\mathbf{D},\mathbf{d}$，
+\[\left(\mathbf{D}\right)=\left(\begin{array}{c}a\\b\end{array}\right)\]
+则有$\mathbf{d}=\mathbf{FD}$，
+\[\left(\mathbf{d}\right)=\left(\begin{array}{cc}
+\cos\theta&-\sin\theta\\
+\sin\theta&\cos\theta\end{array}\right)\left(\begin{array}{c}a\\b\end{array}\right)=\left(\begin{array}{c}a\cos\theta-b\sin\theta\\a\sin\theta+b\cos\theta\end{array}\right)\]
+
+膨胀：
+\[\begin{array}{l}
+x_1=2X_1\\
+x2=1.5X_2
+\end{array}\]
+即
+\[\left(\mathbf{F}\right)=\left(\begin{array}{cc}2&0\\0&1.5\end{array}\right)\]
+一般地，直角坐标系下$\left(\mathbf{F}\right)$的对角元素表示相应方向的拉伸比例。
+
+纯剪切：
+\[\begin{array}{l}
+x_1=X_1+0.5X_2\\
+x2=0.5X_1+X_2
+\end{array}\]
+即
+\[\left(\mathbf{F}\right)=\left(\begin{array}{cc}1&0.5\\0.5&1\end{array}\right)\]
+一般地，直角坐标系下$\left(\mathbf{F}\right)$的非对角元素表示剪切。
+
+简单剪切：
+\[\begin{array}{l}
+x_1=X_1\\
+x2=0.5X_1+X_2
+\end{array}\]
+即
+\[\left(\mathbf{F}\right)=\left(\begin{array}{cc}1&0\\0.5&1\end{array}\right)\]
+可见，简单剪切是纯剪切和纯拉伸形变的复合形变。
+
+一般形变：
+\[\begin{array}{l}
+x_1=1.3X_1-0.375X_2\\
+x2=0.75X_1+0.65X_2
+\end{array}\]
+即
+\[\left(\mathbf{F}\right)=\left(\begin{array}{cc}1.3&-0.375\\0.75&0.65\end{array}\right)\]
+该形变可分为两步。第一步是拉伸：
+\[\begin{array}{l}
+x^\prime_1=1.5X_1\\
+x^\prime_2=0.75X_2
+\end{array}\]
+这一步的形变梯度张量$\mathbf{U}$的矩阵
+\[\left(\mathbf{U}\right)=\left(\begin{array}{cc}1.5&0\\0&0.75\end{array}\right)\]
+第二步是刚体旋转：
+\[\begin{array}{l}
+x_1=x^\prime_1\cos30^\circ-x^\prime_2\sin30^\circ=1.3X_1-0.375X_2\\
+x_2=x^\prime_1\sin30^\circ+x^\prime_2\cos30^\circ=0.75X_1+0.65X_2
+\end{array}\]
+这一步的形变梯度张量$\mathbf{R}$的矩阵
+\[\left(\mathbf{R}\right)=\left(\begin{array}{cc}0.866&-0.5\\-0.5&0.866\end{array}\right)\]
+故总的形变梯度张量可以写成$\mathbf{F}=\mathbf{RU}$。先旋转再拉伸也可以达到同样的结果，此时$\mathbf{F}=\mathbf{VR}^\prime$并且$\mathbf{R}^\prime=\mathbf{R},\mathbf{V}=\mathbf{RUR}^\intercal,\mathbf{U}=\mathbf{R}^\intercal\mathbf{VR}$。
+\end{example}
+
+一般地，对任一可逆线性算符总有唯一的厄米算符$\mathbf{U},\mathbf{V}$和幺正算符$\mathbf{R}$满足$\mathbf{F}=\mathbf{RU}=\mathbf{VR}$，称为$\mathbf{F}$的极分解。特别地，在形变梯度张量$\mathbf{F}$存在唯一极分解，其中$\mathbf{U}=\mathbf{U}^\intercal,\mathbf{V}=\mathbf{V}^\intercal$是对称张量，分别称为右拉伸张量和左拉伸张量,$\mathbf{RR}^\intercal=\mathbf{I}$是正交张量，称为旋转张量。
+
+我们希望能有一种关于物体形变的度量。我们认为刚体旋转不属于形变，但纯刚体旋转会使形变梯度张量取非平凡值，故一形变梯度张量并不是一个理想的形变度量。通过极分解，获得的拉伸张量，虽然是排除了物体的刚体旋转部分，但由于它们的计算不方便，故使用得很少。
+
+\begin{example}
+请验证：
+\begin{align*}
+\mathbf{F}^\intercal\mathbf{F}&=\left(\mathbf{RU}\right)^\intercal\left(\mathbf{RU}\right)=\mathbf{U}^\intercal\mathbf{R}^\intercal\mathbf{RU}=\mathbf{U}^\intercal\mathbf{U}=\mathbf{U}^2\\
+\mathbf{FF}^\intercal&=\left(\mathbf{VR}\right)\left(\mathbf{VR}\right)^\intercal=\mathbf{VRR}^\intercal\mathbf{V}^\intercal=\mathbf{VV}^\intercal=\mathbf{V}^2
+\end{align*}
+\end{example}
+
+可见，将形变梯度张量与其转置相乘（注意顺序），刚体旋转部分会自行抵消掉。我们定义：
+\begin{align*}
+    \mathbf{C}&=\mathbf{F}^\intercal\mathbf{F}=\mathbf{U}^2&\text{右柯西--格林张量}\\
+    \mathbf{B}&=\mathbf{FF}^\intercal=\mathbf{V}^2&\text{左柯西--格林张量}
+\end{align*}
+$\mathbf{B}$和$\mathbf{C}$统称有限应变张量。进一步可定义
+\begin{align*}
+    \mathbf{E}&=\frac{1}{2}\left(\mathbf{C}-\mathbf{I}\right)&\text{格林--拉格朗日应变张量}
+\end{align*}
+\end{document}

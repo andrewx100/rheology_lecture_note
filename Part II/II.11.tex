@@ -1,0 +1,198 @@
+\documentclass[main.tex]{subfiles}
+% 欧几里德空间
+\begin{document}
+\subsection{准备概念}
+\begin{definition}[度量空间]
+度量空间是个有序对$\left(M,d\right)$，其中$M$是集合，$d$是在$M$上的度量，$d:M\times M\rightarrow\mathbb{R}$，使得对于任何在$M$内的$x,y,z$，下列条件均成立：
+\begin{enumerate}
+    \item 不可区分者的同一性：$d\left(x,y\right)=0$当且仅当$x=y$
+    \item 对称性：$d\left(x,y\right)=d\left(y,x\right)$
+    \item 三角不等式：$d\left(x,z\right)\leq d\left(x,y\right)+d\left(y,z\right)$
+\end{enumerate}
+\end{definition}
+\begin{theorem}
+设$\left(M,d\right)$是一个度量空间，则$d\left(x,y\right)\geq 0\forall x,y\in M$
+\end{theorem}
+\begin{proof}
+由度量空间定义的条3有：$d\left(x,y\right)+d\left(y,x\right)\geq d\left(x,x\right)$又由条件2有$d\left(x,y\right)+d\left(x,y\right)\geq d\left(x,x\right)$，再由条件1有$2d\left(x,y\right)\geq 0,d\left(x,y\right)\geq 0$。
+\end{proof}
+
+\begin{example}
+设$\mathcal{V}$是数域$\mathbb{F}$上的一个赋范向量空间，则$\left(\mathcal{V},\left\|\cdot\right\|\right)$是一个度量空间。
+\end{example}
+
+\begin{definition}[序列的收敛性]
+设$\left(M,d\right)$是一个度量空间，如果对任一$\epsilon>0$总存在正整数$N$使得对任一序列$x_1,\cdots,x_n,\cdots\in M$总有$x\in M$满足$d\left(x,x_n\right)<\epsilon$，则称该序列收敛于$x$。
+\end{definition}
+
+\begin{definition}[柯西序列]
+设$\left(M,d\right)$是一个度量空间，如果对任一$\epsilon>0$总存在正整数（即自然数）$N$使得序列$x_1,\cdots,x_n,\cdots\in M$对任意$m,n>N$总有$d\left(x_m,x_n\right)<\epsilon$，则称该序列是一个柯西序列。
+\end{definition}
+
+\begin{example}
+设$\left\{\mathbf{x}_i\right\},\mathbf{x}\in\mathcal{V}$是赋范向量空间$\left(\mathcal{V},\left\|\cdot\right\|\right)$的一个序列，则$\left\{\mathbf{x}_i\right\}$是柯西序列当且仅当对每一正实数$\epsilon>0$总存在自然数$N\in\mathbb{N}$使得只要$m,n>N, m,n\in\mathbb{N}$就有$\left\|\mathbf{x}_n-\mathbf{x}_m\right\|<\epsilon$。
+\end{example}
+
+\begin{definition}[度量空间的完备性]
+设$\left(M,d\right)$是一个度量空间，如果$M$中的每一柯西序列都收敛，则称$\left(M,d\right)$是完备的。
+\end{definition}
+
+\begin{theorem}
+$\left(\mathbb{R},\left|\cdot\right|\right)$是完备的。
+\end{theorem}
+\begin{proof}
+该基本定理的证明见
+\end{proof}
+
+\begin{definition}[等距变换]
+设$\left(X,d_X\right),\left(Y,d_Y\right)$是度量空间，等距变换是映射$i:X\rightarrow Y$满足$d_Y\left(i\left(a\right),i\left(b\right)\right)=d_X\left(a,b\right)\forall a,b\in X$。如果两个度量空间之间存在一个等距变换，则称这两个度量空间是等距的。
+\end{definition}
+
+\subsection{欧几里德空间}
+由于度量的规定，等距变换总是单射。由一个度量空间$\left(\mathcal{E},d\right)$到其自身的等距变换形成一个基于映射复合操作的变换群$\mathcal{I}$，它是集合
+\[\mathcal{I}=\left\{i:\mathcal{E}\rightarrow\mathcal{E}|i\text{可逆},d\left(X,Y\right)=d\left(i\left(X\right),i\left(X\right)\right)\forall X,Y\in\mathcal{E}\right\}\]
+易证$i_2\circ i_1\in\mathcal{I}\forall i_1,i_2\in\mathcal{I}$。
+
+如果度量$d$满足欧几里德几何，它必须拥有一些特定的性质。我们直觉上应当同意，欧几里德空间上的平移操作是一种等距变换。以下按照平移操作来定义一类等距变换，它将是$\mathcal{I}$的一个子集$\mathcal{V}$，满足$\forall i_1, i_2\in\mathcal{V}\subset\mathcal{I}$
+\begin{enumerate}
+    \item 交换律：$i_1\circ i_2\left(X\right)=i_2\circ i_1\left(X\right),\forall X\in\mathcal{E}$
+    \item 传递性：$\forall X,Y\in\mathcal{E}\exists i\in\mathcal{V}, i\left(X\right)=Y$
+    \item 零向量：若$i\left(X_0\right)=X_0,X_0\in\mathcal{E}$则$i\left(X\right)=X\forall X\in\mathcal{E}$
+    \item 向量加：$i_1\circ i_2\in\mathcal{V}$
+    \item 标量乘：存在操作$\mathbb{R}\times \mathcal{V}\rightarrow\mathcal{V}$
+    \item 内积：$\left(i_1|i_1\right)=d^2\left(X,Y\right)$当$i_1\left(X\right)=Y$\footnote{这是W. Noll原本的表述\cite{Noll1974}。从字面上看，这一条规定只是赋范。若将上一条的“标量乘”具体规定为：$\alpha i\left(X\right)$满足$d\left(X,\alpha i\left(X\right)\right)=\alpha d\left(X,i\left(X\right)\right)\forall X\in\mathcal{E},\alpha\in\mathbb{R}$，则由度量$d$的一般要求可知该范的定义满足范的一般要求。再规定该范满足平行四边行法则，则可由该范定义一个内积，且范的定义可表述成内积的平方根。因此，这一表述其实是人为赋予了度量空间$\left(\mathcal{E},d\right)$以欧几里德几何。}
+\end{enumerate}
+这几条实际使$\mathcal{V}$成为了一个赋范向量空间。此外，可证一个度量空间的等距变换群$\mathcal{I}$至多只有一个满足上述规定的子群$\mathcal{V}$（证明见\cite{Noll2011}）。我们可定义由$\mathcal{E}$中一点$X$到另一点$Y$的“平移向量”$\Phi:\mathcal{E}^2\rightarrow\mathcal{V},\Phi\left(\cdot,i\left(\cdot\right)\right)\equiv i\left(\cdot\right),i\in\mathcal{V}$，并规定一些记法：若$i\in\mathcal{V}, X\in\mathcal{E}$，则记$Y=i\left(X\right)$为$Y=X+\Phi\left(X,Y\right)$或者$\Phi\left(X,Y\right)=Y-X$。如果$Y=i_1\left(X\right),Z=i_2\left(Y\right)$，则记$i_1\circ i_2\left(X\right)=\Phi\left(X,Y\right)+\Phi\left(Y,Z\right)$。如果$i\left(X\right)=Y$则内积$\left(i|i\right)=\left\|\Phi\left(X,Y\right)\right\|$。注意到，由上述的内积形成的范是欧几里德范。如果一个度量空间$\left(\mathcal{E},d\right)$的度量$d$满足上述条件，则称$\mathcal{E}$是一个欧几里德空间，$X\in\mathcal{E}$称为点，$d$是一个欧几里德度量，$d\left(X,Y\right)$称为两点间的距离，常记作$\left|XY\right|\equiv d\left(X,Y\right)$，$\mathcal{V}$是$\mathcal{E}$的平移空间。可以验证，：$\forall O,X,Y\in\mathcal{E}$
+\begin{enumerate}
+    \item $\Phi\left(X,Y\right)=\mathbf{0}$当且仅当$X=Y$
+    \item $\Phi\left(Y,X\right)=-\Phi\left(X,Y\right)$
+    \item $\Phi\left(O,X\right)-\Phi\left(O,Y\right)=\Phi\left(X,Y\right)$
+\end{enumerate}
+
+\begin{theorem}
+欧几里德度量空间$\left(\mathcal{E},d\right)$是完备的。
+\end{theorem}
+\begin{proof}
+由于欧几里德度量空间的平移空间为实数域上的赋范空间，而后者是完备的。
+\end{proof}
+
+下面我们引入，欧几里德空间中的角。由于欧几里德范总满足三角不等式和平行四边行法则，故给定$X,O,Y\in\mathcal{E},X\neq O\neq Y$，有
+\[
+\left\|\Phi\left(O,X\right)\right\|^2+\left\|\Phi\left(O,Y\right)\right\|^2=\left\|\Phi\left(O,X\right)-\Phi\left(O,Y\right)\right\|^2+2\left(\Phi\left(O,X\right)|\Phi\left(O,Y\right)\right)
+\]
+由三角不等式，
+\begin{align*}
+&\left\|\Phi\left(O,X\right)\right\|^2\left\|\Phi\left(O,Y\right)\right\|^2\leq\left|\left(\Phi\left(O,X\right)|\Phi\left(O,Y\right)\right)\right|^2\\
+\Leftrightarrow&-1\leq\frac{\left(\Phi\left(O,X\right)|\Phi\left(O,Y\right)\right)}{\left\|\Phi\left(O,X\right)\right\|\left\|\Phi\left(O,Y\right)\right\|}\leq1
+\end{align*}
+定义$\mathcal{E}$中的角为映射$a:\mathcal{E}^3\rightarrow\mathbb{R}$满足
+\[\angle{XOY}\equiv a\left(X,O,Y\right)=\cos^{-1}\left[\frac{\left(\Phi\left(O,X\right)|\Phi\left(O,Y\right)\right)}{\left\|\Phi\left(O,X\right)\right\|\left\|\Phi\left(O,Y\right)\right\|}\right],\forall X,O,Y\in\mathcal{E},X\neq O\neq Y
+\]
+其中$\cos:\left[0,\pi\right]\rightarrow\mathbb{R},\cos x=\frac{1}{2}\left(e^{ix}+e^{-ix}\right)$。注意到，此处定义的函数$\cos$为$\left[0,pi\right]$到$\left[-1,1\right]$的双射，故$\mathrm{ran}a=\left[0,\pi\right]$，$\angle{XOY}=-\angle{YOX}$。
+
+设$i:\mathcal{E}\rightarrow\mathcal{E}$是一个等距变换，则易验有$\angle{XOY}=\angle{i\left(X\right)i\left(O\right)i\left(Y\right)}$。
+
+下面介绍欧几里德空间中的直线、两直线垂直的引入，并得出欧几里德空间的维数概念。给定两点$X,Y\in\mathcal{E},X\neq Y$，$\mathcal{E}$的子集
+\[
+L_{XY}=\left\{C|C=X+\alpha\Phi\left(X,Y\right),\alpha\in\mathbb{R}\right\}
+\]
+称为过$X,Y$两点的直线。由$\Phi$定义要求可知，过$X,Y$有且只有一条直线。
+
+如果$\angle{XOY}=\frac{\pi}{2}$，则称直线$L_{OX}$与$L_{OY}$垂直。由角的定义，可知直线$L_{OX}$与$L_{OY}$垂直当且仅当$\left(\Phi\left(O,X\right)|\Phi\left(O,Y\right)\right)=0$，故过$\mathcal{E}$中任一点的两两垂直的直线的最大数量相等且都等于$\mathcal{V}$的维数，故定义$\mathcal{E}$的维数就是$\mathcal{V}$的维数。
+
+过$\mathcal{E}$中任意两点$X,Y$的直线$L_{XY}=\left\{C|C=X+\alpha\Phi\left(X,Y\right),\alpha\in\mathbb{R}\right\}$实际上也同时定义了一个由$\mathcal{V}$的子集$\left\{\mathbf{a}|\mathbf{a}=\alpha\Phi\left(X,Y\right),\alpha\in\mathbb{R}\right\}$到$L_{XY}$的双射，以及$d$的像集$d\left(X,L_{XY}\right)$到$\mathbb{R}$的双射。由于实数集的完备性，度量空间$\left(L_{XY},d\right)$是完备的。
+
+如果选定$O\in\mathcal{E}$为原点，则对任一$X\in\mathcal{E},X\neq O$，度量空间$\left(L_{OX},d\right)$都具有完备性。定义映射：$\Phi_O:\mathcal{E}\rightarrow\mathcal{V}$满足
+\[\Phi_o\left(X\right)=\Phi\left(O,X\right),\forall X\in\mathcal{E}
+\]
+则可由上述的完备性证明$\Phi_O$是双射。我们称$\Phi_O$是选定$O$为原点的$\mathcal{E}$的位置向量。若$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组规范正交基，则直线集$\left\{L_{OX_i}|\Phi_O\left(X_i\right)=\mathbf{\hat{e}}_i\right\}$称为$\mathcal{E}$的一个直角坐标系（或称笛卡尔坐标系），我们也可以等价地称组合$\left\{O,\left\{\mathbf{\hat{e}}_i\right\}\right\}$为一个直角坐标系。
+
+特别地，设$\mathcal{V}$是$\mathbb{R}^n$，选定原点$O\in\mathcal{E}$和$\mathbb{R}^n$的一组规范正交基$\left\{\mathbf{\hat{e}}_i\right\}\subset\mathbb{R}^n$，则称组合$\left\{\mathcal{E},\mathbb{R}^n,O,\Phi_O,\left\{\mathbf{\hat{e}}_i\right\}\right\}$是一个欧几里德空间。我们常简记这一组合为$\mathcal{E}$，其中直角坐标系$\left\{O,\left\{\mathbf{\hat{e}}_i\right\}\right\}$称为这个欧几里德空间的基本坐标系。欧几里德空间可因维数$n$和基本坐标系的选择不同而不同。两个欧几里德空间$\mathcal{E},\mathcal{E}^*$相同（即$\mathcal{E}=\mathcal{E}^*$）当且仅当它们的维数相同且基本坐标系重合。
+
+\subsection{等距变换的表示}
+\begin{lemma}
+若关于某点$X\in\mathcal{E}$的映射$\mathbf{Q}_X:\mathcal{V}\rightarrow\mathcal{V}$满足$\mathbf{Q}_X\mathbf{u}=\Phi\left(i\left(X\right),i\left(X+\mathbf{u}\right)\right),\forall\mathbf{u}\in\mathcal{V}$，则$\mathbf{Q}_X$与$X$无关，且$\mathbf{Q}$是正交张量。
+\end{lemma}
+\begin{proof}
+由$\mathbf{Q}_X$的定义有$\mathbf{Q}_X\Phi\left(X,Y\right)\equiv\Phi\left(i\left(X\right),i\left(Y\right)\right)$，且
+\[
+\left(\mathbf{Q}_X\mathbf{u}|\mathbf{Q}_X\mathbf{v}\right)=\left(\Phi\left(i\left(X\right),i\left(X+\mathbf{u}\right)\right)|\Phi\left(i\left(X\right),i\left(X+\mathbf{v}\right)\right)\right)=\left(\mathbf{u}|\mathbf{v}\right),\forall\mathbf{u},\mathbf{v}\in\mathcal{V}
+\]
+
+证明$\mathbf{Q}_X$是线性变换：$\forall \alpha_1,\alpha_2\in\mathbb{R},\mathbf{u}_1,\mathbf{u}_2,\mathbf{v}\in\mathcal{V}$,
+\begin{align*}
+    &\left(\mathbf{Q}_X\left(\alpha_1\mathbf{u}_1+\alpha_2\mathbf{u}_2\right)-\mathbf{Q}_X\left(\alpha_1\mathbf{u}_1\right)-\mathbf{Q}_X\left(\alpha_2\mathbf{u}_2\right)|\mathbf{Q}_X\mathbf{v}\right)\\
+    =&\left(\Phi\left(i\left(X\right),i\left(X+\alpha_1\mathbf{u}_1+\alpha_2\mathbf{u}_2\right)\right)-\Phi\left(i\left(X\right),i\left(X+\alpha_1\mathbf{u}_1\right)\right)-\Phi\left(i\left(X\right),i\left(X+\alpha_2\mathbf{u}_2\right)\right)\right.\\
+    &\left.|\Phi\left(i\left(X\right),i\left(X+\mathbf{v}\right)\right)\right)\\
+    =&\left(\alpha_1\mathbf{u}_1+\alpha_2\mathbf{u}_2|\mathbf{v}\right)-\alpha_1\left(\mathbf{u}_1|\mathbf{v}\right)-\alpha_2\left(u_2|\mathbf{v}\right)=0\\
+    \Leftrightarrow&\mathbf{Q}_X\left(\alpha_1\mathbf{u}_1+\alpha_2\mathbf{u}_2\right)=\alpha_1\mathbf{Q}_X\mathbf{u}_1+\alpha_2\mathbf{Q}_X\mathbf{u}_2\\
+    &=i\left(X_2\right)+\mathbf{Q}_{X_2}\Phi\left(X_2,X_1+\mathbf{u}\right)
+\end{align*}
+故$\mathbf{Q}_X$是线性变换。
+
+证明$\mathbf{Q}_X$是可逆的：令$\mathbf{v}=\mathbf{\hat{e}}_i,\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组规范正交基，则易验$\left\{\mathbf{Q}_X\mathbf{\hat{e}}_i\right\}$也是一组规范正交基，故$\left(\mathbf{Q}_X\mathbf{u}|\mathbf{Q}_X\mathbf{u}\right)=\left(\mathbf{u}|\mathbf{u}\right)=0$当且仅当$\mathbf{u}=\mathbf{0}\Leftrightarrow\mathbf{Q}_X\mathbf{u}=\mathbf{u}$当且仅当$\mathbf{u}=\mathbf{0}$，所以$\mathbf{Q}_X$是同构线性变换。
+
+证明$\mathbf{Q}_X$是正交的：由于$\forall\mathbf{u},\mathbf{v}\in\mathcal{V}$有$\left(\mathbf{Q}_X\mathbf{u}|\mathbf{Q}_X\mathbf{v}\right)=\left(\mathbf{u}|\mathbf{v}\right)$，且由转置的定义，又有$\left(\mathbf{Q}_X\mathbf{u}|\mathbf{Q}_X\mathbf{v}\right)=\left(\mathbf{u}|\mathbf{Q}_X^\intercal\mathbf{Q}_X\mathbf{v}\right)$，故有$\mathbf{Q}_X^\intercal\mathbf{Q}_X\mathbf{v}=\mathbf{v}$，即$\mathbf{Q}_X^\intercal\mathbf{Q}_X=\mathbf{I}$，所以$\mathbf{Q}_X$是正交张量。
+
+证明$\mathbf{Q}_X$与$X$的选择无关：$\forall X_1,X_2\in\mathcal{E},\mathbf{u}\in\mathcal{V}$，则有恒等式
+\begin{align*}
+i\left(X_1\right)&\equiv i\left(X_2\right)+\Phi\left(i\left(X_2\right),i\left(X_2+\Phi\left(X2,X1\right)\right)\right)\\
+&=i\left(X_2\right)+\mathbb{Q}_{X_2}\Phi\left(X_2,X_1\right)\\
+i\left(X_1+\mathbf{u}\right)&=i\left(X_2\right)+\Phi\left(i\left(X_2\right),i\left(X_2+\Phi\left(X_2,X_1+\mathbf{u}\right)\right)\right)\\
+&=i\left(X_2\right)+\mathbf{Q}_{X_2}\Phi\left(X_2,X_1+\mathbf{u}\right)\\
+\therefore \mathbf{Q}_{X_1}\mathbf{u}&=\Phi\left(i\left(X_1\right),i\left(X_1+\mathbf{u}\right)\right)\\
+&=\Phi\left[i\left(X_2\right)+\mathbf{Q}_{X_2}\Phi\left(X_2,X_1\right),i\left(X_2\right)+\mathbf{Q}_{X_2}\Phi\left(X_2,X_1+\mathbf{u}\right)\right]\\
+&=\mathbf{Q}_{X_2}\Phi\left(X_2,X_1+\mathbf{u}\right)-\mathbf{Q}_{X1}\Phi\left(X_2,X_1\right)\\
+&=\mathbf{Q}_{X_2}\left(\Phi\left(X_2,X_1+\mathbf{u}\right)-\Phi\left(X_2,X_1\right)\right)=\mathbf{Q}_{X_2}\mathbf{u}
+\end{align*}
+\end{proof}
+
+\begin{corollary}
+设$i:\mathcal{E}\rightarrow\mathcal{E}$是欧几里德度量空间$\left(\mathcal{E},d\right)$上的一个等距变换，则存在$\mathcal{E}$的平移空间$\mathcal{V}$上的一个正交线性变换$\mathbf{Q}$满足$\mathbf{Qu}=\Phi\left(i\left(X\right),i\left(X+\mathbf{u}\right)\right)\forall X\in\mathcal{E},\mathbf{u}\in\mathcal{V}$。
+\end{corollary}
+\begin{proof}
+由前面的引理自动得证。
+\end{proof}
+
+\begin{corollary}
+设$\left(\mathcal{E},d\right)$是一个欧几里德度量空间，$\mathcal{V}$是其平移空间。对$\mathcal{E}$上的任一等距变换$i:\mathcal{E}\rightarrow\mathcal{E}$，在都存在一个$\mathcal{V}$上的唯一的正交线性变换$\mathbf{Q}_i$满足$i\left(X\right)-i\left(Y\right)=\mathbf{Q}_i\left(X-Y\right)\forall X,Y\in\mathcal{E}$。
+\end{corollary}
+\begin{proof}
+由前面的引理可直接得证。
+\end{proof}
+
+有了这些准备结论，以下定理成立。
+
+\begin{theorem}
+设$\left(\mathcal{E},d\right)$是一个欧几里德度量空间，$\mathcal{V}$是其平移空间。选定任一$X_0\in\mathcal{E}$，则任一$\mathcal{E}$上的任一等距变换$i:\mathcal{E}\rightarrow\mathcal{E}$都可表示为$i\left(X\right)=i\left(X_0\right)+\mathbf{Q}_i\left(X-X_0\right)$。
+\end{theorem}
+
+注意，等距变换的表示式中的正交变换$\mathbf{Q}$是依赖所讨论的等距变换$i$的，故在定理中$\mathbf{Q}$带下标$i$。但是后续讨论中我们将省略这一下标。
+
+由于$\mathbf{Q}$是同构的，欧几里德度量空间的任一等距变换$i$是同构变换。
+
+具体地，我们可以显示任一$Y\in\mathcal{E}$是点$X_0+\mathbf{Q}^{-1}\left(Y-i\left(X_0\right)\right)$的像。注意到$\mathbf{Q}\Phi:\mathcal{E}^2\rightarrow\mathcal{V}$是一个复合映射，且由于$\mathbf{Q}$和$\Phi$都是双射，$\mathbf{Q}\Phi$也是双射，于是有：
+\begin{align*}
+    i\left(X_0+\mathbf{Q}^{-1}\Phi\left(i\left(X_0\right),i\left(X\right)\right)\right)&=i]\left(X_0+\mathbf{Q}^{-1}\Phi\left(i\left(X_0\right),i\left(X_0\right)+\mathbf{Q}\Phi\left(X_0,X\right)\right)\right)\\
+    &=i\left(X_0+\mathbf{Q}^{-1}\mathbf{Q}\Phi\left(X_0,X\right)\right)\\
+    &=i\left(X_0+\Phi\left(X_0,X\right)\right)\\
+    &=i\left(X\right)
+\end{align*}
+
+\begin{example}
+设$i_1$、$i_2$和$i_3$是欧几里德空间$\mathcal{E}$上的等距变换，分别定义为：
+\begin{itemize}
+    \item $i_1\left(X\right)=X+\left(C-X_0\right)$
+    \item $i_2\left(X\right)=X_0+\mathbf{Q}\left(X-X_0\right)$
+    \item $i_3\left(X\right)=X+\mathbf{Q}^{-1}\left(C-X_0\right)$
+\end{itemize}
+
+$i_1$是一种平移，即将任一点$X\in\mathcal{E}$平移$\mathbf{u}\equiv C-X_0$。
+
+$i_3$也是一种平移，将任一点$X\in\mathcal{E}$平移$\mathbf{v}\equiv \mathbf{Q}^{-1}\left(C-X_0\right)$。
+
+可验证$i_1\circ i_2\left(X\right)=i_2\circ i_3\left(X\right)$。
+
+当$\mathbf{Q}=\mathbf{I}$时，$i_2$是恒等映射。当$\mathbf{Q}\neq\mathbf{I}$时，由于$\mathbf{Q}$是正交线性算符，故$\mathrm{det}\mathbf{Q}=\pm 1$。若$\mathrm{det}\mathbf{Q}=1$，则$\mathbf{Q}$是一种旋转。若$\mathrm{det}\mathbf{Q}=-1$，则由$\mathbf{Q}\equiv\left(-\mathbf{I}\right)\left(-\mathbf{Q}\right)$，$\mathrm{det}\left(-\mathbf{Q}\right)=1$可知$\mathbf{Q}$是旋转之后再进行了反转（$-\mathbf{I}$），使得$\Phi\left(X,i\left(Y\right)\right)=-\Phi\left(X,Y\right)\forall X,Y\in\mathcal{E}$。由于反转是实际物体无法发生的形变，因此我们在连续介质力学中只考虑$\mathrm{det}\mathbf{Q}>0$的等距变换。
+\end{example}
+\end{document}
