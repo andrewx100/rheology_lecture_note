@@ -7,7 +7,7 @@
 \begin{proof}
 如果$\mathbf{L}$不是单射，则存在$\mathbf{x}_0\neq\mathbf{0}$满足$\mathbf{Lx}_0=\mathbf{0}$，即有$\left\|\mathbf{Lx}_0\right\|=0<m\left\|\mathbf{x}\right\|$。故其逆否命题成立。
 
-如果$\mathbf{L}$是单射，则其存在逆$\mathbf{L}^{-1}$满足$\mathbf{L}^{-1}\mathbf{L}=\mathbf{I}$且$\mathbf{L}^{-1}$也是线性变换。由定理\ref{thm:II.2.4}，$\exists k>0, \left\|\mathbf{L}^{-1}\mathbf{y}\right\|\leq k\left\|\mathbf{y}\right\|\forall\mathbf{y}\in\mathcal{W}_m$。令$m=1/k$则有$m\left\|\mathbf{x}\right\|=m\left\|\mathbf{L}^{-1}\mathbf{Lx}\right\|\leq mk\left\|\mathbf{Lx}\right\|=\left\|\mathbf{Lx}\right\|$
+如果$\mathbf{L}$是单射，则其存在逆$\mathbf{L}^{-1}$满足$\mathbf{L}^{-1}\mathbf{L}=\mathbf{I}$且$\mathbf{L}^{-1}$也是线性变换。由定理\ref{thm:II.13.4}，$\exists k>0, \left\|\mathbf{L}^{-1}\mathbf{y}\right\|\leq k\left\|\mathbf{y}\right\|\forall\mathbf{y}\in\mathcal{W}_m$。令$m=1/k$则有$m\left\|\mathbf{x}\right\|=m\left\|\mathbf{L}^{-1}\mathbf{Lx}\right\|\leq mk\left\|\mathbf{Lx}\right\|=\left\|\mathbf{Lx}\right\|$
 \end{proof}
 
 在之前的定义中，函数连续可微定义为其自然基下的所有偏导数皆连续。这里我们通过极限的$\epsilon-\delta$语言重新定义一个向量函数连续可微的含义。
@@ -180,7 +180,7 @@ g\left(\mathbf{x}\right)=\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{y}\rig
 \[0\geq-\frac{\left\|\mathbf{x}^\prime-\mathbf{x}\right\|}{\left\|\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{f}\left(\mathbf{x}\right)\right\|}\geq-\frac{1}{M}\]
 即$-\frac{\left\|\mathbf{x}^\prime-\mathbf{x}\right\|}{\left\|\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{f}\left(\mathbf{x}\right)\right\|}$是有界的。
 
-又由定理\ref{thm:II.2.4}的推论，线性变换都是连续函数，故由复合函数的连续性，极限$\lim_{\mathbf{x}^\prime\to\mathbf{x}}\mathbf{L}^{-1}\left(\mathbf{x}\right)\mathbf{r}=\mathbf{L}^{-1}\left(\mathbf{x}\right)\lim_{\mathbf{x}^\prime\to\mathbf{x}}\mathbf{r}=\mathbf{0}$。
+又由定理\ref{thm:II.13.4}的推论，线性变换都是连续函数，故由复合函数的连续性，极限$\lim_{\mathbf{x}^\prime\to\mathbf{x}}\mathbf{L}^{-1}\left(\mathbf{x}\right)\mathbf{r}=\mathbf{L}^{-1}\left(\mathbf{x}\right)\lim_{\mathbf{x}^\prime\to\mathbf{x}}\mathbf{r}=\mathbf{0}$。
 
 由于一个有界函数与一个有极限的函数的积的极限等于那个有极限的函数的极限\footnote{这个基本定理可由极限的$\delta-\epsilon$语言证明，很多地方有，此略。}，故$\lim_{\mathbf{x}^\prime\to\mathbf{x}}\mathbf{s}=\mathbf{0}$。又由于当$\mathbf{x}^\prime\to\mathbf{x}$时$\mathbf{f}\left(\mathbf{x}^\prime\right)\to\mathbf{f}\left(\mathbf{x}\right)$，由$\mathbf{s}$的形式有$\lim_{\mathbf{x}^\prime\to\mathbf{x}}\mathbf{s}=\mathbf{0}\Leftrightarrow\lim_{\mathbf{f}\left(\mathbf{x}^\prime\right)\to\mathbf{f}\left(\mathbf{x}\right)}\mathbf{s}=\mathbf{0}$。\ref{thm:inv_func_sub3}证毕。
 

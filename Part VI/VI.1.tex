@@ -1,7 +1,9 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
+本附录的内容并不新。在高等数学中我们已经学过邻域、去心邻域、内点、外点、边界点、聚点、孤立点、闭集、开集、连通集、区域、有界区域等概念\cite[\S 7.1,p.1]{华工高数2009下}。
+
 \begin{definition}[开集]
-如果对于$\mathbb{R}^n$的子集$S$中一个元素$\mathbf{x}_0\in S$，存在正实数$\delta>0$使得只要$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$则$\mathbf{x}\in S$，就称$\mathbf{x}_0$在$S$内。所有这样的点$\mathbf{x}_0$的集合称为集合$S$的内部，记为$\mathrm{int}S$。如果$S$的所有元素都在$S$内（$S=\mathrm{int}S$），就称$S$是开集。一个含有某元素$\mathbf{x}_0$的开集$S$又可称为该点$\mathbf{x}_0$的一个领域。
+如果对于$\mathbb{R}^n$的子集$S$中一个元素$\mathbf{x}_0\in S$，存在正实数$\delta>0$使得只要$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$则$\mathbf{x}\in S$，就称$\mathbf{x}_0$在$S$内。所有这样的点$\mathbf{x}_0$的集合称为集合$S$的内部，记为$\mathrm{int}S$。如果$S$的所有元素都在$S$内（$S=\mathrm{int}S$），就称$S$是开集。一个含有某元素$\mathbf{x}_0$的开集$S$又可称为该点$\mathbf{x}_0$的一个邻域。
 \end{definition}
 
 由定义，整个$\mathbb{R}^n$是一个开集。“空集是一个开集”虚真（vacuously true）。$\mathbb{R}^n$中的开集的交集也是开集。$\mathbb{R}^n$中的有限个开集的并集也是开集。这些结论都需要证明但此略。

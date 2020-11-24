@@ -2,52 +2,42 @@
 %物体的运动
 \begin{document}
 \subsection{物体的运动}
-\begin{definition}[世界线与世界运动]
-设$\mathcal{W}$是事件世界，$l$是由时间$\mathcal{T}$到$\mathcal{W}$的一个单射$l:\mathcal{T}\rightarrow\mathcal{W}$，$\mathrm{ran}l\subset\mathcal{W}$称为一条世界线，也简记作$l$。一组两两不相交的世界线的集合$\psi$称为一个世界运动。
+\begin{definition}[世界运动]
+一组两两不相交的世界线的集合$\psi$称为一个世界运动。
 \end{definition}
 
-事件世界，包括了所有时间上可以发生的所有事件。一个实际发生了的具体事件，总能在事件世界中找到对应。一个世界运动中的世界线两两不相交是经典力学中的要求，称为“信息守恒定律”。
+一个世界运动中的世界线两两不相交是经典力学中的要求，称为“信息守恒定律”。通俗地说，任一时刻，某当前状态不可能有多于一种过去状态，也不可能有多于一种未来状态。
 
 \begin{definition}[物体]
 一个物体是一个非空集合$\mathcal{B}$，其元素$X\in\mathcal{B}$称为物质点。
 \end{definition}
 
+\begin{figure}[h]
+\centering
+\includegraphics[width=0.5\textwidth]{images/III.2.1.eps}
+\caption{物体的运动、运动学过程、放置、构型}
+\label{fig:III.2.1}
+\end{figure}
+
 \begin{definition}[运动学过程、物体的运动]
-设$\mathcal{B}$是一个物体，$\mathcal{W}$是事件世界，$\Upsilon$是时间$\mathcal{T}$的一个连通子集。映射$k:\mathcal{B}\times\Upsilon\rightarrow\mathcal{W}$称为一个运动学过程。对某物质点$X\in\mathcal{B}$，事件$k\left(X,a\right)=I_a,a\in\Upsilon$称$X$在时刻$a$经历的事件。集合$\left\{k\left(X,a\right)|a\in\Upsilon\right\}$是一条世界线的子集，记为$l_X$，称为物质点$X$的运动。$\mathcal{B}$的所有物质点的同一运动学过程$\left\{l_X|X\in\mathcal{B}\right\}$是一个世界运动的子集，记为$\psi_\mathcal{B}$，称为物体$\mathcal{B}$的运动。
+如图\ref{fig:III.2.1}所示，设$\mathcal{B}$是一个物体，$\mathcal{W}$是事件世界，$\Upsilon$是时间$\mathcal{T}$的一个连通子集。映射$k:\mathcal{B}\times\Upsilon\rightarrow\mathcal{W}$称为一个运动学过程。对某物质点$X\in\mathcal{B}$，事件$k\left(X,a\right)=I_a,a\in\Upsilon$称$X$在时刻$a$经历的事件。集合$\left\{k\left(X,a\right)|a\in\Upsilon\right\}$是一条世界线的子集，记为$l_X$，称为物质点$X$的运动。$\mathcal{B}$的所有物质点的同一运动学过程$\left\{l_X|X\in\mathcal{B}\right\}$是一个世界运动的子集，记为$\psi_\mathcal{B}$，称为物体$\mathcal{B}$的运动。
 \end{definition}
 
 作为世界运动的子集，物体的运动中各物质点的运动也是两两不相交的。
 
-接下来，我们将看到，不选择参考系，我们无法具体给出一个物质点的运动的速度和加速度，即速度和加速度是依赖参考系的。
-
-\begin{definition}[事件世界的参考系]
-一个事件世界的参考系是一个满足以下要求的世界运动$\phi$：
-\begin{enumerate}
-    \item 平行：对任意两条世界线$l_1,l_2\in\phi$在任一时刻$a$下的两个事件$l_1\left(a\right),l_2\left(a\right)$的距离$d\left(l_1\left(a\right),l_2\left(a\right)\right)$都相等。故直接记两条世界线的距离为$d\left(l_1,l_2\right)$。
-    \item $\phi$的世界线包括$\mathcal{W}$的所有事件。即任一事件$w\in\mathcal{W}$都必在$\phi$的一条世界线上。
-\end{enumerate}
-事件世界的参考系$\phi$与其两条世界线的距离$d\left(l_1,l_2\right)$共同构成一个度量空间$\left(\phi,d\right)$，由于该距离$d$就是事件世界的距离度量，故为$d$为欧几里德度量，$\left(\phi,d\right)$是一个欧几里德离量空间，其对应的平移空间为$\mathcal{V}_\phi$。
-\end{definition}
-
-注意，作为度量空间的$\phi$中的一个“点”是一整条世界线。$\phi$中一点到另一点的平移是两条世界线间的平行平移。
-
-我们考虑物体$\mathcal{B}$的一个物质点$X\in\mathcal{B}$在时间间隔$\Upsilon$内的运动$l_X$。给定事件世界的参考系$\phi$，则$l_X$的每个事件$l_X\left(a\right),a\in\Upsilon$，都必属于$\phi$的一条世界线，可记为$\phi_l\left(l_X\left(a\right)\right)$。由于世界运动的世界线两两不相交，故映射$\phi_l$是单射。该物质点在某时刻$a\in\Upsilon$对时间的导数：
-\[
-\left.\frac{d l_X\left(t\right)}{dt}\right|_{t=a}=\lim_{s\to 0}\frac{l_X\left(a+s\right)-l_X\left(a\right)}{s}
+我们考虑物体$\mathcal{B}$的一个物质点$X\in\mathcal{B}$在一段时间$\Upsilon$内的运动$l_X$。给定事件世界的标架$\phi$，则$l_X$的每个事件$l_X\left(a\right),a\in\Upsilon$，都必属于$\phi$的一条世界线$l_\phi\left(l_X\left(a\right)\right)$。该物质点在某时刻$a\in\Upsilon$的速度是如下导数
+\[\left.\frac{d l_X\left(t\right)}{dt}\right|_{t=a}\equiv\lim_{s\to 0}\frac{l_\phi\left(l_X\left(a+s\right)\right)-l_\phi\left(l_X\left(a\right)\right)}{s},s\in\mathbb{R}
 \]
-其中，分子的意义必须改用事件世界的参考系来表达才明确，即
-\[\left.\frac{d l_X\left(t\right)}{dt}\right|_{t=a}\equiv\lim_{s\to 0}\frac{\phi_l\left(l_X\left(a+s\right)\right)-\phi_l\left(l_X\left(a\right)\right)}{s}
-\]
-这时，分母是欧几里德度量空间$\left(\phi,d\right)$中两点之差，即$\mathcal{V}_\phi$中的一个平移向量。我们称上式为物质点$X$在时刻$a\in\Upsilon$的速度。同理可给出物质点$X$在时刻$a$的加速度。速度和加速度都是$\mathcal{V}_\phi$中的向量，故它们都依赖参考系$\phi$的选择。
-
-在前一节我们介绍过标架的概念。实际上，选定了标架，相当于选定了事件世界的参考系。
+同理可给出物质点$X$在时刻$a$的加速度。速度和加速度都是$\mathcal{V}_\phi$中的向量，它们都依赖参考系$\phi$的选择。
 
 \begin{definition}[构型]
-设$\mathcal{W}$是事件世界，$\mathcal{T}$是时间，$\mathcal{B}$是物体，$\psi_\mathcal{B}$是其在时间间隔$\Upsilon\subset\mathcal{T}$的运动。选定参考系$\phi$，$\phi_l$是把任一事件对应到$\phi$中的世界线的映射，则任一时刻$a\in\Upsilon$下集合$\Omega_a=\left\{\phi_l\left(l_X\left(a\right)\right)\right\}\subset I_a$称为$\mathcal{B}$在时间$a$的构型。映射$\kappa_\phi:\mathcal{B}\rightarrow\Omega_a,\kappa_\phi\left(X\right)=\phi_l\left(l_X\left(a\right)\right)$称为物体$\mathbf{B}$在时刻$a$按参考系$\phi$的放置。
+如图\ref{fig:III.2.1}所示，设$\mathcal{W}$是事件世界，$\mathcal{T}$是时间，$\mathcal{B}$是物体，$\psi_\mathcal{B}$是其在时间间隔$\Upsilon\subset\mathcal{T}$的运动。选定标架$\phi$，则任一时刻$a\in\Upsilon$下集合$\Omega_a=\left\{l_\phi\left(l_X\left(a\right)\right)\right\}\subset \phi$称为$\mathcal{B}$在时间$a$的构型。映射$\kappa^{\left(\phi\right)}_a:\mathcal{B}\rightarrow\Omega_a,\kappa^{\left(\phi\right)}_a\left(X\right)=l_\phi\left(l_X\left(a\right)\right)\forall X\in\mathcal{B}$称为物体$\mathcal{B}$在时刻$a$按标架$\phi$的放置映射。
 \end{definition}
 
+放置映射$\kappa^{\left(\phi\right)}_a$是依赖标架$\phi$的选择的。上一节我们对标架$\phi$进行了简化的定义，相对应地，放置映射与构型的简化定义如下。
+
 \begin{definition}[构型（简化）]
-设$\mathcal{B}$是物体，给定标架$\phi:\mathcal{W}\rightarrow\mathbb{R}^{3+1}$，则$\mathcal{B}$的运动的时间间隔在标架$\phi$是$\mathbb{R}$上的区间$\left[t_1,t_2\right]\subset\mathbb{R}$。则在某时刻$t\in\left[t_1,t_2\right]$物体$\mathcal{B}$在该时刻下的欧几里德空间$\mathcal{E}$中占据的区域在标架$\phi$下的坐标集$\Omega_t=\left\{\mathbf{x}|\left(\mathbf{x},t\right)=\phi\left(X,t\right),X\in\mathcal{B}\right\}$称为$\mathcal{B}$在时刻$t$下的构型。映射$\kappa_\phi:\mathcal{B}\rightarrow\Omega_t,\kappa_\phi\left(X\right)=\mathbf{x},X\in\mathcal{B},\mathbf{x}\in\mathbb{R}^3$称为物体$\mathcal{B}$按标架$\phi$在时刻$t$的放置。
+给定标架$\phi:\mathcal{W}\rightarrow\mathbb{R}^{3+1}$，物体$\mathcal{B}$在任一时刻$t\in\mathbb{R}$占据的$\mathbb{R}^3$的区域$\Omega_t=\left\{\mathbf{x}|\left(\mathbf{x},t\right)=\phi\left(X,t\right),X\in\mathcal{B}\right\}$称为$\mathcal{B}$在时刻$t$下的构型。映射$\kappa^{\left(\phi\right)}_t:\mathcal{B}\rightarrow\Omega_t,\kappa^{\left(\phi\right)}_t\left(X\right)=\mathbf{x},X\in\mathcal{B},\mathbf{x}\in\Omega_t$称为物体$\mathcal{B}$按标架$\phi$在时刻$t$的放置。
 \end{definition}
 
 我们要求$\kappa$是可逆的。
@@ -61,8 +51,8 @@ t^*&=t_0^*+t-t_0=t+a,a=t_0^*-t_0
 
 我们考虑察时间导数。由上式可知$\frac{d}{dt^*}=\frac{d}{dt}$，故有
 \begin{align*}
-    \frac{d\mathbf{x}^*}{dt^*}=\frac{d\mathbf{x}^*}{dt}&=\frac{d\mathbf{x}_0^*}{dt}+\mathbf{Q}\left(t\right)\frac{d\mathbf{x}^*}{dt}+\frac{d\mathbf{Q}\left(t\right)}{dt}\left[\mathbf{x}^*-\mathbf{x}_0\right]\\
-    \mathbf{v}^*-\mathbf{Q}\left(t\right)\mathbf{v}&=\frac{d\mathbf{x}_0^*}{dt}+\frac{d\mathbf{Q}\left(t\right)}{dt}\left[\mathbf{x}^*-\mathbf{x}_0\right]\neq \mathbf{0}
+    \frac{d\mathbf{x}^*}{dt^*}=\frac{d\mathbf{x}^*}{dt}&=\frac{d\mathbf{x}_0^*}{dt}+\mathbf{Q}\left(t\right)\frac{d\mathbf{x}}{dt}+\frac{d\mathbf{Q}\left(t\right)}{dt}\left[\mathbf{x}-\mathbf{x}_0\right]\\
+    \mathbf{v}^*-\mathbf{Q}\left(t\right)\mathbf{v}&=\frac{d\mathbf{x}_0^*}{dt}+\frac{d\mathbf{Q}\left(t\right)}{dt}\left[\mathbf{x}-\mathbf{x}_0\right]\neq \mathbf{0}
 \end{align*}
 即速度不满足标架不变性。同理加速度也不满足：
 \begin{align*}

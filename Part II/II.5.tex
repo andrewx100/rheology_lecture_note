@@ -3,8 +3,7 @@
 \begin{document}
 考虑$N$维向量空间$\mathcal{V}_N$的一组基$B_\mathcal{V}=\{\mathbf{a}_i\}_{i=1}^N$，向量$\mathbf{x}\in\mathcal{V}$可表示成$\mathbf{x}=\sum_{i=1}^N\xi_i\mathbf{a}_i$或
 \[\left(\mathbf{x}\right)=\left(\begin{array}{ccc}\xi_1\\\vdots\\\xi_N\end{array}\right)\]
-$\left(\mathbf{x}\right)$是向量$\mathbf{x}$在基$B_\mathcal{V}$下的矩阵表示。其中，$\xi_i$称为向量$\mathbf{x}$在基$B_\mathcal{V}$下的坐标或分量（见
-S\ref{sec:II.2}定义\ref{def:II.2.6}）。
+$\left(\mathbf{x}\right)$是向量$\mathbf{x}$在基$B_\mathcal{V}$下的矩阵表示。其中，$\xi_i$称为向量$\mathbf{x}$在基$B_\mathcal{V}$下的坐标或分量（定义\ref{def:II.2.6}）。
 
 设从$\mathcal{V}_N$到$\mathcal{W}_M$的线性变换$\mathbf{A}\in\mathcal{L}\left(\mathcal{V}_N,\mathcal{W}_M\right)$将$\mathcal{V}_N$的一组基$B_\mathcal{V}=\{\mathbf{a}_i\}_{i=1}^N$映射到$\mathcal{W}_M$中的$N$个向量$\mathbf{w}_k=\mathbf{Aa}_k,k=1,\cdots,N$。如果我们选取$\mathcal{W}_M$的基$B_\mathcal{W}=\{\mathbf{b}_j\}_{j=1}^M$，则$\mathbf{w}_k$可表示为$\mathbf{w}_k=\sum_{j=1}^M\alpha_{jk}\mathbf{b}_j$。在本情况下，向量$\mathbf{w}_k$的坐标$\alpha_{jk}$有两个下标，可构成一个$M\times N$矩阵\footnote{我们用双下标的标量数组$\left\{\alpha_{ij}\right\},i=1,\cdots,N,j=1,\cdots,M$来表示如下$N\times M$矩阵
 
@@ -61,7 +60,7 @@ S\ref{sec:II.2}定义\ref{def:II.2.6}）。
 证明留作练习。
 \end{proof}
 
-定理\ref{thm:II.5.3}就是复合线性变换的在给定基下的坐标运算法则。
+定理\ref{thm:II.5.3}就是复合线性变换在给定基下的坐标运算法则。
 
 对于线性算符$\mathbf{T},\mathbf{U}\in\mathcal{L}\left(\mathcal{V}\right)$，由定理\ref{thm:II.4.12}和\ref{thm:II.5.3}有$\left(\mathbf{U}\right)\left(\mathbf{T}\right)=\left(\mathbf{T}\right)\left(\mathbf{U}\right)=\left(\mathbf{I}\right)$。易证在给定任一$\mathcal{V}$的基下，恒等变换的矩阵表示都是单位矩阵$I$，即$\left(\mathbf{I}\right)\equiv I$。其中
 \[I=\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}\]
