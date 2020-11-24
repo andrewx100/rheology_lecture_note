@@ -49,7 +49,7 @@
 由$\left(\mathbf{a}|\mathbf{b}\right)=\mathrm{Re}\left(\mathbf{a}|\mathbf{b}\right)+i\mathrm{Im}\left(\mathbf{a}|\mathbf{b}\right)$和$\mathrm{Im}\left(\alpha\right)=\mathrm{Re}\left(-i\alpha\right)\forall\alpha\in\mathbb{F}$，有$\mathrm{Im}\left(\mathbf{a}|\mathbf{b}\right)=\mathrm{Re}\left(-i\left(\mathbf{a}|\mathbf{b}\right)\right)=\mathrm{Re}\left(\mathbf{a}|i\mathbf{b}\right)$，故$\left(\mathbf{a}|\mathbf{b}\right)=\mathrm{Re}\left(\mathbf{a}|\mathbf{b}\right)+i\mathrm{Re}\left(\mathbf{a}|i\mathbf{b}\right)$。
 \end{proof}
 
-\begin{definition}[向量的范]\label{def:I.3.3}
+\begin{definition}[向量的范]\label{def:II.3.3}
 设$\mathcal{V}$是数域$\mathbb{F}$向量空间，则有$\forall\mathbf{x}\in\mathcal{V},\alpha\in\mathbb{F}$，
 \begin{enumerate}
     \item 恒正性：$\left\|\mathbf{x}\right\|$
@@ -59,11 +59,11 @@
 带有范的定义的向量空间叫赋范向量空间。
 \end{definition}
 
-由于向量空间的内积定义本身就可以有多种，依赖内积的范的定义也会有多种；对于有些向量空间，范的定义可以不依赖内积。向量的范的其中一种常用的定义是：设$\mathcal{V}$是内积空间，向量$\mathbf{a}\in\mathcal{V}$的范$\left\|\mathbf{a}\right\|\equiv\left(\mathbf{a}|\mathbf{a}\right)^{\frac{1}{2}}$。易验证定义\ref{def:I.3.3}满足上述要求。我们把这一定义称为欧几里德范。其他范的定义则为非欧几里德范，例如在$\mathbf{R}^n$上，还可以有如下范的定义。对任一$\mathbf{x}=\left(x_1,\cdots,x_n\right)$，$\left\|\mathbf{x}\right\|=\mathrm{max}\left\{\left|x_1\right|,\cdots,\left|x_n\right|\right\}$。
+由于向量空间的内积定义本身就可以有多种，依赖内积的范的定义也会有多种；对于有些向量空间，范的定义可以不依赖内积。向量的范的其中一种常用的定义是：设$\mathcal{V}$是内积空间，向量$\mathbf{a}\in\mathcal{V}$的范$\left\|\mathbf{a}\right\|\equiv\left(\mathbf{a}|\mathbf{a}\right)^{\frac{1}{2}}$。易验证定义\ref{def:II.3.3}满足上述要求。我们把这一定义称为欧几里德范。其他范的定义则为非欧几里德范，例如在$\mathbf{R}^n$上，还可以有如下范的定义。对任一$\mathbf{x}=\left(x_1,\cdots,x_n\right)$，$\left\|\mathbf{x}\right\|=\mathrm{max}\left\{\left|x_1\right|,\cdots,\left|x_n\right|\right\}$。
 
 以下定理说明，在一定条件下，我们能够用范的一般定义构造一个内积，使任何一个尚未定义内积的赋范空间成为一个内积空间。
 
-\begin{theorem}\label{thm:I.3.1}
+\begin{theorem}\label{thm:II.3.2}
 一个赋范向量空间是内积空间当且仅当该空间的范满足平行四边形法则，即
 \[\left\|\mathbf{a}+\mathbf{b}\right\|^2+\left\|\mathbf{a}-\mathbf{b}\right\|^2=2\left\|\mathbf{a}\right\|^2+2\left\|\mathbf{b}\right\|^2\]
 \end{theorem}
@@ -84,11 +84,11 @@
 内积空间$\mathcal{V}$中的向量$\mathbf{a},\mathbf{b}\in\mathcal{V}$，若$\left(\mathbf{a}|\mathbf{b}\right)=0$，则称$\mathbf{a}$与$\mathbf{b}$是正交的。若$S$是$\mathcal{V}$的一个子集，且$S$中的向量两两正交，则称$S$是$\mathcal{V}$的一个正交集。若$\mathcal{V}$的一个正交集$S$中的向量均满足$\left\|\mathbf{a}\right\|=1\forall\mathbf{a}\in S$则称$S$是规范正交集。
 \end{definition}
 
-\begin{example}\label{exp:I.3.2}
+\begin{example}\label{exp:II.3.2}
 数域$\mathbb{F}$上的$n\times n$矩阵空间$\mathbb{F}^{n\times n}$中，记$E^{pq}$为仅第$p$行、第$q$列为1，其余为0的$n\times n$矩阵。则由$E^{pq},p=1,\cdots,n,q=1,\cdots,n$组成的集合是规范正交集。其中$\mathbb{F}^{n\times n}$上的内积定义是$\left(A|B\right)\equiv\sum_{j,k}A_{jk}\overline{B}_{jk},\forall A, B\in\mathbb{F}^{n\times n}$。
 \end{example}
 
-\begin{theorem}\label{thm:I.2.3}
+\begin{theorem}\label{thm:II.3.3}
 正交集中的所有非零向量线性无关。
 \end{theorem}
 \begin{proof}
@@ -103,7 +103,7 @@
 考察上式可验证$\mathbf{b}=\mathbf{0}\Leftrightarrow\beta_1=\cdots=\beta_m=0$。
 \end{proof}
 
-由定理\ref{thm:II.2.3}，内积空间$\mathcal{V}$的正交集$S$总能线性生成$\mathcal{V}$的一个子空间。上面的证明也给出了格拉姆--施密特正交化过程，作为定理如下。
+由定理\ref{thm:II.3.3}以及线性生成空间、子空间的定义（\ref{def:II.2.3}、\ref{def:II.2.4}），内积空间$\mathcal{V}$的正交集$S$总能线性生成$\mathcal{V}$的一个子空间。上面的证明也给出了格拉姆--施密特正交化过程，作为定理如下。
 
 \begin{theorem}
 设$\mathcal{V}$是内积空间，$\mathbf{b}_1,\cdots,\mathbf{b}_n\in\mathcal{V}$是一组线性无关向量。那么可以由它们构建一组两两正交的向量$\mathbf{a}_1,\cdots,\mathbf{a}_n\in\mathcal{V}$使得对于每一$k=1,\cdots,n$，向量组$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_k\right\}$都是由$\left\{\mathbf{b}_1,\cdots,\mathbf{b}_k\right\}$线性生成的空间的一组基。
@@ -113,13 +113,13 @@
 \[
 \mathbf{a}_{m+1}=\mathbf{b}_{m+1}-\sum_{k=1}^m\frac{\left(\left.\mathbf{b}_{m+1}\right|\left.\mathbf{a}_k\right.\right)}{\left(\mathbf{a}_k|\mathbf{a}_k\right)}\mathbf{a}_k
 \]
-则有$\mathbf{a}_{m+1}\neq\mathbf{0}$，否则$\mathbf{b}_1,\cdots,\mathbf{b}_m,\mathbf{b}_{m+1}$线性相关，因$\mathbf{b}_{m+1}$可由$\mathbf{b}_1,\cdots,\mathbf{b}_m$线性表出。由上式还可知，对每一$j=1,\cdot,m$均有
+则有$\mathbf{a}_{m+1}\neq\mathbf{0}$，否则$\mathbf{b}_1,\cdots,\mathbf{b}_m,\mathbf{b}_{m+1}$线性相关，因$\mathbf{b}_{m+1}$可由$\mathbf{b}_1,\cdots,\mathbf{b}_m$线性表出。由上式还可知，对每一$j=1,\cdots,m$均有
 \begin{align*}
 \left(\mathbf{a}_{m+1}|\mathbf{a}_j\right)&=\left(\mathbf{b}_{m+1}|\mathbf{a}_j\right)-\sum_{k=1}^m\frac{\left(\mathbf{b}_{m+1}|\mathbf{a}_k\right)}{\left(\mathbf{a}_k|\mathbf{a}_k\right)}\left(\mathbf{a}_k|\mathbf{a}_j\right)\\
 &=\left(\mathbf{b}_{m+1}|\mathbf{a}_j\right)-\left(\mathbf{b}_{m+1}|\mathbf{a}_j\right)\\
 &=0
 \end{align*}
-所以$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_{m+1}\right\}$是一个非零正交集。由定理\ref{thm:II.2.3}，它们线性无关。故$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_{m+1}\right\}$也是由$\left\{\mathbf{b}_1,\cdots\mathbf{b}_{m+1}\right\}$线性生成的子空间的正交基。
+所以$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_{m+1}\right\}$是一个非零正交集。由定理\ref{thm:II.3.3}，它们线性无关。故$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_{m+1}\right\}$也是由$\left\{\mathbf{b}_1,\cdots\mathbf{b}_{m+1}\right\}$线性生成的子空间的正交基。
 \end{proof}
 
 特别地，对$n=4$，

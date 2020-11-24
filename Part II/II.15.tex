@@ -1,7 +1,7 @@
 \documentclass[main.tex]{subfiles}
 % 链式法则、反函数定理、隐函数定理
 \begin{document}
-\begin{theorem}
+\begin{theorem}[链式法则]
 如果函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在$\mathbf{x}_0\in\mathrm{dom}\mathbf{f}$处可微分；函数$\mathbf{g}:\mathbb{R}^n\rightarrow\mathbb{R}^p$在$\mathbf{f}\left(\mathbf{x}_0\right)\in\mathrm{dom}\mathbf{g}$处可微分，则复合函数$\mathbf{g}\circ\mathbf{f}$在$\mathbf{x}_0$处可微分，且其全导数
 \[
 \left.\frac{d\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}=\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}
@@ -23,7 +23,7 @@
 =&\left\|\mathbf{x}-\mathbf{x}_0\right\|\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)
 \end{align*}
 由三角不等式，又有\footnote{
-此处用到定理\ref{thm:II.2.4}。
+此处用到定理\ref{thm:II.13.4}。
 }
 \begin{align*}
     \left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|&=\left\|\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\\
@@ -49,7 +49,52 @@
 
 如果$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$由函数$\mathbf{F}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^m$隐含定义，我们常常把$\mathbf{F}$写成这样一种映射：$\mathbf{F}:\mathbb{R}^n\times\mathbb{R}^m\rightarrow\mathbb{R}^m$，$\mathbf{F}\left(\mathbf{x},\mathbf{f}\left(\mathbf{x}\right)\right)=\mathbf{0}\forall\mathbf{x}\in\mathbb{R}^n$。此时，我们记
 \[\left.\frac{\partial \mathbf{F}\left(\mathbf{x},\mathbf{y}\right)}{\partial \mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0,\mathbf{y}=\mathbf{y}_0}=\left.\frac{d\mathbf{F}\left(\mathbf{x},\mathbf{y}_0\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\]
-引入这个记法是为了介绍以下定理。
+引入这个记法有两个用处，一是为了以下例子，这个例子是后文引入物质导数的一个基础；二是为了引入隐函数定理。
+
+\begin{example}\label{exp:II.15.1}
+设函数$\mathbf{f}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^p$的定义域为$D=\mathrm{dom}\mathbf{f}$，若函数$\mathbf{g}:\mathbb{R}^m\rightarrow\mathbb{R}^n$满足$\mathrm{dom}\mathbf{g}=D$，则总可以构建函数$\mathbf{h}:\mathbb{R}^m\rightarrow\mathbb{R}^{m+n}$使得$\mathrm{dom}\mathbf{h}=D$且
+\begin{align*}
+    \mathbf{h}\left(\mathbf{x}\right)&=\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)\forall\mathbf{x}\in D\\
+    h_i\left(\mathbf{x}\right)&=\left\{\begin{array}{ll}
+    g_i\left(\mathbf{x}\right),&i=1,\cdots,n\\
+    x_{i-n},&i=n+1,\cdots,n+m
+    \end{array}\right.
+\end{align*}
+这时，$\mathbf{f}\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)=\mathbf{f}\left(\mathbf{h}\left(\mathbf{x}\right)\right)$。若$\mathbf{g}$在某处可微分则$\mathbf{h}$在该处也可微分。由链式法则定理，在该处有
+\begin{align*}
+    \frac{d\mathbf{f}\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)}{d\mathbf{x}}&=\frac{d\mathbf{h}\left(\mathbf{x}\right)}{d\mathbf{x}}\\
+    &=\left.\frac{d\mathbf{f}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{h}\left(\mathbf{x}\right)}\frac{d\mathbf{h}\left(\mathbf{x}\right)}{d\mathbf{x}}\\
+    &=\left(\begin{array}{cccccc}
+    \frac{\partial f_1}{\partial h1}&\cdots&\frac{\partial f_1}{\partial h_n}&\frac{\partial f_1}{\partial h_{n+1}}&\cdots&\frac{\partial f_1}{\partial h_{n+m}}\\
+    \vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+    \frac{\partial f_p}{\partial h_1}&\cdots&\frac{\partial f_p}{\partial h_n}&\frac{\partial f_p}{\partial h_{n+1}}&\cdots&\frac{\partial f_p}{\partial h_{n+m}}
+    \end{array}\right)\left(\begin{array}{ccc}
+    \frac{\partial h_1}{\partial y_1}&\cdots&\frac{\partial h_1}{\partial y_m}\\
+    \vdots&\ddots&\vdots\\
+    \frac{\partial h_n}{\partial y_1}&\cdots&\frac{\partial h_1}{\partial y_m}\\
+    \frac{\partial h_{n+1}}{\partial y_1}&\cdots&\frac{\partial h_{n+1}}{\partial y_m}\\
+    \vdots&\ddots&\vdots\\
+    \frac{\partial h_{n+m}}{\partial y_1}&\cdots&\frac{\partial h_{n+m}}{\partial y_m}
+    \end{array}\right)
+    &=C
+\end{align*}
+其中矩阵$C$的分量
+\[
+    C_{ij}=\sum_{k=1}^{n+m}\frac{\partial f_i}{\partial h_k}\frac{\partial h_k}{\partial x_j},i=1,\cdots,p,j=1,\cdots,m
+\]
+注意到
+\begin{align*}
+    \frac{\partial f_i}{\partial h_k}\frac{\partial h_k}{\partial x_j}=\left\{\begin{array}{ll}
+    \frac{\partial f_i}{\partial g_k}\frac{\partial g_k}{x_j},&k=1,\cdots,n\\
+    \frac{\partial f_i}{\partial x_k-n}\delta_{k-n,j},&k=n+1,\cdots,n+m
+    \end{array}\right.,i=1,\cdots,p,j=1,\cdots,m
+\end{align*}
+故
+\begin{align*}
+C_{ij}&=\sum_{k=1}^{n}\frac{\partial f_i}{\partial g_k}\frac{\partial g_k}{\partial x_j}+\sum_{j=1}^m\frac{\partial f_i}{\partial x_j}\\
+\Leftrightarrow\frac{d\mathbf{f}\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)}{d\mathbf{x}}&=\left.\frac{\partial \mathbf{f}\left(\mathbf{y},\mathbf{x}\right)}{\partial \mathbf{y}}\right|_{\mathbf{y}=\mathbf{g}\left(\mathbf{x}\right)}\frac{\partial\mathbf{g}\left(\mathbf{x}\right)}{\partial \mathbf{x}}+\frac{\partial \mathbf{f}\left(\mathbf{y},\mathbf{x}\right)}{\partial\mathbf{x}}
+\end{align*}
+\end{example}
 
 \begin{theorem}[隐函数定理]
 设$\mathbf{F}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^m$是连续可导函数，且对$\mathbf{x}_0\in\mathbf{R}^n$和$\mathbf{y}_0\in\mathbf{R}^m$有
@@ -80,7 +125,7 @@
     \Leftrightarrow&\left(\begin{array}{cc}
     \frac{\partial x}{\partial u}&\frac{\partial x}{\partial v}\\\frac{\partial y}{\partial u}&\frac{\partial y}{\partial v}\end{array}\right)=-\left(\begin{array}{cc}
     \frac{\partial F_1}{\partial x}&\frac{\partial F_1}{\partial y}\\\frac{\partial F_2}{\partial x}&\frac{\partial F_2}{\partial y}\end{array}\right)^{-1}\left(\begin{array}{cc}
-    \frac{\partial F_1}{\partial u}&\frac{\partial F_1}{\partial v}\\\frac{\partial F_2}{\partial u}&\frac{\partial F_2}{\partial v}\end{array}]\right)
+    \frac{\partial F_1}{\partial u}&\frac{\partial F_1}{\partial v}\\\frac{\partial F_2}{\partial u}&\frac{\partial F_2}{\partial v}\end{array}\right)
 \end{align*}
 \end{example}
 \end{document}

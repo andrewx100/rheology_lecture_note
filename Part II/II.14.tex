@@ -38,7 +38,7 @@
 使用$\mathbf{f}\left(\mathbf{x}_0\right)$来表示$\mathbf{a}\left(\mathbf{x}\right)$，上式$\Leftrightarrow$
 \[\lim_{\mathbf{x}\to\mathbf{x}_0}\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)=\mathbf{0}
 \]
-其中，由定理\ref{thm:II.2.4}的推论$\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)=\mathbf{0}$，故上式$\Leftrightarrow$
+其中，由定理\ref{thm:II.13.4}的推论$\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)=\mathbf{0}$，故上式$\Leftrightarrow$
 \[
 \lim_{\mathbf{x}\to\mathbf{x}_0}\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)=\mathbf{0}
 \]
@@ -60,13 +60,13 @@
 \end{definition}
 
 我们来看函数$\mathbf{f}\left(x\right)$的雅可比矩阵具体等于什么。若$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$处连续，则总存在足够小的正实数$t$使得$\mathbf{x}_j=\mathbf{x}_0+t\mathbf{\hat{e}}_j\in D,j=1,\cdots,n$，其中$\left\{\mathbf{\hat{e}}_j\right\}$是$\mathbb{R}^n$的标准基。若$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$处还可微分，则存在全导数$\mathbf{L}\left(\mathbf{x}_0\right)$使得极限
-\[\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}_i\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\left(\mathbf{x}_0\right)\left(t\mathbf{\hat{e}}_j\right)}{t}=\mathbf{0},j=1,\cdots,n
+\[\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}_j\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\left(\mathbf{x}_0\right)\left(t\mathbf{\hat{e}}_j\right)}{t}=\mathbf{0},j=1,\cdots,n
 \]
 即
 \[
-\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}_i\right)-\mathbf{f}\left(\mathbf{x}_0\right)}{t}=\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{\hat{e}}_j,j=1,\cdots,n
+\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}_j\right)-\mathbf{f}\left(\mathbf{x}_0\right)}{t}=\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{\hat{e}}_j,j=1,\cdots,n
 \]
-上式左边是偏导数$\frac{\partial\mathbf{f}}{\partial x_i}$，因为若$\mathbf{x}_0=\left(x_{01},\cdots,x_{0n}\right)^\intercal$，则$\mathbf{x}_i=\left(\cdots,x_{0i}+t,\cdots\right),i=1,\cdots,n$。上式右边是线性变换$\mathbf{L}\left(\mathbf{x}_0\right)$在标准基下的矩阵的第$j$列的列向量。所以
+若$\mathbf{x}_0=\left(x_{01},\cdots,x_{0n}\right)^\intercal$，则$\mathbf{x}_i=\left(\cdots,x_{0i}+t,\cdots\right),i=1,\cdots,n$，故上式左边的极限就是偏导数$\frac{\partial\mathbf{f}}{\partial x_0i}$。而上式右边是线性变换$\mathbf{L}\left(\mathbf{x}_0\right)$在标准基下的矩阵的第$j$列的列向量。所以上式等价于如下等式
 \begin{align*}
     \left(\mathbf{L}\left(\mathbf{x}_0\right)\right)&=\left(\left(\frac{\partial\mathbf{f}}{\partial x_1}\right),\cdots,\left(\frac{\partial\mathbf{f}}{\partial x_n}\right)\right)^\intercal\\
     &=\left(\begin{array}{ccc}
@@ -119,14 +119,14 @@
 由全微分的定义，命题得证，且线性变换$\mathbf{L}$就是函数的全导数。
 \end{proof}
 
-现在我们引入“线性变换的范”的概念。由定理\ref{thm:II.2.4}，对任一线性变换$\mathbf{L}$皆存在一个正实数$k>0$满足$\left\|\mathbf{Lx}\right\|\leq k\left\|\mathbf{x}\right\|,\forall\mathbf{x}\in\mathbb{R}^n$。我们定义——
+现在我们引入“线性变换的范”的概念。由定理\ref{thm:II.13.4}，对任一线性变换$\mathbf{L}$皆存在一个正实数$k>0$满足$\left\|\mathbf{Lx}\right\|\leq k\left\|\mathbf{x}\right\|,\forall\mathbf{x}\in\mathbb{R}^n$。我们定义——
 
 \begin{definition}[线性变换的范]
 设$\mathcal{V},\mathcal{W}$是数域$\mathbb{F}$上的赋范向量空间，线性变换$\mathbf{L}:\mathcal{V}\rightarrow\mathbf{W}$的范$\left\|\mathbf{L}\right\|$为满足$\left\|\mathbf{Lx}\right\|\leq k\left\|\mathbf{x}\right\|,\forall\mathbf{x}\in\mathbb{R}^n$的正实数$k$的最大下界（infimum），即
 \[\left\|\mathbf{L}\right\|\equiv\mathrm{inf}\left\{k|k>0,\left\|\mathbf{Lx}\right\|\leq k\left\|\mathbf{x}\right\|\forall\mathbf{x}\right\}\]
 \end{definition}
 
-这一最大下界的存在性和唯一性是显然的。我们无需知道它具体数值。可验证，以上定义的范符合范的一般要求。值得说明的是，线性变换的范的定义依赖它作用下的赋范空间的范的定义。然而，不同的范的具体定义均要满足范的一般要求，故在此意义上范的不同定义间具有等价性（见定理\ref{thm:II.3.1}）。由此定义，我们标准获得性质：$\left\|\mathbf{Lx}\right\|\leq\left\|\mathbf{L}\right\|\left\|\mathbf{x}\right\|$。
+这一最大下界的存在性和唯一性是显然的。我们无需知道它具体数值。可验证，以上定义的范符合范的一般要求。值得说明的是，线性变换的范的定义依赖它作用下的赋范空间的范的定义。然而，不同的范的具体定义均要满足范的一般要求，故在此意义上范的不同定义间具有等价性（见定理\ref{thm:II.13.1}）。由此定义我们可立即获得性质：$\left\|\mathbf{Lx}\right\|\leq\left\|\mathbf{L}\right\|\left\|\mathbf{x}\right\|$。
 
 至此，我们可以用“$\epsilon-\delta$语言”定义“函数连续可微即其导函数连续”——
 
@@ -143,4 +143,38 @@
 \end{theorem}
 
 若一个函数在一点处连续，且在该点的邻域内都可微分，该函数在该邻域内的导函数未必都连续。故上一定理给出的是函数连续的充份非必要条件。
+
+刚才在介绍雅可比矩阵的时候，我们利用全微分的性质考虑过以下极限：
+\[
+\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}_i\right)-\mathbf{f}\left(\mathbf{x}_0\right)}{t},i=1,\cdots,n\]
+并知道它就是$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}_0=\left(x_{01},\cdots,x_{0n}\right)^\intercal$处对$x_{0i}$的偏导数，因为上式$\Leftrightarrow$
+\[
+\lim_{t\rightarrow 0}\frac{\mathbf{f}\left(\mathbf{x}_0+t\mathbf{\hat{e}}_i\right)-\mathbf{f}\left(\mathbf{x}_0\right)}{t},i=1,\cdots,n
+\]
+现在我们把$\mathbf{\hat{e}}_j$改为任意向量$y$，引入方向导数。
+
+\begin{definition}[对向量的导数、方向导数]
+函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$c对向量$\mathbf{y}\in\mathbb{R}^n$的导数是
+\[\frac{\partial\mathbf{f}\left(\mathbf{x}\right)}{\partial\mathbf{y}}=\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(\mathbf{x}\right)}{t}\]
+其中作为导函数的$\frac{\partial \mathbf{f}\left(\mathbf{x}\right)}{\partial\mathbf{y}}$的定义域是原函数$\mathbf{f}$的定义域的使该导数存在的子集。特别地，函数对单位向量$\mathbf{u},\left\|\mathbf{u}\right\|=1$的导数称为方向导数。
+\end{definition}
+
+以下定理使得函数对任意向量的导数可用该函数的全导数来计算。
+
+\begin{theorem}\label{thm:II.14.4}
+设函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在$\mathbf{x}\in\mathbb{R}^n$处可微，则
+\[\frac{\partial\mathbf{f}\left(\mathbf{x}\right)}{\partial\mathbf{y}}=\frac{d\mathbf{f}\left(x\right)}{d\mathbf{x}}\mathbf{y},\forall\mathbf{y}\in\mathbb{R}^n\]
+\end{theorem}
+\begin{proof}
+对$\mathbf{y}=\mathbf{0}$显然成立。若$\mathbf{y}\neq\mathbf{0}$，由全微分的近似意义，由自变量的增量$t\mathbf{y}$造成的函数增量$\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(\mathbf{x}\right)$满足
+\begin{align*}
+\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(\mathbf{x}\right)-\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\left(t\mathbf{y}\right)}{\left\|t\mathbf{y}\right\|}&=\mathbf{0}\\
+\Leftrightarrow\lim_{t\to 0}\frac{1}{\left\|\mathbf{y}\right\|}\left\|\frac{\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(x\right)}{t}-\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\mathbf{y}\right\|&=\mathbf{0}\\
+\Leftrightarrow\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(\mathbf{x}\right)}{t}&=\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\mathbf{y}
+\end{align*}
+\end{proof}
+
+我们比较一个函数$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}_0$处的全微分及其在$\mathbf{x}_0$处对某向量$\mathbf{y}$的导数可以发现后者就是令前者中的$\mathbf{x}-\mathbf{x}_0=\mathbf{y}$。在全微分中，我们强调的是对任意$\mathbf{x}$（即点$\mathbf{x}_0$邻近的每处），而在对$\mathbf{y}$的导数中我们强调的是$\mathbf{x}_0$朝某个选定的向量$\mathbf{y}$的某处（$\mathbf{x}=\mathbf{x}_0+\mathbf{y}$）。留意到，函数在某点处对标准基向量的导数就是函数对该点相应分量的偏导数。
+
+方向导数的几何意义是函数在某点处朝相应方向的变化率。定理\ref{thm:II.14.4}表明，拿一个函数在某点处的全导数作用于一个单位向量，就可以得该函数在该点处朝该方向的变化率。这也是函数的全导数的重要几何意义。
 \end{document}

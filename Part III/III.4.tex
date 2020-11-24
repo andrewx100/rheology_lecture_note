@@ -26,18 +26,18 @@ f_\mathrm{s}\left(\mathbf{r},t\right)&=f_\mathrm{m}\left(\chi^{-1}\left(\mathbf{
 &=\frac{\partial}{\partial t}\kappa\left(\kappa_0^{-1}\left(\mathbf{X}\right),t\right)\\
 &=\frac{\partial}{\partial t}\chi\left(\mathbf{X},t\right)
 \end{align*}
-我们在进行粒子示踪测速的时候，粒子的速度就是物质描述的速度函数。速度的空间描述是
+我们在进行粒子示踪测速（particle tracking velocimetry，PTV）的时候，粒子的速度就是物质描述的速度函数。速度的空间描述是
 \begin{align*}
 \mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)&=\mathbf{v}\left(\kappa^{-1}\left(\mathbf{r},t\right),t\right)\\
 &=\frac{\partial}{\partial t}\kappa\left(\kappa^{-1}\left(\mathbf{r},t\right),t\right)
 \end{align*}
-我们在进行粒子成像测速的时候，测量结果（速度场）是物体运动速度的空间描述。
+我们在进行粒子成像测速（particle imaging velocimetry，PIV）的时候，测量结果（速度场）就是物体运动速度的空间描述。
 
 如果我们想知道速度场$\mathbf{v}_\mathrm{s}$在某处$\mathbf{r}$的变化率，直接对其求时间偏导数即可，但这不是物体$\mathcal{B}$的任一物质点的加速度。因为物体在运动中，所以$\mathbf{r}$处的物质点是一直变化的。而我们之所以想知道加速度，是为了将来运用牛顿第二定律。
 
 加速度是物质点的速度变化，即
 \[\mathbf{a}\left(X,t\right)=\frac{\partial\mathbf{v}\left(X,t\right)}{\partial t}=\frac{\partial^2}{\partial t^2}\kappa\left(X,t\right),X\in\mathcal{B}\]
-速度的物质描述$\mathbf{a}_\mathrm{m}\left(\mathbf{X},t\right)=\mathbf{a}\left(\kappa_0^{-1}\left(\mathbf{X}\right),t\right)=\frac{\partial^2}{\partial t}\chi\left(\mathbf{X},t\right)=\frac{\partial}{\partial t}\mathbf{v}_\mathrm{m}\left(\mathbf{X},t\right)$。如果我们只知道速度场$\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)$，要求加速度的物质描述，就需要用$\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)$来表出同一个物质点$X$（或关于参考构型中的同一个位置$\mathbf{X}$）在不同时刻的速度，即$\mathbf{v}_\mathrm{s}\left(\chi\left(\mathbf{X},t\right),t\right)$。对这个复合函数求时间导数，才是物质点$X$的加速度：
+速度的物质描述$\mathbf{a}_\mathrm{m}\left(\mathbf{X},t\right)=\mathbf{a}\left(\kappa_0^{-1}\left(\mathbf{X}\right),t\right)=\frac{\partial^2}{\partial t}\chi\left(\mathbf{X},t\right)=\frac{\partial}{\partial t}\mathbf{v}_\mathrm{m}\left(\mathbf{X},t\right)$。如果我们只知道速度场$\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)$，要求加速度的物质描述，就需要用$\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)$来表出同一个物质点$X$（或关于参考构型中的同一个位置$\mathbf{X}$）在不同时刻的速度，即$\mathbf{v}_\mathrm{s}\left(\chi\left(\mathbf{X},t\right),t\right)$。对这个复合函数求时间导数，才是物质点$X$的加速度。例\ref{exp:II.15.1}为我们提供了这类复合函数求导的法则，故：
 \begin{align*}
 \mathbf{a}\left(X,t\right)&=\mathbf{a}_\mathrm{m}\left(\mathbf{X},t\right)=\frac{\partial}{\partial t}\mathbf{v}_\mathrm{s}\left(\chi\left(\mathbf{X},t\right),t\right)\\
 &=\left.\frac{\partial \mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)}{\partial t}\right|_{\mathbf{r}=\chi\left(\mathbf{X},t\right)}+\left.\frac{\partial\mathbf{v}_\mathrm{s}\left(\mathbf{r},t\right)}{\partial\mathbf{r}}\right|_{\mathbf{r}=\chi\left(\mathbf{X},t\right)}\frac{\partial\chi\left(\mathbf{X},t\right)}{\partial t}\\

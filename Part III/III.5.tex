@@ -21,6 +21,8 @@
     &=\left.\frac{\partial}{\partial t}\mathbf{F}\left(\mathbf{X},t\right)\right|_{\mathbf{X}=\chi^{-1}\left(\mathbf{r},t\right)}\mathbf{F}^{-1}\left(\mathbf{r},t\right)=\dot{\mathbf{F}}\mathbf{F}^{-1}
 \end{align*}
 
+上式是速度梯度张量与形变梯度张量之间的关系。
+
 如果形变梯度张量$\mathbf{F}$可逆则$\mathbf{L}$也可逆，故$\mathbf{L}$可以写成如下对称张量和斜称张量的和：
 \[\mathbf{L}=\frac{1}{2}\left(\mathbf{L}+\mathbf{L}^\intercal\right)+\frac{1}{2}\left(\mathbf{L}-\mathbf{L}^\intercal\right)=\mathbf{D}+\mathbf{W}\]
 其中定义
@@ -33,5 +35,5 @@
 请自行写出$\mathbf{D}$和$\mathbf{W}$在标准基下的矩阵式。
 \end{example}
 
-$\mathbf{D}$、$\mathbf{W}$都是空间描述的函数（场函数）。
+$\mathbf{L}$、$\mathbf{D}$、$\mathbf{W}$都是空间描述的函数（场函数）。由定理\ref{thm:II.14.4}，$\mathbf{L}\left(\mathbf{r},t\right)$作用于单位向量$\mathbf{u}$可得到$t$时刻$\mathbf{r}$处速度场$\mathbf{v}_s$朝方向$\mathbf{u}$的变化率$\frac{\partial }{\partial \mathbf{u}}\mathbf{v}_s\left(\mathbf{r},t\right)$。
 \end{document}

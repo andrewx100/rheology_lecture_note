@@ -10,13 +10,13 @@
 
 在极限的定义中用到了向量的范。但是前面讲过，向量的范可以有不同定义。我们先讨论，不同定义的范在此是等价的。此处所谓“等价”是指，对任意两种定义的范$\left\|\cdot\right\|_1,\left\|\cdot\right\|_2$，如果存在正实数$k$和$K$使得$k\left\|\mathbf{x}\right\|_1\leq\left\|\mathbf{x}\right\|_2\leq K\left\|\mathbf{x}\right\|_1,\forall\mathbf{x}$，则这两种定义的范等价。可以验证，这一等价的定义满足等价关系的一般要求：自反性、对称性和传递性。
 
-\begin{theorem}\label{thm:II.3.1}
+\begin{theorem}\label{thm:II.13.1}
 有限维向量空间$\mathcal{V}$上的任意两种范的定义等价。
 \end{theorem}
 \begin{proof}
 设$n=\mathrm{dim}\mathcal{V}$，$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组基，记该基下的欧几里德范为$\forall\mathbf{x}=\sum_{i=1}^nx_i\mathbf{\hat{e}}_i\in\mathcal{V}$
 \[\left\|\mathbf{x}\right\|_\mathrm{E}\equiv\sqrt{\sum_{i=1}^n x_i^2}\]
-由范的定义\ref{def:I.3.3}要求，
+由范的定义\ref{def:II.3.3}要求，
 \begin{align*}
 \left\|\mathbf{x}\right\|&=\left\|\sum_{i=1}^nx_i\mathbf{\hat{e}}_i\right\|\\
 &\leq \sum_{i=1}^n\left\|x_i\mathbf{\hat{e}}_i\right\|=\sum_{i=1}^nx_i\left\|\mathbf{\hat{e}}_i\right\|\\
@@ -31,7 +31,7 @@
 故一般范作为欧几里德范的函数是连续函数。令$k$等于一般范作为欧几里德范的函数在$\left\|\mathbf{x}\right\|=1$的$\mathcal{V}$的子集区域的极小值（闭区间上的连续函数必存在极小值），则对任一$\mathbf{x}\neq\mathbf{0}$有$\left\|\mathbf{x}/\left\|\mathbf{x}\right\|_\mathrm{E}\right\|\leq k$,故$\left\|\mathbf{x}\right\|\leq k\left\|\mathbf{x}\right\|_\mathrm{E},\forall \mathbf{x}\in\mathcal{V}$。
 \end{proof}
 
-\begin{theorem}\label{thm:II.2.2}
+\begin{theorem}\label{thm:II.13.2}
 函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在$\mathbf{r}_0\in\mathbb{R}^n$处存在极限$\lim_{\mathbf{r}\to\mathbf{r}_0}\mathbf{f}\left(\mathbf{r}\right)=\mathbf{a}$的充要条件是其坐标函数的极限$\lim_{\mathbf{r}\to\mathbf{r}_0}f_i\left(\mathbf{r}\right)=a_i,\forall i=1,\cdots,m$都存在。
 \end{theorem}
 \begin{proof}
@@ -51,16 +51,16 @@
 给定函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$，如果极限$\lim_{\mathbf{r}\to\mathbf{r}_0}\mathbf{f}\left(\mathbf{r}\right)=\mathbf{a}$存在，则称$\mathbf{f}\left(\mathbf{r}\right)$在$\mathbf{r}_0$处连续。
 \end{definition}
 
-\begin{theorem}\label{thm:II.2.3}
+\begin{theorem}\label{thm:II.13.3}
 函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在$\mathbf{r}_0\in\mathbb{R}^n$处连续的充要条件是其坐标函数在$\mathbf{r}_0$处都连续。
 \end{theorem}
 \begin{proof}
-由定理\ref{thm:II.2.2}直接得证。
+由定理\ref{thm:II.13.2}直接得证。
 \end{proof}
 
 如果一个函数在其定义域内处处都连续，我们就直接称该函数在其定义域内是连续的，或称该函数是连续函数。
 
-\begin{theorem}\label{thm:II.2.4}
+\begin{theorem}\label{thm:II.13.4}
 设$\mathcal{V}_N$、$\mathcal{W}_M$分别是数域$\mathbb{F}$上的赋范向量空间，$\mathbf{L}:\mathcal{V}_N\rightarrow\mathcal{W}_M$是一个线性变换，则总存在$k\in\mathbb{R}$使得不等式$\left\|\mathbf{Lx}\right\|\leq k\left\|\mathbf{x}\right\|,\forall\mathbf{x}\in\mathcal{V}_N$成立。
 \end{theorem}
 \begin{proof}
@@ -71,7 +71,7 @@
 线性变换是连续函数。
 \end{corollary}
 \begin{proof}
-由定理\ref{thm:II.2.3}有$\left\|\mathbf{Lx}-\mathbf{Lx}_0\right\|=\left\|\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\leq k\left\|\mathbf{x}-\mathbf{x}_0\right\|$，故当$\mathbf{x}$趋于$\mathbf{x}_0$，$\mathbf{Lx}$趋于$\mathbf{Lx}_0$\footnote{这里使用到与不等式有关的极限定理。}。
+由定理\ref{thm:II.13.4}有$\left\|\mathbf{Lx}-\mathbf{Lx}_0\right\|=\left\|\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\leq k\left\|\mathbf{x}-\mathbf{x}_0\right\|$，故当$\mathbf{x}$趋于$\mathbf{x}_0$，$\mathbf{Lx}$趋于$\mathbf{Lx}_0$\footnote{这里使用到与不等式有关的极限定理。}。
 \end{proof}
 
 \begin{definition}[一元向量函数的导数]
