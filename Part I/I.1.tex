@@ -1,8 +1,8 @@
 \documentclass[main.tex]{subfiles}
 \begin{document}
-流变学（rheology）研究物质的形变与流动。
+流变学（rheology）在牛津语言网站上的释义是：研究物质的变形和流动——特别是液体的非牛顿流动和固体的塑性流动——的科学（The branch of science that deals with the deformation and flow of matter, esp. the non-Newtonian flow of liquids and the plastic flow of solids）。
 
-流变学是一门力学，属于经典力学范畴。力学包括运动学（kinematics）、动力学(dynamics）和静力学（statics）三个部分。运动学定量描述物体的位置和状态随时间的变化关系，动力学研究和分析物体运动状态改变的原因，静力学则集中考虑物体的平衡问题。\cite[p.~1]{邓文基2009大物上}
+流变学是一门力学，属于经典力学范畴。力学包括静力学（statics）、运动学（kinematics）和动力学(dynamics）三种问题。静力学集中考虑物体处于力的平衡之下的问题。运动学定量描述物体的位置和状态随时间的变化关系。动力学研究和分析物体运动状态改变的原因。\cite[p.~1]{邓文基2009大物上}
 
 \begin{wrapfigure}{R}{0.25\textwidth}
 \centering
@@ -11,25 +11,27 @@
 \label{fig:I.1.1}
 \end{wrapfigure}
 
-在质点运动学中，选择参考系（frame of reference），建立坐标系（coordinates），使用位置向量来表示质点的位移，并定义其速度和加速度\cite[附录A,p.~422]{邓文基2009大物上}（如图\ref{fig:I.1.1}所示）：
+在经典力学的运动学中，为了描述物体的位置，我们需要先选择参考系（frame of reference），建立坐标系（coordinates），使用位置向量来表示质点的位移。我们假设时间是连续的，把质点的位移写成时间的函数，在可导的前提下，其速度和加速度分别是位移的一阶和二阶时间导数\cite[附录A,p.~422]{邓文基2009大物上}（如图\ref{fig:I.1.1}所示）：
 \begin{align*}
 \mathbf{r}&=\mathbf{r}\left(t\right)=r_1\mathbf{\hat{e}}_1+r_2\mathbf{\hat{e}}_2+r_3\mathbf{\hat{e}}_3,\\
 \mathbf{v}&=\frac{d\mathbf{r}}{dt},\mathbf{a}=\frac{d^2\mathbf{r}}{dt^2}
 \end{align*}
 
-牛顿运动定律引入了“力”的概念，作为物体运动状态变化的原因（第一定律），并建立了定量关系（第二定律），以及一个守恒律（第三定律）。牛顿运动定律在且仅在惯性系下成立。作为质点的动力学，在选定惯性系下，
-\[\mathbf{F}=m\frac{d\mathbf{v}}{dt}\]
-其中$m$是质点的质量，是惯性大小（改变的代价）的量度。
+经典力学的动力学遵循牛顿运动定律，引入了“力”的概念作为物体运动状态变化的原因（第一定律），并建立了定量关系（第二定律），以及一个守恒律（第三定律）。牛顿运动定律在且仅在惯性系下成立。作为质点的动力学，在选定惯性系下，
+\[\mathbf{F}=m\frac{d\mathbf{v}}{dt}\]，
+其中$m$是质点的质量，是惯性（改变物定运动状态的代价）大小的量度。
 
-对于一个可以发生形变和流动的物体，上述的质点运动学和动力学是不够用的。以下是两种适用的力学：
+对于一个可以发生形变和流动的物体，上述的质点运动学和动力学是不够用的。
+
+以下是两种适用的力学：
 \begin{itemize}
     \item 连续介质力学（continuum mechanics）：把宏观物体视为可无限微分的连续体。从热力学基本定律和牛顿运动定律（惯性系）出发，建立物体运动与形变的本构关系。
     \item 统计力学（statistical mechanics）：考虑组成物质的微观粒子的运动规律，基于统计力学的假设推出宏观物体的本构关系。高分子物理中，从链统计出发建立的粘流模型和橡胶弹性模型就是统计力学在高分子物理中的应用。
 \end{itemize}
 
-描述宏观物体形变规律的语言是连续介质力学。统计力学只是进一步给出微观原因，它关于宏观规律的预测仍旧要使用连续介质力学的语言来表述。因此，流变学的力学基础是连续介质力学。
+描述宏观物体形变规律的语言是连续介质力学。统计力学只是进一步给出微观原因，它关于宏观规律的预测仍旧要使用连续介质力学的语言来表述。
 
-本构关系/方程（constitutive relation/equation）是描述物质对外场激励的响应的定量关系：外场$\mathcal{S}\left(\mathbf{r},t\right)\rightarrow$材料特性函数$\mathcal{G}\left(\Delta\mathbf{x},\Delta t\right)\rightarrow$材料响应$\mathcal{R}\left(\mathbf{x},t\right)$。其中，$\mathbf{r}$是空间任一位置，$\mathbf{x}$是处于材料内部的某位置。$\mathcal{G}\left(\Delta\mathbf{x},\Delta t\right)$是材料本身的性质，称为物料函数（material function）。我们留意到，$\mathcal{S}$和$\mathcal{R}$都是场函数。物料函数是对材料观测的时间和空间间隔的函数，在数学形式上也是场函数\cite[\S~9.7,p.192]{华工高数2009下}。
+在连续介质力学中，一个物体的独特力学性质，是由它的本构关系/方程（constitutive relation/equation）来描述的。在一般物理学中，本构关系是指描述物质对外场激励的响应的定量关系：外场$\mathcal{S}\left(\mathbf{r},t\right)\rightarrow$材料特性函数$\mathcal{G}\left(\Delta\mathbf{x},\Delta t\right)\rightarrow$材料响应$\mathcal{R}\left(\mathbf{x},t\right)$。其中，$\mathbf{r}$是空间任一位置，$\mathbf{x}$是处于材料内部的某位置。$\mathcal{G}\left(\Delta\mathbf{x},\Delta t\right)$是材料本身的性质，称为物料函数（material function）。我们留意到，$\mathcal{S}$和$\mathcal{R}$都是场函数。物料函数是对材料观测的时间和空间间隔的函数，在数学形式上也是场函数\cite[\S~9.7,p.192]{华工高数2009下}。以下我们通过两个例题来理解本构关系的概念。这两个例题都是以前的课程中介绍过的，请注意参见例中标注的引用。
 
 \begin{figure}[h]
 \centering
@@ -39,7 +41,7 @@
 \end{figure}
 
 \begin{example}\label{exp:I.1.1}
-外场是稳恒电场$\mathbf{E}\left(\mathbf{r},t\right)=\mathbf{E}=E\mathbf{\hat{e}}_1$，材料物性函数是电极化率$\chi\left(\Delta\mathbf{x},\Delta t\right)$（如图\ref{fig:I.1.2}所示）。对于各向同性均匀材料$\chi=\text{const}$。材料的响应是电极化强度密度$\mathbf{P}\left(\mathbf{x},t\right)$，表示材料内$\mathbf{x}$处单位体系的电极化强度，即$\mathbf{P}\left(\mathbf{x},t\right)dV$表示$\mathbf{x}$处的微体积$dV$的电极化强度。实验表明，当电场不太大时\cite[\S18.2.3,p.~57]{邓文基2009大物下}，
+此例中，外场是稳恒电场$\mathbf{E}\left(\mathbf{r},t\right)=\mathbf{E}=E\mathbf{\hat{e}}_1$，材料的物性函数是电极化率$\chi\left(\Delta\mathbf{x},\Delta t\right)$（如图\ref{fig:I.1.2}所示）。对于各向同性均匀材料$\chi=\text{const}$。材料的响应是电极化强度密度$\mathbf{P}\left(\mathbf{x},t\right)$，表示材料内$\mathbf{x}$处单位体系的电极化强度，即$\mathbf{P}\left(\mathbf{x},t\right)dV$表示$\mathbf{x}$处的微体积$dV$的电极化强度。实验表明，当电场不太大时\cite[\S18.2.3,p.~57]{邓文基2009大物下}，
 \[
 \mathbf{P}\left(\mathbf{x},t\right)=\chi\varepsilon_0\mathbf{E}\left(\mathbf{r}=\mathbf{x},t\right)
 \]
@@ -51,7 +53,7 @@
 \end{example}
 
 \begin{example}\label{exp:I.1.2}
-外场是一个梯度场，例如温度场$T\left(\mathbf{r},t\right)=kr_1\mathbf{\hat{e}}_1,\nabla T\left(\mathbf{r},t\right)=k\mathbf{\hat{e}}_1$。材料的物料函数是传输物料函数，例如热导率$\kappa=\text{const}$（假设各向同性均匀材料）。材料的响应是流（flux），即单位时间经过$\mathbf{x}$处面积元$\mathbf{n}dS$的物理量。例如热流：$\mathbf{q}\left(\mathbf{x},t\right)$，$\mathbf{q}\left(\mathbf{x},t\right)\cdot\mathbf{n}dS$是单位时间通过面积元$\mathbf{n}dS$的热量。$\mathbf{q}$的方向与等温面垂直并指向温度减小的方向。实验表明，当温度梯度不太大时，热流满足傅立叶热传导定律\cite[\S1.1.3.1,p.~9]{钟理化工原理上册2008}：
+此例中外场是一个梯度场，例如温度场$T\left(\mathbf{r},t\right)=kr_1\mathbf{\hat{e}}_1,\nabla T\left(\mathbf{r},t\right)=k\mathbf{\hat{e}}_1$。材料的物料函数是传输物料函数，例如热导率$\kappa=\text{const}$（假设各向同性均匀材料）。材料的响应是流（flux），即单位时间经过$\mathbf{x}$处面积元$\mathbf{n}dS$的物理量。例如热流：$\mathbf{q}\left(\mathbf{x},t\right)$，$\mathbf{q}\left(\mathbf{x},t\right)\cdot\mathbf{n}dS$是单位时间通过面积元$\mathbf{n}dS$的热量。$\mathbf{q}$的方向与等温面垂直并指向温度减小的方向。实验表明，当温度梯度不太大时，热流满足傅立叶热传导定律\cite[\S1.1.3.1,p.~9]{钟理化工原理上册2008}：
 \[
 \mathbf{q}\left(\mathbf{x},t\right)=-\kappa\nabla T\left(\mathbf{r}=\mathbf{x},t\right)=-k\kappa\mathbf{\hat{e}}_1
 \]
@@ -89,9 +91,9 @@
 \]
 这是一个本构关系：$F$是外场，$l$是材料响应，$E$是物料函数。
 \end{example}
-上面两例中的本构方程形式只适用于特定形变方式。要完整描述一般形变过程的运动学和动力学，需要使用向量和张量。
+上面两例中的本构方程形式只适用于特定形变方式。要完整描述一般形变过程的运动学和动力学，需要使用向量和张量以及它们的代数和微积分数学基础。
 
-实际物体的运动和形变是在一定的初条件（initial condition）和边界条件（boundary condition）下，遵循守恒律（balance law）和本构关系的共同限定下才被具体确定的。在采用质点来简化的问题中，这些要素往往是隐含的条件。
+实际物体的运动和形变是在一定的初条件（initial condition）和边界条件（boundary condition）下，遵循守恒律（balance law）和本构关系的共同限定下才被具体确定的。在采用质点来简化的问题中，这些要素往往是隐含的条件。下面以一个例子说明，在解决一个具体流动问题的过程中，初条件、边界条件、守恒律和本构关系的角色。
 
 \begin{figure}[h]
 \centering
@@ -120,5 +122,5 @@ v_3\left(t\right)&\equiv v_\infty= \frac{2\left(\rho_\mathrm{w}-\rho_\mathrm{s}\
 \end{align*}
 \end{example}
 
-上例中的考察对象（球）是刚体，在运动过程中形状不变。在流变学中，我们要描述物体在形变过程中如何保持质量、动量和能量守恒，这需要借助场函数的一系列积分定理。
+上例中的考察对象（球）是刚体，在运动过程中形状不变。在流变学中，我们要描述物体在形变过程中如何保持质量、动量和能量守恒，这需要借助场函数的一系列积分定理，相关的知识将会在数学准备部分介绍。
 \end{document} 

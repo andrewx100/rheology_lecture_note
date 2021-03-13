@@ -92,7 +92,7 @@ i\left(t\right)=i\left(t_0\right)+\left(t-t_0\right)
 
 例如，既然一条世界线所代表的某质点的运动过程，那么我们直觉上会想要通过形如下式的导数来定义“速度”：
 \[
-\lim_{s\to 0}\frac{l\left(t+s\right)-\l\left(t\right)}{s}\]
+\lim_{s\to 0}\frac{l\left(t+s\right)-l\left(t\right)}{s}\]
 但是，上式的分子中相减的两个事件是属于不同时刻的同时等价类的（$l\left(t+s\right)\in I_{t+s},l\left(t\right)\in I_t,t+s,t\in\mathcal{T}$，如图\ref{fig:III.1.3}所示），因此这个减法的意义是没有定义的。通过事件世界的标架$\phi$，我们可以解决这个问题，从而定义速度$\mathbf{v}:\mathcal{T}\rightarrow\mathcal{V}_\phi$：
 \[\mathbf{v}\left(t_0\right)=\lim_{t\to t_0}\frac{l_\phi\left(l\left(t\right)\right)-l_\phi\left(l\left(t_0\right)\right)}{t}\]
 上式的速度定义利用了$\left(\phi,d\right)$是一个欧几里德度量空间的事实，分子中相减的两个元素是标架$\phi$中的两条世界线。它们的差对应$\mathcal{V}_\phi$中的一个平移向量。故速度是一个向量且依赖标架$\phi$的选择。注意到，在速度的定义过程中我们默认了一切需要的连续性。加速度也可以类似地被定义，且由于相同的原因加速度也依赖标架$\phi$的选择。我们称标架$\phi$的选择是主观的。依赖$\phi$定义的概念都是不具有物理客观性的（除非增加某些限定条件）。
