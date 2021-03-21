@@ -1,199 +1,97 @@
 \documentclass[main.tex]{subfiles}
-% 内积空间上的线性算符
+% 张量与张量积
 \begin{document}
-当我们为一个向量空间赋予了内积定义，这个空间上的线性算符的性质也相应增加了。首先我们补充一些内积空间中的概念。这些概念跟欧几里德几何中关于平面外一点到该平面的距离性质有关。
+张量是比向量更一般的数学概念。张量满足向量的代数定义，故它也是一个抽象向量，类似向量作为向量空间的元素是一个不依赖基的选择的量，张量也是一个不依赖基的选择的量。$N$维向量在任一基下的矩阵是$N\times 1$矩阵，但$n$阶张量在选定任一基下的矩阵是$N^n$矩阵。我们之前介绍的线性算符，就是2阶张量。在连续介质力学中，我们一般只涉及到实数域上的线性算符，同时很少涉及到2阶以上的张量。之前所说的向量都是指1阶张量。我们在本课中仍然用“向量”表达1阶张量的意思，而把2阶张量简称为“张量”。
 
-\begin{definition}[最好近似]
-设$\mathcal{W}$是内积空间$\mathcal{V}$的一个子空间，对于$\mathbf{b}\in\mathcal{V}$，若$\mathbf{a}\in\mathcal{W}$满足$\left\|\mathbf{b}-\mathbf{a}\right\|\leq\left\|\mathbf{b}-\mathbf{c}\right\|\forall\mathbf{c}\in\mathcal{W}$则称向量$\mathbf{a}$是向量$\mathbf{b}$在子空间$\mathcal{W}$中的最好近似。
+\begin{definition}[两个向量的张量积]
+两个向量$\mathbf{v},\mathbf{w}\in\mathcal{V}$的张量积$\mathbf{v}\otimes\mathbf{w}\in\mathcal{L}\left(\mathcal{V}\right)$是一个二阶张量满足：
+\[\left(\mathbf{v}\otimes\mathbf{w}\right)\mathbf{u}=\mathbf{v}\left(\mathbf{w}\cdot\mathbf{u}\right),\forall\mathbf{u}\in\mathcal{V}\]
 \end{definition}
 
-最好近似的定义对应着中学欧几里德几何的结论：平面外一点到该平面的最短距离是由该点到该面的垂线的长度。
+易验证张量积满足线性变换的代数规则。
 
-\begin{theorem}
-设$\mathcal{W}$是内积空间$\mathcal{V}$的一个子空间，向量$\mathbf{a}\in\mathcal{W}$是$\mathbf{b}\in\mathcal{V}$的最好近似当且仅当$\mathbf{b}-\mathbf{a}$与$\mathcal{W}$中所有向量都正交。若$\mathbf{a}$存在则$\mathbf{a}$是唯一的。若$\mathcal{W}$是有限维的且$\left\{\mathbf{a}_i\right\}$是$\mathcal{w}$的一组正交基则向量
-\[
-\mathbf{a}-\sum_k\frac{\left(\mathbf{b}|\mathbf{a}_k\right)}{\left\|\mathbf{a}_k\right\|^2}\mathbf{a}_k\]
-是$\mathbf{b}$的最好近似。
-\end{theorem}
-\begin{proof}
-利用三角不等式等具有几何意义的定理，根据中学几何的证明方法易证，略。
-\end{proof}
+并非每个张量都能表示成两个向量的向量积。我们把$\mathcal{V}$的两个向量的向量积的集合记为$\mathcal{V}\otimes\mathcal{V}$，由张量积的定义易知，$\mathcal{V}\otimes\mathcal{V}$是线性算符的集合。因此$\mathcal{V}\otimes\mathcal{V}$是$\mathcal{L}\left(\mathcal{V}\right)$的子集。
 
-\begin{definition}[正交补集]
-设$\mathcal{V}$是一个内积空间，$S$是$\mathcal{V}$的任一子集，与$S$的向量都正交的所有向量组成的集合$S^\perp$称为$S$的正交补集。
-\end{definition}
+下面的例子给出了两个向量的张量积的坐标计算方法。
 
-\begin{definition}[正交投影]
-设$\mathcal{V}$是一个内积空间，若$\mathbf{b}\in\mathcal{V}$在$\mathcal{V}$的子空间$\mathcal{W}$中存在最佳近似$\mathbf{a}$，则称$\mathbf{a}$是$\mathbf{b}$在子空间$\mathcal{W}$的正交投影。如果第一$\mathbf{b}\in\mathcal{W}$均在$\mathcal{w}$中存在投影，则可相应构建由$\mathcal{V}$到$\mathcal{w}$的正交投影映射$\mathbf{E}$。
-\end{definition}
-
-\begin{theorem}
-接上述定义的记法，$\mathbf{E}$是一个幂等线性变换，$mathbf{E}:\mathcal{V}\rightarrow\mathcal{W}$，$\mathcal{W}^\perp$是$\mathbf{E}$的核空间，且$\mathcal{V}=\mathcal{W}\oplus\mathcal{W}^\perp$。
-\end{theorem}
-
-\subsection{伴随算符}
-\begin{theorem}
-设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$f$是$\mathcal{V}$上的线性泛函，则存在唯一向量$\mathbf{b}\in\mathcal{V}$满足$f\left(\mathbf{a}\right)=\left(\mathbf{a}|\mathbf{b}\right)\forall\mathbf{a}\in\mathcal{V}$。
-\end{theorem}
-\begin{proof}
-令$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_n\right\}$是$\mathcal{V}$的一组正交基，令$\mathbf{b}=\sum_{j=1}^n\overline{f\left(\mathbf{a}_j\right)}\mathbf{a}_j$，令线性泛函$f_\mathbf{b}\left(\mathbf{a}\right)=\left(\mathbf{a}|\mathbf{b}\right)$，则有$f_\mathbf{b}\left(\mathbf{a}_k\right)=\left(\mathbf{a}_k|\mathbf{b}\right)=\left(\mathbf{a}_k|\sum_{j=1}^n\overline{f\left(\mathbf{a}_j\right)}\mathbf{a}_j\right)=f\left(\mathbf{a}_k\right),k=1,\cdots,n,\therefore f_\mathbf{b}=f$，即$f$是唯一的。若$\mathbf{c}\in\mathcal{V}$满足$\left(\mathbf{a}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{c}\right)\forall \mathbf{a}\in\mathcal{V}$，则$\left(\mathbf{b}-\mathbf{c}|\mathbf{b}-\mathbf{c}\right)=0\Leftrightarrow\mathbf{b}=\mathbf{c}$，故所找到的$f$和$\mathbf{b}$满足命题条件，命题得证。
-\end{proof}
-上述证明也给出了$\mathbf{b}$的找法。由上述定理的证明过程显见$\mathbf{b}$在$f$的核空间的正交补集中。若$\mathcal{W}=\mathrm{ker}f$则$\mathcal{V}=\mathcal{W}+\mathcal{W}^\perp$，$f$完全由其在$\mathcal{W}^\perp$的值决定。若$\mathbf{P}$是由$\mathcal{V}$到$\mathcal{W}^\perp$的正交投影算符，则$f\left(\mathbf{a}\right)=f\left(\mathbf{Pa}\right)\forall\mathbf{a}\in\mathcal{V}$。若$f\neq 0$，则$f$的秩为1，$\mathrm{dim}\mathcal{W}^\perp=1$。若$\mathbf{c}\neq\mathbf{0}\in\mathcal{W}^\perp$则
-\begin{align*}\mathbf{Pa}&=\frac{\left(\mathbf{a}|\mathbf{c}\right)}{\left\|\mathbf{c}\right\|^2}\mathbf{c}\forall\mathbf{a}\in\mathcal{V}\\
-\therefore f\left(\mathbf{a}\right)&=\left(\mathbf{a}|\mathbf{c}\right)\frac{f\left(\mathbf{c}\right)}{\left\|\mathbf{c}\right\|^2}\forall\mathbf{a}\in\mathcal{V},\mathbf{b}=\frac{\overline{f\left(\mathbf{c}\right)}}{\left\|\mathbf{c}\right\|^2}\mathbf{c}
+\begin{example}
+设向量$\mathbf{v},\mathbf{w}\in\mathcal{V}_N$且$\left\{\mathbf{e}_i\right\}$是$\mathcal{V}_N$的一组基，则有：
+\[\mathbf{v}=\sum_{i=1}^Nv_i\mathbf{e}_i,\mathbf{w}=\sum_{i=1}^Nw_i\mathbf{e}_i\]
+\begin{align*}
+\mathbf{v}\otimes\mathbf{w}&=\left(\sum_{i=1}^Nv_i\mathbf{e}_i\right)\otimes\left(\sum_{j=1}^Nw_j\mathbf{e}_j\right)\\&=\sum_{i=1}^N\sum_{j=1}^Nv_iw_j\mathbf{e}_i\otimes\mathbf{e}_j
 \end{align*}
+\end{example}
 
-下面，我们将引入$\mathbf{T}$的伴随算符$\mathbf{T}^*$的定义。但在此之前先通过两个定理来明确其存在性、唯一性。
+由上例，可见两向量的张量积可由基的张量积线性表出。且$\left\{\mathbf{\hat{e}}_i\otimes\mathbf{\hat{e}}_j\right\}$有$N\times N$个。如果它们是线性无关的，那它就是$\mathcal{L}\left(\mathcal{V}\right)$的一组基了。但很可惜，一般地，它们并不一定是线性无关的。回顾定理\ref{thm:II.4.3}证明和上面的张量积定义，就可以直接证明如下定理。
 
 \begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的线性算符，则存在唯一线性算符$\mathbf{T}^*$满足
-\[\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}\]
+设$\mathcal{V}_N$、$\mathcal{W}_M$分别是数域$\mathbb{F}$上的$N$、$M$维向量空间，$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}_N$的一组基，$\left\{\mathbf{\hat{f}}_j\right\}$是$\mathcal{W}_N$的一组基。当且仅当$\left\{\mathbf{\hat{e}}_i\right\}$是规范正交基时，$\left\{\mathbf{\hat{f}}_j\otimes\mathbf{\hat{e}}_i\right\}$是$\mathcal{L}\left(\mathcal{V}_N,\mathcal{W}_M\right)$的基。
+\end{theorem}
+
+因此，对于$\mathcal{L}\left(\mathcal{V}\right)$的情况，就是简单地需要$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组规范正交基，$\left\{\mathbf{\hat{e}}_i\otimes\mathbf{\hat{e}}_j\right\}$才是$\mathcal{L}\left(\mathcal{V}\right)$的一组基。
+
+\begin{definition}
+两个张量的复合积就是它们作为两个线性变换的复合变换。
+\end{definition}
+
+下面介绍的是有限维内积空间$\mathcal{V}$上的张量才有的概念。
+
+\begin{definition}[张量的转置]\footnote{这里定义的“转置”对应的是复数域上线性算符的伴随（adjoint）的概念，后者也仅是复数域上线性算符的转置（transpose）的一个特例。这里使用“转置”一词只是遵循大部分流变学文本的惯例。}
+设$\mathcal{V}$是实数域$\mathbb{R}$上的有限维内积空间，张量$\mathbf{A},\mathbf{B}\in\mathcal{L}\left(\mathcal{V}\right)$。若对于$\mathbf{u},\mathbf{v}\in\mathcal{V}$有$\left(\mathbf{Au}|\mathbf{v}\right)=\left(\mathbf{u}|\mathbf{Bv}\right)$，则称$\mathbf{B}$是$\mathbf{A}$的转置，记为$\mathbf{B}\equiv\mathbf{A}^\intercal$。
+\end{definition}
+
+\begin{theorem}
+任一张量总存在唯一一个转置。
+\end{theorem}
+
+\begin{definition}[对称张量与斜称张量]
+如果张量$\mathbf{A}=\mathbf{A}^\intercal$，则称$\mathbf{A}$是对称张量。如果$\mathbf{A}^\intercal=-\mathbf{A}$，则称$\mathbf{A}$是斜称张量。
+\end{definition}
+
+\begin{theorem}
+任何一个张量$\mathbf{A}$均可以写成一个对称张量$\mathbf{A}^\mathrm{s}$与一个斜称张量$\mathbf{A}^\mathrm{ss}$之和：
+\[\mathbf{A}=\mathbf{A}^\mathrm{s}+\mathbf{A}^\mathrm{ss}\]
+其中
+\[\begin{split}\mathbf{A}^\mathrm{s}&=\frac{1}{2}\left(\mathbf{A}+\mathbf{A}^\intercal\right)\\\mathbf{A}^\mathrm{ss}&=\frac{1}{2}\left(\mathbf{A}-\mathbf{A}^\intercal\right)\end{split}\]
+\end{theorem}
+
+\begin{definition}[正交张量]\footnote{这里的正交张量对应复数域上的幺正算符（unitary operator）的概念。}
+若张量$\mathbf{A}$满足$\mathbf{AA}^\intercal=\mathbf{I}$其中$\mathbf{I}$是单位张量（即恒等算符），则称$\mathbf{A}$是正交张量。
+\end{definition}
+
+\begin{definition}[张量的迹]
+张量的迹是一个实函数$\mathrm{tr}:\mathcal{L}\left(\mathcal{V}\right)\rightarrow\mathbb{R}$满足：
+\begin{itemize}
+    \item 线性：$\mathrm{tr}\left(\alpha\mathbf{S}+\beta\mathbf{T}\right)=\alpha\mathrm{tr}\mathbf{S}+\beta\mathrm{tr}\mathbf{T},\forall\alpha,\beta\in\mathbb{R},\mathbf{S},\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$
+    \item $\mathrm{tr}\left(\mathbf{u}\otimes \mathbf{v}\right)=\mathbf{u}\cdot\mathbf{v}\forall\mathbf{u},\mathbf{v}\in\mathcal{V}$
+\end{itemize}
+\end{definition}
+
+可以证明，满足上述条件的迹运算只有一种\cite[\S Appendix]{Coleman1966}，且张量的迹不依赖基的选择，特以定理列出。
+
+\begin{theorem}
+张量的迹不依赖基的选择。
 \end{theorem}
 \begin{proof}
-
+把一个张量用两个选定的基表示出来，并通过基的过渡矩阵相联系来求证。此略
 \end{proof}
 
+\begin{definition}[两个张量的标量积]
+两个张量$\mathbf{A},\mathbf{B}\in\mathcal{L}\left(\mathcal{V}\right)$的内积或标量积，记为$\mathbf{A}:\mathbf{B}$，是一个标量。这一运算是一个由$\mathcal{L}\left(\mathcal{V}\right)$到$\mathbb{R}$的映射，定义为：$\mathbf{A}:\mathbf{B}=\mathrm{tr}\left(\mathbf{A}^\intercal\mathbf{B}\right)$。
+\end{definition}
+
+易验证张量的标量积满足内积一般定义，故带有张量的标量积规定的空间$\mathcal{L}\left(\mathcal{V}\right)$是一个内积空间。
+
 \begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$B=\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组规范正交基，$\mathbf{T}$是$\mathcal{V}$的线性算符，则
-\[\left(\mathbf{T}\right)_{kj}=\left(\mathbf{T\hat{e}}_j|\mathbf{e}_k\right)\]
+设$\mathcal{V}$是$\mathbb{R}$上的向量空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是$\mathcal{V}$上的一个张量。则$\mathbf{T}$在$\mathcal{V}$的任意基下的表示矩阵的行列式都相等。
 \end{theorem}
 \begin{proof}
-
+设$A$、$B$是$\mathbf{T}$在$\mathcal{V}$的两组基下的表示矩阵。$P$是这两组基的过渡矩阵，则有$A=P^{-1}BP$。故$\mathrm{det}\left(A\right)=\mathrm{det}\left(P^{-1}BP\right)=\mathrm{det}\left(P^{-1}\right)\mathrm{det}\left(B\right)\mathrm{det}\left(P\right)=\mathrm{det}\left(B\right)$
 \end{proof}
 
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$B=\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组规范正交基，$\mathbf{T},\mathbf{T}^*$是$\mathcal{V}$上的线性算符满足
-\[\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}\]
-则$\mathbf{T}^*$在$B$下的矩阵是$\mathbf{T}$在$B$下的矩阵的共轭转置。
-\end{theorem}
-\begin{proof}
+由这一性质，我们可以直接称张量在任一基下的矩阵的行列式为这个张量的行列式。
 
-\end{proof}
-
-\begin{definition}[伴随算符]
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$的线性算符，如果存在$\mathcal{V}$的另一线性算符$\mathbf{T}^*$满足$\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$，则称$\mathbf{T}^*$是$\mathbf{T}$的伴随算符。若$\mathbf{T}=\mathbf{T}^*$则称$\mathbf{T}$是厄米算符或自伴随算符。
+\begin{definition}
+设$\mathcal{V}$是$\mathbb{R}$上的向量空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是$\mathcal{V}$上的一个张量。则$\mathbf{T}$的行列式$\mathrm{det}\mathbf{T}$是其在$\mathcal{V}$的任意基下的表示矩阵的行列。
 \end{definition}
-
-\begin{theorem}
-设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$\mathbf{T},\mathbf{U}$是$\mathcal{V}$的线性算符，则
-\begin{enumerate}
-    \item $\left(\mathbf{T}+\mathbf{U}\right)^*=\mathbf{T}^*+\mathbf{U}^*$
-    \item $\left(\alpha\mathbf{T}\right)^*=\overline{\alpha}\mathbf{T}^*\forall\alpha\in\mathbb{F}$
-    \item $\left(\mathbf{TU}\right)^*=\mathbf{U}^*\mathbf{T}^*$
-    \item $\left(\mathbf{T}^*\right)^*=\mathbf{T}$
-\end{enumerate}
-\end{theorem}
-
-算符的伴随类似于复数的共轭。且由上面的相关定理可知算符的伴随对应于矩阵的共轭转置。
-
-线性算符及其伴随算符也有类似于“对于$\alpha\in\mathbb{F}$，当且仅当$\alpha=\overline{\alpha}$时$\alpha\in\mathbf{R}$”的结论。数域$\mathbb{F}$上的内积空间的线性算符$\mathbf{T}$可表示为$\mathbf{T}=\mathbf{U}_1+i\mathbf{U}_2,\mathbf{U}_1=\frac{1}{2}\left(\mathbf{T}+\mathbf{T}^*\right),\mathbf{U}_2=\frac{1}{2i}\left(\mathbf{T}-\mathbf{T}^*\right)$，其中$\mathbf{U}_1,\mathbf{U}_2$都是厄米算符。
-
-线性算符的伴随算符与线性算符的转置之间的区别与联系：设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$\mathbf{T}$是$\mathcal{V}$是的线性算符，则由定义，
-\begin{align*}\mathbf{T}^\intercal&:\mathcal{V}^*\rightarrow\mathcal{V}^*,\mathbf{T}^\intercal\left(g\right)\left(\cdot\right)=g\left(\mathbf{T}\cdot\right)\forall g\in\mathcal{V}^*\\
-\mathbf{T}^*&:\mathcal{V}\rightarrow\mathcal{V},\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}
-\end{align*}
-注意到，由内积与线性泛函的关系，对每一$\mathbf{a}\in\mathcal{V}$均可定义线性泛函$\left(\mathbf{a}|\cdot\right)\in\mathcal{V}^*$，此外$\left(\mathbf{T}^\intercal\right)=\left(\mathbf{T}\right)^\intercal,\left(\mathbf{T}^*\right)=\left(\mathbf{T}\right)^*$，其中$\intercal,*$作用于矩阵分别表示矩阵的转置和共轭转置。由此可见，线性变换的转置是比线性算符的伴随更一般的概念（后者是前者的特例）。
-
-\subsection{幺正算符}
-\begin{definition}[保持内积]
-设$\mathcal{V},\mathcal{W}$是同数域上的两内积空间，若线性变换$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$满足$\left(\mathbf{Ta}|\mathbf{Tb}\right)=\left(\mathbf{a}|\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$则称$\mathbf{T}$保持内积。
-\end{definition}
-
-\begin{theorem}
-设$\mathcal{V},\mathcal{W}$是同数域上的两内积空间，关于线性变换$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$的以下命题相互等价：
-\begin{enumerate}
-    \item $\mathbf{T}$保持内积
-    \item $\mathbf{T}$是同构映射
-    \item $\mathbf{T}$将$\mathcal{V}$的某个规范正交基映射为$\mathcal{W}$的一个规范正交基
-    \item $\mathbf{T}$将$\mathcal{V}$的每个规范正交基映射为$\mathcal{W}$的一个规范正交基
-    \item $\left\{\mathbf{Ta}\right\|=\left\|\mathbf{A}\right\|\forall\mathbf{a}\in\mathcal{V}$
-\end{enumerate}
-\end{theorem}
-
-\begin{definition}[幺正算符]
-内积空间$\mathcal{V}$的同构线性算符称该内积空间的幺正算符。
-\end{definition}
-
-若$\mathbf{U}_1$和$\mathbf{U}_2$是内积空间$\mathcal{V}$的幺正算符，则$\mathbf{U}_2\mathbf{U}_1$可逆且$\left\{\mathbf{U}_2\mathbf{U}_1\mathbf{a}\right\|=\left\|\mathbf{U}_1\mathbf{a}\right\|=\left\|\mathbf{a}\right\|\forall\mathbf{a}\in\mathcal{V}$。幺正算符的逆也是幺正的，$\left\|\mathbf{Ua}\right\|=\left\|\mathbf{a}\right\|\Rightarrow\left\|\mathbf{U}^{-1}\mathbf{b}\right\|=\left\|\mathbf{b}\right\|,\mathbf{b}=\mathbf{Ua}$。由这些事实可见，一个内积空间的所有幺正算符及其复合操作组成一个群。
-
-\begin{theorem}
-设$\mathbf{U}$是内积空间$\mathcal{V}$上的线性算符，则$\mathbf{U}$是幺正算符当且令当$\mathbf{UU}^*=\mathbf{U}^*\mathbf{U}=\mathbf{I}$。
-\end{theorem}
-
-\begin{definition}[幺正矩阵]
-若$n\times n$矩阵A满足$AA^*=I$则称$A$是幺正矩阵。
-\end{definition}
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$\mathbf{U}$是$\mathcal{V}$上的线性算符，则$\mathbf{U}$是幺正算符当且仅当$\mathbf{U}$在$\mathcal{V}$的某一（或每一）基下的矩阵是幺正矩阵。
-\end{theorem}
-
-\begin{definition}[正交矩阵]
-若$n\times n$矩阵$A$满足$A^\intercal A=I$则称$A$是正交矩阵。
-\end{definition}
-
-实正交矩阵是幺正矩阵。
-
-\subsection{正规算符}
-内积空间上的线性算符在对角化方面有新的性质。
-
-\begin{definition}[正规算符]
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的线性算符，若$\mathbf{TT}^*=\mathbf{T}^*\mathbf{T}$则称$\mathbf{T}$是正规算符。
-\end{definition}
-
-厄米算符和幺正算符都是正规算符（见以下定理），但正规算符的和或乘积（复合）未必是正规算符。
-
-以下一连串定理关注的是厄米算符的可对角化性质。
-
-\begin{theorem}
-设$\mathbf{T}$是内积空间$\mathcal{V}$的一个厄米算符，则$\mathbf{T}$的所有特征值全是实数，且两两不同特征值对应的特征向量两两正交。
-\end{theorem}
-
-\begin{theorem}
-有限非零维内积空间的任一个厄米算符均有一个（非零）特征向量。
-\end{theorem}
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上任一线性算符。设$\mathcal{W}$是$\mathcal{V}$的子空间，且$\forall\mathbf{a}\in\mathcal{W}\mathbf{Ta}\in\mathcal{W}$，那么就有$\forall\mathbf{b}\in\mathcal{W}^\perp\mathbf{T}^*\mathbf{b}\in\mathcal{W}^\perp$。
-\end{theorem}
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的厄米算符，则存在一组规范正交基的基向量就是$\mathbf{T}$的特征向量。
-\end{theorem}
-
-\begin{corollary}
-设$A$是$n\times n$厄米矩阵，则存在一个幺正矩阵$P$使得$P^{-1}AP$是对角矩阵。若$A$是实对称矩阵，则存在正交矩阵$P$使得$P^{-1}AP$是对角矩阵
-\end{corollary}
-
-由这些定理，我们得出结论：对于有限维实内积空间的线性算符$\mathbf{T}$，只要它是厄米的，则必有一组规范正交基是它的特征向量。
-
-\begin{theorem}
-设$\mathcal{V}$有限维内积空间，$\mathbf{T}$是正规算符。则$\mathbf{a}\in\mathcal{V}$是$\mathbf{T}$的特征值$c$对应的特征向量当且仅当$\mathbf{a}$是$\mathbf{T}^*$的特征值$\overline{c}$对应的特征向量。
-\end{theorem}
-
-\begin{definition}[正规矩阵]
-若复数值$n\times n$矩阵$A$满足$AA^*=A^*A$则称$A$是正规矩阵。
-\end{definition}
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$B$是$\mathcal{V}$的一组规范正交基。若$\mathcal{V}$上的线性算符$\mathbf{T}$在该基下的矩阵$\left(T\right)$是上三角矩阵，则$\mathbf{T}$是正规算符当且仅当$\left(\mathbf{T}\right)$是对角矩阵。
-\end{theorem}
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的线性算符，则$\mathcal{V}$中总存在一组规范正交基使得$\mathbf{T}$在该其下的矩阵$\left(\mathbf{T}\right)$是上三角矩阵。
-\end{theorem}
-
-\begin{corollary}
-对每一复数值$n\times n$矩阵$A$均有一幺正矩阵$U$使得$U^{-1}AU$是上三角矩阵。
-\end{corollary}
-
-由上面的几条定理，我们把之前只对厄米算符成立的对角化性质推广至对正规算符都成立。
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的正规算符，则$\mathcal{V}$中存在一组规范正交基的基向量就是$\mathcal{T}$的特征向量。
-\end{theorem}
-
-\begin{corollary}
-对每一正规矩阵$A$总有幺正矩阵$P$使得$P^{-1}AP$是对角矩阵。
-\end{corollary}
 \end{document}

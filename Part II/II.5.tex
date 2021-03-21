@@ -1,74 +1,171 @@
 \documentclass[main.tex]{subfiles}
-% 线性变换的矩阵表示
+% 内积空间上的线性算符
 \begin{document}
-考虑$N$维向量空间$\mathcal{V}_N$的一组基$B_\mathcal{V}=\{\mathbf{a}_i\}_{i=1}^N$，向量$\mathbf{x}\in\mathcal{V}$可表示成$\mathbf{x}=\sum_{i=1}^N\xi_i\mathbf{a}_i$或
-\[\left(\mathbf{x}\right)=\left(\begin{array}{ccc}\xi_1\\\vdots\\\xi_N\end{array}\right)\]
-$\left(\mathbf{x}\right)$是向量$\mathbf{x}$在基$B_\mathcal{V}$下的矩阵表示。其中，$\xi_i$称为向量$\mathbf{x}$在基$B_\mathcal{V}$下的坐标或分量（定义\ref{def:II.2.6}）。
+当我们为一个向量空间赋予了内积定义，这个空间上的线性算符的性质也相应增加了。
 
-设从$\mathcal{V}_N$到$\mathcal{W}_M$的线性变换$\mathbf{A}\in\mathcal{L}\left(\mathcal{V}_N,\mathcal{W}_M\right)$将$\mathcal{V}_N$的一组基$B_\mathcal{V}=\{\mathbf{a}_i\}_{i=1}^N$映射到$\mathcal{W}_M$中的$N$个向量$\mathbf{w}_k=\mathbf{Aa}_k,k=1,\cdots,N$。如果我们选取$\mathcal{W}_M$的基$B_\mathcal{W}=\{\mathbf{b}_j\}_{j=1}^M$，则$\mathbf{w}_k$可表示为$\mathbf{w}_k=\sum_{j=1}^M\alpha_{jk}\mathbf{b}_j$。在本情况下，向量$\mathbf{w}_k$的坐标$\alpha_{jk}$有两个下标，可构成一个$M\times N$矩阵\footnote{我们用双下标的标量数组$\left\{\alpha_{ij}\right\},i=1,\cdots,N,j=1,\cdots,M$来表示如下$N\times M$矩阵
+\subsection{伴随算符}
+\begin{theorem}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$f$是$\mathcal{V}$上的线性泛函，则存在唯一向量$\mathbf{b}\in\mathcal{V}$满足$f\left(\mathbf{a}\right)=\left(\mathbf{a}|\mathbf{b}\right)\forall\mathbf{a}\in\mathcal{V}$。
+\end{theorem}
+\begin{proof}
+令$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_n\right\}$是$\mathcal{V}$的一组正交基，令$\mathbf{b}=\sum_{j=1}^n\overline{f\left(\mathbf{a}_j\right)}\mathbf{a}_j$，令线性泛函$f_\mathbf{b}\left(\mathbf{a}\right)=\left(\mathbf{a}|\mathbf{b}\right)$，则有$f_\mathbf{b}\left(\mathbf{a}_k\right)=\left(\mathbf{a}_k|\mathbf{b}\right)=\left(\mathbf{a}_k|\sum_{j=1}^n\overline{f\left(\mathbf{a}_j\right)}\mathbf{a}_j\right)=f\left(\mathbf{a}_k\right),k=1,\cdots,n,\therefore f_\mathbf{b}=f$，即$f$是唯一的。若$\mathbf{c}\in\mathcal{V}$满足$\left(\mathbf{a}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{c}\right)\forall \mathbf{a}\in\mathcal{V}$，则$\left(\mathbf{b}-\mathbf{c}|\mathbf{b}-\mathbf{c}\right)=0\Leftrightarrow\mathbf{b}=\mathbf{c}$，故所找到的$f$和$\mathbf{b}$满足命题条件，命题得证。
+\end{proof}
+上述证明也给出了$\mathbf{b}$的找法。由上述定理的证明过程显见$\mathbf{b}$在$f$的核空间的正交补集中。若$\mathcal{W}=\mathrm{ker}f$则$\mathcal{V}=\mathcal{W}+\mathcal{W}^\perp$，$f$完全由其在$\mathcal{W}^\perp$的值决定。若$\mathbf{P}$是由$\mathcal{V}$到$\mathcal{W}^\perp$的正交投影算符，则$f\left(\mathbf{a}\right)=f\left(\mathbf{Pa}\right)\forall\mathbf{a}\in\mathcal{V}$。若$f\neq 0$，则$f$的秩为1，$\mathrm{dim}\mathcal{W}^\perp=1$。若$\mathbf{c}\neq\mathbf{0}\in\mathcal{W}^\perp$则
+\begin{align*}\mathbf{Pa}&=\frac{\left(\mathbf{a}|\mathbf{c}\right)}{\left\|\mathbf{c}\right\|^2}\mathbf{c}\forall\mathbf{a}\in\mathcal{V}\\
+\therefore f\left(\mathbf{a}\right)&=\left(\mathbf{a}|\mathbf{c}\right)\frac{f\left(\mathbf{c}\right)}{\left\|\mathbf{c}\right\|^2}\forall\mathbf{a}\in\mathcal{V},\mathbf{b}=\frac{\overline{f\left(\mathbf{c}\right)}}{\left\|\mathbf{c}\right\|^2}\mathbf{c}
+\end{align*}
 
-\[\left(\alpha_{ij}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1M}\\\vdots&&\vdots\\\alpha_{N1}&\cdots&\alpha_{NM}\end{array}\right)\]}
-\[\left(\mathbf{A}\right)=\left(\alpha_{jk}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1N}\\\vdots&&\vdots\\\alpha_{M1}&\cdots&\alpha_{MN}\end{array}\right)\]
-我们称矩阵$\left(\mathbf{A}\right)$或$\left(\alpha_{jk}\right)$是线性变换$\mathbf{A}$在基$B_\mathcal{V}$与$B_\mathcal{W}$下的表示矩阵。$\alpha_{jk}$称为$\mathbf{A}$的在基$B_\mathcal{V}$与$B_\mathcal{W}$下的坐标或分量。
+下面，我们将引入$\mathbf{T}$的伴随算符$\mathbf{T}^*$的定义。但在此之前先通过两个定理来明确其存在性、唯一性。
 
-\[\left(\alpha_{ij}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1M}\\\vdots&&\vdots\\\alpha_{N1}&\cdots&\alpha_{NM}\end{array}\right)\]
+\begin{theorem}
+设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的线性算符，则存在唯一线性算符$\mathbf{T}^*$满足
+\[\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}\]
+\end{theorem}
+\begin{proof}
 
-需要注意的是， 同一个向量或同一个线性变换在不同的基下的坐标一般是不同的。
+\end{proof}
 
-给定线性变换$\mathbf{A}:\mathcal{V}_N\rightarrow\mathcal{W}_M$、向量$\mathbf{x}\in\mathcal{V}_N$、$\mathbf{y}\in\mathcal{W}_M$和基向量$\{\mathbf{a}_i\}_{i=1}^N\subset\mathcal{V}_N,\{\mathbf{b}_j\}_{j=1}^M\subset\mathcal{W}_M$，则$\mathbf{x}$和$\mathbf{y}$可分别表示为$\mathbf{x}=\sum_{i=1}^N\xi_i\mathbf{a}_i$、$\mathbf{y}=\sum_{j=1}^M\eta_j\mathbf{b}_j$。若$\mathbf{A}$在基$\left\{\mathbf{a}_i\right\},\left\{\mathbf{b}_j\right\}$下的表示矩阵为$\left(\alpha_{ji}\right)$，则线性关系式$\mathbf{y}=\mathbf{Ax}$可写成关于$\mathbf{x}$、$\mathbf{y}$和$\mathbf{A}$的矩阵表示之间的乘法关系，推算如下：
-\begin{equation*}
-\begin{split}
-    \mathbf{y}&=\mathbf{Ax}\\
-    &=\mathbf{A}\sum_{i=1}^N\xi_i\mathbf{a}_i=\sum_{i=1}^N\xi_i\left(\sum_{j=1}^M\alpha_{ji}\mathbf{b}_j\right)\quad\text{仅利用线性变换定义中规定的性质}\\
-    &=\sum_{j=1}^M\left(\sum_{i=1}^N\xi_i\alpha_{ji}\right)\mathbf{b}_j\quad\text{变换求和顺序}\\
-    &=\sum_{j=1}^M\eta_j\mathbf{b}_j\\
-    \Leftrightarrow\\
-    \eta_j&=\sum_{i=1}^N\alpha_{ji}\xi_i,j=1,\cdots,M
-\end{split}
-\end{equation*}
-上面的结果就是以下矩阵乘的计算法则：
-\[\left(\begin{array}{ccc}\eta_1\\\vdots\\\eta_M\end{array}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1N}\\\vdots&&\vdots\\\alpha_{M1}&\cdots&\alpha_{MN}\end{array}\right)\left(\begin{array}{ccc}\xi_1\\\vdots\\\xi_N\end{array}\right)\]
-或写成
-\[\left(\mathbf{y}\right)=\left(\mathbf{A}\right)\left(\mathbf{x}\right)\]
-这就是线性变换$\mathbf{y}=\mathbf{Ax}$在给定基下的坐标运算法则。
+\begin{theorem}
+设$\mathcal{V}$是有限维内积空间，$B=\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组规范正交基，$\mathbf{T}$是$\mathcal{V}$的线性算符，则
+\[\left(\mathbf{T}\right)_{kj}=\left(\mathbf{T\hat{e}}_j|\mathbf{e}_k\right)\]
+\end{theorem}
+\begin{proof}
 
-上面的讨论也同时说明，任一个数域$\mathbb{F}$上的一个$M\times N$矩阵$A$都通过
-\[
-\mathbf{A}\left(\sum_{i=1}^N\xi_i\mathbf{a}_i\right)=\sum_{i=1}^M\left(\sum_{j=1}^N\alpha_{ji}\xi_i\right)\mathbf{b}_j
-\]
-定义了一个线性变换$\mathbf{A}:\mathcal{V}_N\rightarrow\mathcal{W}_M,\mathbf{A}\in\mathcal{L}\left(\mathcal{V}_N,\mathcal{W}_M\right)$，其在$\mathcal{V}_N$的基$\{\mathbf{a}_i\}_{i=1}^N$和$\mathcal{W}_N$的基$\{\mathbf{b}_j\}_{j=1}^M$下的矩阵表示就是矩阵$A$，即$\left(\mathbf{A}\right)=A$。总结成定理如下。
+\end{proof}
 
-\begin{theorem}\label{thm:II.5.1}
-设$\mathcal{V}_N$和$\mathcal{W}_M$是数域$\mathbb{F}$上的有限维向量空间。$B_\mathcal{V}$和$B_\mathcal{W}$分别是$\mathcal{V}_N$和$\mathcal{W}_M$的一组基。对每个线性变换$\mathbf{T}:\mathcal{V}_N\rightarrow\mathcal{W}_M$都存在唯一一个$\mathbb{F}$上的$M\times N$矩阵$T$使得$\left(\mathbf{Ta}\right)_{B_\mathcal{W}}=T\left(\mathbf{a}\right)_{B_\mathcal{V}}\forall\mathbf{a}\in\mathcal{V}_N$。其中$\left(\cdot\right)_B$表示以$B$为基的矩阵表示。
+\begin{theorem}
+设$\mathcal{V}$是有限维内积空间，$B=\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组规范正交基，$\mathbf{T},\mathbf{T}^*$是$\mathcal{V}$上的线性算符满足
+\[\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}\]
+则$\mathbf{T}^*$在$B$下的矩阵是$\mathbf{T}$在$B$下的矩阵的共轭转置。
+\end{theorem}
+\begin{proof}
+
+\end{proof}
+
+\begin{definition}[伴随算符]
+设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$的线性算符，如果存在$\mathcal{V}$的另一线性算符$\mathbf{T}^*$满足$\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$，则称$\mathbf{T}^*$是$\mathbf{T}$的伴随算符。若$\mathbf{T}=\mathbf{T}^*$则称$\mathbf{T}$是厄米算符或自伴随算符。
+\end{definition}
+
+\begin{theorem}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$\mathbf{T},\mathbf{U}$是$\mathcal{V}$的线性算符，则
+\begin{enumerate}
+    \item $\left(\mathbf{T}+\mathbf{U}\right)^*=\mathbf{T}^*+\mathbf{U}^*$
+    \item $\left(\alpha\mathbf{T}\right)^*=\overline{\alpha}\mathbf{T}^*\forall\alpha\in\mathbb{F}$
+    \item $\left(\mathbf{TU}\right)^*=\mathbf{U}^*\mathbf{T}^*$
+    \item $\left(\mathbf{T}^*\right)^*=\mathbf{T}$
+\end{enumerate}
+\end{theorem}
+
+算符的伴随类似于复数的共轭。且由上面的相关定理可知算符的伴随对应于矩阵的共轭转置。
+
+线性算符及其伴随算符也有类似于“对于$\alpha\in\mathbb{F}$，当且仅当$\alpha=\overline{\alpha}$时$\alpha\in\mathbf{R}$”的结论。数域$\mathbb{F}$上的内积空间的线性算符$\mathbf{T}$可表示为$\mathbf{T}=\mathbf{U}_1+i\mathbf{U}_2,\mathbf{U}_1=\frac{1}{2}\left(\mathbf{T}+\mathbf{T}^*\right),\mathbf{U}_2=\frac{1}{2i}\left(\mathbf{T}-\mathbf{T}^*\right)$，其中$\mathbf{U}_1,\mathbf{U}_2$都是厄米算符。
+
+线性算符的伴随算符与线性算符的转置之间的区别与联系：设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$\mathbf{T}$是$\mathcal{V}$是的线性算符，则由定义，
+\begin{align*}\mathbf{T}^\intercal&:\mathcal{V}^*\rightarrow\mathcal{V}^*,\mathbf{T}^\intercal\left(g\right)\left(\cdot\right)=g\left(\mathbf{T}\cdot\right)\forall g\in\mathcal{V}^*\\
+\mathbf{T}^*&:\mathcal{V}\rightarrow\mathcal{V},\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}
+\end{align*}
+注意到，由内积与线性泛函的关系，对每一$\mathbf{a}\in\mathcal{V}$均可定义线性泛函$\left(\mathbf{a}|\cdot\right)\in\mathcal{V}^*$，此外$\left(\mathbf{T}^\intercal\right)=\left(\mathbf{T}\right)^\intercal,\left(\mathbf{T}^*\right)=\left(\mathbf{T}\right)^*$，其中$\intercal,*$作用于矩阵分别表示矩阵的转置和共轭转置。由此可见，线性变换的转置是比线性算符的伴随更一般的概念（后者是前者的特例）。
+
+\subsection{幺正算符}
+\begin{definition}[保持内积]
+设$\mathcal{V},\mathcal{W}$是同数域上的两内积空间，若线性变换$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$满足$\left(\mathbf{Ta}|\mathbf{Tb}\right)=\left(\mathbf{a}|\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$则称$\mathbf{T}$保持内积。
+\end{definition}
+
+\begin{theorem}
+设$\mathcal{V},\mathcal{W}$是同数域上的两内积空间，关于线性变换$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$的以下命题相互等价：
+\begin{enumerate}
+    \item $\mathbf{T}$保持内积
+    \item $\mathbf{T}$是同构映射
+    \item $\mathbf{T}$将$\mathcal{V}$的某个规范正交基映射为$\mathcal{W}$的一个规范正交基
+    \item $\mathbf{T}$将$\mathcal{V}$的每个规范正交基映射为$\mathcal{W}$的一个规范正交基
+    \item $\left\{\mathbf{Ta}\right\|=\left\|\mathbf{A}\right\|\forall\mathbf{a}\in\mathcal{V}$
+\end{enumerate}
+\end{theorem}
+
+\begin{definition}[幺正算符]
+内积空间$\mathcal{V}$的同构线性算符称该内积空间的幺正算符。
+\end{definition}
+
+若$\mathbf{U}_1$和$\mathbf{U}_2$是内积空间$\mathcal{V}$的幺正算符，则$\mathbf{U}_2\mathbf{U}_1$可逆且$\left\{\mathbf{U}_2\mathbf{U}_1\mathbf{a}\right\|=\left\|\mathbf{U}_1\mathbf{a}\right\|=\left\|\mathbf{a}\right\|\forall\mathbf{a}\in\mathcal{V}$。幺正算符的逆也是幺正的，$\left\|\mathbf{Ua}\right\|=\left\|\mathbf{a}\right\|\Rightarrow\left\|\mathbf{U}^{-1}\mathbf{b}\right\|=\left\|\mathbf{b}\right\|,\mathbf{b}=\mathbf{Ua}$。由这些事实可见，一个内积空间的所有幺正算符及其复合操作组成一个群。
+
+\begin{theorem}
+设$\mathbf{U}$是内积空间$\mathcal{V}$上的线性算符，则$\mathbf{U}$是幺正算符当且令当$\mathbf{UU}^*=\mathbf{U}^*\mathbf{U}=\mathbf{I}$。
+\end{theorem}
+
+\begin{definition}[幺正矩阵]
+若$n\times n$矩阵A满足$AA^*=I$则称$A$是幺正矩阵。
+\end{definition}
+
+\begin{theorem}
+设$\mathcal{V}$是有限维内积空间，$\mathbf{U}$是$\mathcal{V}$上的线性算符，则$\mathbf{U}$是幺正算符当且仅当$\mathbf{U}$在$\mathcal{V}$的某一（或每一）基下的矩阵是幺正矩阵。
+\end{theorem}
+
+\begin{definition}[正交矩阵]
+若$n\times n$矩阵$A$满足$A^\intercal A=I$则称$A$是正交矩阵。
+\end{definition}
+
+实正交矩阵是幺正矩阵。
+
+\subsection{正规算符}
+内积空间上的线性算符在对角化方面有新的性质。
+
+\begin{definition}[正规算符]
+设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的线性算符，若$\mathbf{TT}^*=\mathbf{T}^*\mathbf{T}$则称$\mathbf{T}$是正规算符。
+\end{definition}
+
+厄米算符和幺正算符都是正规算符（见以下定理），但正规算符的和或乘积（复合）未必是正规算符。
+
+以下一连串定理关注的是厄米算符的可对角化性质。
+
+\begin{theorem}
+设$\mathbf{T}$是内积空间$\mathcal{V}$的一个厄米算符，则$\mathbf{T}$的所有特征值全是实数，且两两不同特征值对应的特征向量两两正交。
 \end{theorem}
 
 \begin{theorem}
-设$\mathcal{V}_N$和$\mathcal{W}_M$是数域$\mathbb{F}$上的有限维向量空间。在给定任意$\mathcal{V}_N$的基$B_\mathcal{V}$和$\mathcal{W}_M$的基$B_\mathcal{W}$下，从线性变换$\mathbf{T}:\mathcal{V}_N\rightarrow\mathcal{W}_M$到其在上述基下的矩阵表示的对应关系是一个同构映射。
+有限非零维内积空间的任一个厄米算符均有一个（非零）特征向量。
 \end{theorem}
-\begin{proof}
-定理\ref{thm:II.5.1}中的关系式定义了一个由$\mathcal{L}\left(\mathcal{V}_N,\mathcal{W}_M\right)$到$\mathbb{F}^{M\times N}$的单射。再由矩阵运算法则易证满射。此略。此外，由于$\mathbb{F}^{M\times N}$在通常的矩运算定义下是一个向量空间，故这一映射是同态映射+双射=同构映射。
-\end{proof}
-
-以上两个定理让我们可以简单地说，在确定了基的选择下，每个线性变换对应一个矩阵。而且具体地，由定理\ref{thm:II.4.3}线性变换的维数与矩阵的维数直接对应；线性变换的向量代数运算结果与矩阵的加法和标量乘法运算结果直接对应。通过下面的讨论，我们进一步获得复合变换与矩阵乘法的对应。
-
-\begin{theorem}\label{thm:II.5.3}
-设$\mathcal{V},\mathcal{W},\mathcal{Z}$是$\mathbb{F}$上的有限维向量空间，$\left\{\mathbf{e}_i\right\},\left\{\mathbf{f}_j\right\},\left\{\mathbf{g}_k\right\}$分别是$\mathcal{V},\mathcal{W},\mathcal{Z}$的基，$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W},\mathbf{U}:\mathcal{W}\rightarrow\mathcal{Z}$是线性变换。则复合线性变换$\mathbf{C}=\mathbf{TU}$在$\left\{\mathbf{e}_i\right\},\left\{\mathbf{g}_k\right\}$下的表示矩阵
-\[\left(\mathbf{C}\right)=\left(\mathbf{U}\right)\left(\mathbf{T}\right)\]
-其中$\left(\mathbf{T}\right)$是$\mathbf{T}$在$\left\{\mathbf{e}_i\right\},\left\{\mathbf{f}_j\right\}$下的表示矩阵,$\left(\mathbf{U}\right)$是$\mathbf{U}$在$\left\{\mathbf{f}_j\right\},\left\{\mathbf{g}_k\right\}$下的表示矩阵。
-\end{theorem}
-\begin{proof}
-证明留作练习。
-\end{proof}
-
-定理\ref{thm:II.5.3}就是复合线性变换在给定基下的坐标运算法则。
-
-对于线性算符$\mathbf{T},\mathbf{U}\in\mathcal{L}\left(\mathcal{V}\right)$，由定理\ref{thm:II.4.12}和\ref{thm:II.5.3}有$\left(\mathbf{U}\right)\left(\mathbf{T}\right)=\left(\mathbf{T}\right)\left(\mathbf{U}\right)=\left(\mathbf{I}\right)$。易证在给定任一$\mathcal{V}$的基下，恒等变换的矩阵表示都是单位矩阵$I$，即$\left(\mathbf{I}\right)\equiv I$。其中
-\[I=\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}\]
-总结为如下定理：
 
 \begin{theorem}
-恒等变换$\mathbf{I}:\mathcal{V}_N\rightarrow\mathcal{V}_N$在任意一组基下的矩阵表示都是单位矩阵$I_N$。
+设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上任一线性算符。设$\mathcal{W}$是$\mathcal{V}$的子空间，且$\forall\mathbf{a}\in\mathcal{W}\mathbf{Ta}\in\mathcal{W}$，那么就有$\forall\mathbf{b}\in\mathcal{W}^\perp\mathbf{T}^*\mathbf{b}\in\mathcal{W}^\perp$。
 \end{theorem}
 
-故$\left(\mathbf{U}\right)\left(\mathbf{T}\right)=\left(\mathbf{T}\right)\left(\mathbf{U}\right)=I$，因此，在任一基下，可逆线性变换（线性算符）的矩阵与其逆变换的矩之间也互逆，即$\left(\mathbf{T}^{-1}\right)=\left(\mathbf{T}\right)^{-1}$。
+\begin{theorem}
+设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的厄米算符，则存在一组规范正交基的基向量就是$\mathbf{T}$的特征向量。
+\end{theorem}
+
+\begin{corollary}
+设$A$是$n\times n$厄米矩阵，则存在一个幺正矩阵$P$使得$P^{-1}AP$是对角矩阵。若$A$是实对称矩阵，则存在正交矩阵$P$使得$P^{-1}AP$是对角矩阵
+\end{corollary}
+
+由这些定理，我们得出结论：对于有限维实内积空间的线性算符$\mathbf{T}$，只要它是厄米的，则必有一组规范正交基是它的特征向量。
+
+\begin{theorem}
+设$\mathcal{V}$有限维内积空间，$\mathbf{T}$是正规算符。则$\mathbf{a}\in\mathcal{V}$是$\mathbf{T}$的特征值$c$对应的特征向量当且仅当$\mathbf{a}$是$\mathbf{T}^*$的特征值$\overline{c}$对应的特征向量。
+\end{theorem}
+
+\begin{definition}[正规矩阵]
+若复数值$n\times n$矩阵$A$满足$AA^*=A^*A$则称$A$是正规矩阵。
+\end{definition}
+
+\begin{theorem}
+设$\mathcal{V}$是有限维内积空间，$B$是$\mathcal{V}$的一组规范正交基。若$\mathcal{V}$上的线性算符$\mathbf{T}$在该基下的矩阵$\left(T\right)$是上三角矩阵，则$\mathbf{T}$是正规算符当且仅当$\left(\mathbf{T}\right)$是对角矩阵。
+\end{theorem}
+
+\begin{theorem}
+设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的线性算符，则$\mathcal{V}$中总存在一组规范正交基使得$\mathbf{T}$在该其下的矩阵$\left(\mathbf{T}\right)$是上三角矩阵。
+\end{theorem}
+
+\begin{corollary}
+对每一复数值$n\times n$矩阵$A$均有一幺正矩阵$U$使得$U^{-1}AU$是上三角矩阵。
+\end{corollary}
+
+由上面的几条定理，我们把之前只对厄米算符成立的对角化性质推广至对正规算符都成立。
+
+\begin{theorem}
+设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的正规算符，则$\mathcal{V}$中存在一组规范正交基的基向量就是$\mathcal{T}$的特征向量。
+\end{theorem}
+
+\begin{corollary}
+对每一正规矩阵$A$总有幺正矩阵$P$使得$P^{-1}AP$是对角矩阵。
+\end{corollary}
 \end{document}

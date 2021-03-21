@@ -1,76 +1,139 @@
 \documentclass[main.tex]{subfiles}
-% 基变换与坐标变换
+% 线性算符的特征值分解
 \begin{document}
-本节讨论同一个向量或线性变换在不同基下的矩阵之间的关系。
+如果张量$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{V}$在$\mathcal{V}$的某组基$B=\left\{\mathbf{a}_i\right\}_{i=1}^n$下的表示矩阵是对角矩阵
+\[
+\left(\mathbf{T}\right)=\left(\begin{array}{ccc}
+\lambda_1&&\\
+&\ddots&\\
+&&\lambda_n
+\end{array}
+\right)\equiv D
+\]
+那么就有$\mathbf{Ta}_i=\lambda_i\mathbf{a}_i,i=1,\cdots,n$。$\mathbf{T}$的值域就能被$\lambda_i\neq 0$对应的那些$\mathbf{a}_i$线性生成，$\mathbf{T}$的核空间则被$\lambda_i=0$对应的那些$\mathbf{a}_i$线性生成。因此，如果我们找得到这样的基$B$和对角矩阵$D$，就能得知关于线性变换$\mathbf{T}$的很多性质。
 
-考虑数域$\mathbb{F}$上的$N$维向量空间$\mathcal{V}_N$中的两组基$\left\{\mathbf{e}_i\right\},\left\{\mathbf{e}^\prime_j\right\}$。用第一组基表示第二组基的每个基向量，可列出如下的$N$个等式：
-\[\mathbf{e}^\prime_j=\sum_{i=1}^NS_{ij}\mathbf{e}_i,j=1,\cdots,N\]
-称为从基$\left\{\mathbf{e}_i\right\}$到基$\left\{\mathbf{e}^\prime_j\right\}$的基变换公式。矩阵$\left(S_{ij}\right)$称为从基$\left\{\mathbf{e}_i\right\}$到基$\left\{\mathbf{e}^\prime_j\right\}$的过渡矩阵。
+\begin{definition}[特征值、特征向量、特征空间]
+设$\mathcal{V}$是数域$\mathbb{F}$上的向量空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是作用在$\mathcal{V}$上的线性算符。如果存在$\mathbf{a}\neq\mathbf{0}\in\mathcal{V},c\in\mathbb{F}$满足$\mathbf{Ta}=c\mathbf{a}$，则称$c$是$\mathbf{T}$的一个特征值，$\mathbf{a}$是$c$所对应的一个特征向量。$\mathbf{T}$的所有与$c$对应的特征向量组成$\mathbf{T}$的与$c$对应的特征空间。
+\end{definition}
 
 \begin{theorem}
-设$\mathcal{V}_N$是数域$\mathbb{F}$上的$N$维向量空间，$\left\{\mathbf{e}_i\right\},\left\{\mathbf{e}^\prime_j\right\}$是$\mathcal{V}_N$的两组基，则从基$\left\{\mathbf{e}_i\right\}$到基$\left\{\mathbf{e}^\prime_j\right\}$的过渡矩阵是从基$\left\{\mathbf{e}^\prime_j\right\}$到基$\left\{\mathbf{e}_i\right\}$的过渡矩阵的逆矩阵。若$\mathbf{e}^\prime_j=\sum_{i=1}^NS_{ij}\mathbf{e}_i,\mathbf{e}_i=\sum_{i=1}^NT_{ji}\mathbf{e}^\prime_j$，则$S=T^{-1}$。
+设$\mathbf{V}$是数域$\mathbb{F}$上的有限维向量空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是作用在$\mathcal{V}$上的线性算符，以下命题相互等价：
+\begin{itemize}
+    \item $c\in\mathbb{F}$是$\mathbf{T}$的一个特征值
+    \item 线性算符$\left(\mathbf{T}-c\mathbf{I}\right)$不可逆
+    \item $\mathrm{det}\left(\mathbf{T}-c\mathbf{I}\right)=0$
+\end{itemize}
 \end{theorem}
 \begin{proof}
-如果我们把基向量$\left\{\mathbf{e}_i\right\}$排成一个列向量，则基变换关系可表示为\footnote{虽然这严格来说不是一个矩阵，但矩阵乘以向量的式子本质上是线性方程组的一种表示，故此入可视为一个线性方程组的简化表示。矩阵的互逆，本质上也是线性方程组的求解，故本命题也可通过矩阵运算法则得到的互逆性得以证明。}：
-\[
-\left(\begin{array}{c}
-\mathbf{e}^\prime_1\\
-\vdots\\
-\mathbf{e}^\prime_N
-\end{array}\right)=\left(\begin{array}{ccc}
-S_{11}&\cdots&S_{1N}\\
-\vdots&\ddots&\vdots\\
-S_{N1}&\cdots&S_{NN}
-\end{array}\right)\left(\begin{array}{c}
-\mathbf{e}_1\\
-\vdots\\
-\mathbf{e}_N
-\end{array}\right)
-\]
-由此易见$S=T^{-1}$。
+证明1$\Leftrightarrow$2。设$\mathbf{a}\in\mathcal{V}$满足$\mathbf{Ta}=c\mathbf{a}\Leftrightarrow\left(\mathbf{T}-c\mathbf{I}\right)\mathbf{a}=\mathbf{0}$。满足条件的$\mathbf{a}$至少有$\mathbf{a}=\mathbf{0}$。设所有满足此条件的向量组成的空间是$C$，则$\left(\mathbf{T}-c\mathbf{I}\right)\mathbf{a}=\mathbf{0}\Leftrightarrow C$是$\left(\mathbf{T}-c\mathbf{I}\right)$的核空间。$C$不是只含一个零向量$\mathbf{0}\Leftrightarrow \left(\mathbf{T}-c\mathbf{I}\right)$不是双射$\Leftrightarrow$至少存在一个$\mathbf{a}\neq \mathbf{0}\Leftrightarrow c$是$\mathbf{T}$的一个特征值。
+
+证明2$\Leftrightarrow$3。由定理\cite[p.~51]{周胜林2012线性代数}“$n\times n$矩阵$A$可逆当且仅当$\mathrm{det}A\neq 0$”直接得证。
 \end{proof}
 
-特别地，由$n$维向量空间的一组基到它自身的过渡矩阵是单位矩阵$I_n$。
+$\mathrm{det}\left(\mathbf{T}-c\mathbf{I}\right)$是关于$c$的多项式，阶数与$\mathcal{V}$的维数相同。因此$\mathbf{T}$的特征值$c$是这个多项式的根。
 
-我们通过基的过渡矩阵，可以写出一个向量$\mathbf{v}\in\mathcal{V}_N$在两组基$\left\{\mathbf{e}_i\right\},\left\{\mathbf{e}^\prime_j\right\}$下的坐标之间的关系：
+\begin{definition}
+设$A$是数域$\mathbb{F}$上的$n\times n$矩阵。若$c\in\mathbb{F}$使$\left(A-cI\right)$为不可逆矩阵，则称$c$是矩阵$A$的特征值。多项式$f\left(x\right)\equiv\mathrm{det}\left(xI-A\right)$称矩阵$A$的特征多项式。矩阵$A$的特征值$c$就是$f\left(c\right)=0$的根。
+\end{definition}
 
-\begin{align*}
-\mathbf{v}&=\sum_{j=1}^Nv^\prime_j\mathbf{e}^\prime_j\\
-&=\sum_{j=1}^Nv^\prime_j\left(\sum_{i=1}^NS_{ij}\mathbf{e}_i\right)\\
-&=\sum_{i=1}^N\left(\sum_{j=1}^N S_{ij}v^\prime_j\right)\mathbf{e}_i\\
-&=\sum_{i=1}^Nv_i\mathbf{e}_i\\
-\Leftrightarrow v_i&=\sum_{j=1}^NS_{ij}v^\prime_j,i=1,\cdots,N
-\end{align*}
-这$N$个式子称为向量$\mathbf{v}$从基$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的坐标变换公式，也可以写成矩阵乘：
-\[\left(\begin{array}{c}v_1\\\vdots\\v_N\end{array}\right)=\left(\begin{array}{ccc}S_{11}&\cdots&S_{1N}\\\vdots&&\vdots\\S_{N1}&\cdots&S_{NN}\end{array}\right)\left(\begin{array}{c}v^\prime_1\\\vdots\\v^\prime_N\end{array}\right)\]
+\begin{definition}[可对角化线性算符]
+设$\mathbf{T}$是数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$的线性算符，若存在$\mathcal{V}$的一组基的基向量恰好都是$\mathbf{T}$的特征向量，则称$\mathbf{T}$是可对角化的线性算符。
+\end{definition}
 
-注意到，对于同一个矩阵$S_{ij}$，它是从$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的过渡矩阵，但却用于向量$\mathbf{v}$从$\left\{\mathbf{e}_i\right\}$下的坐标到$\left\{\mathbf{e}^\prime_j\right\}$下的坐标的变换公式中。按照相同的推算方法还可以得到，向量$\mathbf{v}$从$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的坐标变换公式是$v^\prime_j=\sum_{i=1}^NT_{ji}v_i,j=1,\cdots,N$，其中$T_{ji}=S_{ij}^{-1}$是从$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的过渡矩阵。
+\begin{example}
+设矩阵
+\[A=\left(\begin{array}{ccc}3&1&-1\\2&2&-1\\2&2&0\end{array}\right)\]
+则其特征多项式
+\[\left|\begin{array}{ccc}x-3&-1&1\\-2&x-2&1\\-2&-2&x\end{array}\right|=x^3-5x^2+8x-4=\left(x-1\right)\left(x-2\right)^2\]
+可知$A$的特征值是$1,2$。若$A$是$\mathbb{R}^3$上的线性变换$\mathbf{T}$在标准基下的矩阵，由
+\[A-1I=A-I=\left(\begin{array}{ccc}2&1&-1\\2&1&-1\\2&2&-1\end{array}\right)\]
+得$\mathrm{rank}\left(A-I\right)=2$，即$\mathbf{T}-1\mathbf{I}$的零化度为1，由1对应的特征向量组成的子空间是1维的。同理可得由2对应的特征向量组成的子空间也是1维的。易验$\mathbf{a}_1=\left(1,0,2\right),\mathbf{a}_2=\left(1,1,2\right)$分别是1，2对应的特征向量。由于$\left\{\mathbf{a}_1,\mathbf{a}_2\right\}$无法成为$\mathbb{R}^3$的基，故$\mathbf{T}$不可对角化。
+\end{example}
 
-接下来，我们看线性变换的矩阵在不同基下的变换公式。
+由上例可知，线性算符可对角化的条件，也特征空间的维数有关。
+
+\begin{lemma}
+设$\mathbf{T}$是数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$的线性算符，若$f$是一个多项式，则$f\left(\mathbf{T}\right)\mathbf{a}=f\left(c\right)\mathbf{a}\forall\mathbf{a}\in\mathcal{V}$。
+\end{lemma}
+\begin{proof}
+记$\mathbf{T}$的幂为复合线性变换$\mathbf{T}^n=\mathbf{T}\cdots\mathbf{T}$，则线性变换的多项式$f\left(\mathbf{T}\right)$的意义是明确的，且由线性变换的运算法则易证，略。
+\end{proof}
+
+\begin{lemma}
+设$\mathbf{T}$是数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$的线性算符，$c_1,\cdots,c_k$是$\mathbf{T}$的两两不同特征值。令$\mathcal{W}_i$是$c_i$对应的特征向量的空间，若$\mathcal{W}=\mathcal{W}_1+\cdots+\mathcal{W}_k$，则$\mathrm{dim}\mathcal{W}=\mathrm{dim}\mathcal{W}_1+\cdots+\mathrm{dim}\mathcal{W}_k$。若$B_i$是$\mathcal{W}_i$的一组基，则$B=\bigcup_{i=1}^nB_i$是$\mathcal{W}$的一组基。
+\end{lemma}
+\begin{proof}
+一般地$\mathrm{dim}\mathcal{W}\leq\mathrm{dim}\mathcal{W}_1+\cdots+\mathrm{dim}\mathcal{W}_k$。要证等号成立，就要找到$\mathbf{b}_i\in\mathcal{W}_i,i=1,\cdots,k$使得$\mathbf{b}_1+\cdots+\mathbf{b}_k=\mathbf{0}$。
+
+令$f$是任一多项式。由上面的引理有
+\[
+f\left(\mathbf{T}\right)\mathbf{0}=f\left(\mathbf{T}\right)\left(\sum_{i=1}^k\mathbf{b}_i\right)=\sum_{i=1}^kf\left(c_i\right)\mathbf{b}_i\]
+我们能够选择多项式$f_1,\cdots,f_k$使得$f_i\left(c_j\right)=\delta_{ij},i,j=1,\cdots,k$，则$\mathbf{0}=f_i\left(\mathbf{T}\right)\mathbf{0}=\sum_{j=1}^k\delta_{ij}\mathbf{b}_j=\mathbf{b}_i,i=1,\cdots,k$，从而找到了满足要求的$\mathbf{b}_i$。
+
+若$B_i$是$\mathcal{W}_i$的一组基，则$B=\bigcup_{i=1}^kB_i$线性生成$\mathcal{W}$，而且$B$是线性无关向量组，因为任一$\mathbf{B}$中向量的线性变换均可整理成$\sum_{i=1}^k\mathbf{b})i$的形式，其中$\mathbf{b_i}$是$B_i$的基向量的线性组合，且$\sum_{i=1}^k\mathbf{b}_i=\mathbf{0}$。
+\end{proof}
 
 \begin{theorem}
-设$\mathcal{V}_N$、$\mathcal{W}_M$分别是数域$\mathbb{F}$上的$N$、$M$维向量空间，$\left\{\mathbf{a}_i\right\},\left\{\mathbf{a}^\prime_i\right\}\in\mathcal{V}_N$是$\mathcal{V}_N$的两组基，基变换公式为$\mathbf{a}^\prime_j=\sum_{i=1}^NS_{ij}\mathbf{a}_i$；$\left\{\mathbf{b}_j\right\},\left\{\mathbf{b}^\prime_j\right\}$是$\mathcal{W}_M$的两组基，基变换公式为$\mathbf{b}^\prime_j=\sum_{i=1}^MT_{ij}\mathbf{b}_i$。线性变换$\mathbf{A}:\mathcal{V}_N\rightarrow\mathcal{W}_M$在$\left\{\mathbf{a}_i\right\},\left\{\mathbf{b}_i\right\}$下的矩阵表示为$\left(\mathbf{A}\right)$，在$\left\{\mathbf{a}^\prime_i\right\},\left\{\mathbf{b}^\prime_i\right\}$下的矩阵表示为$\left(\mathbf{A}\right)^\prime$。则有
-\begin{align*}
-    \left(\mathbf{A}\right)&=T\left(\mathbf{A}\right)^\prime S^{-1}\\
-    \left(\mathbf{A}\right)^\prime&=T^{-1}\left(\mathbf{A}\right)S
-\end{align*}
+设$\mathbf{T}$是数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$的线性算符，$c_1,\cdots,c_k$是$\mathbf{T}$的两两不同特征值，$\mathcal{W}_i$是$\mathbf{T}-c_i\mathbf{I}$的核空间，则以下命题两两等价。
+\begin{enumerate}
+    \item $\mathbf{T}$可对角化
+    \item $\mathbf{T}$的特征多项式是$f\left(x\right)=\left(x-c_1\right)^{d_1}\cdots\left(x-c_k\right)^{d_k}$且$\mathrm{dim}\mathcal{W}_i=d_i,i=1,\cdots,k$
+    \item $\mathrm{dim}\mathcal{W}_1+\cdots\mathrm{dim}\mathcal{W}_k=\mathrm{dim}\mathcal{W}$
+\end{enumerate}
 \end{theorem}
 \begin{proof}
-对于任一向量$\mathbf{v}\in\mathcal{V}_N$，$\mathbf{w}=\mathbf{Av}\in\mathcal{W}_M$。我们从向量$\mathbf{w}$的坐标变换出发：
-\begin{align*}
-    w_i&=\sum_{j=1}^MT_{ij}w^\prime_j\\
-    &=\sum_{j=1}^MT_{ij}\left(\sum_{k=1}^NA^\prime_{jk}v^\prime_k\right)\\
-    &=\sum_{j=1}^M\sum_{k=1}^NT_{ij}A^\prime_{jk}\left(\sum_{l=1}^NS^{-1}_{kl}v_l\right)\\
-    &=\sum_{j=1}^M\sum_{k=1}^N\sum_{l=1}^NT_{ij}A^\prime_{jk}S^{-1}_{kl}v_l\\
-    &=\sum_{j=1}^N\sum_{l=1}^M\sum_{k=1}^NT_{il}A^\prime_{lk}S^{-1}_{kl}v_j,\quad i=1,\cdots,M
-\end{align*}
-其中$A_{ij},A^\prime_{ij}$分别是$\left(\mathbf{A}\right),\left(\mathbf{A}\right)^\prime$的坐标。
-
-另一方面，$w_i=\sum_{j=1}^NA_{ij}v_j,i=1,\cdots,M$，与上面的结果比较可得：
-\[
-A_{ij}=\sum_{l=1}^M\sum_{k=1}^NT_{il}A^\prime_{lk}S^{-1}_{kj}
-\Leftrightarrow \left(\mathbf{A}\right)=T\left(\mathbf{A}\right)^\prime S^{-1}
-\]
-由$T^{-1}\left(\mathbf{A}\right)S=T^{-1}T\left(\mathbf{A}\right)^\prime S^{-1}S=\left(\mathbf{A}\right)^\prime$，可得$\left(\mathbf{A}\right)^\prime=T^{-1}\left(\mathbf{A}\right)S$。
+由前面的引理，1$\Leftrightarrow$2已得证，且也易有2$\Rightarrow$3。若3成立，由引理有$\mathcal{V}=\sum_{i=1}^k\mathcal{W}_i$，即$\mathbf{T}$的特征向量线性生成$\mathcal{V}$。
 \end{proof}
+
+\begin{example}
+若$\mathbb{R}^3$上的线性算符$\mathbf{T}$在标准基下的矩阵
+\begin{align*}
+\left(\mathbf{T}\right)&=\left(\begin{array}{ccc}5&-6&-6\\-1&4&2\\3&-6&-4\end{array}\right)\\
+\mathrm{det}\left(x\mathbf{I}-\mathbf{T}\right)&=\left(x-2\right)^2\left(x-1\right),c_1=1,c_2=2\\
+A-I&=\left(\begin{array}{ccc}4&-6&6\\-1&4&2\\3&-6&5\end{array}\right),A-2I=\left(\begin{array}{ccc}3&-6&-6\\-1&2&2\\3&-6&-6\end{array}\right)\\
+\mathrm{rank}\left(A-I\right)&=2,\mathrm{rank}\left(A-2I\right)=1\\
+\mathrm{dim}\mathcal{W}_1&=1,\mathrm{dim}\mathcal{W}_2=2\\
+\therefore \mathrm{dim}\mathcal{W}_1+\mathrm{dim}\mathcal{W}_2&=\mathrm{dim}\mathcal{V}
+\end{align*}
+所以$\mathbf{T}$可对角化。具体地，找到$\mathcal{W}_1,\mathcal{W}_2$的基$B_1=\left\{\left(3,-1,3\right)\right\},B_2=\left\{\left(2,1,0\right),\left(2,0,1\right)\right\}$，则$\mathcal{V}$的基$B=B_1\cup B_2$。有基向作列形成的矩阵
+\[
+P=\left(\begin{array}{ccc}
+3&2&2\\-1&1&0\\3&0&2\end{array}\right)
+\]
+可将$A=\left(\mathbf{T}\right)$对角化，对角元素是$\mathbf{T}$的特征值：
+\[P^{-1}AP\equiv D=\left(\begin{array}{ccc}1&&\\&2&\\&&2\end{array}\right)\]
+\end{example}
+
+\begin{definition}[线性算符的不变量]
+设$\mathbf{T}$是作用于数域$\mathbb{F}$上向量空间$\mathcal{V}$的线性算符。$\mathbf{T}$的不变量是$\mathbf{T}$在任一基$B\subset\mathcal{V}$下的矩阵的特征多项式的系数。
+\end{definition}
+
+\begin{theorem}
+设$A$是一个$n\times n$矩阵，$f\left(\lambda\right)=\mathrm{det}\left(A-\lambda I\right)$是其特征多项式，则$f\left(\lambda\right)$是一个$n$阶多项式，且具有如下形式
+\[
+f\left(\lambda\right)=\left(-1\right)^n\lambda^n+\left(-1\right)^{n-1}\mathrm{tr}\mathbf{A}\lambda^{n-1}+\cdots+\mathrm{det}A
+\]
+\end{theorem}
+\begin{proof}
+作为练习\footnote{参考\cite[\S,p.~118]{周胜林2012线性代数}性质1.2中的式(1.2)的推导过程。更一般地可参考Cayley-Hamilton Theorem。}。
+\end{proof}
+
+特别地，当$n=3$时，
+\[
+f\left(\lambda\right)=
+-\lambda^3+\mathrm{tr}\left(A\right)\lambda^2-\frac{1}{2}\left[\mathrm{tr}^2\left(A\right)-\mathrm{tr}\left(A^2\right)\right]\lambda+\mathrm{det}\left(A\right)\]
+
+我们把
+\begin{align*}
+I_\mathbf{T}&=\mathrm{tr}\mathbf{T}\\
+II_\mathbf{T}&=\frac{1}{2}\left(\mathrm{tr}^2\mathbf{T}-\mathrm{tr}\mathbf{T}^2\right)\\
+III_\mathbf{T}&=\mathrm{det}\mathbf{T}
+\end{align*}
+称为张量$\mathbf{T}$的第一、第二和第三主不变量（principal invariants）。我们经常还使用
+\begin{align*}
+    J_1&=I_\mathbf{T}\\
+    J_2&=I_\mathbf{T}^2-2II_\mathbf{T}\\
+    J_3&=I_\mathbf{T}^3-3I_\mathbf{T}II_\mathbf{T}+3III_\mathbf{T}
+\end{align*}
+也被称为主不变量（main invariants），故在使用时要注意以具体定义为准。
 \end{document}

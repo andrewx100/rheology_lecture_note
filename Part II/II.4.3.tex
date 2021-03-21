@@ -1,0 +1,88 @@
+\documentclass[main.tex]{subfiles}
+% 线性变换的转置
+\begin{document}
+我们首先引入线性泛函的概念，以便定义线性变换的转置。
+
+\begin{definition}[线性泛函与对偶空间]\label{def:II.4.4}
+设$\mathcal{V}$是数域$\mathbb{F}$上的向量空间，从$\mathcal{V}$到$\mathbb{F}$的线性变换称为向量空间$\mathcal{V}$上的线性泛函（linear functional），$\mathcal{V}$上的所有线性泛函的集合称为向量空间$\mathcal{V}$的对偶空间（dual space），记为$\mathcal{V}^*$。
+\end{definition}
+
+由该定义，若映射$f:\mathcal{V}\rightarrow\mathbb{F}$满足$f\left(\alpha\mathbf{a}+\mathbf{b}\right)=\alpha f\left(\mathbf{a}\right)+f\left(\mathbf{b}\right),\forall\mathbf{a},\mathbf{b}\in\mathcal{V},\alpha\in\mathbb{F}$，则$f$是$\mathcal{V}$上的一个线性泛函，且$\mathcal{V}$的对偶空间$\mathcal{V}^*$就是线性变换空间$\mathcal{L}\left(\mathcal{V},\mathbb{F}\right)$，$\mathrm{dim}\mathcal{V}^*=\mathrm{dim}\mathcal{V}$。
+
+\begin{example}
+验证：
+\begin{itemize}
+    \item 函数$f\left(x,y,z\right)=3x+5y-z,x,y,z\in\mathbb{R}$是3维实坐标空间$\mathbb{R}^3$上的线性泛函。
+    \item 函数$f\left(\mathbf{x}\right)=3\left(\mathbf{x}\cdot\mathbf{x}\right),\mathbf{x}\in\mathbb{R}^n$是$n$维实坐标空间$\mathbb{R}^n$上的线性泛函。
+    \item 设$\mathbb{F}^{M\times M}$是数域$\mathbb{F}$上的$M\times M$矩阵的集合，矩阵的迹$\mathrm{tr}A=A_{11}+\cdots+A_{MM},A\in\mathbb{F}^{M\times M}$是$\mathbb{F}^{M\times M}$上的线性泛函。
+\end{itemize}
+\end{example}
+
+虽然一个向量空间$\mathcal{V}$的对偶空间$\mathcal{V}^*$是$\mathcal{V}$上的一种线性变换——线性泛函本身的空间，但由于，$\mathrm{dim}\mathcal{V}^*=\mathrm{dim}\mathcal{V}$，实际上$\mathcal{V}^*$与$\mathcal{V}$更像是一对并列概念。下面我们考察$\mathcal{V}$的基与$\mathcal{V}^*$的基的关系，通过一系列定理的证明找到两者之间的唯一对应性。我们先介绍一个关于线性变换的一般定理，然后介绍它关于线性泛函这一特例上的推论，最终支持我们给出“对偶基”的定义。
+
+\begin{theorem}\label{thm:II.4.15}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维向量空间，$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_n\right\}$是$\mathcal{V}$的一组有序基（$\mathrm{dim}\mathcal{V}=n$），$\mathcal{W}$是相同数域上的向量空间。给定$n$个$\mathcal{W}$的向量$\left\{\mathbf{b}_1,\cdots,\mathbf{b}_n\right\}$，有且只有一个线性变换$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$使得$\mathbf{Ta}_i=\mathbf{b}_i,\forall i=1,\cdots,n$。
+\end{theorem}
+\begin{proof}
+首先证明存在性。在所给定的基下，$\mathcal{V}$的向量$\mathbf{x}$与其坐标$\left(\xi_1,\cdots,\xi_n\right)^\intercal$是一一对应的；任一$\mathcal{V}$中的向量$\mathbf{x}$都可表示为$\mathbf{x}=\sum_{i=1}^n\xi\mathbf{a}_i$。我们将线性变换$\mathcal{T}$具体定义为$\mathbf{Tx}=\sum_{i=1}^n\xi_i\mathbf{b}_i$，即该线性变换效果是把$\mathcal{V}$的向量$\mathbf{x}$对应到用$\mathbf{x}$的坐标与所给定的$\mathcal{W}$的$n$个向量来表出的一个向量。我们可以验证$\mathbf{T}$确实是一个线性变换。且这一线性变换满足定理的要求。
+
+然后我们证明唯一性。设另有一个线性变换$\mathbf{U}:\mathcal{V}\rightarrow\mathcal{W}$满足定理的要求，则$\mathbf{Ux}=\mathbf{U}\left(\sum_{i=1}^n\xi_i\mathbf{a}_i\right)=\sum_{i=1}^n\xi_i\left(\mathbf{Ua}_i\right)=\sum_{i=1}^n\xi_i\mathbf{b}_i=\mathbf{T}$。
+\end{proof}
+
+\begin{corollary}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维向量空间，$\left\{\mathbf{a}_i\right\}$是$\mathcal{V}$的一组基，则对每个$i=1,\cdots,n$，有且只有一个$\mathcal{V}$上的线性泛函$f_i$满足$f_i\left(\mathbf{a}_j\right)=\delta_{ij},i,j=1,\cdots,n$。且$\left\{f_i\right\}$线性无关。
+\end{corollary}
+\begin{proof}
+“有且只有”由原定理易证，略。下面证明“线性无关”。
+
+设$f=\sum_{i=1}^n\gamma_if_i$，则$f\left(\mathbf{a}_j\right)=\sum_{i=1}^n\gamma_if_i\left(\mathbf{a}_j\right)=\sum_{i=1}^n\delta_{ij}=c_j,j=1,\cdots,n$。特别地，$f=0$（这里的$0$是$\mathcal{V}^*$的零向量）$\Leftrightarrow c_j=0\forall j=1,\cdots,n$。
+\end{proof}
+
+由于$\dim\mathcal{V}^*=\dim\mathcal{V}$，故$\mathrm{dim}\mathcal{V}$个$\mathcal{V}^*$中的线性无关向量就是$\mathcal{V}^*$的一组基，因而上面的定理和推论告诉我们，给定向量空间$\mathcal{V}$上的一组有序基，总能在其对偶空间$\mathcal{V}^*$中找到唯一对应的一组有序基，且后者的基向量作为线性泛函作用于前者的基向量等于克劳内克符号。我们因此可以定义对偶基的概念。
+
+\begin{definition}[对偶基]\label{def:II.4.5}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维向量空间。给定$\mathcal{V}$的一组基$B=\left\{\mathbf{a}_i\right\}$，$\mathcal{V}$的对偶空间$\mathcal{V}^*$中的（唯一一组）满足$f_i\left(\mathbf{a}_j\right)=\delta_{ij},i,j=1,\cdots,\mathrm{dim}\mathcal{V}$的基$\left\{f_i\right\}$称为$\left\{\mathbf{a}_i\right\}$的对偶基（dual basis）。
+\end{definition}
+
+由基的概念，$\mathcal{V}^*$中的任一线性泛函$f\in\mathcal{V}^*$都可以用$\mathcal{V}^*$的任一组基$\left\{f_i\right\}$表出，$f=\sum_{i=1}^nc_if_i,c_i\in\mathbb{F}$。如果已知$\left\{f_i\right\}$是$\mathcal{V}$的一组基$B=\left\{\mathbf{a}_i\right\}$的对偶基，那么类似定理\ref{thm:II.4.15}的推论的证明过程，可知$c_i=f\left(\mathbf{a}_i\right),i=1,\cdots,n$，故$f=\sum_{i=1}^nf\left(\mathbf{a}_i\right)f_i$，即$f$的第$i$个坐标可通过用$f$作用于有序基$B$的第$i$个向量来获得。同时，任一$\mathcal{V}$中的向量$\mathbf{x}\in\mathcal{V}$都可表示为$\mathbf{x}=\sum_{i=1}^n\xi_i\mathbf{a}_i$。若用$B$对偶基向量一一作用于$\mathbf{x}$，$f_i\left(\mathbf{x}\right)=\sum_{i=1}^n\xi_if_i\left(\mathbf{a}_i\right)=\sum_{i=1}^n\xi_i\delta_{ij}=\xi_i,i=1,\cdots,n$，即得到$\mathbf{x}$在$B$下的相应坐标，故$\mathbf{x}=\sum_{i=1}^nf_i\left(\mathbf{x}\right)\mathbf{a}_i$，即$\mathbf{x}$的第$i$个坐标可通过用$f_i$作用于向量$\mathbf{x}$来获得。作为线性泛函的对偶基向量其实就是一种“取坐标的函数”。
+
+我们曾经在\S\ref{sec:II.3}节提过，内积定义中，我们必须给形成内积的两个向量之一赋予共轭调和的规则。本讲义是给后一个向量定义了这一规则，即$\forall\mathbf{a},\mathbf{b}\in\mathcal{V},\alpha\in\mathbb{F},\left(\mathbf{a}|\alpha\mathbf{b}\right)=\overline{\alpha}\left(\mathbf{a}|\mathbf{b}\right)$，暂称第一种惯例。第二种惯例是给前一个向量定义这一规则，即$\left\langle\alpha\mathbf{a}|\mathbf{b}\right\rangle=\overline{\alpha}\left\langle\mathbf{a}|\mathbf{b}\right\rangle$，我们在此把第二种惯例的内积定义用不同的括号来区分，这两种惯例的内积的关系是：
+\[\left(\mathbf{x}|\mathbf{y}\right)\equiv\left\langle\mathbf{y}|\mathbf{x}\right\rangle\]
+第二种惯例与量子力学中与狄拉克bra-ket标记的规定是相同的。如果内积采用第二种惯例，则线性泛函和内积还有更直接的关系。由于本讲义的流变学部分不涉及复数域上的向量空间，因此不再详述。可参考\cite[\S1.3.1]{Hassani1999}。
+
+接下来我们完成定义线性变换的转置的任务。
+
+\begin{definition}[线性变换的转置]\label{def:II.4.6}
+设$\mathcal{V},\mathcal{W}$是数域$\mathbb{F}$上的向量空间，$\mathbb{T}:\mathcal{V}\rightarrow\mathcal{W}$是线性变换，对于$\mathcal{W}$上的每一个线性泛函$g\in\mathcal{W}^*$，我们都可以定义一个$\mathcal{V}$上的线性泛函$f\in\mathcal{V}^*$使其满足$f\left(\mathbf{a}\right)=g\left(\mathbf{Ta}\right),\forall \mathbf{a}\in\mathcal{V}$，由$g\in\mathcal{W}^*$到$f\in\mathcal{V}^*$的这一对应规则定义了一个由$\mathcal{W}^*$到$\mathcal{V}^*$的映射$\mathbf{T}^\intercal:\mathcal{W}^*\rightarrow\mathcal{V}^*$。令$\left(\mathbf{T}^\intercal g\right)\left(\cdot\right)=g\left(\mathbf{T}\cdot\right)$，易验对任一$\mathbf{T}\in\mathcal{L}\left(\mathcal{V},\mathcal{W}\right)$有且只有一个满足上述性质的$\mathbf{T}^\intercal\in\mathcal{L}\left(\mathcal{W}^*,\mathcal{V}^*\right)$，且$\mathbf{T}^intercal$也是线性变换。我们称$\mathbf{T}^\intercal$为$\mathbf{T}$的转置（transpose）。
+\end{definition}
+
+以上定义中隐含默认了两件事：1）每个线性变换$\mathbf{T}\in\mathcal{L}\left(\mathcal{V},\mathcal{W}\right)$有且只有一个符合定义的映射$\mathcal{T}^\intercal$；2）$\mathbf{T}^\intercal$也是一个线性变换。1）是比较显然的：假设另有一映射$\mathbf{U}:\mathcal{W}^*\rightarrow\mathcal{V}^*$满足$\left(\mathbf{U}g\right)\mathbf{a}=g\mathbf{Ua}\forall\mathbf{a}\in\mathcal{V}$，则有$\mathbf{U}g=\mathbf{T}^\intercal g\Rightarrow\mathbf{U}\mathbf{T}^\intercal$。关于2），我们可以按照线性变换的定义去验证映射$\mathcal{T}^\intercal$作用于一个线性组合的结果：对任意$g_1,g_2\in\mathcal{W}^*,\gamma\in\mathbb{F}$，由$\left[\mathbf{T}^\intercal\left(\gamma g_1+g_2\right)\right]\left(\mathbf{a}\right)=\left(\gamma g_1+g_2\right)\left(\mathbf{Ta}\right)=\gamma g_1\left(\mathbf{Ta}\right)+g_2\left(\mathbf{Ta}\right)=\gamma\left(\mathbf{T}^\intercal g_1\right)\left(\mathbf{a}\right)+\left(\mathbf{T}^\intercal g_2\right)\left(\mathbf{a}\right)\forall\mathbf{a}\in\mathcal{V}$可知$\mathbf{T}^\intercal\left(\gamma g_1+g_2\right)=\gamma\left(\mathbf{T}^\intercal g_1\right)+\mathbf{T}^\intercal g_2$，故$\mathbf{T}^\intercal$是线性变换。
+
+下面的定理告诉我们，一个线性变换$\mathbf{T}$与其转置$\mathbf{T}^\intercal$在给定基和对偶基下的矩阵之间的关系就是矩阵转置。
+
+\begin{theorem}\label{thm:II.4.16}
+设$\mathcal{V},\mathcal{W}$分别是数域$\mathbb{F}$上的$n,m$维有限维向量空间，给定以下基及其对偶基：$B=\left\{\mathbf{a}_i\right\}\subset\mathcal{V},B^*=\left\{f_i\right\}\subset\mathcal{V}^*,B^\prime=\left\{\mathbf{b}_i\right\}\subset\mathcal{W},B^{\prime *}=\left\{g_i\right\}\subset\mathcal{W}^*$，且令$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$是线性变换，$A$是$\mathbf{T}$在$B,B^\prime$下的坐标矩阵，$B$是$\mathbf{T}^\intercal$在$B^*,B^{\prime *}$下的坐标矩阵，则$B_{ij}=A_{ji},i=1,\cdots,m,j=1,\cdots,n$。
+\end{theorem}
+\begin{proof}
+由\S\ref{sec:II.4.2}的知识，
+\begin{align*}
+\mathbf{Ta}_i&=\sum_{j=1}^mA_{ji}\mathbf{b}_j,i=1,\cdots,n\\
+\mathbf{T}^\intercal g_i&=\sum_{j=1}^nB_{ji}f_j,i=1,\cdots,m
+\end{align*}
+由线性变换转置的定义和对偶基的定义，
+\begin{align*}
+    \left(\mathbf{T}^\intercal g_i\right)\left(\mathbf{a}_j\right)&=g_i\left(\mathbf{Ta}_j\right)\\
+    &=g_i\left(\sum_{k=1}^m A_{kj}\mathbf{b}_k\right)\\
+    &=\sum_{k=1}^m A_{kj} g_i\left(\mathbf{b}_k\right)\\
+    &=\sum_{k=1}^mA_{kj}\delta_{ik}\\
+    &=A_{ij},i=1,\cdots,m,j=1,\cdots,n
+\end{align*}
+另一方面，由于$\mathbf{T}^\intercal g_i\in\mathcal{V}^*$故可用$B^*$表出，再利用关系$f=\sum_{i=1}^nf\left(\mathbf{a}_i\right)f_i$，有
+\begin{align*}
+    \mathbf{T}^\intercal g_i&=\sum_{j=1}^n\left(\mathbf{T}^\intercal g_i\right)\left(\mathbf{a}_j\right) f_j\\
+    &=\sum_{j=1}^n A_{ij}f_j,i=1,\cdots,m
+\end{align*}
+与之前的结果比较可得$A_{ij}=B_{ji},i=1,\cdots,m,j=1,\cdots,n$。
+\end{proof}
+\end{document}
+

@@ -1,156 +1,180 @@
 \documentclass[main.tex]{subfiles}
-% 向量函数及其图像
+% 全微分与全导数
 \begin{document}
-在向量函数微积分部分的讨论，默认总是选择标准基作为$\mathbb{R}^n$的基，即，向量$\mathbf{f}=\left(f_1,\cdots,f_n\right)\in\mathbb{R}^n$的坐标就是$f_1,\cdots,f_n$，其矩阵是$\left(f_1,\cdots,f_n\right)^\intercal$。因此，是否把一个向量写成“列向量”（即$n\times 1$矩阵）的问题变得平凡。当我们想强调矩阵运算法则时，我们会注意明确“行、列向量”。我们会以专门的章节讨论选择非标准基乃至非规范正交基的情况。
+回顾多元标量函数的全微分的定义\cite[p.~19]{华工高数2009下}的思想，推广至向量函数，需先引入仿射函数，作为一元标量线性函数$y=kx+b$的推广。
 
-\begin{definition}[向量函数]
-从$\mathbb{R}^n$到$\mathbb{R}^m$的映射$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$是一个向量函数。其变量是一个$n$维向量空间的向量$\mathbf{r}\in\mathbb{R}^n$，$\mathbf{r}=\left(r_1,\cdots,r_n\right)$；其像（函数值）是一个$m$维向量空间的向量$\mathbf{f}\in\mathbb{R}^m$，$\mathbf{f}=\left(f_1,\cdots,f_m\right)$。在标准基下，$f_j:\mathbf{R}_n\rightarrow\mathbf{R},j=1,\cdots,m$称为$\mathbf{f}$的坐标函数。
+\begin{definition}[仿射函数]
+函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m,\mathbf{f}\left(\mathbf{x}\right)=\mathbf{Ax}+\mathbf{y}_0,\mathbf{x}\in\mathbb{R}^n,\mathbf{y}_0\in\mathbb{R}^m$称为仿射函数，其中$\mathbf{A}:\mathbb{R}^n\rightarrow\mathbb{R}^m$是一个线性变换（线性函数），$\mathbf{y}_0$是一个常向量。
 \end{definition}
 
-严格而言，函数的记法$\mathbf{f}:\mathbb{R}^n\supset D\rightarrow\mathbb{R}^m$表示函数$f$的定义域$\mathrm{dom}f=D$，而不是整个$\mathbf{R}^n$。这一记法中箭头右侧则一向仅指陪域。但是在后面的讨论当中，当定义域问题不重要时，我们也常粗略记为$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$。
+注意，一般地仿射函数不是线性变换。
 
-\begin{example}
-函数$\mathbf{f}:\mathbb{R}^3\rightarrow\mathbb{R}^2$，
-\[\begin{split}\mathbf{f}\left(\mathbf{r}\right)=\left(\begin{array}{c}r_1^2+r_2^2+r_3^2\\r_1+r_2+r_3\end{array}\right)=\left(\begin{array}{c}f_1\\f_2\end{array}\right),\\f_1\leq0,f_2\in\mathbb{R}\end{split}\]
-其中$\mathbf{r}=\left(r_1,r_2,r_3\right)^\intercal\in\mathbb{R}^3$，$\mathbf{f}=\left(f_1,f_2\right)^\intercal\in\mathbb{R}^2$。
-
-以往我们更习惯把上述函数写成：
+\begin{definition}[全微分与全导数]
+设函数$\mathbf{f}:\mathbb{R}^n\supset D\rightarrow\mathbb{R}^m$，若对$\mathbf{x}_0\in D=\mathrm{dom}\mathbf{f}$，存在一个线性变换$\mathbf{L}:\mathbb{R}^n\rightarrow\mathbb{R}^m$使得
 \[
-\left\{\begin{array}{l}
-    P\left(x,y,z\right)=x^2+y^2+z^2\\
-    Q\left(x,y,z\right)=x+y+z
-\end{array}
-\right.
+\lim_{\mathbf{x}\to\mathbf{x}_0}\frac{\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)}{\left\|\mathbf{x}-\mathbf{x}_0\right\|}=\mathbf{0}
 \]
-\end{example}
-
-\begin{example}
-函数$\mathbf{f}:\mathbb{R}^3\rightarrow\mathbb{R}^2$，
-\[\mathbf{f}\left(\mathbf{r}\right)=\left(\begin{array}{c}3r_1+4r_2\\3r_2+5r_3\end{array}\right)=\left(\begin{array}{ccc}3&4&0\\0&3&5\end{array}\right)\left(\begin{array}{c}r_1\\r_2\\r_3\end{array}\right)\]
-是一个线性变换，又称线性函数。线性函数也可以按线性代数的惯例记为：$\mathbf{fr}$。
-\end{example}
-
-\begin{definition}[隐函数]
-考虑函数$\mathbf{F}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^m$，若$\mathbb{R}^{n+m}$中的元素$\left(x_1,\cdots,x_n,y_1,\cdots,y_m\right)^\intercal$写成$\left(\mathbf{x},\mathbf{y}\right)^\intercal$，其中$\mathbf{x}=\left(x_1,\cdots,x_n\right)^\intercal$，$\mathbf{y}=\left(y_1,\cdots,y_m\right)^\intercal$，则$\mathbf{F}\left(\mathbf{r}\right),\mathbf{r}\in\mathbb{R}^{n+m}$也可写成$\mathbf{F}\left(\mathbf{x},\mathbf{y}\right)$。若函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$满足方程$\mathbf{F}\left(\mathbf{x},\mathbf{y}\right)=\mathbf{0},\forall\mathbf{x}\in\mathbb{R}^n$则称这一方程隐含地定义了函数$\mathbf{f}$。
+则称$\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)$是$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{X}_0$处的全微分。函数$\mathbf{f}\left(x\right)$在$\mathbf{x}=\mathbf{x}_0$处可微分。线性变换$\mathbf{L}$称为函数$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$处的（全）导数，记为
+\[\mathbf{L}\left(\mathbf{x}_0\right)=\equiv\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}
+\]
 \end{definition}
 
-\begin{example}
-设函数$F\left(x,y\right)=x^2+y^2-1=0$，则“$F\left(x,f\left(x\right)\right)=x^2+\left(f\left(x\right)\right)^2-1=0\forall x\in\mathrm{dom}f$”隐含地定义了以下任一函数：
+如果函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在其定义域上都可微，则其导函数$\mathbf{L}:\mathbf{R}^n\rightarrow\mathcal{L}\left(\mathbf{R}^n,\mathbf{R}^m\right)$是一个函数值为线性变换的函数$\mathbf{L}\left(\mathbf{x}\right)=\left.\frac{d\mathbf{f}\left(\mathbf{x}^\prime\right)}{d\mathbf{x}^\prime}\right|_{\mathbf{x}^\prime=\mathbf{x}}$。$\mathbf{f}$在点$\mathbf{x}_0$处的导数是$\mathbf{L}\left(\mathbf{x}_0\right)$，这里的括号表示函数的自变量。
+
+我们用以往熟悉的语言复述全导数的定义：如果函数$\mathbf{f}\left(\mathbf{x}\right)$在点$\mathbf{x}_0$处的全增量$\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)$可以写成$\mathbf{x}-\mathbf{x}_0$的一个线性主部$\mathbf{L}\left(\mathbf{x}_0\right)\left(\mathbf{x}-\mathbf{x}_0\right)$和一个高阶无穷小$\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}\left(\mathbf{x}-\mathbf{x}_0\right)$（其中函数$\mathbf{z}\left(\mathbf{x}\right)\to\mathbf{0}$当$\mathbf{x}\to\mathbf{0}$）的和，则称这个线性主部$\mathbf{L}\left(\mathbf{x}_0\right)\left(\mathbf{x}-\mathbf{x}_0\right)$是函数在$\mathbf{x}=\mathbf{x}_0$处的全微分。如果函数$\mathbf{f}\left(x\right)$在$\mathbf{x}=\mathbf{x}_0$处可微分，则在$\mathbf{x}_0$附近$\mathbf{f}\left(\mathbf{x}\right)$可由$\mathbf{L}\left(\mathbf{x}_0\right)\left(\mathbf{x}-\mathbf{x}_0\right)$近似，即$\mathbf{f}\left(\mathbf{x}\right)\approx\mathbf{L}\left(\mathbf{x}_0\right)\left(\mathbf{x}-\mathbf{x}_0\right)$。
+
+全微分的思想是，如果函数在某点处可微分，则在该点邻近函数可近似为一个仿射函数。给定一个函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$，若$\mathbf{x}_0\in\mathrm{dom}\mathbf{f}$。如果函数在$\mathbf{x}=\mathbf{x}_0$处恰好等于如下仿射函数：
+\[
+\mathbf{f}\left(\mathbf{x}_0\right)=\mathbf{Lx}_0+\mathbf{a}_0\equiv\mathbf{a}\left(\mathbf{x}_0\right)
+\]
+其中仿射函数$\mathbf{a}:\mathbb{R}^n\rightarrow\mathbb{R}^m,\mathbf{a}\left(\mathbf{x}\right)=\mathbf{Lx}+\mathbf{a}_0$，则$\mathbf{a}_0$可用$\mathbf{f}\left(\mathbf{x}_0\right)$表示，使得函数$\mathbf{a}\left(\mathbf{x}\right)$变为：
 \begin{align*}
-    f_1\left(x\right)&=\sqrt{1-x^2},-1\leq x\leq 1\\
-    f_2\left(x\right)&=-\sqrt{1-x^2},-1\leq x\leq 1\\
-    f_3\left(x\right)&=\left\{\begin{array}{ll}
-    \sqrt{1-x^2},&-\frac{1}{2}\leq x\leq 0\\
-    -\sqrt{1-x^2},&0\leq x\leq 1
-    \end{array}\right.
+\mathbf{a}\left(\mathbf{x}\right)&=\mathbf{Lx}+\mathbf{a}_0\\
+&=\mathbf{Lx}+\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{Lx}_0\\
+&=\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)+\mathbf{f}\left(\mathbf{x}_0\right)
 \end{align*}
-\end{example}
+于是，我们就用$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$处的值构造了一个仿射函数。按照全微分的思想，我们进一步希望这一仿射函数$\mathbf{a}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$附近能近似代替原函数$\mathbf{f}\left(\mathbf{x}\right)$，即：
+\[\lim_{\mathbf{x}\to\mathbf{x}_0}\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{a}\left(\mathbf{x}\right)\right)=\mathbf{0}\]
+使用$\mathbf{f}\left(\mathbf{x}_0\right)$来表示$\mathbf{a}\left(\mathbf{x}\right)$，上式$\Leftrightarrow$
+\[\lim_{\mathbf{x}\to\mathbf{x}_0}\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)=\mathbf{0}
+\]
+其中，由定理\ref{thm:II.13.4}的推论$\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)=\mathbf{0}$，故上式$\Leftrightarrow$
+\[
+\lim_{\mathbf{x}\to\mathbf{x}_0}\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)=\mathbf{0}
+\]
+即函数$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$处连续。事实上，如果已知$\mathbf{L}$就是$\mathbf{f}$的导数，则以下定理已经得证。
 
-\begin{definition}[函数的图像]\footnote{请复习高等数学相关内容\cite[\S 6.4~6.7]{华工高数2009上}。}
-函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的图像是指所有有序对$\left(\mathbf{r},\mathbf{f}\left(\mathbf{r}\right)\right)$的集合。
+\begin{theorem}
+如果函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在点$\mathbf{x}_0\in\mathrm{dom}\mathbf{f}$处可微分，则它在该点处连续。
+\end{theorem}
+
+以上讨论明确了两个互为充要条件的命题：函数$\mathbf{f}$在$\mathbf{x}_0$处连续$\Leftrightarrow$函数$\mathbf{f}$在$\mathbf{x}_0$处等于某仿射函数。但是我们还未讨论，这一仿射函数$\mathbf{a}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$附近能近似代替原函数$\mathbf{f}\left(\mathbf{x}\right)$的条件，这需要再要求$\mathbf{f}\left(\mathbf{x}\right)-\mathbf{a}\left(\mathbf{x}\right)$趋于$\mathbf{0}$的速度快于$\mathbf{x}$趋于$\mathbf{x}_0$的速度（高阶无穷小的意义），即
+\begin{align*}
+&\lim_{\mathbf{x}\to\mathbf{x}_0}\frac{\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\-\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)}{\left\|\mathbf{x}-\mathbf{x}_0\right\|}=\mathbf{0}\\
+\Leftrightarrow&\mathbf{f}\left(\mathbf{x}\right)=\mathbf{f}\left(\mathbf{x}_0\right)+\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}\left(\mathbf{x}-\mathbf{x}_0\right)
+\end{align*}
+其中函数$\mathbf{z}\left(\mathbf{x}\right)$具有性质$\lim_{\mathbf{x}\to\mathbf{0}}\mathbf{z}\left(\mathbf{x}\right)=\mathbf{0}$。注意到上式就是全微分定义式。要使这一仿射函数$\mathbf{a}\left(\mathbf{x}\right)$满足要求，需且只需满足此要求的线性变换$\mathbf{L}$存在。因此，一个函数在某点可微分与其在某点存在导数是一回事，即“可导必可微、可微必可导”。
+
+\begin{definition}[雅可比矩阵]
+设函数$\mathbf{f}:\mathbb{R}^n\supset D\rightarrow\mathbb{R}^m$在$\mathbf{x}_0\in D$处可微分，则其全导数在标准基下的矩阵表示称为该函数的雅可比矩阵。
 \end{definition}
 
-图像的数学概念是一个集合，我们把图像画在纸上的方式是一种惯例。具体地，由定义，函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的图像是由所有满足
-\[
-\left\{\begin{array}{c}y_1=f_1\left(r_1,\cdots,r_n\right)\\\vdots\\y_m=f_m\left(r_1,\cdots,r_n\right)\end{array}\right.
+我们来看函数$\mathbf{f}\left(x\right)$的雅可比矩阵具体等于什么。若$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$处连续，则总存在足够小的正实数$t$使得$\mathbf{x}_j=\mathbf{x}_0+t\mathbf{\hat{e}}_j\in D,j=1,\cdots,n$，其中$\left\{\mathbf{\hat{e}}_j\right\}$是$\mathbb{R}^n$的标准基。若$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$处还可微分，则存在全导数$\mathbf{L}\left(\mathbf{x}_0\right)$使得极限
+\[\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}_j\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\left(\mathbf{x}_0\right)\left(t\mathbf{\hat{e}}_j\right)}{t}=\mathbf{0},j=1,\cdots,n
 \]
-的点$\left(x_1,\cdots,x_n,y_1,\cdots,y_m\right)$的集合（是$\mathbb{R}^{n+m}$的子集）。其中$f_1,\cdots,f_m$是$\mathbf{f}$的坐标函数。
-
-我们只懂在纸上画出维数小于等于3的图形，即图上的任一点的坐标最多为3个实数。因此我们懂得在纸上画出的函数图像仅包括$n+m\leq3$的情况。
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/II.10.1.eps}
-    \caption{$y=x^2-2$}
-    \label{fig:II.10.1}
-\end{figure}
-
-\begin{example}
-函数$y=x^2-2$的图象是所有有序对$\left(x,y\right)$。同时，由于$\left(x,y\right)\in\mathbb{R}^2$，故这是平面上的图形。具体地，它是如图\ref{fig:II.10.1}所示的一条二次曲线。
-\end{example}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/II.10.2.eps}
-    \caption{$f\left(\mathbf{r}\right)=\left\|\mathbf{r}\right\|^2$}
-    \label{fig:II.10.2}
-\end{figure}
-
-\begin{example}\label{exp:II.12.5}
-$f:\mathbb{R}^2\rightarrow\mathbb{R},f\left(\mathbf{r}\right)=\left\|\mathbf{r}\right\|^2$的图像是有序3元组$\left(r_1,r_2,f\right)$的集合，是3维空间的一个如图\ref{fig:II.10.2}所示的曲面。
-\end{example}
-
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/II.10.3.eps}
-    \caption{$\mathbf{f}\left(t\right)=\left(\cos t,\sin t\right)^\intercal$}
-    \label{fig:II.10.3}
-\end{figure}
-
-\begin{example}\label{exp:II.12.6}
-    函数$\mathbf{f}:\mathbb{R}\rightarrow\mathbb{R}^2$，
+即
 \[
-\mathbf{f}\left(t\right)=\left(\begin{array}{c}\cos t\\\sin t\end{array}\right),t\in\mathbb{R}
+\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}_j\right)-\mathbf{f}\left(\mathbf{x}_0\right)}{t}=\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{\hat{e}}_j,j=1,\cdots,n
 \]
-的图像是$\mathbb{R}^3$的子集。如何画出来？首先由函数定义式有$\left\|\mathbf{f}\left(t\right)\right\|=\sqrt{\cos^2t+\sin^2t}=1$，故$\mathbf{f}$的长度是恒定值。$t$是向量$\mathbf{f}$与$\mathbf{\hat{e}}_1$轴夹角的弧度。当$t$在$\mathbb{R}$内取不同值时，$\mathbf{f}$就在$\mathbf{\hat{e}}_1$-$\mathbf{\hat{e}}_2$平面上绕原点划出单位圆。但是，这个单位圆不是$\mathbf{f}$的图像。$\mathbf{f}$的图像是3元组$\left(t,\cos t,\sin t\right)$的集合，$\mathbb{R}^3$的子集，即如图\ref{fig:II.10.3}所示的螺线。
-\end{example}
+若$\mathbf{x}_0=\left(x_{01},\cdots,x_{0n}\right)^\intercal$，则$\mathbf{x}_i=\left(\cdots,x_{0i}+t,\cdots\right),i=1,\cdots,n$，故上式左边的极限就是偏导数$\frac{\partial\mathbf{f}}{\partial x_0i}$。而上式右边是线性变换$\mathbf{L}\left(\mathbf{x}_0\right)$在标准基下的矩阵的第$j$列的列向量。所以上式等价于如下等式
+\begin{align*}
+    \left(\mathbf{L}\left(\mathbf{x}_0\right)\right)&=\left(\left(\frac{\partial\mathbf{f}}{\partial x_1}\right),\cdots,\left(\frac{\partial\mathbf{f}}{\partial x_n}\right)\right)^\intercal\\
+    &=\left(\begin{array}{ccc}
+    \frac{\partial f_1}{\partial x_1}&\cdots&\frac{\partial f_1}{\partial x_n}\\
+    \vdots&\ddots&\vdots\\
+    \frac{\partial f_m}{\partial x_1}&\cdots&\frac{\partial f_m}{\partial x_n}
+    \end{array}\right)
+\end{align*}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.5\textwidth]{images/II.10.4.eps}
-    \caption{函数$\mathbf{f}\left(\mathbf{r}\right)=\left(f_1,f_2,f_3\right)\left(r_1\cos r_2, r_1\sin r_2,r_2\right)^\intercal,0\leq r_1\leq 4,0\leq r2\leq 2\pi$}
-    \label{fig:II.10.4}
-\end{figure}
+由于在给定基下，一个线性变换唯一对应一个矩阵，故只要函数$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$的全导数$\mathbf{L}\left(\mathbf{x}_0\right)$存在，则它是唯一的。那么，$\mathbf{L}\left(\mathbf{x}_0\right)$到底何时存在呢？
 
+\begin{theorem}
+若函数$\mathbf{f}:\mathbb{R}^n\supset D\rightarrow\mathbb{R}^m$的定义域$D$是开集，偏微分$\frac{\partial f_i}{\partial x_j},i=1,\cdots,n,j=1,\cdots,m$在$D$内都连续，则$\mathbf{f}$在$D$内均可微分。
+\end{theorem}
+\begin{proof}
+设$\mathbf{x}=\left(b_1,\cdots,b_n\right)^\intercal,\mathbf{x}_0=\left(a_1,\cdots,a_n\right)^\intercal\in D$，令$\mathbf{y}_k=\left(b_1,\cdots,b_k,a_{k+1},\cdots,a_n\right),k=0,\cdots,n$，则有$\mathbf{y}_0=\mathbf{x}_0,\mathbf{y}_n=\mathbf{x}$，且$\left\|\mathbf{y}_k-\mathbf{y}_{k-1}\right\|=\left|b_k-a_k\right|,k=1,\cdots,n$。故有$\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)=\sum_{k=1}^n\left(\mathbf{f}\left(\mathbf{y}_k\right)-\mathbf{f}\left(\mathbf{y}_{k-1}\right)\right),k=1,\cdots,n$。考察上式等号右边的求和项：
+\[\mathbf{f}\left(\mathbf{y}_k\right)-\mathbf{f}\left(\mathbf{y}_{k-1}\right)=\sum_{j=1}^m\left(f_j\left(\mathbf{y}_k\right)-f_j\left(\mathbf{y}_{k-1}\right)\right)\mathbf{\hat{e}}_j
+\]
+其中$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathbb{R}^n$的标准基。注意到点$\mathbf{y}_k$与$\mathbf{y}_{k-1}$之间的连线是长度为$\left|b_k-a_k\right|$、方向与第$k$个坐标轴$\mathbf{\hat{e}}_k$平行的有向线段。
 
-\begin{example}
-函数$f:\mathbb{R}^2\rightarrow\mathbb{R}^3,$
-\[
-\mathbf{f}\left(\mathbf{r}\right)=\left(\begin{array}{c}f_1\\f_2\\f_3\end{array}\right)=\left(\begin{array}{c}r_1\cos r_2\\r_1\sin r_2\\r_2\end{array}\right),0\leq r_1\leq 4,0\leq r_2\leq 2\pi
+对上式右边的坐标函数应用微分中值定理。由命题条件，坐标函数的偏导数$\frac{\partial f_i}{\partial x_j}$在$D$内都连续，则坐标函数$f_i$本身在$D$内也连续，在$\mathbf{y}_k$与$\mathbf{y}_{k-1}$连线上必存在一点$c_k$使得
+\[\frac{f_i\left(\mathbf{y}_k\right)-f_i\left(\mathbf{y}_{k-1}\right)}{b_k-a_k}=\left.\frac{\partial f_i}{\partial x_k}\right|_{x_k=c_k}\]
+代入上一个求和式得：
+\begin{align*}
+\mathbf{f}\left(\mathbf{y}_k\right)-\mathbf{f}\left(\mathbf{y}_{k-1}\right)&=\sum_{j=1}^m\left.\frac{\partial f_j}{\partial x_k}\right|_{x_k=c_k}\left(b_k-a_k\right)\mathbf{\hat{e}}_j\\
+&=\left(b_k-a_k\right)\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=c_k},k=1,\cdots,n
+\end{align*}
+再代入上一个求和式得：
+\[\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)=\sum_{k=1}^n\left(b_k-a_k\right)\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=c_k}
 \]
 
-$\mathbf{f}$的定义域是2维平面上的一个矩形（图\ref{fig:II.10.4}）。令$r_1=a$，$a$是常数。则有
+令线性变换$\mathbf{L}:\mathbb{R}^n\rightarrow \mathbb{R}^m$满足
+\begin{align*}
+\left(\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)\right)&=\left(\left(\left.\frac{\partial \mathbf{f}}{\partial x_1}\right|_{x_1=a_1}\right),\cdots,\left(\left.\frac{\partial \mathbf{f}}{\partial x_1}\right|_{x_n=a_n}\right)\right)\left(b_1-a_1,\cdots,b_n-a_n\right)^\intercal\\
+&=\sum_{k=1}^n\left(x_k-a_k\right)\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=a_k}
+\end{align*}
+则有
+\begin{align*}
+    \left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)\right\|&=\left\|\sum_{k=1}^n\left(\left.\frac{\partial \mathbf{f}}{\partial x_k}\right)|_{x_k=c_k}-\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=a_k}\right)\left(x_k-a_k\right)\right\|\\
+    &\leq\sum_{k=1}^n\left\|\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=c_k}-\left.\frac{\partial\mathbf{f}}{\partial x_k}\right|_{x_k=a_k}\right\|\left|x_k-a_k\right|\\
+    &\leq\sum_{k=1}^n\left\|\left.\frac{\partial\mathbf{f}}{\partial x_k}\right|_{x_k=c_k}-\left.\frac{\partial\mathbf{f}}{\partial x_k}\right|_{x_k=a_k}\right\|\left\|\mathbf{x}-\mathbf{x}_0\right\|
+\end{align*}
+由于上述的不等式总成立，则有当$\mathbf{x}\to\mathbf{x}_0$时$c_k\to a_k$。又由命题条件$\frac{\partial f_i}{\partial x_j}$在$D$同都连续，即极限
 \[
-\mathbf{f}=\left(\begin{array}{c}
-    a\cos r_2\\
-    a\sin r_2\\
-    r_2
-    \end{array}\right),0\leq r_2\leq 2\pi
+\lim_{x_j\to a_k}\frac{\partial f_j}{\partial x_j}=\left.\frac{\partial f_i}{\partial x_j}\right|_{x_j=a_k},j=1,\cdots,n
 \]
-且$f_1^2+f_2^2=a^2$。把$r_2$作为$f_3$轴，则有序3元组$\left(a\cos r_2,a\sin r_2,r_2\right)$是一个螺线，其在$f_1-f_2$面上的投影是圆心在原点、半径为$a$的圆。令$r_2=\theta$，$\theta$是常数，则有
-\[
-\mathbf{f}=\left(\begin{array}{c}
-    r_1\cos \theta\\
-    r_1\sin \theta\\
-    \theta
-    \end{array}\right),0\leq r_2\leq 2\pi
+都存在，故以下极限等式成立：
+\[\lim_{\mathbf{x}\to\mathbf{x}_0}\frac{\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)}{\left\|\mathbf{x}-\mathbf{x}_0\right\|}=\mathbf{0}
 \]
-且$f_1^2+f_2^2=r_1^2$。在同样的空间坐标上，这是螺线上某点到$z$轴的线段。随着$a$在$\left[0,4\right]$上变化、$\theta$在$\left[0,2\pi\right]$上变化，以原函数$\mathbf{f}\left(\mathbf{r}\right)$的坐标函数为坐标的点集是如图\ref{fig:II.10.4}所示的螺带曲面。但按定义它不是函数$\mathbf{f}$的图像。我们说这个三维曲面是由一个参数方程$\mathbf{f}=\mathbf{f}\left(\mathbf{f}\right)$定义的曲面，它的参数$\mathbf{r}\in\mathbb{R}^2$域就是如图\ref{fig:II.10.4}所示的矩形区域，称为参数域。我们所画出来的3维曲面只是函数$\mathbf{f}$的值域。
-\end{example}
+由全微分的定义，命题得证，且线性变换$\mathbf{L}$就是函数的全导数。
+\end{proof}
 
-\begin{definition}[函数的水平集]\footnote{在高等数学课里，我们学过水平集的概念\cite[\S7.1,p~1] {华工高数2009下}。}
-函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的水平集$S=\left\{\mathbf{r}|\mathbf{f}\left(\mathbf{r}\right)=\mathbf{a}\right\},\mathbf{a}\in\mathbb{R}^m$。
+现在我们引入“线性变换的范”的概念。由定理\ref{thm:II.13.4}，对任一线性变换$\mathbf{L}$皆存在一个正实数$k>0$满足$\left\|\mathbf{Lx}\right\|\leq k\left\|\mathbf{x}\right\|,\forall\mathbf{x}\in\mathbb{R}^n$。我们定义——
+
+\begin{definition}[线性变换的范]
+设$\mathcal{V},\mathcal{W}$是数域$\mathbb{F}$上的赋范向量空间，线性变换$\mathbf{L}:\mathcal{V}\rightarrow\mathbf{W}$的范$\left\|\mathbf{L}\right\|$为满足$\left\|\mathbf{Lx}\right\|\leq k\left\|\mathbf{x}\right\|,\forall\mathbf{x}\in\mathbb{R}^n$的正实数$k$的最大下界（infimum），即
+\[\left\|\mathbf{L}\right\|\equiv\mathrm{inf}\left\{k|k>0,\left\|\mathbf{Lx}\right\|\leq k\left\|\mathbf{x}\right\|\forall\mathbf{x}\right\}\]
 \end{definition}
 
-\begin{figure}[h]
-    \centering
-    \includegraphics[width=0.25\textwidth]{images/II.10.5.eps}
-    \caption{函数$f\left(\mathbf{r}\right)=r_1r_2+r_2r_3+r_3r_1$}
-    \label{fig:II.10.5}
-\end{figure}
+这一最大下界的存在性和唯一性是显然的。我们无需知道它具体数值。可验证，以上定义的范符合范的一般要求。值得说明的是，线性变换的范的定义依赖它作用下的赋范空间的范的定义。然而，不同的范的具体定义均要满足范的一般要求，故在此意义上范的不同定义间具有等价性（见定理\ref{thm:II.13.1}）。由此定义我们可立即获得性质：$\left\|\mathbf{Lx}\right\|\leq\left\|\mathbf{L}\right\|\left\|\mathbf{x}\right\|$。
 
-\begin{example}\label{exp:II.12.8}
-设函数$f:\mathbb{R}^3\rightarrow\mathbb{R},f\left(\mathbf{r}\right)=r_1r_2+r_2r_3+r_3r_1$及其一个水平集$S=\left\{\mathbf{r}|f\left(\mathbf{r}\right)=1\right\}$。以$S$的元素$\left(r_1,r_2,r_3\right)$为坐标的点集构成的三维图形是怎样的？设$r_3=0$得到方程$r_1r_2=1$，这定义了$\mathbf{\hat{e}}_1$-$\mathbf{\hat{e}}_2$平面上的一条双曲线，这条双曲线是$S$的图像与$\mathbf{\hat{e}}_1$-$\mathbf{\hat{e}}_2$平面的截线。类似地，$S$与$\mathbf{\hat{e}}_2$-$\mathbf{\hat{e}}_3$、$\mathbf{\hat{e}}_1$-$\mathbf{\hat{e}}_3$平面的截线也是类似的双曲线。更一般地，$S$是一个由一系列双曲线构成的曲面（如图\ref{fig:II.10.5}所示）。但是，按定义，这不是函
-数$\mathbf{f}$的图像。
-\end{example}
+至此，我们可以用“$\epsilon-\delta$语言”定义“函数连续可微即其导函数连续”——
 
-总结以上例子，我们给一个函数画出来的图有以下三种情况：
+\begin{definition}[连续可微]
+设$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$是可微函数，记其导函数为$\mathbf{L}:\mathbb{R}^n\rightarrow\mathcal{L}\left(\mathbb{R}^n,\mathbb{R}^m\right),$
+\[
+\mathbf{L}\left(\mathbf{x}\right)\equiv\left.\frac{d\mathbf{f}\left(\mathbf{x}^\prime\right)}{d\mathbf{x}^\prime}\right|_{\mathbf{x^\prime}=\mathbf{x}}
+\]
+如果对任一正实数$\epsilon>0$均存在正实数$\delta>0$使得只要$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$就有$\left\|\mathbf{L}\left(\mathbf{x}\right)-\mathbf{L}\left(\mathbf{x}_0\right)\right\|<\epsilon$，即导函数$\mathbf{L}\left(\mathbf{x}\right)$在$\mathbf{x}_0$处连续，则称函数$\mathbf{f}$在$\mathbf{x}_0$处连续可微。
+\end{definition}
 
-\begin{enumerate}
-\item 如果$\mathbb{R}^{n+m}$的子集$S$是函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的图像，则称$S$是由显函数定义的图像。
-\item 如果$\mathbb{R}^{m}$的子集$S$是函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的值域，则$S$是由参数方程定义的图像。
-\item 如果$S$是函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的一个水平集，则$S$是由隐函数定义的图像。
-\end{enumerate}
+\begin{theorem}
+若函数$\mathbf{f}:\mathbb{R}^n\supset D\rightarrow\mathbb{R}^m$的定义域$D$是开集，偏微分$\frac{\partial f_i}{\partial x_j},i=1,\cdots,n,j=1,\cdots,m$在$D$内都连续，则称函数$\mathbf{f}$在$D$内连续可微。
+\end{theorem}
 
-注意：只有第1种情况中$S$才是函数$\mathbf{f}$的图像，但我们经常通过第2、3种情况中的$S$来认识函数$\mathbf{f}$。
+若一个函数在一点处连续，且在该点的邻域内都可微分，该函数在该邻域内的导函数未必都连续。故上一定理给出的是函数连续的充份非必要条件。
+
+刚才在介绍雅可比矩阵的时候，我们利用全微分的性质考虑过以下极限：
+\[
+\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}_i\right)-\mathbf{f}\left(\mathbf{x}_0\right)}{t},i=1,\cdots,n\]
+并知道它就是$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}_0=\left(x_{01},\cdots,x_{0n}\right)^\intercal$处对$x_{0i}$的偏导数，因为上式$\Leftrightarrow$
+\[
+\lim_{t\rightarrow 0}\frac{\mathbf{f}\left(\mathbf{x}_0+t\mathbf{\hat{e}}_i\right)-\mathbf{f}\left(\mathbf{x}_0\right)}{t},i=1,\cdots,n
+\]
+现在我们把$\mathbf{\hat{e}}_j$改为任意向量$y$，引入方向导数。
+
+\begin{definition}[对向量的导数、方向导数]
+函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$c对向量$\mathbf{y}\in\mathbb{R}^n$的导数是
+\[\frac{\partial\mathbf{f}\left(\mathbf{x}\right)}{\partial\mathbf{y}}=\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(\mathbf{x}\right)}{t}\]
+其中作为导函数的$\frac{\partial \mathbf{f}\left(\mathbf{x}\right)}{\partial\mathbf{y}}$的定义域是原函数$\mathbf{f}$的定义域的使该导数存在的子集。特别地，函数对单位向量$\mathbf{u},\left\|\mathbf{u}\right\|=1$的导数称为方向导数。
+\end{definition}
+
+以下定理使得函数对任意向量的导数可用该函数的全导数来计算。
+
+\begin{theorem}\label{thm:II.14.4}
+设函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在$\mathbf{x}\in\mathbb{R}^n$处可微，则
+\[\frac{\partial\mathbf{f}\left(\mathbf{x}\right)}{\partial\mathbf{y}}=\frac{d\mathbf{f}\left(x\right)}{d\mathbf{x}}\mathbf{y},\forall\mathbf{y}\in\mathbb{R}^n\]
+\end{theorem}
+\begin{proof}
+对$\mathbf{y}=\mathbf{0}$显然成立。若$\mathbf{y}\neq\mathbf{0}$，由全微分的近似意义，由自变量的增量$t\mathbf{y}$造成的函数增量$\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(\mathbf{x}\right)$满足
+\begin{align*}
+\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(\mathbf{x}\right)-\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\left(t\mathbf{y}\right)}{\left\|t\mathbf{y}\right\|}&=\mathbf{0}\\
+\Leftrightarrow\lim_{t\to 0}\frac{1}{\left\|\mathbf{y}\right\|}\left\|\frac{\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(x\right)}{t}-\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\mathbf{y}\right\|&=\mathbf{0}\\
+\Leftrightarrow\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(\mathbf{x}\right)}{t}&=\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\mathbf{y}
+\end{align*}
+\end{proof}
+
+我们比较一个函数$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}_0$处的全微分及其在$\mathbf{x}_0$处对某向量$\mathbf{y}$的导数可以发现后者就是令前者中的$\mathbf{x}-\mathbf{x}_0=\mathbf{y}$。在全微分中，我们强调的是对任意$\mathbf{x}$（即点$\mathbf{x}_0$邻近的每处），而在对$\mathbf{y}$的导数中我们强调的是$\mathbf{x}_0$朝某个选定的向量$\mathbf{y}$的某处（$\mathbf{x}=\mathbf{x}_0+\mathbf{y}$）。留意到，函数在某点处对标准基向量的导数就是函数对该点相应分量的偏导数。
+
+方向导数的几何意义是函数在某点处朝相应方向的变化率。定理\ref{thm:II.14.4}表明，拿一个函数在某点处的全导数作用于一个单位向量，就可以得该函数在该点处朝该方向的变化率。这也是函数的全导数的重要几何意义。
 \end{document}
