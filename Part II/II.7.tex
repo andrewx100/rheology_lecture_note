@@ -1,139 +1,74 @@
 \documentclass[main.tex]{subfiles}
-% 线性算符的特征值分解
+% 谱分解
 \begin{document}
-如果张量$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{V}$在$\mathcal{V}$的某组基$B=\left\{\mathbf{a}_i\right\}_{i=1}^n$下的表示矩阵是对角矩阵
-\[
-\left(\mathbf{T}\right)=\left(\begin{array}{ccc}
-\lambda_1&&\\
-&\ddots&\\
-&&\lambda_n
-\end{array}
-\right)\equiv D
-\]
-那么就有$\mathbf{Ta}_i=\lambda_i\mathbf{a}_i,i=1,\cdots,n$。$\mathbf{T}$的值域就能被$\lambda_i\neq 0$对应的那些$\mathbf{a}_i$线性生成，$\mathbf{T}$的核空间则被$\lambda_i=0$对应的那些$\mathbf{a}_i$线性生成。因此，如果我们找得到这样的基$B$和对角矩阵$D$，就能得知关于线性变换$\mathbf{T}$的很多性质。
-
-\begin{definition}[特征值、特征向量、特征空间]
-设$\mathcal{V}$是数域$\mathbb{F}$上的向量空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是作用在$\mathcal{V}$上的线性算符。如果存在$\mathbf{a}\neq\mathbf{0}\in\mathcal{V},c\in\mathbb{F}$满足$\mathbf{Ta}=c\mathbf{a}$，则称$c$是$\mathbf{T}$的一个特征值，$\mathbf{a}$是$c$所对应的一个特征向量。$\mathbf{T}$的所有与$c$对应的特征向量组成$\mathbf{T}$的与$c$对应的特征空间。
-\end{definition}
-
 \begin{theorem}
-设$\mathbf{V}$是数域$\mathbb{F}$上的有限维向量空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是作用在$\mathcal{V}$上的线性算符，以下命题相互等价：
-\begin{itemize}
-    \item $c\in\mathbb{F}$是$\mathbf{T}$的一个特征值
-    \item 线性算符$\left(\mathbf{T}-c\mathbf{I}\right)$不可逆
-    \item $\mathrm{det}\left(\mathbf{T}-c\mathbf{I}\right)=0$
-\end{itemize}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的正规算符（或设$\mathcal{V}$是数域$\mathbb{R}$上的有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的厄米算符），令$c_1,\cdot,c_k$是$\mathbf{T}$的两两不同特征值，$\mathcal{W}_i$是$c_i$对应的特征向量线性性成的子空间，$\mathbf{E}_i$是$\mathcal{V}$到$\mathcal{W}_i$的正交投影算符，则当$i\neq j$时$\mathcal{W}_i$与$\mathcal{W}_j$正交，$\mathcal{V}$是$\mathcal{W}_1,\cdots,\mathcal{W}_k$的直和，且$\mathbf{T}=c_a\mathbf{E}_1+\cdots+c_k\mathbf{E}_k$。
 \end{theorem}
-\begin{proof}
-证明1$\Leftrightarrow$2。设$\mathbf{a}\in\mathcal{V}$满足$\mathbf{Ta}=c\mathbf{a}\Leftrightarrow\left(\mathbf{T}-c\mathbf{I}\right)\mathbf{a}=\mathbf{0}$。满足条件的$\mathbf{a}$至少有$\mathbf{a}=\mathbf{0}$。设所有满足此条件的向量组成的空间是$C$，则$\left(\mathbf{T}-c\mathbf{I}\right)\mathbf{a}=\mathbf{0}\Leftrightarrow C$是$\left(\mathbf{T}-c\mathbf{I}\right)$的核空间。$C$不是只含一个零向量$\mathbf{0}\Leftrightarrow \left(\mathbf{T}-c\mathbf{I}\right)$不是双射$\Leftrightarrow$至少存在一个$\mathbf{a}\neq \mathbf{0}\Leftrightarrow c$是$\mathbf{T}$的一个特征值。
 
-证明2$\Leftrightarrow$3。由定理\cite[p.~51]{周胜林2012线性代数}“$n\times n$矩阵$A$可逆当且仅当$\mathrm{det}A\neq 0$”直接得证。
-\end{proof}
-
-$\mathrm{det}\left(\mathbf{T}-c\mathbf{I}\right)$是关于$c$的多项式，阶数与$\mathcal{V}$的维数相同。因此$\mathbf{T}$的特征值$c$是这个多项式的根。
-
-\begin{definition}
-设$A$是数域$\mathbb{F}$上的$n\times n$矩阵。若$c\in\mathbb{F}$使$\left(A-cI\right)$为不可逆矩阵，则称$c$是矩阵$A$的特征值。多项式$f\left(x\right)\equiv\mathrm{det}\left(xI-A\right)$称矩阵$A$的特征多项式。矩阵$A$的特征值$c$就是$f\left(c\right)=0$的根。
-\end{definition}
-
-\begin{definition}[可对角化线性算符]
-设$\mathbf{T}$是数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$的线性算符，若存在$\mathcal{V}$的一组基的基向量恰好都是$\mathbf{T}$的特征向量，则称$\mathbf{T}$是可对角化的线性算符。
-\end{definition}
-
-\begin{example}
-设矩阵
-\[A=\left(\begin{array}{ccc}3&1&-1\\2&2&-1\\2&2&0\end{array}\right)\]
-则其特征多项式
-\[\left|\begin{array}{ccc}x-3&-1&1\\-2&x-2&1\\-2&-2&x\end{array}\right|=x^3-5x^2+8x-4=\left(x-1\right)\left(x-2\right)^2\]
-可知$A$的特征值是$1,2$。若$A$是$\mathbb{R}^3$上的线性变换$\mathbf{T}$在标准基下的矩阵，由
-\[A-1I=A-I=\left(\begin{array}{ccc}2&1&-1\\2&1&-1\\2&2&-1\end{array}\right)\]
-得$\mathrm{rank}\left(A-I\right)=2$，即$\mathbf{T}-1\mathbf{I}$的零化度为1，由1对应的特征向量组成的子空间是1维的。同理可得由2对应的特征向量组成的子空间也是1维的。易验$\mathbf{a}_1=\left(1,0,2\right),\mathbf{a}_2=\left(1,1,2\right)$分别是1，2对应的特征向量。由于$\left\{\mathbf{a}_1,\mathbf{a}_2\right\}$无法成为$\mathbb{R}^3$的基，故$\mathbf{T}$不可对角化。
-\end{example}
-
-由上例可知，线性算符可对角化的条件，也特征空间的维数有关。
-
-\begin{lemma}
-设$\mathbf{T}$是数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$的线性算符，若$f$是一个多项式，则$f\left(\mathbf{T}\right)\mathbf{a}=f\left(c\right)\mathbf{a}\forall\mathbf{a}\in\mathcal{V}$。
-\end{lemma}
-\begin{proof}
-记$\mathbf{T}$的幂为复合线性变换$\mathbf{T}^n=\mathbf{T}\cdots\mathbf{T}$，则线性变换的多项式$f\left(\mathbf{T}\right)$的意义是明确的，且由线性变换的运算法则易证，略。
-\end{proof}
-
-\begin{lemma}
-设$\mathbf{T}$是数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$的线性算符，$c_1,\cdots,c_k$是$\mathbf{T}$的两两不同特征值。令$\mathcal{W}_i$是$c_i$对应的特征向量的空间，若$\mathcal{W}=\mathcal{W}_1+\cdots+\mathcal{W}_k$，则$\mathrm{dim}\mathcal{W}=\mathrm{dim}\mathcal{W}_1+\cdots+\mathrm{dim}\mathcal{W}_k$。若$B_i$是$\mathcal{W}_i$的一组基，则$B=\bigcup_{i=1}^nB_i$是$\mathcal{W}$的一组基。
-\end{lemma}
-\begin{proof}
-一般地$\mathrm{dim}\mathcal{W}\leq\mathrm{dim}\mathcal{W}_1+\cdots+\mathrm{dim}\mathcal{W}_k$。要证等号成立，就要找到$\mathbf{b}_i\in\mathcal{W}_i,i=1,\cdots,k$使得$\mathbf{b}_1+\cdots+\mathbf{b}_k=\mathbf{0}$。
-
-令$f$是任一多项式。由上面的引理有
+\begin{corollary}
+若
 \[
-f\left(\mathbf{T}\right)\mathbf{0}=f\left(\mathbf{T}\right)\left(\sum_{i=1}^k\mathbf{b}_i\right)=\sum_{i=1}^kf\left(c_i\right)\mathbf{b}_i\]
-我们能够选择多项式$f_1,\cdots,f_k$使得$f_i\left(c_j\right)=\delta_{ij},i,j=1,\cdots,k$，则$\mathbf{0}=f_i\left(\mathbf{T}\right)\mathbf{0}=\sum_{j=1}^k\delta_{ij}\mathbf{b}_j=\mathbf{b}_i,i=1,\cdots,k$，从而找到了满足要求的$\mathbf{b}_i$。
+e_j=\prod_i\left(\frac{x-c_i}{c_j-c_i}\right)\]
+则$\mathbf{E}_j=e_j\left(\mathbf{T}\right),j=1,\cdots,k$。
+\end{corollary}
 
-若$B_i$是$\mathcal{W}_i$的一组基，则$B=\bigcup_{i=1}^kB_i$线性生成$\mathcal{W}$，而且$B$是线性无关向量组，因为任一$\mathbf{B}$中向量的线性变换均可整理成$\sum_{i=1}^k\mathbf{b})i$的形式，其中$\mathbf{b_i}$是$B_i$的基向量的线性组合，且$\sum_{i=1}^k\mathbf{b}_i=\mathbf{0}$。
-\end{proof}
+由于$\mathbf{E}_i$是由$\mathbf{T}$引出的且$\mathbf{E}_1+\cdots+\mathbf{E}_k=\mathbf{I}$，投影算符的集合$\left\{\mathbf{E}_1,\cdots,\mathbf{E}_k\right\}$称为由$\mathcal{T}$定义的单位变换$\mathbf{I}$的谱。
+
+\begin{definition}[谱分解]
+设$\mathcal{V}$是有限维内积空间，$\mathcal{T}$是$\mathcal{V}$上的（可对角化的）正规算符，$c_1,\cdot,c_k$是$\mathbf{T}$的两两不同特征值，$\mathbf{E}_i$是$\mathcal{V}$到$\mathcal{W}_i$的正交投影算符满足\[
+e_j=\prod_i\left(\frac{x-c_i}{c_j-c_i}\right)\]则
+\[\mathbf{T}=\sum_{j=1}^kc_j\mathbf{E}_j\]
+称为$\mathbf{T}$的谱分解。设映射$F:\mathcal{L}\left(\mathcal{V}\right)\rightarrow\mathcal{L}\left(\mathcal{V}\right)$的值域包含$\mathbf{T}$的谱值，则称
+\[F\left(\mathbf{T}\right)=\sum_{j=1}^kf\left(c_j\right)\mathbf{E}_j\]
+为$\mathbf{T}$的函数，其中$f:\mathbb{F}\rightarrow\mathbb{F}$与$F$的代数表达式相同。
+\end{definition}
+
+由于$f$与$F$代数形式相同，下面都不作区分地使用$f$作为线性变换或标量的同形式函数。
 
 \begin{theorem}
-设$\mathbf{T}$是数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$的线性算符，$c_1,\cdots,c_k$是$\mathbf{T}$的两两不同特征值，$\mathcal{W}_i$是$\mathbf{T}-c_i\mathbf{I}$的核空间，则以下命题两两等价。
+接上一定义的记法和前提，则有$f\left(\mathbf{T}\right)$是一个可对角化的正规算符，其谱为$f\left(S\right)$其中$S$是$\mathbf{T}$的谱。若$\mathbf{U}:\mathcal{V}\rightarrow\mathcal{V}^\prime$是幺正映射，即$\mathbf{T}^\prime=\mathbf{UTU}^{-1}$，则$S$也是$\mathbf{T}^\prime$的谱且$f\left(\mathbf{T}^\prime\right)=\mathbf{U}f\left(\mathbf{T}\right)\mathbf{U}^{-1}$。
+\end{theorem}
+
+\begin{corollary}
+设$\mathcal{V}$是有限维内积空间，$\mathcal{T}$是$\mathcal{V}$上的（可对角化的）正规算符。若$\mathcal{V}$的基$B=\left\{\mathbf{a}_1,\cdots,\mathbf{a}_n\right\}$是$\mathbf{T}$的特征向量，$D$是$\mathbf{T}$的对角矩阵，对角元素是$\left\{d_1,\cdots,d_n\right\}$，则$f\left(\mathbf{T}\right)$在该基下的对角矩阵$f\left(D\right)$的对角元素是$\left\{f\left(d_1\right),\cdots,f\left(d_n\right)\right\}$。若$\mathcal{V}$的另一组基$B^\prime=\left\{\mathbf{a}^\prime_1,\cdots,\mathbf{a}^\prime_n\right\}$与$B$之间的基变换公式是$\mathbf{a}^\prime_j=\sum_jP_{ij}\mathbf{a}_i$则变换矩阵$P$满足$\left(f\left(\mathbf{T}\right)\right)_{B^\prime}=P^{-1}f\left(D\right)P$。
+\end{corollary}
+
+由此推论，若另有可逆矩阵$Q$满足$D^\prime=QAQ^{-1}$则有$P^{-1}f\left(D\right)P=Q^{-1}f\left(D^\prime\right)Q$，故$P^{-1}f\left(D\right)P$是不依赖$D$的，可作如下定义。
+
+\begin{definition}[矩阵的函数]
+对于$n\times n$矩阵$A$若有任一对角矩阵$D=PAP^{-1}$，则$A$的函数$f\left(A\right)=P^{-1}f\left(D\right)P$。
+\end{definition}
+
+以下定理给出矩阵的谱分解。
+
+\begin{theorem}
+令$A$是正规矩阵，$c_1,\cdots,c_k$是$\mathrm{det}\left(xI-A\right)$的不同复根，令
+\[e_i=\prod_{j\neq i}\left(\frac{x-c_j}{c_i-c_j}\right)\]
+且$E_i=e_i\left(A\right),i=1,\cdots,k$，则有$E_iE_j=0$当$i\neq j$，$E_i^2=E_i$，$E_i^*=E_i$，$E_1+\cdots+E+k=I$，$f\left(A\right)=\sum_if\left(c_i\right)E_i$。特别地$A=\sum_ic_iE_i$。
+\end{theorem}
+
+以下是正规算符类似于“复数$z$的模为1当且仅当$z\overline{z}=1$”的定理。
+
+\begin{theorem}
+若$\mathbf{T}$是有限维向量空间$\mathcal{V}$上的正规算符，则当$\mathbf{T}$的所有特征值——
 \begin{enumerate}
-    \item $\mathbf{T}$可对角化
-    \item $\mathbf{T}$的特征多项式是$f\left(x\right)=\left(x-c_1\right)^{d_1}\cdots\left(x-c_k\right)^{d_k}$且$\mathrm{dim}\mathcal{W}_i=d_i,i=1,\cdots,k$
-    \item $\mathrm{dim}\mathcal{W}_1+\cdots\mathrm{dim}\mathcal{W}_k=\mathrm{dim}\mathcal{W}$
+    \item 为实数时，$\mathbf{T}$是厄米算符
+    \item 为非负实数时，$\mathbf{T}$是非负的，即$\left(\mathbf{Ta}|\mathbf{a}\right)\leq 0\forall\mathbf{a}\in\mathcal{V}$
+    \item 的绝对值为1时，$\mathbf{T}$是幺正算符
 \end{enumerate}
 \end{theorem}
-\begin{proof}
-由前面的引理，1$\Leftrightarrow$2已得证，且也易有2$\Rightarrow$3。若3成立，由引理有$\mathcal{V}=\sum_{i=1}^k\mathcal{W}_i$，即$\mathbf{T}$的特征向量线性生成$\mathcal{V}$。
-\end{proof}
 
-\begin{example}
-若$\mathbb{R}^3$上的线性算符$\mathbf{T}$在标准基下的矩阵
-\begin{align*}
-\left(\mathbf{T}\right)&=\left(\begin{array}{ccc}5&-6&-6\\-1&4&2\\3&-6&-4\end{array}\right)\\
-\mathrm{det}\left(x\mathbf{I}-\mathbf{T}\right)&=\left(x-2\right)^2\left(x-1\right),c_1=1,c_2=2\\
-A-I&=\left(\begin{array}{ccc}4&-6&6\\-1&4&2\\3&-6&5\end{array}\right),A-2I=\left(\begin{array}{ccc}3&-6&-6\\-1&2&2\\3&-6&-6\end{array}\right)\\
-\mathrm{rank}\left(A-I\right)&=2,\mathrm{rank}\left(A-2I\right)=1\\
-\mathrm{dim}\mathcal{W}_1&=1,\mathrm{dim}\mathcal{W}_2=2\\
-\therefore \mathrm{dim}\mathcal{W}_1+\mathrm{dim}\mathcal{W}_2&=\mathrm{dim}\mathcal{V}
-\end{align*}
-所以$\mathbf{T}$可对角化。具体地，找到$\mathcal{W}_1,\mathcal{W}_2$的基$B_1=\left\{\left(3,-1,3\right)\right\},B_2=\left\{\left(2,1,0\right),\left(2,0,1\right)\right\}$，则$\mathcal{V}$的基$B=B_1\cup B_2$。有基向作列形成的矩阵
-\[
-P=\left(\begin{array}{ccc}
-3&2&2\\-1&1&0\\3&0&2\end{array}\right)
-\]
-可将$A=\left(\mathbf{T}\right)$对角化，对角元素是$\mathbf{T}$的特征值：
-\[P^{-1}AP\equiv D=\left(\begin{array}{ccc}1&&\\&2&\\&&2\end{array}\right)\]
-\end{example}
-
-\begin{definition}[线性算符的不变量]
-设$\mathbf{T}$是作用于数域$\mathbb{F}$上向量空间$\mathcal{V}$的线性算符。$\mathbf{T}$的不变量是$\mathbf{T}$在任一基$B\subset\mathcal{V}$下的矩阵的特征多项式的系数。
-\end{definition}
+以下是正规算符类似于“每个非负实数佛教徒被唯一非负实平方根”的定理。
 
 \begin{theorem}
-设$A$是一个$n\times n$矩阵，$f\left(\lambda\right)=\mathrm{det}\left(A-\lambda I\right)$是其特征多项式，则$f\left(\lambda\right)$是一个$n$阶多项式，且具有如下形式
-\[
-f\left(\lambda\right)=\left(-1\right)^n\lambda^n+\left(-1\right)^{n-1}\mathrm{tr}\mathbf{A}\lambda^{n-1}+\cdots+\mathrm{det}A
-\]
+设$\mathcal{V}$有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的非负线性算符，则$\mathbf{T}$有唯一非负平方根，即存在唯一非负线性算符$\mathbf{N}$满足$\mathbf{N}^2=\mathbf{T}$。
 \end{theorem}
-\begin{proof}
-作为练习\footnote{参考\cite[\S,p.~118]{周胜林2012线性代数}性质1.2中的式(1.2)的推导过程。更一般地可参考Cayley-Hamilton Theorem。}。
-\end{proof}
 
-特别地，当$n=3$时，
-\[
-f\left(\lambda\right)=
--\lambda^3+\mathrm{tr}\left(A\right)\lambda^2-\frac{1}{2}\left[\mathrm{tr}^2\left(A\right)-\mathrm{tr}\left(A^2\right)\right]\lambda+\mathrm{det}\left(A\right)\]
+以下是正规算符类似于“每个复数$z$可表示成$z=ru$，其中$r$是非负实数，$\left|u\right|=1$”的定理，由于上述复数性质就是复数的极分解$z=re^{i\theta}$，故该定理又称线性算符的极分解。
 
-我们把
-\begin{align*}
-I_\mathbf{T}&=\mathrm{tr}\mathbf{T}\\
-II_\mathbf{T}&=\frac{1}{2}\left(\mathrm{tr}^2\mathbf{T}-\mathrm{tr}\mathbf{T}^2\right)\\
-III_\mathbf{T}&=\mathrm{det}\mathbf{T}
-\end{align*}
-称为张量$\mathbf{T}$的第一、第二和第三主不变量（principal invariants）。我们经常还使用
-\begin{align*}
-    J_1&=I_\mathbf{T}\\
-    J_2&=I_\mathbf{T}^2-2II_\mathbf{T}\\
-    J_3&=I_\mathbf{T}^3-3I_\mathbf{T}II_\mathbf{T}+3III_\mathbf{T}
-\end{align*}
-也被称为主不变量（main invariants），故在使用时要注意以具体定义为准。
+\begin{theorem}
+设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的线性算符，则存在幺正算符$\mathbf{U}$和非负算符$\mathbf{N}$满足$\mathbf{T}=\mathbf{UN}$，其中$\mathbf{N}$是维一的。若$\mathbf{T}$是可逆的，则$\mathbf{U}$也是唯一的。
+\end{theorem}
+
+一般地，若可逆线性算符$\mathbf{T}$的极分解是$\mathbf{T}=\mathbf{UN}$，则$\mathbf{UN}\neq\mathbf{NU}$。可证$\mathbf{UN}=\mathbf{NU}\Leftrightarrow\mathbf{T}^*\mathbf{T}=\mathbf{TT}^*$即$\mathbf{T}$是正规算符。
 \end{document}

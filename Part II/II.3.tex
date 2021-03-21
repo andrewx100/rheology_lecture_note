@@ -18,7 +18,7 @@
 \[\left(\mathbf{a}|\alpha\mathbf{b}+\mathbf{c}\right)=\overline{\alpha}\left(\mathbf{a}|\mathbf{b}\right)+\left(\mathbf{a}|\mathbf{c}\right)\]
 即从内积的后一个向量提出标量到内积之外时，这一标量要取复数共轭。
 
-内积的定义中设置复数共轭是必要的。否则将面临如下的矛盾：由$\left(\mathbf{a}|\mathbf{a}\right)>0\forall\mathbf{a}\neq\mathbf{0}$，竟然有$\left(i\mathbf{a}|i\mathbf{a}\right)=-1\left(\mathbf{a}|\mathbf{a}\right)>0$。
+内积的定义中设置复数共轭是必要的。否则将面临如下的矛盾：由$\left(\mathbf{a}|\mathbf{a}\right)>0\forall\mathbf{a}\neq\mathbf{0}$，竟然有$\left(i\mathbf{a}|i\mathbf{a}\right)=-1\left(\mathbf{a}|\mathbf{a}\right)>0$。但是，到底是规定从内积的前一个向量提出的标量要取复数共轭（很多物理书习惯），还是从内积的后一个向量提出的标量要取复数共轭（本讲义的定义方式，也是很多数学书的习惯）。这个惯例的不同，在数学上有时会造成重大的后果，但在流变学中并不重要。我们将会在线性泛函与对偶空间的时候再讲这件事，不感兴趣的同学可以忽略。
 
 \begin{example}
 在$\mathbb{F}^n$上可定义这样的内积：对于$\mathbf{a}=\left(\alpha_1,\cdots,\alpha_n\right)^\intercal,\mathbf{b}=\left(\beta_1,\cdots,\beta_n\right)^\intercal\in\mathbb{F}$，$\left(\mathbf{a}|\mathbf{b}\right)\equiv\sum_j\alpha_j\overline{\beta_j}$，称为$\mathbb{F}^n$上的标准内积（standard inner product）。$\mathbb{R}^n$上的标准内积又可记为点乘（dot product）$\mathbf{a}\cdot\mathbf{b}$。
@@ -91,7 +91,7 @@
 内积空间$\mathcal{V}$中的向量$\mathbf{a},\mathbf{b}\in\mathcal{V}$，若$\left(\mathbf{a}|\mathbf{b}\right)=0$，则称$\mathbf{a}$与$\mathbf{b}$是正交的。若$S$是$\mathcal{V}$的一个子集，且$S$中的向量两两正交，则称$S$是$\mathcal{V}$的一个正交集（orthogonal set）。若$\mathcal{V}$还是一个赋范向量空间，且$\mathcal{V}$的一个正交集$S$中的向量均满足$\left\|\hat{\mathbf{e}}\right\|=1\forall\hat{\mathbf{e}}\in S$则称$S$是规范正交集（orthonormal set）。
 \end{definition}
 
-\begin{example}\label{exp:II.3.2}
+\begin{example}\label{exp:II.3.2}\cite[“例题2.2”,p.~174]{周胜林2012线性代数}
 数域$\mathbb{F}$上的$n\times n$矩阵的空间$\mathbb{F}^{n\times n}$中，记$E^{pq}$为仅第$p$行、第$q$列为1，其余为0的$n\times n$矩阵。则由$E^{pq},p=1,\cdots,n,q=1,\cdots,n$组成的集合是规范正交集。其中$\mathbb{F}^{n\times n}$上的内积定义是$\left(A|B\right)\equiv\sum_{j,k}A_{jk}\overline{B}_{jk},\forall A, B\in\mathbb{F}^{n\times n}$，$\overline{B}$表示矩阵$B$的每个分量均取复数共轭后的矩阵。
 \end{example}
 
@@ -207,16 +207,5 @@ $n$元有序实数对的集合$\mathbb{R}^n$中可定义如下加法运算：
 &=\sum_i\sum_j\mu_i\nu_j\delta_{ij}\\
 &=\sum_i\mu_i\nu_i
 \end{align*}
-\end{example}
-
-\begin{example}[$\mathbb{R}$内积空间]\label{exp:II.3.5}
-作为实数域上的内积空间，$\mathbb{R}$的每个元素都是向量。每一个向量都显然构成一个含有一个向量的线性无关向量组。每个向量都能被选定的某向量线性表出。选定向量$\mathbf{a}=a$为基，则每一向量$\mathbf{x}=x\in\mathbb{R}$都能表示为$\mathbf{x}=\left(x/a\right)\mathbf{a}$，其中$\left(x/a\right)$是向量$\mathbf{x}$在基$\mathbf{a}$下的坐标。两向量的标准内积$\mathbf{x}\cdot\mathbf{y}=xy$。在选定基$\mathbf{a}$下，
-\begin{align*}
-    \mathbf{x}\cdot\mathbf{y}&=\frac{x}{a}\mathbf{a}\cdot\left(\frac{y}{a}\mathbf{a}\right)\\
-    &=\frac{x}{a}\times\frac{y}{a}\left(\mathbf{a}\cdot\mathbf{a}\right)\\
-    &=\frac{xy}{a^2}a^2\\
-    &=xy
-\end{align*}
-虽然1维的结果是平凡的，但作为“向量与其在某基下的坐标是两回事”的一个强调。
 \end{example}
 \end{document}

@@ -1,124 +1,131 @@
 \documentclass[main.tex]{subfiles}
-% 极限、连续与导数
+% 链式法则、反函数定理、隐函数定理
 \begin{document}
-我们用“$\epsilon-\delta$语言”来定义函数极限
-
-\begin{definition}[函数的极限]
-给定函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$，如果对任意正实数$\epsilon$总存在正实数$\delta$使得只要$0<\left\|\mathbf{r}-\mathbf{r}_0\right\|<\delta,\mathbf{r},\mathbf{r}_0\in\mathbb{R}^n$总有$\left\|\mathbf{f}\left(\mathbf{r}\right)-\mathbf{y}_0\right\|<\epsilon,\mathbf{y}_0\in\mathbb{R}^m$，则称$\mathbf{y}_0$是函数$\mathbf{f}\left(\mathbf{r}\right)$在$\mathbf{r}_0$处的极限，记为
-\[\lim_{\mathbf{r} \to\mathbf{r}_0} \mathbf{f}\left(\mathbf{r}\right)=\mathbf{y}_0\]
-\end{definition}
-
-在极限的定义中用到了向量的范。但是前面讲过，向量的范可以有不同定义。我们先讨论，不同定义的范在此是等价的。此处所谓“等价”是指，对任意两种定义的范$\left\|\cdot\right\|_1,\left\|\cdot\right\|_2$，如果存在正实数$k$和$K$使得$k\left\|\mathbf{x}\right\|_1\leq\left\|\mathbf{x}\right\|_2\leq K\left\|\mathbf{x}\right\|_1,\forall\mathbf{x}$，则这两种定义的范等价。可以验证，这一等价的定义满足等价关系的一般要求：自反性、对称性和传递性。
-
-\begin{theorem}\label{thm:II.13.1}
-有限维向量空间$\mathcal{V}$上的任意两种范的定义等价。
+\begin{theorem}[链式法则]
+如果函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在$\mathbf{x}_0\in\mathrm{dom}\mathbf{f}$处可微分；函数$\mathbf{g}:\mathbb{R}^n\rightarrow\mathbb{R}^p$在$\mathbf{f}\left(\mathbf{x}_0\right)\in\mathrm{dom}\mathbf{g}$处可微分，则复合函数$\mathbf{g}\circ\mathbf{f}$在$\mathbf{x}_0$处可微分，且其全导数
+\[
+\left.\frac{d\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}=\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}
+\]
 \end{theorem}
 \begin{proof}
-设$n=\mathrm{dim}\mathcal{V}$，$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组基，记该基下的欧几里德范为$\forall\mathbf{x}=\sum_{i=1}^nx_i\mathbf{\hat{e}}_i\in\mathcal{V}$
-\[\left\|\mathbf{x}\right\|_\mathrm{E}\equiv\sqrt{\sum_{i=1}^n x_i^2}\]
-由范的定义\ref{def:II.3.3}要求，
+首先证明$\mathbf{x}_0$处于复合函数$\mathbf{g}\circ\mathbf{f}$的定义域内。由于$\mathbf{f}\left(\mathbf{x}_0\right)\in\mathrm{dom}\mathbf{g}$且$\mathbf{g}$在$\mathbf{f}\left(\mathbf{x}_0\right)$处可微分，故总存在正实数$\delta^\prime$使得只要$\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|<\delta^\prime$就有$\mathbf{f}\left(\mathbf{x}\right)\in\mathrm{dom}\mathbf{g}$。又因为$\mathbf{x}_0\in\mathrm{dom}\mathbf{f}$且$\mathbf{f}$在$\mathbf{x}_0$处可微分，故总存在正实数$\delta$使得只要$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$则$\mathbf{x}\in\mathrm{dom}\mathbf{f}$，同时还必存在$\delta^\prime>0$使得这一$\delta$选择下的$\mathbf{x}$满足$\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|<\delta^\prime$。所以任一满足$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$的$\mathbf{x}$均在复合函数$\mathbf{g}\circ\mathbf{f}$的定义域内。
+
+按照全微分和全导数的定义，由于函数$\mathbf{f}$和$\mathbf{g}$分别在$\mathbf{x}_0$和$\mathbf{f}\left(\mathbf{x}_0\right)$可导，故存在函数$\mathbf{z}_1$、$\mathbf{z}_2$满足$\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)=\mathbf{0}$、$\lim_{\mathbf{f}\left(\mathbf{x}\right)\to\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)=\mathbf{0}$，且
 \begin{align*}
-\left\|\mathbf{x}\right\|&=\left\|\sum_{i=1}^nx_i\mathbf{\hat{e}}_i\right\|\\
-&\leq \sum_{i=1}^n\left\|x_i\mathbf{\hat{e}}_i\right\|=\sum_{i=1}^nx_i\left\|\mathbf{\hat{e}}_i\right\|\\
-&\leq \left(\sum_{i=1}^n\left\|\mathbf{\hat{e}}_i\right\|\right)\mathrm{max}\left\{\left|x_i\right|\right\}\\
-&\leq \left(\sum_{i=1}^n\left\|\mathbf{\hat{e}}_i\right\|\right)\sqrt{\sum_{i=1}^nx_i^2}= K\left\|\mathbf{x}\right\|_\mathrm{E}
+\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)&=\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\\
+\mathbf{g}\left(\mathbf{f}\left(\mathbf{x}\right)\right)-\mathbf{g}\left(\mathbf{f}\left(\mathbf{x}_0\right)\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)&=\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)
 \end{align*}
-其中$K=\sum_{i=1}^n\left\|\mathbf{\hat{e}}_i\right\|>0$。
-
-下面考虑一般范作为欧几里德范的函数：$\left\|\cdot\right\|:\mathbb{R}\rightarrow\mathbb{R}$，并考察其连续性\footnote{这个函数相当于向量值参数方程：$\mathbf{y}=\mathbf{f}\left(\mathbf{x}\right),\mathbf{y}=\left\|\mathbf{t}\right\|,\mathbf{x}=\left\|\mathbf{t}\right\|_\mathrm{E},\mathbf{t}\in\mathcal{V}$}。我们看到，对每一$\epsilon>0$，选择$\delta=\epsilon/K$，则只有$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$，就有
-\[
-\left|\left\|\mathbf{x}\right\|-\left\|\mathbf{x}_0\right\|\right|\leq\left\|\mathbf{x}-\mathbf{x}_0\right\|\leq K\left\|\mathbf{x}-\mathbf{x}_0\right\|_\mathrm{E}\leq\epsilon,\forall\mathbf{x}_0\]
-故一般范作为欧几里德范的函数是连续函数。令$k$等于一般范作为欧几里德范的函数在$\left\|\mathbf{x}\right\|=1$的$\mathcal{V}$的子集区域的极小值（闭区间上的连续函数必存在极小值），则对任一$\mathbf{x}\neq\mathbf{0}$有$\left\|\mathbf{x}/\left\|\mathbf{x}\right\|_\mathrm{E}\right\|\leq k$,故$\left\|\mathbf{x}\right\|\leq k\left\|\mathbf{x}\right\|_\mathrm{E},\forall \mathbf{x}\in\mathcal{V}$。
-\end{proof}
-
-\begin{theorem}\label{thm:II.13.2}
-函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在$\mathbf{r}_0\in\mathbb{R}^n$处存在极限$\lim_{\mathbf{r}\to\mathbf{r}_0}\mathbf{f}\left(\mathbf{r}\right)=\mathbf{a}$的充要条件是其坐标函数的极限$\lim_{\mathbf{r}\to\mathbf{r}_0}f_i\left(\mathbf{r}\right)=a_i,\forall i=1,\cdots,m$都存在。
-\end{theorem}
-\begin{proof}
-注意到$\mathbf{f}$与$f_i,i=1,\cdots,m$的定义域都相同。若极限$\lim_{\mathbf{r}\to\mathbf{r}_0}\mathbf{f}\left(\mathbf{r}\right)=\mathbf{a}$存在，则对任一实数$\epsilon>0$都存在实数$\delta>0$使得只要$\mathbf{f}$的定义域内一向量$\mathbf{r}$到$\mathbf{r}_0$的距离$0<\left\|\mathbf{r}-\mathbf{r}_0\right\|<\delta$便有$\left\|\mathbf{f}\left(\mathbf{r}\right)-\mathbf{a}\right\|<\epsilon$。由三角不等式有$\left\|f_i\left(\mathbf{r}\right)-a_i\right\|\leq\left\|\mathbf{f}\left(\mathbf{r}\right)-\mathbf{a}\right\|<\epsilon,i=1,\cdots,m$，即$\lim_{\mathbf{r}\to\mathbf{r}_0}f_i\left(\mathbf{r}\right)=a_i,i=1,\cdots,m$。
-
-反之，若极限$\lim_{\mathbf{r}\to\mathbf{r}_0}f_i\left(\mathbf{r}\right)=a_i,i=1,\cdots,m$都存在，即对任一实数$\epsilon>0$都能找到实数$\delta_i>0,i=1,\cdots,m$使得只要$f_i$的定义域内一向量$\mathbf{r}$到$\mathbf{r}_0$的距离$0<\left\|\mathbf{r}-\mathbf{r}_0\right\|<\delta_i$便有$\left|f_i\left(\mathbf{r}\right)-a_i\right|<\frac{\epsilon}{\sqrt{m}}$。令$\delta=\mathrm{min}\left\{\delta_1,\cdots,\delta_m\right\}$，则当$0<\left\|\mathbf{r}-\mathbf{r}_0\right\|<\delta$则有$\mathrm{max}\left\{\left|f_i\left(\mathbf{r}\right)-a_i\right|\right\}<\frac{\epsilon}{\sqrt{m}}$。
-
-利用事实\footnote{
-由$\left\|\mathbf{x}\right\|^2=\sum_{i=1}^nx_i^2\leq n\mathrm{max}\left\{x_1^2,\cdots,x_n^2\right\}$得到。
+把$\mathbf{g}\left(\mathbf{f}\left(\mathbf{x}\right)\right)$记为$\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)$，并把上面的第一条式子代入第二条，得
+\begin{align*}
+&\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)-\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left[\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right]\\
+=&\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)\\
+\Leftrightarrow&\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)-\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)\\
+=&\left\|\mathbf{x}-\mathbf{x}_0\right\|\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)
+\end{align*}
+由三角不等式，又有\footnote{
+此处用到定理\ref{thm:II.13.4}。
 }
-\[\left\|\mathbf{x}\right\|\leq\sqrt{n}\mathrm{max}\left\{\left|x_1\right|,\cdots,\left|x_n\right|\right\},\forall\mathbf{x}\in\mathbb{R}^n\]
-可得
-\[\left\|\mathbf{f}\left(\mathbf{r}\right)-\mathbf{a}\right\|\leq\sqrt{m}\mathrm{max}\left\{\left|f_i\left(\mathbf{r}\right)-a_i\right|\right\}<\epsilon\]
+\begin{align*}
+    \left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|&=\left\|\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\\
+    &\leq \left\|\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)\right\|+\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\\
+    &\leq k\left\|\mathbf{x}-\mathbf{x}_0\right\|+\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|
+\end{align*}
+故
+\begin{align*}
+    &\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)-\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)\\
+    \leq&\left\|\mathbf{x}-\mathbf{x}_0\right\|\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)+\left(k\left\|\mathbf{x}-\mathbf{x}_0\right\|+\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\right)\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)\\
+    \leq&\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\{\left\|\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|+\left(k+\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\right)\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)\right\}
+\end{align*}
+由于函数$\mathbf{f}$在$\mathbf{x}_0$处连续，即极限$\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{f}\left(\mathbf{x}\right)=\mathbf{f}\left(\mathbf{x}_0\right)$，故上式最后的大括号在$\mathbf{x}\to\mathbf{x}_0$时趋于$\mathbf{0}$。按照全微分和全导数的定义，命题得证。
 \end{proof}
 
-\begin{definition}[函数的连续性]
-给定函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$，如果极限$\lim_{\mathbf{r}\to\mathbf{r}_0}\mathbf{f}\left(\mathbf{r}\right)=\mathbf{a}$存在，则称$\mathbf{f}\left(\mathbf{r}\right)$在$\mathbf{r}_0$处连续。
-\end{definition}
-
-\begin{theorem}\label{thm:II.13.3}
-函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在$\mathbf{r}_0\in\mathbb{R}^n$处连续的充要条件是其坐标函数在$\mathbf{r}_0$处都连续。
+\begin{theorem}[反函数定理] 
+设函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^n$是连续可微函数，且在$\mathbf{x}_0$处其导数$\mathbf{L}\left(\mathbf{x}_0\right)$可逆。则在$\mathbf{x}_0$的某邻域$N$上，函数$\mathbf{f}$有连续可微的逆函数$\mathbf{f}^{-1}$；$N$的像集$\mathbf{f}\left(\mathbf{N}\right)$是开集；且$\mathbf{f}^{-1}$在$\mathbf{f}\left(\mathbf{x}_0\right)$处的导数是$\mathbf{f}$在$\mathbf{x}_0$的导数的逆变换，即
+\[\left.\frac{d\mathbf{f}^{-1}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}=\mathbf{L}^{-1}\left(\mathbf{x}_0\right)\]
 \end{theorem}
 \begin{proof}
-由定理\ref{thm:II.13.2}直接得证。
+详见\S\ref{sect:VI.2}。
 \end{proof}
 
-如果一个函数在其定义域内处处都连续，我们就直接称该函数在其定义域内是连续的，或称该函数是连续函数。
+如果$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$由函数$\mathbf{F}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^m$隐含定义，我们常常把$\mathbf{F}$写成这样一种映射：$\mathbf{F}:\mathbb{R}^n\times\mathbb{R}^m\rightarrow\mathbb{R}^m$，$\mathbf{F}\left(\mathbf{x},\mathbf{f}\left(\mathbf{x}\right)\right)=\mathbf{0}\forall\mathbf{x}\in\mathbb{R}^n$。此时，我们记
+\[\left.\frac{\partial \mathbf{F}\left(\mathbf{x},\mathbf{y}\right)}{\partial \mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0,\mathbf{y}=\mathbf{y}_0}=\left.\frac{d\mathbf{F}\left(\mathbf{x},\mathbf{y}_0\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\]
+引入这个记法有两个用处，一是为了以下例子，这个例子是后文引入物质导数的一个基础；二是为了引入隐函数定理。
 
-\begin{theorem}\label{thm:II.13.4}
-设$\mathcal{V}_N$、$\mathcal{W}_M$分别是数域$\mathbb{F}$上的赋范向量空间，$\mathbf{L}:\mathcal{V}_N\rightarrow\mathcal{W}_M$是一个线性变换，则总存在$k\in\mathbb{R}$使得不等式$\left\|\mathbf{Lx}\right\|\leq k\left\|\mathbf{x}\right\|,\forall\mathbf{x}\in\mathcal{V}_N$成立。
-\end{theorem}
-\begin{proof}
-设$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}_N$的一个规范正交基，$\mathbf{x}\in\mathcal{V}_N$，则$\left\|\mathbf{Lx}\right\|=\left\|\sum_{i=1}^Nx_i\mathbf{L}\mathbf{\hat{e}}_i\right\|=\sum_{i=1}^N\left|x_i\right|\left\|\mathbf{L\hat{e}}_i\right\|$。又由柯西--施瓦茨不等式，$\left|x_i\right|=\left|\left(\mathbf{x}|\mathbf{\hat{e}}_i\right)\right|\leq\left\|\mathbf{x}\right\|\left\|\mathbf{\hat{e}}_i\right\|=\left\|\mathbf{x}\right\|$，故$\left\|\mathbf{Lx}\right\|\leq\left\|\mathbf{x}\right\|\sum_{i=1}^N\left\|\mathbf{L\hat{e}}_i\right\|=k\left\|\mathbf{x}\right\|$，其中$k=\sum_{i=1}^N\left\|\mathbf{L\hat{e}}_i\right\|$。
-\end{proof}
-
-\begin{corollary}
-线性变换是连续函数。
-\end{corollary}
-\begin{proof}
-由定理\ref{thm:II.13.4}有$\left\|\mathbf{Lx}-\mathbf{Lx}_0\right\|=\left\|\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\leq k\left\|\mathbf{x}-\mathbf{x}_0\right\|$，故当$\mathbf{x}$趋于$\mathbf{x}_0$，$\mathbf{Lx}$趋于$\mathbf{Lx}_0$\footnote{这里使用到与不等式有关的极限定理。}。
-\end{proof}
-
-\begin{definition}[一元向量函数的导数]
-设函数$\mathbf{f}:\mathbb{R}\rightarrow\mathbb{R}^n$的极限
+\begin{example}\label{exp:II.15.1}
+设函数$\mathbf{f}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^p$的定义域为$D=\mathrm{dom}\mathbf{f}$，若函数$\mathbf{g}:\mathbb{R}^m\rightarrow\mathbb{R}^n$满足$\mathrm{dom}\mathbf{g}=D$，则总可以构建函数$\mathbf{h}:\mathbb{R}^m\rightarrow\mathbb{R}^{m+n}$使得$\mathrm{dom}\mathbf{h}=D$且
+\begin{align*}
+    \mathbf{h}\left(\mathbf{x}\right)&=\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)\forall\mathbf{x}\in D\\
+    h_i\left(\mathbf{x}\right)&=\left\{\begin{array}{ll}
+    g_i\left(\mathbf{x}\right),&i=1,\cdots,n\\
+    x_{i-n},&i=n+1,\cdots,n+m
+    \end{array}\right.
+\end{align*}
+这时，$\mathbf{f}\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)=\mathbf{f}\left(\mathbf{h}\left(\mathbf{x}\right)\right)$。若$\mathbf{g}$在某处可微分则$\mathbf{h}$在该处也可微分。由链式法则定理，在该处有
+\begin{align*}
+    \frac{d\mathbf{f}\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)}{d\mathbf{x}}&=\frac{d\mathbf{h}\left(\mathbf{x}\right)}{d\mathbf{x}}\\
+    &=\left.\frac{d\mathbf{f}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{h}\left(\mathbf{x}\right)}\frac{d\mathbf{h}\left(\mathbf{x}\right)}{d\mathbf{x}}\\
+    &=\left(\begin{array}{cccccc}
+    \frac{\partial f_1}{\partial h1}&\cdots&\frac{\partial f_1}{\partial h_n}&\frac{\partial f_1}{\partial h_{n+1}}&\cdots&\frac{\partial f_1}{\partial h_{n+m}}\\
+    \vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+    \frac{\partial f_p}{\partial h_1}&\cdots&\frac{\partial f_p}{\partial h_n}&\frac{\partial f_p}{\partial h_{n+1}}&\cdots&\frac{\partial f_p}{\partial h_{n+m}}
+    \end{array}\right)\left(\begin{array}{ccc}
+    \frac{\partial h_1}{\partial y_1}&\cdots&\frac{\partial h_1}{\partial y_m}\\
+    \vdots&\ddots&\vdots\\
+    \frac{\partial h_n}{\partial y_1}&\cdots&\frac{\partial h_1}{\partial y_m}\\
+    \frac{\partial h_{n+1}}{\partial y_1}&\cdots&\frac{\partial h_{n+1}}{\partial y_m}\\
+    \vdots&\ddots&\vdots\\
+    \frac{\partial h_{n+m}}{\partial y_1}&\cdots&\frac{\partial h_{n+m}}{\partial y_m}
+    \end{array}\right)
+    &=C
+\end{align*}
+其中矩阵$C$的分量
 \[
-\lim_{h\to 0}\frac{\mathbf{f}\left(t+h\right)-\mathbf{f}\left(t\right)}{h}
+    C_{ij}=\sum_{k=1}^{n+m}\frac{\partial f_i}{\partial h_k}\frac{\partial h_k}{\partial x_j},i=1,\cdots,p,j=1,\cdots,m
 \]
-存在，则称函数$\mathbf{f}\left(x\right)$在$x=t$处可导。该极限是函数$\mathbf{f}\left(x\right)$在$x=t$处的导数，记为
-\[
-\frac{d\mathbf{f}}{dt}\equiv\lim_{h\to 0}\frac{\mathbf{f}\left(t+h\right)-\mathbf{f}\left(t\right)}{h}
-\]
-\end{definition}
+注意到
+\begin{align*}
+    \frac{\partial f_i}{\partial h_k}\frac{\partial h_k}{\partial x_j}=\left\{\begin{array}{ll}
+    \frac{\partial f_i}{\partial g_k}\frac{\partial g_k}{x_j},&k=1,\cdots,n\\
+    \frac{\partial f_i}{\partial x_k-n}\delta_{k-n,j},&k=n+1,\cdots,n+m
+    \end{array}\right.,i=1,\cdots,p,j=1,\cdots,m
+\end{align*}
+故
+\begin{align*}
+C_{ij}&=\sum_{k=1}^{n}\frac{\partial f_i}{\partial g_k}\frac{\partial g_k}{\partial x_j}+\sum_{j=1}^m\frac{\partial f_i}{\partial x_j}\\
+\Leftrightarrow\frac{d\mathbf{f}\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)}{d\mathbf{x}}&=\left.\frac{\partial \mathbf{f}\left(\mathbf{y},\mathbf{x}\right)}{\partial \mathbf{y}}\right|_{\mathbf{y}=\mathbf{g}\left(\mathbf{x}\right)}\frac{\partial\mathbf{g}\left(\mathbf{x}\right)}{\partial \mathbf{x}}+\frac{\partial \mathbf{f}\left(\mathbf{y},\mathbf{x}\right)}{\partial\mathbf{x}}
+\end{align*}
+\end{example}
 
-由一元标量函数求导的法则可证以下一元向量函数求导法则成立：对任意函数$\mathbf{f}:\mathbb{R}\rightarrow\mathbb{R}^n,\mathbf{g}:\mathbb{R}\rightarrow\mathbb{R}^n$，
+\begin{theorem}[隐函数定理]
+设$\mathbf{F}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^m$是连续可导函数，且对$\mathbf{x}_0\in\mathbf{R}^n$和$\mathbf{y}_0\in\mathbf{R}^m$有
 \begin{itemize}
-\item $\frac{d\mathbf{c}}{dt}=0,\mathbf{c}$是常向量
-\item $\frac{d}{dt}\left(\alpha\mathbf{f}+\beta\mathbf{g}\right)=\alpha\frac{d}{dt}\mathbf{f}+\beta\frac{d}{dt}\mathbf{g},\forall \alpha,\beta\in\mathbb{R}$
-\item $\frac{d}{dt}\left[u\left(t\right)\mathbf{f}\left(t\right)\right]=\frac{du}{dt}\mathbf{f}+u\frac{d}{dt}\mathbf{f},\forall u:\mathbb{R}\rightarrow\mathbb{R}$
-\item $\frac{d}{dt}\left(\mathbf{f}\cdot\mathbf{g}\right)=\frac{d\mathbf{f}}{dt}\cdot\mathbf{g}+\mathbf{f}\cdot\frac{d\mathbf{g}}{dt}$
-\item $\frac{d}{dt}\left(\mathbf{f}\times\mathbf{g}\right)=\frac{d\mathbf{f}}{dt}\times\mathbf{g}+\mathbf{f}\times\frac{d\mathbf{g}}{dt}$
+    \item $\mathbf{F}\left(\mathbf{x}_0,\mathbf{y}_0\right)=\mathbf{0}$；
+    \item 导数$\left.\frac{\partial \mathbf{F}\left(\mathbf{x},\mathbf{y}\right)}{\partial \mathbf{y}}\right|_{\mathbf{x}=\mathbf{x}_0,\mathbf{y}=\mathbf{y}_0}$可逆；
 \end{itemize}
-
-\begin{definition}[多元标量函数的偏导数]
-给定函数$f:\mathbb{R}^n\rightarrow\mathbb{R}$，若对某一$i=1,\cdots,n$极限
-\[
-\lim_{t\to0}\frac{f\left(\cdots,x_{i}+h,\cdots\right)-f\left(\cdots,x_i,\cdots\right)}{t}
-\]
-存在，则称该极限为函数$f\left(\mathbf{x}\right)$对$\mathbf{x}$的第$i$个分量$x_i$的偏导数，记为
-\[\frac{\partial f}{\partial x_i}\equiv\lim_{t\to0}\frac{f\left(\cdots,x_{i}+h,\cdots\right)-f\left(\cdots,x_i,\cdots\right)}{t}
-\]
-\end{definition}
-
-\begin{theorem}\footnote{即高等数学\cite[p.~16]{华工高数2009下}定理7.2.1向$n$维的推广。}
-如果函数$f:\mathbb{R}^n\rightarrow\mathbb{R}$的一个二阶混合偏导数$\frac{\partial^2f}{\partial x_i\partial x_j}$在$\mathbb{R}^2$的一个开子集$S$上处处连续，则二阶混合偏导数$\frac{\partial^2f}{\partial x_j\partial x_i}$在$S$上处处存在，且$\frac{\partial^2f}{\partial x_i\partial x_j}=\frac{\partial^2f}{\partial x_j\partial x_i}$。
+则$\mathbf{x}_0$的某邻域$N$存在由$\mathbf{F}$隐函定义的连续可微函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$满足$\mathbf{F}\left(\mathbf{x},\mathbf{f}\left(\mathbf{x}\right)\right))=\mathbf{0}\forall\mathbf{x}\in N$，且在$N$上有
+\[\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}}=-\left[\left.\frac{\partial\mathbf{F}\left(\mathbf{x},\mathbf{y}\right)}{\partial\mathbf{y}}\right|_{\mathbf{x}=\mathbf{x},\mathbf{y}=\mathbf{f}\left(\mathbf{x}\right)}\right]^{-1}\left.\frac{\partial\mathbf{F}\left(\mathbf{x},\mathbf{y}\right)}{\partial\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x},\mathbf{y}=\mathbf{f}\left(\mathbf{x}\right)}\]
+上式中的“$-1$”是指线性变换的逆。
 \end{theorem}
-\begin{proof}
-略\footnote{进一步了解：\href{https://en.wikipedia.org/wiki/Symmetry_of_second_derivatives}{Symmetry of second derivatives}。}
-\end{proof}
 
-\begin{definition}[向量函数的偏导数]
-对于函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的偏导数
-\[
-\frac{\partial \mathbf{f}}{\partial x_i}\equiv\left(\begin{array}{l}
-\frac{\partial f_1}{\partial x_i}\\
-\vdots\\
-\frac{\partial f_m}{\partial x_i}\end{array}\right)\in\mathbb{R}^m
-\]
-其中，$\mathbf{x}=\left(x_1,\cdots,x_n\right)^\intercal\in\mathbb{R}^n$。
-\end{definition}
+\begin{example}
+设函数$\mathbf{F}:\mathbb{R}^4\rightarrow\mathbb{R}^2$，$\mathbf{F}\left(u,v,x,y\right)=\left(F_1,F_2\right)$，$\mathbf{F}=\mathbf{0}$隐含定义了$\left(x,y\right)=\mathbf{f}\left(u,v\right),\mathbf{f}:\mathbf{R}^2\rightarrow\mathbf{R}^2$，则
+\begin{align*}
+    &\frac{\partial \mathbf{F}}{\partial u}=\mathbf{0},\frac{\partial \mathbf{F}}{\partial v}=\mathbf{0}\\
+    \Leftrightarrow&\left\{\begin{array}{l}
+    \frac{\partial F_1}{\partial u}+\frac{\partial F_1}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial F_1}{\partial y}\frac{\partial y}{\partial u}=0\\
+    \frac{\partial F_2}{\partial u}+\frac{\partial F_2}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial F_2}{\partial y}\frac{\partial y}{\partial u}=0
+    \end{array}\right.,\left\{\begin{array}{l}
+    \frac{\partial F_1}{\partial v}+\frac{\partial F_1}{\partial x}\frac{\partial x}{\partial v}+\frac{\partial F_1}{\partial y}\frac{\partial y}{\partial v}=0\\
+    \frac{\partial F_2}{\partial v}+\frac{\partial F_2}{\partial x}\frac{\partial x}{\partial v}+\frac{\partial F_2}{\partial y}\frac{\partial y}{\partial v}=0
+    \end{array}\right.\\
+    \Leftrightarrow&\left(\begin{array}{cc}
+    \frac{\partial F_1}{\partial u}&\frac{\partial F_1}{\partial v}\\\frac{\partial F_2}{\partial u}&\frac{\partial F_2}{\partial v}\end{array}\right)_+\left(\begin{array}{cc}
+    \frac{\partial F_1}{\partial x}&\frac{\partial F_1}{\partial y}\\\frac{\partial F_2}{\partial x}&\frac{\partial F_2}{\partial y}\end{array}\right)\left(\begin{array}{cc}
+    \frac{\partial x}{\partial u}&\frac{\partial x}{\partial v}\\\frac{\partial y}{\partial u}&\frac{\partial y}{\partial v}\end{array}\right)=0\\
+    \Leftrightarrow&\left(\begin{array}{cc}
+    \frac{\partial x}{\partial u}&\frac{\partial x}{\partial v}\\\frac{\partial y}{\partial u}&\frac{\partial y}{\partial v}\end{array}\right)=-\left(\begin{array}{cc}
+    \frac{\partial F_1}{\partial x}&\frac{\partial F_1}{\partial y}\\\frac{\partial F_2}{\partial x}&\frac{\partial F_2}{\partial y}\end{array}\right)^{-1}\left(\begin{array}{cc}
+    \frac{\partial F_1}{\partial u}&\frac{\partial F_1}{\partial v}\\\frac{\partial F_2}{\partial u}&\frac{\partial F_2}{\partial v}\end{array}\right)
+\end{align*}
+\end{example}
 \end{document}

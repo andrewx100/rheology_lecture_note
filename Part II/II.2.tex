@@ -98,19 +98,26 @@
 上一定义仅引入了“有限维”的概念，但没有具体涉及到“维数是几”的问题。因为按定义，$\mathcal{V}$内可以找出不止一组基，而这些基是否必然都具有相同个数的向量？只有当这个问题的答案是肯定的，我们才能通过把这一向量个数定义为$\mathcal{V}$的维数，来使得向量空间具有唯一确定的维数。下面的定理解决了这个问题。
 
 \begin{theorem}\label{thm:II.2.1}
-有限维向量空间的每组基具有相同个数的线性无关向量。这个个数叫向量空间的维数。$N$维向量空间记为$\mathcal{V}_N$。
+有限维向量空间的每组基具有相同个数的线性无关向量。
 \end{theorem}
 \begin{proof}
 此略\cite[“(3)的证明”，p.~171]{周胜林2012线性代数}\cite[\S 2.3,Theorem 4,p.~44]{Hoffman1971}。
 \end{proof}
 
-有了这一定理，我们就可以直接把有限维向量空间的维数定义为它的任一组基的向量个数。我们常把有限维向量空间$\mathcal{V}$的维数记为$\mathrm{dim}\mathcal{V}$。由该定理还可直接得到如下推论，它们的证明与定理\ref{thm:II.2.1}的证明过程很类似，故从略。
+有了这一定理，我们就可以直接把有限维向量空间的维数定义为它的任一组基的向量个数——
+
+\begin{definition}\label{def:II.2.6}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维向量空间，它的维数，记为$\mathrm{dim}\mathcal{V}$，是它的任一组基的向量个数。规定：零向量空间（只有一个零向量组成的向量空间）是0维。
+\end{definition}
+
+由定理\ref{thm:II.2.1}还可直接得到如下推论，它们的证明与定理\ref{thm:II.2.1}的证明过程很类似，故从略。
 
 \begin{corollary}
 令$\mathcal{V}$是一个有限维向量空间，其维数$n=\mathrm{dim}\mathcal{V}$，则
 \begin{enumerate}
     \item $\mathcal{V}$的任一含有多于$n$个向量的子集都是线性相关向量组\cite[“(3)的证明”，p.~171]{周胜林2012线性代数}。
     \item $\mathcal{V}$的任一向量个数少于$n$的子集都不能线性生成整个$\mathcal{V}$（即这样的子集的线性生成空间总是$\mathcal{V}$的真子集）。
+    \item $\mathcal{V}$的任一子空间$\mathcal{W}$的维数不大于$\mathcal{V}$的维数，即$\mathrm{dim}\mathcal{W}\leq\mathrm{dim}\mathcal{V}$；当且仅当$\mathcal{W}=\mathcal{V}$时取等号。
 \end{enumerate}
 \end{corollary}
 
@@ -127,10 +134,10 @@
 
 到此为止，我们未具体地阐明“向量”是什么，也未具体地规定加法和标量乘法如何进行。“这种抽象性使我们可以把不同的数学对象统一到线性空间这一概念之下。”\cite[p.~167]{周胜林2012线性代数}不过，通过引入“坐标”的概人记，我们又使得任一抽象向量都能用一组有序数组来唯一地表示，从而使抽象的向量之间的运算得以由具体的有序数组的运算来代替（就像我们以往在《线性代数》课中所熟悉的那样）。
 
-\begin{definition}[向量在给定有序基下的坐标]\label{def:II.2.6}若$\mathcal{V}$是一个$n$维向量空间，$\mathcal{V}$内的一组线性无关的有序向量序列$\left(\mathbf{a}_i\right)$线性生成整个$\mathcal{V}$，则称这组有序向量序列$\mathcal{B}$为$\mathcal{V}$的一组有序基（ordered basis）。由定义\ref{def:II.2.5}，任一向量$\mathbf{x}\in\mathcal{V}$均可表达为$\mathbf{x}=\sum_{i=1}^nx_i\mathbf{a}_i$，进而，任一$\mathbf{x}\in\mathcal{V}$在给定有序基下都唯一对应$\mathbb{F}^n$中的一个有序$n$元数组$\left(x_i\right)$\footnote{这里的唯一性可再次参考\cite[“(3)的证明”，p.~171]{周胜林2012线性代数}。}，我们称这一有序$n$元数组$\left(x_i\right)$为向量$\mathbf{x}$在有序基$\mathcal{B}$下的坐标（coordinate）或分量（component）。
+\begin{definition}[向量在给定有序基下的坐标]\label{def:II.2.7}若$\mathcal{V}$是一个$n$维向量空间，$\mathcal{V}$内的一组线性无关的有序向量序列$\left(\mathbf{a}_i\right)$线性生成整个$\mathcal{V}$，则称这组有序向量序列$\mathcal{B}$为$\mathcal{V}$的一组有序基（ordered basis）。由定义\ref{def:II.2.5}，任一向量$\mathbf{x}\in\mathcal{V}$均可表达为$\mathbf{x}=\sum_{i=1}^nx_i\mathbf{a}_i$，进而，任一$\mathbf{x}\in\mathcal{V}$在给定有序基下都唯一对应$\mathbb{F}^n$中的一个有序$n$元数组$\left(x_i\right)$\footnote{这里的唯一性可再次参考\cite[“(3)的证明”，p.~171]{周胜林2012线性代数}。}，我们称这一有序$n$元数组$\left(x_i\right)$为向量$\mathbf{x}$在有序基$\mathcal{B}$下的坐标（coordinate）或分量（component）。
 \end{definition}
 
-基的原始定义仅要求基是一个集合，没有有序性的规定。用一组基表出一个$n$维向量所使用的$n$个标量也只是一个集合。在给定一组基下，向量与这个标量集合也是唯一对应的。只不过，我们希望所定义的“坐标”是一个有序序列，所以定义\ref{def:II.2.6}才特别增加了“有序”的要求。
+基的原始定义仅要求基是一个集合，没有有序性的规定。用一组基表出一个$n$维向量所使用的$n$个标量也只是一个集合。在给定一组基下，向量与这个标量集合也是唯一对应的。只不过，我们希望所定义的“坐标”是一个有序序列，所以定义\ref{def:II.2.7}才特别增加了“有序”的要求。
 
 有了坐标的定义，在给定基下，$n$维向量空间$\mathcal{V}$中的一个向量就与$\mathbb{F}^n$中的一个有序$n$元数组形成了一一对应的关系。由封闭性，没有一个向量不对应一个数组，反之亦然。
 
