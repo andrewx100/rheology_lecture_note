@@ -1,171 +1,98 @@
 \documentclass[main.tex]{subfiles}
-% 内积空间上的线性算符
+% 基变换与坐标变换
 \begin{document}
-当我们为一个向量空间赋予了内积定义，这个空间上的线性算符的性质也相应增加了。
+不管是向量还是线性变换，它们的本质都独立于它们在选定基下的坐标矩阵。同一个向量或线性变换，在不同基下将对应为不同的坐标矩阵。下面我们讨论同一个向量或线性变换在不同基下的矩阵之间的关系——基变换与坐标变换公式。
 
-\subsection{伴随算符}
-\begin{theorem}
-设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$f$是$\mathcal{V}$上的线性泛函，则存在唯一向量$\mathbf{b}\in\mathcal{V}$满足$f\left(\mathbf{a}\right)=\left(\mathbf{a}|\mathbf{b}\right)\forall\mathbf{a}\in\mathcal{V}$。
+考虑数域$\mathbb{F}$上的$N$维向量空间$\mathcal{V}_N$中的两组基$\left\{\mathbf{e}_i\right\},\left\{\mathbf{e}^\prime_j\right\}$。用第一组基表示第二组基的每个基向量，可列出如下的$N$个等式：
+\[\mathbf{e}^\prime_j=\sum_{i=1}^NS_{ij}\mathbf{e}_i,j=1,\cdots,N\]
+称为从基$\left\{\mathbf{e}_i\right\}$到基$\left\{\mathbf{e}^\prime_j\right\}$的基变换公式。矩阵$\left(S_{ij}\right)$称为从基$\left\{\mathbf{e}_i\right\}$到基$\left\{\mathbf{e}^\prime_j\right\}$的过渡矩阵。如果我们把基向量$\left\{\mathbf{e}_i\right\}$排成一个行向量（$1\times N$矩阵），则基变换关系可表示为
+\[
+\left(\mathbf{e}_1^\prime,\cdots,\mathbf{e}_N^\prime\right)=\left(\mathbf{e}_1,\cdots,\mathbf{e}_N\right)S
+\]
+以下定理告诉我们，反过来从$\left\{\mathbf{e}_i^\prime\right\}$到$\left\{\mathbf{e}_i\right\}$的过渡矩阵就是矩阵$S$的逆（$S$可逆的证明见\cite[p.~52,例题4.4]{周胜林2012线性代数}。）
+
+\begin{theorem}\label{thm:II.5.1}
+设$\mathcal{V}_N$是数域$\mathbb{F}$上的$N$维向量空间，$\left\{\mathbf{e}_i\right\},\left\{\mathbf{e}^\prime_j\right\}$是$\mathcal{V}_N$的两组基，则从基$\left\{\mathbf{e}_i\right\}$到基$\left\{\mathbf{e}^\prime_j\right\}$的过渡矩阵是从基$\left\{\mathbf{e}^\prime_j\right\}$到基$\left\{\mathbf{e}_i\right\}$的过渡矩阵的逆矩阵。具体地，若$\mathbf{e}^\prime_j=\sum_{i=1}^NS_{ij}\mathbf{e}_i$，则$\mathbf{e}_i=\sum_{j=1}^NS^\mathrm{inv}_{ji}\mathbf{e}^\prime_j$\footnote{由于矩阵的分量是标量，为防与倒数的记法混淆，矩阵$S$的逆矩阵$S^{-1}$的分量记为$S^\mathrm{inv}_{ij}$，矩阵$S$的分量的倒数记为$S^{-1}_{ij}$。}。
 \end{theorem}
 \begin{proof}
-令$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_n\right\}$是$\mathcal{V}$的一组正交基，令$\mathbf{b}=\sum_{j=1}^n\overline{f\left(\mathbf{a}_j\right)}\mathbf{a}_j$，令线性泛函$f_\mathbf{b}\left(\mathbf{a}\right)=\left(\mathbf{a}|\mathbf{b}\right)$，则有$f_\mathbf{b}\left(\mathbf{a}_k\right)=\left(\mathbf{a}_k|\mathbf{b}\right)=\left(\mathbf{a}_k|\sum_{j=1}^n\overline{f\left(\mathbf{a}_j\right)}\mathbf{a}_j\right)=f\left(\mathbf{a}_k\right),k=1,\cdots,n,\therefore f_\mathbf{b}=f$，即$f$是唯一的。若$\mathbf{c}\in\mathcal{V}$满足$\left(\mathbf{a}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{c}\right)\forall \mathbf{a}\in\mathcal{V}$，则$\left(\mathbf{b}-\mathbf{c}|\mathbf{b}-\mathbf{c}\right)=0\Leftrightarrow\mathbf{b}=\mathbf{c}$，故所找到的$f$和$\mathbf{b}$满足命题条件，命题得证。
+两边同乘$S^{-1}$立刻得证，略。
 \end{proof}
-上述证明也给出了$\mathbf{b}$的找法。由上述定理的证明过程显见$\mathbf{b}$在$f$的核空间的正交补集中。若$\mathcal{W}=\mathrm{ker}f$则$\mathcal{V}=\mathcal{W}+\mathcal{W}^\perp$，$f$完全由其在$\mathcal{W}^\perp$的值决定。若$\mathbf{P}$是由$\mathcal{V}$到$\mathcal{W}^\perp$的正交投影算符，则$f\left(\mathbf{a}\right)=f\left(\mathbf{Pa}\right)\forall\mathbf{a}\in\mathcal{V}$。若$f\neq 0$，则$f$的秩为1，$\mathrm{dim}\mathcal{W}^\perp=1$。若$\mathbf{c}\neq\mathbf{0}\in\mathcal{W}^\perp$则
-\begin{align*}\mathbf{Pa}&=\frac{\left(\mathbf{a}|\mathbf{c}\right)}{\left\|\mathbf{c}\right\|^2}\mathbf{c}\forall\mathbf{a}\in\mathcal{V}\\
-\therefore f\left(\mathbf{a}\right)&=\left(\mathbf{a}|\mathbf{c}\right)\frac{f\left(\mathbf{c}\right)}{\left\|\mathbf{c}\right\|^2}\forall\mathbf{a}\in\mathcal{V},\mathbf{b}=\frac{\overline{f\left(\mathbf{c}\right)}}{\left\|\mathbf{c}\right\|^2}\mathbf{c}
+
+特别地，由$n$维向量空间的一组基到它自身的过渡矩阵是单位矩阵$I_n$。
+
+我们通过基的过渡矩阵，可以写出一个向量$\mathbf{v}\in\mathcal{V}_N$在两组基$\left\{\mathbf{e}_i\right\},\left\{\mathbf{e}^\prime_j\right\}$下的坐标之间的关系：
+
+\begin{align*}
+\mathbf{v}&=\sum_{j=1}^Nv^\prime_j\mathbf{e}^\prime_j\\
+&=\sum_{j=1}^Nv^\prime_j\left(\sum_{i=1}^NS_{ij}\mathbf{e}_i\right)\\
+&=\sum_{i=1}^N\left(\sum_{j=1}^N S_{ij}v^\prime_j\right)\mathbf{e}_i\\
+&=\sum_{i=1}^Nv_i\mathbf{e}_i\\
+\Leftrightarrow v_i&=\sum_{j=1}^NS_{ij}v^\prime_j,i=1,\cdots,N
 \end{align*}
+这$N$个式子称为向量$\mathbf{v}$从基$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的坐标变换公式，也可以写成矩阵乘：
+\[\left(\begin{array}{c}v_1\\\vdots\\v_N\end{array}\right)=\left(\begin{array}{ccc}S_{11}&\cdots&S_{1N}\\\vdots&&\vdots\\S_{N1}&\cdots&S_{NN}\end{array}\right)\left(\begin{array}{c}v^\prime_1\\\vdots\\v^\prime_N\end{array}\right)\]
 
-下面，我们将引入$\mathbf{T}$的伴随算符$\mathbf{T}^*$的定义。但在此之前先通过两个定理来明确其存在性、唯一性。
+注意到，对于同一个矩阵$S_{ij}$，它是从$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的过渡矩阵，但却用于向量$\mathbf{v}$从$\left\{\mathbf{e}_i\right\}$下的坐标到$\left\{\mathbf{e}^\prime_j\right\}$下的坐标的变换公式中。按照相同的推算方法还可以得到，向量$\mathbf{v}$从$\left\{\mathbf{e}^\prime_j\right\}$到$\left\{\mathbf{e}_i\right\}$的坐标变换公式是$v^\prime_j=\sum_{i=1}^NS^\mathrm{inv}_{ji}v_i,j=1,\cdots,N$。
 
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的线性算符，则存在唯一线性算符$\mathbf{T}^*$满足
-\[\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}\]
-\end{theorem}
-\begin{proof}
+接下来，我们讨论线性变换在给定不同基下的坐标矩阵之间的变换公式。
 
-\end{proof}
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$B=\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组规范正交基，$\mathbf{T}$是$\mathcal{V}$的线性算符，则
-\[\left(\mathbf{T}\right)_{kj}=\left(\mathbf{T\hat{e}}_j|\mathbf{e}_k\right)\]
-\end{theorem}
-\begin{proof}
-
-\end{proof}
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$B=\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组规范正交基，$\mathbf{T},\mathbf{T}^*$是$\mathcal{V}$上的线性算符满足
-\[\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}\]
-则$\mathbf{T}^*$在$B$下的矩阵是$\mathbf{T}$在$B$下的矩阵的共轭转置。
-\end{theorem}
-\begin{proof}
-
-\end{proof}
-
-\begin{definition}[伴随算符]
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$的线性算符，如果存在$\mathcal{V}$的另一线性算符$\mathbf{T}^*$满足$\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$，则称$\mathbf{T}^*$是$\mathbf{T}$的伴随算符。若$\mathbf{T}=\mathbf{T}^*$则称$\mathbf{T}$是厄米算符或自伴随算符。
-\end{definition}
-
-\begin{theorem}
-设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$\mathbf{T},\mathbf{U}$是$\mathcal{V}$的线性算符，则
-\begin{enumerate}
-    \item $\left(\mathbf{T}+\mathbf{U}\right)^*=\mathbf{T}^*+\mathbf{U}^*$
-    \item $\left(\alpha\mathbf{T}\right)^*=\overline{\alpha}\mathbf{T}^*\forall\alpha\in\mathbb{F}$
-    \item $\left(\mathbf{TU}\right)^*=\mathbf{U}^*\mathbf{T}^*$
-    \item $\left(\mathbf{T}^*\right)^*=\mathbf{T}$
-\end{enumerate}
-\end{theorem}
-
-算符的伴随类似于复数的共轭。且由上面的相关定理可知算符的伴随对应于矩阵的共轭转置。
-
-线性算符及其伴随算符也有类似于“对于$\alpha\in\mathbb{F}$，当且仅当$\alpha=\overline{\alpha}$时$\alpha\in\mathbf{R}$”的结论。数域$\mathbb{F}$上的内积空间的线性算符$\mathbf{T}$可表示为$\mathbf{T}=\mathbf{U}_1+i\mathbf{U}_2,\mathbf{U}_1=\frac{1}{2}\left(\mathbf{T}+\mathbf{T}^*\right),\mathbf{U}_2=\frac{1}{2i}\left(\mathbf{T}-\mathbf{T}^*\right)$，其中$\mathbf{U}_1,\mathbf{U}_2$都是厄米算符。
-
-线性算符的伴随算符与线性算符的转置之间的区别与联系：设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$\mathbf{T}$是$\mathcal{V}$是的线性算符，则由定义，
-\begin{align*}\mathbf{T}^\intercal&:\mathcal{V}^*\rightarrow\mathcal{V}^*,\mathbf{T}^\intercal\left(g\right)\left(\cdot\right)=g\left(\mathbf{T}\cdot\right)\forall g\in\mathcal{V}^*\\
-\mathbf{T}^*&:\mathcal{V}\rightarrow\mathcal{V},\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}
+\begin{theorem}\label{thm:II.5.2}
+设$\mathcal{V}_N$、$\mathcal{W}_M$分别是数域$\mathbb{F}$上的$N$、$M$维向量空间，$\left\{\mathbf{a}_i\right\},\left\{\mathbf{a}^\prime_i\right\}\in\mathcal{V}_N$是$\mathcal{V}_N$的两组基，基变换公式为$\mathbf{a}^\prime_j=\sum_{i=1}^NS_{ij}\mathbf{a}_i$；$\left\{\mathbf{b}_j\right\},\left\{\mathbf{b}^\prime_j\right\}$是$\mathcal{W}_M$的两组基，基变换公式为$\mathbf{b}^\prime_j=\sum_{i=1}^MT_{ij}\mathbf{b}_i$。线性变换$\mathbf{A}:\mathcal{V}_N\rightarrow\mathcal{W}_M$在$\left\{\mathbf{a}_i\right\},\left\{\mathbf{b}_i\right\}$下的矩阵表示为$\left(\mathbf{A}\right)$，在$\left\{\mathbf{a}^\prime_i\right\},\left\{\mathbf{b}^\prime_i\right\}$下的矩阵表示为$\left(\mathbf{A}\right)^\prime$。则有
+\begin{align*}
+    \left(\mathbf{A}\right)&=T\left(\mathbf{A}\right)^\prime S^{-1}\\
+    \left(\mathbf{A}\right)^\prime&=T^{-1}\left(\mathbf{A}\right)S
 \end{align*}
-注意到，由内积与线性泛函的关系，对每一$\mathbf{a}\in\mathcal{V}$均可定义线性泛函$\left(\mathbf{a}|\cdot\right)\in\mathcal{V}^*$，此外$\left(\mathbf{T}^\intercal\right)=\left(\mathbf{T}\right)^\intercal,\left(\mathbf{T}^*\right)=\left(\mathbf{T}\right)^*$，其中$\intercal,*$作用于矩阵分别表示矩阵的转置和共轭转置。由此可见，线性变换的转置是比线性算符的伴随更一般的概念（后者是前者的特例）。
-
-\subsection{幺正算符}
-\begin{definition}[保持内积]
-设$\mathcal{V},\mathcal{W}$是同数域上的两内积空间，若线性变换$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$满足$\left(\mathbf{Ta}|\mathbf{Tb}\right)=\left(\mathbf{a}|\mathbf{b}\right)\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$则称$\mathbf{T}$保持内积。
-\end{definition}
-
-\begin{theorem}
-设$\mathcal{V},\mathcal{W}$是同数域上的两内积空间，关于线性变换$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$的以下命题相互等价：
-\begin{enumerate}
-    \item $\mathbf{T}$保持内积
-    \item $\mathbf{T}$是同构映射
-    \item $\mathbf{T}$将$\mathcal{V}$的某个规范正交基映射为$\mathcal{W}$的一个规范正交基
-    \item $\mathbf{T}$将$\mathcal{V}$的每个规范正交基映射为$\mathcal{W}$的一个规范正交基
-    \item $\left\{\mathbf{Ta}\right\|=\left\|\mathbf{A}\right\|\forall\mathbf{a}\in\mathcal{V}$
-\end{enumerate}
 \end{theorem}
+\begin{proof}
+对于任一向量$\mathbf{v}\in\mathcal{V}_N$，记$\mathbf{w}=\mathbf{Av}\in\mathcal{W}_M$。我们从向量$\mathbf{w}$的坐标变换出发：
+\begin{align*}
+    w_i&=\sum_{j=1}^MT_{ij}w^\prime_j\\
+    &=\sum_{j=1}^MT_{ij}\left(\sum_{k=1}^NA^\prime_{jk}v^\prime_k\right)\\
+    &=\sum_{j=1}^M\sum_{k=1}^NT_{ij}A^\prime_{jk}\left(\sum_{l=1}^NS^\mathrm{inv}_{kl}v_l\right)\\
+    &=\sum_{j=1}^M\sum_{k=1}^N\sum_{l=1}^NT_{ij}A^\prime_{jk}S^\mathrm{inv}_{kl}v_l\\
+    &=\sum_{j=1}^N\sum_{l=1}^M\sum_{k=1}^NT_{il}A^\prime_{lk}S^\mathrm{inv}_{kl}v_j,\quad i=1,\cdots,M
+\end{align*}
+其中$A_{ij},A^\prime_{ij}$分别是$\left(\mathbf{A}\right),\left(\mathbf{A}\right)^\prime$的坐标。
 
-\begin{definition}[幺正算符]
-内积空间$\mathcal{V}$的同构线性算符称该内积空间的幺正算符。
-\end{definition}
+另一方面，$w_i=\sum_{j=1}^NA_{ij}v_j,i=1,\cdots,M$，与上面的结果比较可得：
+\[
+A_{ij}=\sum_{l=1}^M\sum_{k=1}^NT_{il}A^\prime_{lk}S^\mathrm{inv}_{kj}
+\Leftrightarrow \left(\mathbf{A}\right)=T\left(\mathbf{A}\right)^\prime S^{-1}
+\]
+由$T^{-1}\left(\mathbf{A}\right)S=T^{-1}T\left(\mathbf{A}\right)^\prime S^{-1}S=\left(\mathbf{A}\right)^\prime$，可得$\left(\mathbf{A}\right)^\prime=T^{-1}\left(\mathbf{A}\right)S$。
+\end{proof}
 
-若$\mathbf{U}_1$和$\mathbf{U}_2$是内积空间$\mathcal{V}$的幺正算符，则$\mathbf{U}_2\mathbf{U}_1$可逆且$\left\{\mathbf{U}_2\mathbf{U}_1\mathbf{a}\right\|=\left\|\mathbf{U}_1\mathbf{a}\right\|=\left\|\mathbf{a}\right\|\forall\mathbf{a}\in\mathcal{V}$。幺正算符的逆也是幺正的，$\left\|\mathbf{Ua}\right\|=\left\|\mathbf{a}\right\|\Rightarrow\left\|\mathbf{U}^{-1}\mathbf{b}\right\|=\left\|\mathbf{b}\right\|,\mathbf{b}=\mathbf{Ua}$。由这些事实可见，一个内积空间的所有幺正算符及其复合操作组成一个群。
+有了基变换和坐标变换公式，我们可以验证任何基于抽象的向量和线性变换的运算结果是否依赖基的选择。以下定理及其证明可作为一个示例。
 
-\begin{theorem}
-设$\mathbf{U}$是内积空间$\mathcal{V}$上的线性算符，则$\mathbf{U}$是幺正算符当且令当$\mathbf{UU}^*=\mathbf{U}^*\mathbf{U}=\mathbf{I}$。
+\begin{theorem}\label{thm:II.5.3}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，则$\mathcal{V}$上的内积不依赖基的选择。
 \end{theorem}
-
-\begin{definition}[幺正矩阵]
-若$n\times n$矩阵A满足$AA^*=I$则称$A$是幺正矩阵。
-\end{definition}
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$\mathbf{U}$是$\mathcal{V}$上的线性算符，则$\mathbf{U}$是幺正算符当且仅当$\mathbf{U}$在$\mathcal{V}$的某一（或每一）基下的矩阵是幺正矩阵。
-\end{theorem}
-
-\begin{definition}[正交矩阵]
-若$n\times n$矩阵$A$满足$A^\intercal A=I$则称$A$是正交矩阵。
-\end{definition}
-
-实正交矩阵是幺正矩阵。
-
-\subsection{正规算符}
-内积空间上的线性算符在对角化方面有新的性质。
-
-\begin{definition}[正规算符]
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的线性算符，若$\mathbf{TT}^*=\mathbf{T}^*\mathbf{T}$则称$\mathbf{T}$是正规算符。
-\end{definition}
-
-厄米算符和幺正算符都是正规算符（见以下定理），但正规算符的和或乘积（复合）未必是正规算符。
-
-以下一连串定理关注的是厄米算符的可对角化性质。
-
-\begin{theorem}
-设$\mathbf{T}$是内积空间$\mathcal{V}$的一个厄米算符，则$\mathbf{T}$的所有特征值全是实数，且两两不同特征值对应的特征向量两两正交。
-\end{theorem}
-
-\begin{theorem}
-有限非零维内积空间的任一个厄米算符均有一个（非零）特征向量。
-\end{theorem}
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上任一线性算符。设$\mathcal{W}$是$\mathcal{V}$的子空间，且$\forall\mathbf{a}\in\mathcal{W}\mathbf{Ta}\in\mathcal{W}$，那么就有$\forall\mathbf{b}\in\mathcal{W}^\perp\mathbf{T}^*\mathbf{b}\in\mathcal{W}^\perp$。
-\end{theorem}
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的厄米算符，则存在一组规范正交基的基向量就是$\mathbf{T}$的特征向量。
-\end{theorem}
-
+\begin{proof}
+设$\left\{\mathbf{e}\right\},\left\{\mathbf{e}^\prime\right\}$是$\mathcal{V}$的任意两组基，任意两个向量$\mathbf{u},\mathbf{v}\in\mathcal{V}$在这两组基下的坐标表示为：$\mathbf{u}=\sum_{i=1}^nu\mathbf{e}_i=\sum_{i=1}^nu^\prime\mathbf{e}^\prime_i,\mathbf{v}=\sum_{i=1}^nv\mathbf{e}_i=\sum_{i=1}^nv^\prime\mathbf{e}^\prime_i$。设由基$\left\{\mathbf{e}\right\}$到$\left\{\mathbf{e}^\prime\right\}$的过度矩阵坐标是$S_{ij}$，即
+\[
+\mathbf{e}_j^\prime=\sum_{i=1}^nS_{ij}\mathbf{e}_i,j=1,\cdots,n\]
+则有：
+\[u_i=\sum_{i=1}^nS_{ij}u^\prime_j,v_i=\sum_{i=1}^nS_{ij}v^\prime_j,i=1,\cdots,n\]
+记$G_{ij}=\left(\mathbf{e}_i|\mathbf{e}_j\right),G_{ij}^\prime=\left(\mathbf{e}^\prime_i|\mathbf{e}^\prime_j\right),i,j=1,\cdots,n$，分别是基$\left\{\mathbf{e}_i\right\},\left\{\mathbf{e}^\prime_i\right\}$的格拉姆矩阵的分量，则两组基之间的格拉姆矩阵变换关系为：
+\begin{align*}
+    G^\prime_{ij}&=\left(\mathbf{e}^\prime_i|\mathbf{e}^\prime_j\right)\\
+    &=\left(\sum_{k=1}^n S_{ki}\mathbf{e}_k\right|\left.\sum_{l=1}^n S_{lj}\mathbf{e}_l\right)\\
+    &=\sum_{k=1}^n\sum_{l=1}^nS_{ki}\overline{S_{lj}}\left(\mathbf{e}_k|\mathbf{e}_l\right)\\
+    &=\sum_{k=1}^n\sum_{l=1}^nS_{ki}\overline{S_{lj}}G_{kl}
+\end{align*}
+故$\mathbf{u},\mathbf{v}\in\mathcal{V}$的内积
+\begin{align*}
+    \left(\mathbf{u}|\mathbf{v}\right)&=\sum_{i=1}^n\sum_{j=1}^nu_i\overline{v_j}G_{ij}\\
+    &=\sum_{i=1}^n\sum_{j=1}^n\left(\sum_{k=1}^nS_{ik}u_k^\prime\right)\overline{\left(\sum_{l=1}^nS_{jl}v_l^\prime\right)}G_{ij}\quad\text{（利用了坐标变换公式。）}\\
+    &=\sum_{i=1}^n\sum_{j=1}^n\sum_{k=1}^n\sum_{l=1}^nu_k^\prime\overline{v_k^\prime}S_{ik}\overline{S_{jl}}G_{ij}\\
+    &=\sum_{k=1}^n\sum_{l=1}^nu_k^\prime\overline{v_l^\prime}G_{kl}^\prime\quad\text{（利用格拉姆矩阵的坐标变换公式。）}
+\end{align*}
+可见两向量内积在任意两组基下的计算结果是相等的。
+\end{proof}
 \begin{corollary}
-设$A$是$n\times n$厄米矩阵，则存在一个幺正矩阵$P$使得$P^{-1}AP$是对角矩阵。若$A$是实对称矩阵，则存在正交矩阵$P$使得$P^{-1}AP$是对角矩阵
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维赋范向量空间，则$\mathcal{V}$上的范不依赖基的选择。
 \end{corollary}
-
-由这些定理，我们得出结论：对于有限维实内积空间的线性算符$\mathbf{T}$，只要它是厄米的，则必有一组规范正交基是它的特征向量。
-
-\begin{theorem}
-设$\mathcal{V}$有限维内积空间，$\mathbf{T}$是正规算符。则$\mathbf{a}\in\mathcal{V}$是$\mathbf{T}$的特征值$c$对应的特征向量当且仅当$\mathbf{a}$是$\mathbf{T}^*$的特征值$\overline{c}$对应的特征向量。
-\end{theorem}
-
-\begin{definition}[正规矩阵]
-若复数值$n\times n$矩阵$A$满足$AA^*=A^*A$则称$A$是正规矩阵。
-\end{definition}
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$B$是$\mathcal{V}$的一组规范正交基。若$\mathcal{V}$上的线性算符$\mathbf{T}$在该基下的矩阵$\left(T\right)$是上三角矩阵，则$\mathbf{T}$是正规算符当且仅当$\left(\mathbf{T}\right)$是对角矩阵。
-\end{theorem}
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的线性算符，则$\mathcal{V}$中总存在一组规范正交基使得$\mathbf{T}$在该其下的矩阵$\left(\mathbf{T}\right)$是上三角矩阵。
-\end{theorem}
-
-\begin{corollary}
-对每一复数值$n\times n$矩阵$A$均有一幺正矩阵$U$使得$U^{-1}AU$是上三角矩阵。
-\end{corollary}
-
-由上面的几条定理，我们把之前只对厄米算符成立的对角化性质推广至对正规算符都成立。
-
-\begin{theorem}
-设$\mathcal{V}$是有限维内积空间，$\mathbf{T}$是$\mathcal{V}$上的正规算符，则$\mathcal{V}$中存在一组规范正交基的基向量就是$\mathcal{T}$的特征向量。
-\end{theorem}
-
-\begin{corollary}
-对每一正规矩阵$A$总有幺正矩阵$P$使得$P^{-1}AP$是对角矩阵。
-\end{corollary}
+\begin{proof}
+由$\mathcal{V}$上的内积不依赖基的选择易证$\mathcal{V}$上的欧几里得范不依赖基的选择。再由范的等价性（定理\ref{thm:VI.1.1}）易证该命题。
+\end{proof}
 \end{document}

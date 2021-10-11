@@ -1,0 +1,132 @@
+\documentclass[main.tex]{subfiles}
+
+\begin{document}
+在欧几里得几何中，欧几里得空间$\mathcal{E}$中的点$X\in\mathcal{E}$是客观的。若向量空间$\mathcal{V}$是$\mathcal{E}$的平移空间，则选定$\mathcal{E}$中某点$O\in\mathcal{E}$为原点，$\mathcal{E}$中任一点均能与$\mathcal{V}$中的一个向量唯一地对应。或再选择$\mathcal{V}$的一组基$\left\{\mathbf{\hat{e}}_i\right\}$，则$\mathcal{E}$中的任一点均能与$\mathbb{R}^n$中的一个有序实数$n$元组唯一地对应，其中$n=\mathrm{dim}\mathcal{V}$是欧几里得空间$\mathcal{E}$的维数。由于同维数向量空间之间均同构，我们经常在讨论时直接以作为向量空间的$\mathbb{R}^n$作为$\mathcal{E}$的平移空间，并默认选择$\left\{\left(1,\cdots,0\right),\cdots,\left(0,\cdots,1\right)\right\}$为基（即标准基），使得任一点$X\in\mathcal{E}$的坐标$x_1,\cdots,x_n$就是该点的位置向量$\mathbf{x}\in\mathbb{R}^n,\mathbf{x}=\left(x_1,\cdots,x_n\right)$。事实上，若记标准期为$\left\{\mathbf{\hat{e}}_i\right\}$，则$\mathbf{x}=x_1\mathbf{\hat{e}}_1+\cdots+x_n\mathbf{\hat{e}}_n$，只是向量$\mathbf{x}$的其中一种表出。
+
+需要注意的是在线性代数中，虽然同维数的向量空间是同构的，但是在它们之间的映射关系当中，值域与到达域仍然是两个不同的空间。来自这两个不同空间的向量之间的直接运算是没有定义的。尤其是，当我们为了方便，将不同向量空间的向量都转为$\mathbb{R}^n$来研究时，我们更要注意这些向量是否来自不同空间。
+
+在涉及对位置向量的线性变换运算时，我们进一步规定$\mathbb{R}^n$中的向量写成$n\times 1$矩阵，以便线性变换作用某向量可表示为相应的矩阵乘法。由于实数域上的矩阵空间$\mathbb{R}^{n\times n}$与线性算符空间$\mathcal{L}\left(\mathcal{V}\right)$同构，故关于线性算符与向量的代数关系可用标准基下的矩阵运算证明，而不影响其在任一基下的成立。具体地，线性算符和向量在不同基下的坐标变换通过基变换公式和坐标变换公式而相互等价。
+
+在本节中我们将看到，空间位置的曲线坐标不是基变换与坐标变换所能处理的。曲线坐标的变换是一套基于特定原则而建立的规则。
+
+我们在大一的数学课中已经学过二维的极坐标，三维的柱坐标、球坐标。这里就不再重复这些基本知识了。我们直接介绍一般的情况。然后以我们已经学过的柱坐标为例，来理解这些一般描述到底说了和做了什么。
+
+\subsection{位置向量的变换}
+设函数$T:\mathbb{R}^n\supset\mathcal{U}\rightarrow\mathbb{R}^n$可逆且连续可微。若$\mathbf{u}\in\mathcal{U},\mathbf{x}=T\left(\mathbf{u}\right)\in\mathcal{D}\subseteq\mathbb{R}^n$，即$\mathcal{D}=\mathrm{ran}T$，$\mathbf{u}=\left(u_1,\cdots,u_n\right)^\intercal,\mathbf{x}=\left(x_1,\cdots,x_n\right)^\intercal$，则可以有如下记法的式子：
+
+\begin{equation*}
+    \left(\begin{array}{c}x_1\\\vdots\\x_n\end{array}\right)=T\left(\begin{array}{c}u_1\\\vdots\\u_n\end{array}\right),\left(\begin{array}{c}u_1\\\vdots\\u_n\end{array}\right)=T^{-1}\left(\begin{array}{c}x_1\\\vdots\\x_n\end{array}\right)
+\end{equation*}
+
+我们注意到，在映射$T$下，向量$\mathbf{u}$和$\mathbf{x}$分别属于不同的向量空间$\mathcal{U}$和$\mathcal{D}$，且$u_i,x_i$是这两个空间下的标准基下的坐标。为明确这是两个不同的空间，我们将$\mathcal{U}$下的标准基记为$\left\{\mathbf{\hat{f}}_i\right\}$，将$\mathcal{D}$下的标准基记为$\left\{\mathbf{\hat{e}}\right\}$，于是$\mathbf{u}=\sum_{i=1}^nu_i\mathbf{\hat{f}}_i,\mathbf{x}=\sum_{i=1}^nx_i\mathbf{\hat{e}}_i$。
+
+若简记$\mathbf{x}\left(\mathbf{u}\right)\equiv T\left(\mathbf{u}\right),\mathbf{u}\left(\mathbf{x}\right)\equiv T^{-1}\left(\mathbf{x}\right)$，则分别由可逆函数性质和反函数定理，导数$\frac{d\mathbf{x}}{d\mathbf{u}}$满秩且$\frac{d\mathbf{u}}{d\mathbf{x}}=\left(\frac{d\mathbf{x}}{d\mathbf{u}}\right)^{-1}$。$\frac{d\mathbf{x}}{d\mathbf{u}}$在标准基$\left\{\mathbf{\hat{f}}_i\right\},\left\{\mathbf{\hat{e}}_i\right\}$下的矩阵（即函数$T$的雅可比矩阵）是：
+
+\[\left(\frac{d\mathbf{x}}{d\mathbf{u}}\right)_{\left\{\mathbf{\hat{f}}_i\right\},\left\{\mathbf{\hat{e}}_i\right\}}=\left(\begin{array}{ccc}
+\frac{\partial x_1}{\partial u_1}&\cdots&\frac{\partial x_1}{\partial u_n}\\
+\vdots&\ddots&\vdots\\
+\frac{\partial x_n}{\partial u_1}&\cdots&\frac{\partial x_n}{\partial u_n}\end{array}\right)\]
+
+我们把这个矩阵的列向量记为$\mathbf{c}_i=\left(\frac{\partial x_1}{\partial u_i},\cdots,\frac{\partial x_n}{\partial u_i}\right)^\intercal=\sum_{j=1}^n\frac{\partial x_j}{\partial u_i}\mathbf{\hat{e}}_j,i=1,\cdots,n$，则$\mathbf{c}_i$线性无关，可作为$\mathcal{D}$的一组基。进一步对其归一化，记$\mathbf{\hat{c}}_i=h_i^{-1}\mathbf{c}_i$，其中$h_i=\left\|\frac{\partial\mathbf{x}}{\partial u_i}\right\|$，则$\left\{\mathbf{\hat{c}}_i\right\}$可作为$\mathcal{D}$的一组单位基。注意到，$\mathbf{c}_i$和$\mathbf{\hat{c}}_i$都是$\mathbf{u}$的函数。由于映射$T$是双射，这意味着$\mathbf{c}_i$和$\mathbf{\hat{c}}_i$都是$\mathbf{x}$的函数，它们（一般地）不是常向量。如果如果我们把$\mathbf{c}_i$作为基（把$\mathbf{\hat{c}}_i$作为单位基），则每个向量$\mathbf{x}\in\mathcal{D}$的基变换与坐标变换公式都是不同的。这跟以往我们知道的常基向量之间的基变换和坐标变换情况不同。
+
+几何方面，考虑$\mathcal{U}$中一点$\mathbf{u}_0$通过$T$所对应的$\mathcal{D}$中一点$\mathbf{x}_0$。若仅留$\mathbf{u}_0$的第$i$个坐标为变量，其余坐标保持不变，所得到的$\left.\mathbf{x}\left(\mathbf{u}\right)\right|_{u_{j\neq i}=u_{0j}},i=1,\cdots,n$就是$\mathcal{D}$中的$n$条曲线的参数方程（参数域是$\mathcal{U}$），它们相交于点$\mathbf{x}_0$，$\mathbf{\hat{c}}_i$是第$i$条曲线在点$\mathbf{x}_0$处的单位切向量。若仅留$\mathbf{u}_0$的第$i$个坐标为常量，基余坐标为变量，所得到的$\mathbf{x}\left(\mathbf{u}\right)\left|_{u_i=u_{i0}}\right.,i=1,\cdots,n$是$\mathcal{D}$中的$n$个$\left(n-1\right)$维曲面的参数方程（参数域是$\mathcal{U}$），它们并于点$\mathbf{x}_0$。
+
+现在我们用基$\left\{\mathbf{\hat{c}}_i\right\}$来重新表出点$\mathbf{x}_0$，则其坐标为
+\[x_{0i}^\mathrm{c}=\left(\mathbf{x}_0|\mathbf{\hat{c}}_i\left(\mathbf{u}_0\right)\right)=h_i\left(\mathbf{u}_0\right)^{-1}\sum_{j=1}^nx_{0j}\left.\frac{\partial x_j\left(\mathbf{u}\right)}{\partial u_i}\right|_{\mathbf{u}=\mathbf{u}_0},i=1,\cdots,n\]
+这是由$\left\{\mathbf{\hat{e}}_i\right\}$到$\left\{\mathbf{\hat{c}}_i\right\}$的坐标变换公式。而相应的基变换公式，由之间的关系知为
+\[\mathbf{\hat{c}}_i\left(\mathbf{u}_0\right)=h_i\left(\mathbf{u}_0\right)^{-1}\sum_{j=1}^n\left.\frac{\partial x_j\left(\mathbf{u}\right)}{\partial u_i}\right|_{\mathbf{u}=\mathbf{u}_0}\mathbf{\hat{e}}_j,i=1,\cdots,n\]
+其中$h_i\left(\mathbf{u}_0\right)=\left\|\left.\frac{\partial \mathbf{x}\left(\mathbf{u}\right)}{\partial u_i}\right|_{\mathbf{u}=\mathbf{u}_0}\right\|$。
+显然我们强调了这套变换关于$\mathbf{u}_0$（通过双射$T$也就是$\mathbf{x}_0$本身）的依赖性。
+
+总之，我们由连续可微双射$T$，可为空间$\mathcal{D}$中的第个点构建的$n$条交于该点的不重合曲线参数方程$\left.\mathbf{x}\left(\mathbf{u}\right)\right|_{u_{j\neq i}=u_{0j}},i=1,\cdots,n$，就可以把该点坐标重新表示为以这些曲线在该点处的单位切向量为基下的坐标。这样的表述，描述了一件发生在空间$\mathcal{D}$之内的基变换，只不过涉及到的曲线方程参数域是$\mathcal{U}$。我们称由基$\left\{\mathbf{\hat{c}}_i\right\}\subset\mathcal{D}$所代表的坐标系为空间$\mathcal{D}$的曲线坐标系。
+
+下面我们以柱坐标为例，重述一次上面的抽象描述。
+
+\begin{example}[柱坐标]
+设函数$T:\mathbb{R}^3\supset\mathcal{U}\rightarrow\mathbb{R}^3$。若记$\mathbf{u}=\left(r,\theta,z\right)^\intercal=r\mathbf{\hat{f}}_1+\theta\mathbf{\hat{f}}_2+z\mathbf{\hat{f}}_3\in\mathcal{U}$，则区域$\mathcal{U}$是：$r\in\left(0,+\infty\right),\theta\in\left[0,2\pi\right),z\in\mathbb{R}$。若记$\mathbf{x}=\left(x,y,z\right)^\intercal=x\mathbf{\hat{e}}_1+y\mathbf{\hat{e}}_2+z\mathbf{\hat{e}}_3\in\mathcal{D}$，则$\mathcal{D}$是除直线$x=y=0$外的整个$\mathbb{R}^3$区域。函数$T$的具体定义为：
+\begin{equation*}
+T:\left\{\begin{array}{l}
+x=r\cos \theta\\
+y=r\sin \theta\\
+z=z\end{array}\right.,T^{-1}
+\left\{\begin{array}{l}
+r=\sqrt{x^2+y^2}\\
+\theta=\arctan\left(y/x\right)\\
+z=z\end{array}\right.
+\end{equation*}
+可验$T$是连续可微双射，其雅可比矩阵是
+\[
+\left(\begin{array}{ccc}
+\frac{\partial x}{\partial r}&\frac{\partial x}{\partial \theta}&\frac{\partial x}{\partial z}\\
+\frac{\partial y}{\partial r}&\frac{\partial y}{\partial \theta}&\frac{\partial y}{\partial z}\\
+\frac{\partial z}{\partial r}&\frac{\partial z}{\partial\theta}&\frac{\partial z}{\partial z}
+\end{array}\right)=\left(\begin{array}{ccc}
+\cos\theta&-r\sin\theta&0\\
+\sin\theta&r\cos\theta&0\\
+0&0&1\end{array}\right)
+\]
+\begin{equation*}
+\begin{array}{lll}
+    \mathbf{c}_1=\left(\cos\theta,\sin\theta,0\right)^\intercal,&h_1=1,&\mathbf{\hat{c}}_1=\left(\cos\theta,\sin\theta,0\right)^\intercal\\
+    \mathbf{c}_2=\left(-r\sin\theta,r\cos\theta,0\right)^\intercal,&h_2=r,&\mathbf{\hat{c}}_2=\left(-\sin\theta,\cos\theta,0\right)^\intercal\\
+    \mathbf{c}_3=\left(0,0,1\right)^\intercal,&h_3=1,&\mathbf{\hat{c}}_3=\left(0,0,1\right)^\intercal
+    
+\end{array}\end{equation*}
+我们发现，在柱坐标这一例子中，$\mathbf{c}_i$两两正交。球坐标也有此性质。但一般地，曲线坐标系仅要求$\mathbf{c}_i$线性无关。正交的好处之一是，点乘的曲线坐标运算仍然是我们熟悉的那个公式（直接把相应坐标相乘后加起来）。但我们将会看到，这里的曲线坐标并不是$\left(r,\theta,z\right)$！
+
+几何方面，给定$\mathcal{U}$中一点$\mathbf{u}_0=\left(r_0,\theta_0,z_0\right)^\intercal$，映射$T$定义了$\mathcal{D}$中的三条曲线，它们的参数方程分别是：
+\[
+\left\{\begin{array}{l}
+x=r\cos\theta_0\\
+y=r\sin\theta_0\\
+z=z_0\end{array}\right.,
+\left\{\begin{array}{l}
+x=r_0\cos\theta\\
+y=r_0\sin\theta\\
+z=z_0\end{array}\right.,
+\left\{\begin{array}{l}
+x=r_0\cos\theta_0\\
+y=r_0\sin\theta_0\\
+z=z\end{array}\right.\]
+
+实际上第一条曲线是高$z_0$处，从$z$轴出发向$\theta_0$方向平行于$x-y$平面的射线。第二条曲线是高$z_0$处，绕$z$轴半径为$r_0$平行于$x-y$平面的圆。第三条曲线是过$\mathbf{x}_0$点与$z$轴平行的直线。映射$T$同时也定义了$\mathcal{D}$中的三个曲面。第一个是以$z$轴为轴心半径为$r_0$的圆柱面，单位法向量是$\mathbf{\hat{c}}_3$。第二个是与$x-y$平面平行，高$z_0$处的平面，单位切向量为$\mathbf{\hat{c}}_2$。第三个是过$z$轴与$z$轴平行，向$\theta_0$方向延伸的平面，单位切向量是$\mathbf{\hat{c}}_1$。这三条曲线、三个曲面，都交于$\mathbf{x}_0$点。
+
+点$\mathbf{x}_0$在基$\left\{\mathbf{\hat{c}}_i\right\}$下的坐标是（代入之前给出的一般公式）：
+
+\[
+\left\{\begin{array}{l}
+x_{01}^\mathrm{c}=x\cos\theta+y\sin\theta=r=\sqrt{x^2+y^2}\\
+x_{02}^\mathrm{c}=0\quad\text{第二个切向量总是与位置向量垂直的。}\\
+x_{03}^\mathrm{c}=z\end{array}\right.
+\]
+
+因此$\mathbf{x}_0=\sqrt{x^2+y^2}\mathbf{\hat{c}}_1+0\mathbf{\hat{c}}_2+z\mathbf{\hat{c}}_3$。如果把坐标换成用$r,\theta,z$来表示的形式，那么$\mathbf{x}_0=r\mathbf{\hat{c}}_1+0\mathbf{\hat{c}}_2+z\mathbf{\hat{c}}_3$，可见坐标并非是$\left(r,\theta,z\right)$。这是因为，$\left(r,\theta,z\right)$是空间$\mathcal{U}$的向量$\mathbf{u}$的直角坐标（标准基$\left\{\mathbf{\hat{f}}_i\right\}$下的），而$\mathbf{x}_0$是空间$\mathcal{D}$的向量。读者可以类似地验算球坐标下的情况。由此可知，我们平时习惯讨论的，“空间某点的柱坐标”并非该点在同向量空间中的不同基下的坐标，而是不同向量空间各自直角坐标系下的坐标。上面的$x_{0i}^\mathrm{c}$才是真正意义的同一空间、同一位置向量的曲线坐标（“在这一空间的曲线上的基下的坐标”）。惯例上，常将$\left\{\mathbf{\hat{c}}_i\right\}$写成诸如$\left\{\mathbf{\hat{e}}_r,\mathbf{\hat{e}}_\theta,\mathbf{\hat{e}}_z\right\}$或者$\left\{\mathbf{\hat{r}},\hat{\boldsymbol{\theta}},\mathbf{\hat{z}}\right\}$的形式。例如，$\mathbf{x}=x\mathbf{\hat{e}}_1+y\mathbf{\hat{e}}_2+z\mathbf{\hat{e}}_3=r\mathbf{\hat{r}}+z\mathbf{\hat{z}}$。
+\end{example}
+
+%=============================
+\subsection{场函数的导数}
+设$f:\mathcal{D}\supseteq\mathcal{N}\rightarrow\mathcal{F}$是定义在$\mathcal{D}$的子集$\mathcal{N}$上的函数。也就是说，函数$T$定义了一个参数方程规定的$n$维空间区域$\mathcal{D}$，而$f$是$\mathcal{D}$内的一个场函数。若$\mathbf{x}\in\mathcal{N}$，则$f\left(\mathbf{x}\right)\in\mathcal{F}$。在之前的讨论中我们已经知道，有了双射$T$，我们就能用参数$\mathbf{u}\in\mathcal{U}$来表示$\mathcal{D}$中的位置，故可记$f^\mathrm{u}\left(\mathbf{u}\right)\equiv f\left(T\left(\mathbf{u}\right)\right)$。$f^\mathrm{u}$与$f$的函数表达式一般是不同的（除了$T$是恒等映射的平凡情况），但在实际常见的惯例中常常不加区分地把$f^\mathrm{u}$也记成$f$。在后面的例子中我们将看到更多惯例问题。所幸$f^\mathrm{u}$与$f$是同属于一个空间$\mathcal{F}$的元素。这里的$\mathcal{F}$可以是一个标量、向量或张量的空间。
+
+我们考虑位置向量的微分$d\mathbf{x}$，如果把它写成坐标微元的向量：$d\mathbf{x}=\sum_{i=1}^3dx_i\mathbf{\hat{e}}_i$，则由函数微分定义有$d\mathbf{x}=\sum_{i=1}^n\sum_{j=1}^n\frac{\partial x_i}{\partial u_j}du_j\mathbf{\hat{e}}_i=\sum_{j=1}^n\mathbf{\hat{c}}_jh_jdu_j$。视$\mathbf{\hat{c}}_i$为另一组基的时，可进一步记为
+\[d\mathbf{x}=\sum_{i=1}^ndx_i^\mathrm{c}\mathbf{\hat{c}}_i,\quad dx_i^\mathrm{c}=h_idu_i,i=1,\cdots,n\]
+这个关系后面会用到。
+
+$f$在点$\mathbf{x}_0$处的导数是$\left.\frac{df\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}$。但在使用曲线坐标讨论问题时，我们经常已知的是$\mathbf{u}\in\mathcal{U}$和$f^\mathrm{u}\left(\mathbf{u}\right)$，可直接计算的导数是$\left.\frac{df^\mathrm{u}\left(\mathbf{u}\right)}{d\mathbf{u}}\right|_{\mathbf{u}=\mathbf{u}\left(\mathbf{x}_0\right)}$，但这并非性质场$f$在$\mathcal{D}$空间上的导数，应用时不能直接拿去作用于$\mathcal{D}$空间上的位移向量。我们希望得到的是空间$\mathcal{D}$上的函数导数在曲线坐标系的基$\left\{\mathbf{\hat{c}}_i\right\}$下的坐标矩阵，它可以作用于微元$d\mathbf{x}$在相同基下的矩阵$\left(dx_1^\mathrm{c},\cdots,dx_n^\mathrm{c}\right)^\intercal$。我们从以下等式关系出发
+\[df\left(\mathbf{x}_0\right)=df^\mathrm{u}\left(\mathbf{u}\left(\mathbf{x}_0\right)\right)\]
+等式左边：
+\begin{align*}
+    df\left(\mathbf{x}_0\right)&=\mathbf{L}_{\mathbf{x}_0}d\mathbf{x}\\
+    &=\left(\left.\frac{\partial f\left(\mathbf{x}\right)}{\partial x_1}\right|_{\mathbf{x}=\mathbf{x}_0}\cdots\left.\frac{\partial f\left(\mathbf{x}\right)}{\partial x_n}\right|_{\mathbf{x}=\mathbf{x}_0}\right)\left(\begin{array}{c}dx_1\\\vdots\\dx_n\end{array}\right)\quad\text{这是在基$\left\{\mathbf{\hat{e}}_i\right\}$下的坐标式。}
+\end{align*}
+其中$\mathbf{L}_{\mathbf{x}_0}\equiv\left.\frac{df\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}$是函数$\mathbf{f}\left(\mathbf{x}\right)$在点$\mathbf{x}_0$处的导数。等式右边：
+\begin{align*}
+df^\mathrm{u}\left(\mathbf{u}\left(\mathbf{x}_0\right)\right)&=\mathbf{L}_{\mathbf{u}\left(\mathbf{x}_0\right)}^\mathrm{u}d\mathbf{u}\quad\text{$\mathbf{L}_{\mathbf{u}\left(\mathbf{x}_0\right)}^\mathrm{u}$是空间$\mathcal{U}$上的线性变换。}\\
+&=\left(\left.\frac{\partial f^\mathrm{u}\left(\mathbf{u}\right)}{\partial u_1}\right|_{\mathbf{u}=\mathbf{u}\left(\mathbf{x}_0\right)}\cdots\left.\frac{\partial f^\mathrm{u}\left(\mathbf{u}\right)}{\partial u_n}\right|_{\mathbf{u}=\mathbf{u}\left(\mathbf{x}_0\right)}\right)\left(\begin{array}{c}du_1\\\vdots\\du_n\end{array}\right)\\
+&\text{这是在空间$\mathcal{U}$中的基$\left\{\mathbf{\hat{f}}_i\right\}$下的坐标式。}\\
+&=\left(\left.\frac{\partial f^\mathrm{u}\left(\mathbf{u}\right)}{\partial u_1}\right|_{\mathbf{u}=\mathbf{u}\left(\mathbf{x}_0\right)}\cdots\left.\frac{\partial f^\mathrm{u}\left(\mathbf{u}\right)}{\partial u_n}\right|_{\mathbf{u}=\mathbf{u}\left(\mathbf{x}_0\right)}\right)\left(\begin{array}{c}h_1^{-1}h_1du_1\\\vdots\\h_n^{-1}h_ndu_n\end{array}\right)\\
+&=\left(h_1^{-1}\left.\frac{\partial f^\mathrm{u}\left(\mathbf{u}\right)}{\partial u_1}\right|_{\mathbf{u}=\mathbf{u}\left(\mathbf{x}_0\right)}\cdots h_n^{-1}\left.\frac{\partial f^\mathrm{u}\left(\mathbf{u}\right)}{\partial u_n}\right|_{\mathbf{u}=\mathbf{u}\left(\mathbf{x}_0\right)}\right)\left(\begin{array}{c}dx_1^\mathrm{c}\\\vdots\\dx_n^\mathrm{c}\end{array}\right)\\
+&\text{这是在空间$\mathcal{D}$中的基$\left\{\mathbf{\hat{c}}_i\right\}$下的坐标式。}
+\end{align*}
+比较可知，$\mathbf{L}_{\mathbf{x}_0}$在基$\left\{\mathbf{\hat{c}}_i\right\}$下的矩阵就是
+\[\left(h_1^{-1}\left.\frac{\partial f^\mathrm{u}\left(\mathbf{u}\right)}{\partial u_1}\right|_{\mathbf{u}=\mathbf{u}\left(\mathbf{x}_0\right)}\cdots h_n^{-1}\left.\frac{\partial f^\mathrm{u}\left(\mathbf{u}\right)}{\partial u_n}\right|_{\mathbf{u}=\mathbf{u}\left(\mathbf{x}_0\right)}\right)\]
+\end{document}

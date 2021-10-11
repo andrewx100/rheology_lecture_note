@@ -1,29 +1,40 @@
 \documentclass[main.tex]{subfiles}
 % 线性变换的定义和基本性质
 \begin{document}
-在本节我们考虑由一个向量空间到另一个向量空间的映射——线性变换
+在本节我们考虑由一个向量空间到另一个向量空间的一种映射。我们限定，建立了映射的两个向量空间是在同一数域上的。
 
+向量空间之间的映射不一定保留其运算规则，即$f\left(\alpha\mathbf{a}+\beta\mathbf{b}\right)\neq\alpha f\left(\mathbf{a}\right)+\beta f\left(\mathbf{b}\right)$。如果两个同类代数结构之间的映射保持这类代数结构的关系定义不变，则称这种映射为同态映射（homomorphism）。
 \begin{example}
-\quad
+以下映射是否同态映射？
 \begin{itemize}
     \item $f:\mathbb{R}\rightarrow\mathbb{R}:f\left(x\right)=x^2$
     \item $g:\mathbb{R}^2\rightarrow\mathbb{R}:g\left(x,y\right)=x^2+y^2-4$
     \item $F:\mathbb{R}^2\rightarrow\mathbb{C}:F\left(x,y\right)=U\left(x,y\right)+iV\left(x,y\right),U,V:\mathbb{R}^2\rightarrow\mathbb{R}$
     \item $T:\mathbb{R}\rightarrow\mathbb{R}^2:T\left(t\right)=\left(t+3,2t-5\right)$
+    \item 一个点粒子在空间中的运动可视为一个映射$M:\left[a,b\right]\rightarrow\mathbb{R}^3$，具体定义为对每一$t\in\left[a,b\right],M\left(t\right)=\left(x\left(t\right),y\left(\right),z\left(t\right)\right)$，其中$x\left(t\right),y\left(t\right),z\left(t\right)$是$t$的实值函数。如果视$t$为时间，则$M\left(t\right)$描述了粒子的运动轨迹，$a$和$b$是运动的起始和终止时间。
 \end{itemize}
 \end{example}
-
-一般地，建立了映射的两个向量空间是在同一数域上的，但向量空间之间的映射不一定保留其运算规则，即$f\left(\alpha\mathbf{a}+\beta\mathbf{b}\right)\neq\alpha f\left(\mathbf{a}\right)+\beta f\left(\mathbf{b}\right)$\footnote{在抽象代数中，如果两个同类代数结构之间的映射保持这类代数结构的关系定义不变，则称这种映射为同态映射（isomorphism）。}。
 
 \begin{definition}[线性变换]\label{def:II.4.1}
 设$\mathcal{V}$和$\mathcal{W}$是$\mathbb{F}$上的向量空间。如果从$\mathcal{V}$到$\mathcal{W}$的映射$T:\mathcal{V}\rightarrow\mathcal{W}$满足
 \[T\left(\alpha\mathbf{a}+\beta\mathbf{b}\right)=\alpha T\left(\mathbf{a}\right)+\beta T\left(\mathbf{b}\right)\]
-则称$T$是从$\mathcal{V}$到$\mathcal{W}$的线性变换（linear transformation），常写成算符的形式：$T\left(\mathbf{a}\right)=\mathbf{Ta}$。如果两个线性变换$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$和$\mathbf{U}:\mathcal{V}\rightarrow\mathcal{W}$满足$\mathbf{Ta}=\mathbf{Ua}\forall\mathbf{a}\in\mathcal{V}$则称这两个线性变换相等，$\mathbf{U}=\mathbf{T}$。零变换$\mathbf{T}_0:\mathcal{V}\rightarrow\mathcal{W}$定义为$\mathbf{T}_0\mathbf{a}=\mathbf{0}_\mathcal{W}\forall\mathbf{a}\in\mathcal{V}$，其中$\mathbf{0}_\mathcal{W}\in\mathcal{W}$表示$\mathcal{W}$中的零向量\footnote{此处要注意区分不同向量空间中的零向量。}。\footnote{由上一脚注我们可以称线性变换是向量空间之间的同态映射。}
+则称$T$是从$\mathcal{V}$到$\mathcal{W}$的线性变换（linear transformation），常写成算符的形式：$T\left(\mathbf{a}\right)=\mathbf{Ta}$。如果两个线性变换$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$和$\mathbf{U}:\mathcal{V}\rightarrow\mathcal{W}$满足$\mathbf{Ta}=\mathbf{Ua}\forall\mathbf{a}\in\mathcal{V}$则称这两个线性变换相等，$\mathbf{U}=\mathbf{T}$。零变换$\mathbf{T}_0:\mathcal{V}\rightarrow\mathcal{W}$定义为$\mathbf{T}_0\mathbf{a}=\mathbf{0}_\mathcal{W}\forall\mathbf{a}\in\mathcal{V}$，其中$\mathbf{0}_\mathcal{W}\in\mathcal{W}$表示$\mathcal{W}$中的零向量\footnote{此处要注意区分不同向量空间中的零向量。}。\footnote{我们可以说线性变换就是向量空间之间的同态映射。}
 \end{definition}
 
 易验，任何一个线性变换都总把零向量映射为零向量。
 
 易验两个向量空间之间的恒等映射是$\mathcal{V}$到其自身的线性变换$\mathbf{I}_\mathcal{V}:\mathcal{V}\rightarrow\mathcal{V},\mathbf{I}_\mathcal{V}\mathbf{a}=\mathbf{a}\forall\mathbf{a}\in\mathcal{V}$又可称为恒等线性变换。
+
+正如由定义\ref{def:II.2.1}定义的向量那般，定义\ref{def:II.4.1}定义的线性变换也是抽象概念。例\ref{exp:II.2.1}中的向量空间上都可以建立线性变换。
+
+\begin{example}\label{exp:II.4.2}
+验证以下是例\ref{exp:II.2.1}中的$\mathcal{C}^\infty\left(a,b\right)$上的线性变换。
+\begin{enumerate}
+    \item 一阶导数映射$D:\mathcal{C}^\infty\left(a,b\right)\rightarrow\mathcal{C}^\infty\left(a,b\right),Df\left(x\right)=f^\prime\left(x\right),\forall f\in\mathcal{C}^\infty\left(a,b\right)$
+    \item 积分上限函数映射$T:\mathcal{C}^\infty\left(a,b\right)\rightarrow\mathcal{C}^\infty\left(a,b\right),Tf\left(x\right)=\int_{0}^xf\left(x^\prime\right)dx^\prime,\forall f\in\mathcal{C}^\infty\left(a,b\right)$
+    \item $F:\mathcal{C}^\infty\left(a,b\right)\rightarrow\mathcal{C}^\infty\left(a,b\right),Ff\left(x\right)=\sin\left(x\right)f\left(x\right),\forall f\in\mathcal{C}^\infty\left(a,b\right)$
+\end{enumerate}
+\end{example}
 
 \begin{theorem}\label{thm:II.4.1}
 设$\mathcal{V}$、$\mathcal{W}$是$\mathbb{F}$上的向量空间，$\mathbf{T}$、$\mathbf{U}$是从$\mathcal{V}$到$\mathcal{W}$的线性变换。若定义
@@ -38,7 +49,7 @@
 上面这一定理，事实上使得线性变换本身也能形成一个向量空间，作为推论如下。
 
 \begin{corollary}
-给定数域$\mathbb{F}$上的两个向量空间$\mathcal{V},\mathcal{W}$，所有由$\mathcal{V}$到$\mathcal{W}$的线性变换的集合组成一个向量空间，记为$\mathcal{L}\left(\mathcal{V},\mathcal{W}\right)$，零变换是该向量空间的零向量。
+给定数域$\mathbb{F}$上的两个向量空间$\mathcal{V},\mathcal{W}$，所有由$\mathcal{V}$到$\mathcal{W}$的线性变换的集合是一个数域$\mathbb{F}$上的向量空间，记为$\mathcal{L}\left(\mathcal{V},\mathcal{W}\right)$，零变换是该向量空间的零向量。
 \end{corollary}
 \begin{proof}
 前一句由定理\ref{thm:II.4.1}易证。设$\mathbf{T}_0$是由$\mathcal{V}$到$\mathcal{W}$的零变换，对任一$\mathbf{T}\in\mathcal{L}\left(\mathcal{V},\mathcal{W}\right)$和$\mathbf{a}\in\mathcal{V}$，$\left(\mathbf{T}_0+\mathbf{T}\right)\mathbf{a}=\mathbf{T}_0\mathbf{a}+\mathbf{Ta}=\mathbf{0}_\mathcal{W}+\mathbf{Ta}=\mathbf{Ta}$，即$\mathbf{T}_0+\mathbf{T}=\mathbf{T}\forall\mathbf{T}\in\mathcal{L}\left(\mathcal{V},\mathcal{W}\right)$。
@@ -95,10 +106,10 @@
 线性变换作为映射的性质又与它所映射的两个向量空间的维数有关，这是线性代数最重要的定理之一，下面先给出这一定理。
 
 \begin{definition}[零空间、零化度、秩]\label{def:II.4.2}
-设$\mathcal{V}$和$\mathcal{W}$是数域$\mathbb{F}$上的向量空间。线性变换$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$的零空间（null space）或核空间（kernel），记作$\mathrm{ker}\mathbf{T}$，是所有满足$\mathbf{Ta}=\mathbf{0}_\mathcal{W}$的向量$\mathbf{a}$的集合。零空间的维数称为该线性变换的零化度（nullity），记作$\mathrm{nullity}\mathbf{T}\equiv\mathrm{dim}\left(\mathrm{ker}\mathbf{T}\right)$。如果$\mathcal{V}$是有限维向量空间，则$\mathbf{T}$的秩（rank）是$\mathbf{T}$的值域的维数，记作$\mathrm{rank}\mathbf{T}\equiv\mathrm{dim}\left(\mathrm{ran}\mathbf{T}\right)$。特别地，如果$\mathrm{nullity}\mathbf{T}=0$，即$\mathbf{T}$的零空间只有零向量$\mathbf{0}_\mathcal{V}$一个元素，则称$\mathcal{T}$是非奇异的（non-singular）。
+设$\mathcal{V}$和$\mathcal{W}$是数域$\mathbb{F}$上的向量空间。线性变换$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$的零空间（null space）或核空间（kernel），记作$\mathrm{ker}\mathbf{T}$，是所有满足$\mathbf{Ta}=\mathbf{0}_\mathcal{W}$的向量$\mathbf{a}$的集合。零空间的维数称为该线性变换的零化度（nullity），记作$\mathrm{nullity}\mathbf{T}\equiv\mathrm{dim}\left(\mathrm{ker}\mathbf{T}\right)$。如果$\mathcal{V}$是有限维向量空间，则$\mathbf{T}$的秩（rank）是$\mathbf{T}$的值域的维数，记作$\mathrm{rank}\mathbf{T}\equiv\mathrm{dim}\left(\mathrm{ran}\mathbf{T}\right)$。特别地，如果$\mathrm{nullity}\mathbf{T}=0$，即$\mathbf{T}$的零空间只有零向量$\mathbf{0}_\mathcal{V}$一个元素，则称$\mathbf{T}$是非奇异的（non-singular）。
 \end{definition}
 
-上述定义默认了两个易验事实的成立：$\mathrm{ker}\mathbf{T}$是$\mathcal{V}$的子空间，$\mathrm{ran}\mathbf{T}$是$\mathcal{W}$的子空间（否则不能直接谈它这两个子集的“维数”），证明从略\cite[\S7.3“2.线性变换的简单性质(4)”p.~177]{周胜林2012线性代数}。基于\ref{def:II.4.2}的概念，我们给出线性代数中非常重要的定理——线性变换的维数定理\cite[\S7.3“2.线性变换的简单性质(5)”p.~178]{周胜林2012线性代数}。
+上述定义默认了两个易验事实的成立：$\mathrm{ker}\mathbf{T}$是$\mathcal{V}$的子空间，$\mathrm{ran}\mathbf{T}$是$\mathcal{W}$的子空间（否则不能直接谈它这两个子集的“维数”），证明从略\cite[\S7.3“2.线性变换的简单性质(4)”p.~177]{周胜林2012线性代数}。基于定义\ref{def:II.4.2}的概念，我们给出线性代数中非常重要的定理——线性变换的维数定理\cite[\S7.3“2.线性变换的简单性质(5)”p.~178]{周胜林2012线性代数}。
 
 \begin{theorem}\label{thm:II.4.3}
 设$\mathcal{V}$和$\mathcal{W}$是数域$\mathbb{F}$上的向量空间，其中$\mathcal{V}$是有限维向量空间，则对线性变换$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$有
@@ -141,7 +152,7 @@ $1\Leftrightarrow 3$：设$\mathbf{T}$是非奇异的。令$S$是$\mathcal{V}$�
 $1\Leftrightarrow 4$：由定理\ref{thm:II.4.3}可直接得到。
 \end{proof}
 
-定理\ref{thm:II.4.4}联系了线性变换的非奇异性与其单射性。下面的推论进一步说明，如果在此基础上再加上一个条件：$\mathrm{dim}\mathcal{V}=\mathrm{dim}\mathcal{W}$，那么$\mathcal{T}$就是双射。
+定理\ref{thm:II.4.4}联系了线性变换的非奇异性与其单射性。下面的推论进一步说明，如果在此基础上再加上一个条件：$\mathrm{dim}\mathcal{V}=\mathrm{dim}\mathcal{W}$，那么$\mathbf{T}$就是双射。
 
 \begin{corollary}
 设$\mathcal{V},\mathcal{W}$是数域$\mathbb{F}$上的有限维向量空间且$\mathrm{dim}\mathcal{V}=\mathrm{dim}\mathcal{W}$，$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$是一个线性变换，则以下命题相互等价：
@@ -166,7 +177,7 @@ $1\Leftrightarrow 3$：留作练习。
 对任意$\mathbf{b}_1,\mathbf{b}_3\in\mathcal{W}$和$\gamma\in\mathbb{F}$，令$\mathbf{a}_i=\mathbf{T}^{-1}\mathbf{b}_i,i=1,2$，由于$\mathbf{T}$是线性变换，则有$\mathbf{T}\left(\gamma\mathbf{b}_1+\mathbf{b}_2\right)=\gamma\mathbf{Ta}_1+\mathbf{Ta}_2=\gamma\mathbf{b}_1+\mathbf{b}_2$。因此向量$\gamma\mathbf{a}_1+\mathbf{a}_2\in\mathcal{V}$就是向量$\gamma\mathbf{b}_1+\mathbf{b}_2\in\mathcal{W}$在映射$\mathbf{T}$下的原像，由逆映射性质有$\mathbf{T}^{-1}\left(\gamma\mathbf{b}_1+\mathbf{b}_2\right)=\gamma\mathbf{a}_1+\mathbf{a}_2=\gamma\left(\mathbf{T}^{-1}\mathbf{b}_1\right)+\mathbf{T}^{-1}\mathbf{b}_2$，即$\mathbf{T}^{-1}$满足线性变换定义的性质（对任意选取的$\mathbf{b}_1,\mathbf{b}_2,\gamma$均成立），故$\mathbf{T}^{-1}$是线性变换。
 \end{proof}
 
-双射（可逆）线性变换，经常称作“同构线性变换”（isomorphic linear transformation）。如果两个向量空间之间存在一个同构线性变换，则称这两个向量空间是同构（isomorphic）的。在\S\ref{sec:II.2}中我们了解了向量与其在给定某基下的坐标是一一对应的，且易证这一对应关系是一个同构线性变换。因此，事实上任一$n$维向量空间均与$\mathbb{F}^n$同构。由于双射的可逆性具有传递性，即当$f:A\rightarrow B$是双射、$g:B\rightarrow C$是双射，则$g\circ f:A\rightarrow C$是双射，故所有同维数的向量空间之间相互同构。以下定理及其推论从一个不同的出发点证明了这上述的结论。
+双射（可逆）线性变换，经常称作“同构线性变换”（isomorphic linear transformation）。如果两个向量空间之间存在一个同构线性变换，则称这两个向量空间是同构（isomorphic）的。在\S\ref{sec:II.2}中我们了解了向量与其在给定某基下的坐标是一一对应的，且易证这一对应关系是一个同构线性变换。因此，事实上任一$n$维向量空间均与$n$维坐标空间$\mathbb{F}^n$同构。由于双射的可逆性具有传递性，即当$f:A\rightarrow B$是双射、$g:B\rightarrow C$是双射，则$g\circ f:A\rightarrow C$是双射，故所有同维数的向量空间之间相互同构。以下定理及其推论从一个不同的出发点证明了这上述的结论。
 
 \begin{theorem}\label{thm:II.4.6}
 数域$\mathbb{F}$上的两个向量空间同构当且仅当它们维数相等。
@@ -187,7 +198,7 @@ $1\Leftrightarrow 3$：留作练习。
 \end{proof}
 
 \begin{corollary}
-任一$\mathbb{F}$上的$N$维向量空间均与$\mathbb{F}^N$同构
+任一数域$\mathbb{F}$上的$N$维向量空间均与$\mathbb{F}^N$同构
 \end{corollary}
 
 按照逆映射的性质，一个同构线性变换与其逆映射的复合映射是恒等映射。我们于是要问：两个线性变换形成的复合映射是线性变换吗？答案是肯定的。
@@ -205,7 +216,7 @@ $1\Leftrightarrow 3$：留作练习。
 设$\mathcal{V},\mathcal{W}$是数域$\mathbb{F}$上的向量空间，$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W}$是同构线性变换。则$\mathbf{T}^{-1}\mathbf{T}=\mathbf{I}_\mathcal{V},\mathbf{TT}^{-1}=\mathbf{I}_\mathcal{W}$。
 \end{example}
 
-如果一个同构线性变换是从一个向量空间到其自己的映射，则称该线性变换是自同构线性变换（endomorphic linear transformation）。由于维数相等的任意两个向量空间同构，对同构线性变换的研究总能等价于对自同构线性变换的研究。
+如果一个同构线性变换是从一个向量空间到其自己的映射，则称该线性变换是自同构线性变换（endomorphic linear transformation）。由于维数相等的任意两个向量空间同构，对同构线性变换的研究总能等价于对自同构线性变换的研究。我们给自同构线性变换以另一个名字。
 
 \begin{definition}[线性算符]\label{def:II.4.3}
 设$\mathcal{V}$是数域$\mathbb{F}$上的向量空间，由$\mathcal{V}$到其自身的线性变换$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{V}$称为线性算符（linear operator）。
@@ -235,7 +246,7 @@ $1\Leftrightarrow 3$：留作练习。
     &=\mathbf{T}_1\left(\mathbf{Ua}\right)+\mathbf{T}_2\left(\mathbf{Ua}\right)\quad\text{（由定理\ref{thm:II.4.1}中的定义）}\\
     &=\left(\mathbf{T}_1\mathbf{U}\right)\mathbf{a}+\left(\mathbf{T}_2\mathbf{U}\right)\mathbf{a}\quad\text{（由复合映射的定义）}
 \end{align*}
-故由两映射相等的定义，，$\left(\mathbf{T}_1+\mathbf{T}_2\right)\mathbf{U}=\mathbf{T}_1\mathbf{U}+\mathbf{T}_2\mathbf{U}$，第2条证毕\footnote{我们留意到第2条的第一部分证明没有用到$\mathbf{T}_1$和$\mathbf{T}_2$是线性变换的条件，第二部分的证明连$\mathbf{U}$是线变换的条件都没用到。}。第3条证明留作练习。
+故由两映射相等的定义，$\left(\mathbf{T}_1+\mathbf{T}_2\right)\mathbf{U}=\mathbf{T}_1\mathbf{U}+\mathbf{T}_2\mathbf{U}$，第2条证毕\footnote{我们留意到第2条的第一部分证明没有用到$\mathbf{T}_1$和$\mathbf{T}_2$是线性变换的条件，第二部分的证明连$\mathbf{U}$是线性变换的条件都没用到。}。第3条证明留作练习。
 \end{proof}
 \end{theorem}
 \end{document}

@@ -1,20 +1,18 @@
 \documentclass[main.tex]{subfiles}
 % 向量函数及其图像
 \begin{document}
-在向量函数微积分部分的讨论，默认总是选择标准基作为$\mathbb{R}^n$的基，即，向量$\mathbf{f}=\left(f_1,\cdots,f_n\right)\in\mathbb{R}^n$的坐标就是$f_1,\cdots,f_n$，其矩阵是$\left(f_1,\cdots,f_n\right)^\intercal$。因此，是否把一个向量写成“列向量”（即$n\times 1$矩阵）的问题变得平凡。当我们想强调矩阵运算法则时，我们会注意明确“行、列向量”。我们会以专门的章节讨论选择非标准基乃至非规范正交基的情况。
+在线性代数部分的解绍中，我们知道实数域$\mathbb{R}$上的$n$维向量空间的向量在给定基下总是唯一对应于$n$维实坐标空间$\mathbb{R}^n$中的一组有序实数$n$元组。因此，如不另作说明，向量函数都直接讨论$\mathbb{R}^n$上的向量。
 
 \begin{definition}[向量函数]
-从$\mathbb{R}^n$到$\mathbb{R}^m$的映射$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$是一个向量函数。其变量是一个$n$维向量空间的向量$\mathbf{r}\in\mathbb{R}^n$，$\mathbf{r}=\left(r_1,\cdots,r_n\right)$；其像（函数值）是一个$m$维向量空间的向量$\mathbf{f}\in\mathbb{R}^m$，$\mathbf{f}=\left(f_1,\cdots,f_m\right)$。在标准基下，$f_j:\mathbf{R}_n\rightarrow\mathbf{R},j=1,\cdots,m$称为$\mathbf{f}$的坐标函数。
+从$\mathbb{R}^n$到$\mathbb{R}^m$的映射$\mathbf{f}:\mathbb{R}^n\supseteq D\rightarrow\mathbb{R}^m$是一个向量函数（vector function）。其变量是一个$n$维向量空间的向量$\mathbf{r}\in\mathbb{R}^n$，$\mathbf{r}=\left(r_1,\cdots,r_n\right)^\intercal$；其像（函数值）$\mathbf{f}\left(\mathbf{r}\right)$是一个$m$维向量空间的向量$\mathbf{f}\in\mathbb{R}^m$，$\mathbf{f}\left(\mathbf{r}\right)=\left(f_1\left(\mathbf{r}\right),\cdots,f_m\left(\mathbf{r}\right)\right)^\intercal$。$f_j:\mathbb{R}_n\rightarrow\mathbb{R},j=1,\cdots,m$称为$\mathbf{f}$的坐标函数（coordinate function）。
 \end{definition}
 
-严格而言，函数的记法$\mathbf{f}:\mathbb{R}^n\supset D\rightarrow\mathbb{R}^m$表示函数$f$的定义域$\mathrm{dom}f=D$，而不是整个$\mathbf{R}^n$。这一记法中箭头右侧则一向仅指陪域。但是在后面的讨论当中，当定义域问题不重要时，我们也常粗略记为$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$。
+严格而言，函数的记法$\mathbf{f}:\mathbb{R}^n\supseteq D\rightarrow\mathbb{R}^m$表示函数$f$的定义域$\mathrm{dom}f=D$，而不是整个$\mathbb{R}^n$。这一记法中箭头右侧则一向仅指陪域。但是在后面的讨论当中，当函数的定义域待定时，我们也常粗略记为$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$。
 
 \begin{example}
 函数$\mathbf{f}:\mathbb{R}^3\rightarrow\mathbb{R}^2$，
 \[\begin{split}\mathbf{f}\left(\mathbf{r}\right)=\left(\begin{array}{c}r_1^2+r_2^2+r_3^2\\r_1+r_2+r_3\end{array}\right)=\left(\begin{array}{c}f_1\\f_2\end{array}\right),\\f_1\leq0,f_2\in\mathbb{R}\end{split}\]
-其中$\mathbf{r}=\left(r_1,r_2,r_3\right)^\intercal\in\mathbb{R}^3$，$\mathbf{f}=\left(f_1,f_2\right)^\intercal\in\mathbb{R}^2$。
-
-以往我们更习惯把上述函数写成：
+其中$\mathbf{r}=\left(r_1,r_2,r_3\right)^\intercal\in\mathbb{R}^3$，$\mathbf{f}=\left(f_1,f_2\right)^\intercal\in\mathbb{R}^2$。以往我们更习惯把上述函数写成：
 \[
 \left\{\begin{array}{l}
     P\left(x,y,z\right)=x^2+y^2+z^2\\
@@ -25,13 +23,13 @@
 \end{example}
 
 \begin{example}
-函数$\mathbf{f}:\mathbb{R}^3\rightarrow\mathbb{R}^2$，
-\[\mathbf{f}\left(\mathbf{r}\right)=\left(\begin{array}{c}3r_1+4r_2\\3r_2+5r_3\end{array}\right)=\left(\begin{array}{ccc}3&4&0\\0&3&5\end{array}\right)\left(\begin{array}{c}r_1\\r_2\\r_3\end{array}\right)\]
-是一个线性变换，又称线性函数。线性函数也可以按线性代数的惯例记为：$\mathbf{fr}$。
+函数$\mathbf{A}:\mathbb{R}^3\rightarrow\mathbb{R}^2$，
+\[\mathbf{A}\left(\mathbf{r}\right)=\left(\begin{array}{c}3r_1+4r_2\\3r_2+5r_3\end{array}\right)=\left(\begin{array}{ccc}3&4&0\\0&3&5\end{array}\right)\left(\begin{array}{c}r_1\\r_2\\r_3\end{array}\right)\]
+是一个线性变换，又称线性函数。线性函数也可以按线性代数的惯例记为：$\mathbf{Ar}$。
 \end{example}
 
 \begin{definition}[隐函数]
-考虑函数$\mathbf{F}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^m$，若$\mathbb{R}^{n+m}$中的元素$\left(x_1,\cdots,x_n,y_1,\cdots,y_m\right)^\intercal$写成$\left(\mathbf{x},\mathbf{y}\right)^\intercal$，其中$\mathbf{x}=\left(x_1,\cdots,x_n\right)^\intercal$，$\mathbf{y}=\left(y_1,\cdots,y_m\right)^\intercal$，则$\mathbf{F}\left(\mathbf{r}\right),\mathbf{r}\in\mathbb{R}^{n+m}$也可写成$\mathbf{F}\left(\mathbf{x},\mathbf{y}\right)$。若函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$满足方程$\mathbf{F}\left(\mathbf{x},\mathbf{y}\right)=\mathbf{0},\forall\mathbf{x}\in\mathbb{R}^n$则称这一方程隐含地定义了函数$\mathbf{f}$。
+考虑函数$\mathbf{F}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^m$，若将$\mathbb{R}^{n+m}$中的元素$\left(x_1,\cdots,x_n,y_1,\cdots,y_m\right)^\intercal$写成$\left(\mathbf{x},\mathbf{y}\right)^\intercal$，其中$\mathbf{x}=\left(x_1,\cdots,x_n\right)^\intercal$，$\mathbf{y}=\left(y_1,\cdots,y_m\right)^\intercal$，则$\mathbf{F}\left(\mathbf{r}\right),\mathbf{r}\in\mathbb{R}^{n+m}$也可写成$\mathbf{F}\left(\mathbf{x},\mathbf{y}\right)$。若函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$满足方程$\mathbf{F}\left(\mathbf{x},\mathbf{f}\left(\mathbf{x}\right)\right)=\mathbf{0},\forall\mathbf{x}\in\mathbb{R}^n$则称这一方程隐含地定义了（implicitly defined）函数$\mathbf{f}$。
 \end{definition}
 
 \begin{example}
@@ -47,10 +45,10 @@
 \end{example}
 
 \begin{definition}[函数的图像]\footnote{请复习高等数学相关内容\cite[\S 6.4~6.7]{华工高数2009上}。}
-函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的图像是指所有有序对$\left(\mathbf{r},\mathbf{f}\left(\mathbf{r}\right)\right)$的集合。
+函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的图像（graph）是指所有有序对$\left(\mathbf{r},\mathbf{f}\left(\mathbf{r}\right)\right)$的集合。
 \end{definition}
 
-图像的数学概念是一个集合，我们把图像画在纸上的方式是一种惯例。具体地，由定义，函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的图像是由所有满足
+图像的数学概念是一个集合，我们把图像画在纸上的方式只是一种惯例。具体地，函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的图像是由所有满足
 \[
 \left\{\begin{array}{c}y_1=f_1\left(r_1,\cdots,r_n\right)\\\vdots\\y_m=f_m\left(r_1,\cdots,r_n\right)\end{array}\right.
 \]
@@ -129,7 +127,7 @@ $\mathbf{f}$的定义域是2维平面上的一个矩形（图\ref{fig:II.10.4}�
 \end{example}
 
 \begin{definition}[函数的水平集]\footnote{在高等数学课里，我们学过水平集的概念\cite[\S7.1,p~1] {华工高数2009下}。}
-函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的水平集$S=\left\{\mathbf{r}|\mathbf{f}\left(\mathbf{r}\right)=\mathbf{a}\right\},\mathbf{a}\in\mathbb{R}^m$。
+函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$的水平集（level set）$S=\left\{\mathbf{r}|\mathbf{f}\left(\mathbf{r}\right)=\mathbf{a}\right\},\mathbf{a}\in\mathbb{R}^m$。
 \end{definition}
 
 \begin{figure}[h]

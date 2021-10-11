@@ -1,0 +1,157 @@
+\documentclass[main.tex]{subfiles}
+% 全微分与全导数
+\begin{document}
+回顾多元标量函数的全微分的定义\cite[p.~19]{华工高数2009下}的思想，推广至向量函数，需先引入仿射函数，作为一元标量线性函数$y=kx+b$的推广。
+
+\begin{definition}[仿射函数]
+函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m,\mathbf{f}\left(\mathbf{x}\right)=\mathbf{Ax}+\mathbf{y}_0,\mathbf{x}\in\mathbb{R}^n,\mathbf{y}_0\in\mathbb{R}^m$称为仿射函数，其中$\mathbf{A}:\mathbb{R}^n\rightarrow\mathbb{R}^m$是一个线性变换（线性函数），$\mathbf{y}_0$是一个常向量。
+\end{definition}
+
+注意，一般地仿射函数不是线性变换。
+
+\begin{definition}[全微分与全导数]
+设函数$\mathbf{f}:\mathbb{R}^n\supset D\rightarrow\mathbb{R}^m$，若对$\mathbf{x}_0\in D=\mathrm{dom}\mathbf{f}$，存在一个线性变换$\mathbf{L}:\mathbb{R}^n\rightarrow\mathbb{R}^m$使得
+\[
+\lim_{\mathbf{x}\to\mathbf{x}_0}\frac{\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)}{\left\|\mathbf{x}-\mathbf{x}_0\right\|}=\mathbf{0}
+\]
+则称$\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)$是$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{X}_0$处的全微分。函数$\mathbf{f}\left(x\right)$在$\mathbf{x}=\mathbf{x}_0$处可微分。线性变换$\mathbf{L}$称为函数$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$处的（全）导数，记为
+\[\mathbf{L}\left(\mathbf{x}_0\right)=\equiv\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}
+\]
+\end{definition}
+
+如果函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在其定义域上都可微，则其导函数$\mathbf{L}:\mathbf{R}^n\rightarrow\mathcal{L}\left(\mathbf{R}^n,\mathbf{R}^m\right)$是一个函数值为线性变换的函数$\mathbf{L}\left(\mathbf{x}\right)=\left.\frac{d\mathbf{f}\left(\mathbf{x}^\prime\right)}{d\mathbf{x}^\prime}\right|_{\mathbf{x}^\prime=\mathbf{x}}$。$\mathbf{f}$在点$\mathbf{x}_0$处的导数是$\mathbf{L}\left(\mathbf{x}_0\right)$，这里的括号表示函数的自变量。
+
+我们用以往熟悉的语言复述全导数的定义：如果函数$\mathbf{f}\left(\mathbf{x}\right)$在点$\mathbf{x}_0$处的全增量$\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)$可以写成$\mathbf{x}-\mathbf{x}_0$的一个线性主部$\mathbf{L}\left(\mathbf{x}_0\right)\left(\mathbf{x}-\mathbf{x}_0\right)$和一个高阶无穷小$\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}\left(\mathbf{x}-\mathbf{x}_0\right)$（其中函数$\mathbf{z}\left(\mathbf{x}\right)\to\mathbf{0}$当$\mathbf{x}\to\mathbf{0}$）的和，则称这个线性主部$\mathbf{L}\left(\mathbf{x}_0\right)\left(\mathbf{x}-\mathbf{x}_0\right)$是函数在$\mathbf{x}=\mathbf{x}_0$处的全微分。如果函数$\mathbf{f}\left(x\right)$在$\mathbf{x}=\mathbf{x}_0$处可微分，则在$\mathbf{x}_0$附近$\mathbf{f}\left(\mathbf{x}\right)$可由$\mathbf{L}\left(\mathbf{x}_0\right)\left(\mathbf{x}-\mathbf{x}_0\right)$近似，即$\mathbf{f}\left(\mathbf{x}\right)\approx\mathbf{L}\left(\mathbf{x}_0\right)\left(\mathbf{x}-\mathbf{x}_0\right)$。
+
+全微分的思想是，如果函数在某点处可微分，则在该点邻近函数可近似为一个仿射函数。给定一个函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$，若$\mathbf{x}_0\in\mathrm{dom}\mathbf{f}$。如果函数在$\mathbf{x}=\mathbf{x}_0$处恰好等于如下仿射函数：
+\[
+\mathbf{f}\left(\mathbf{x}_0\right)=\mathbf{Lx}_0+\mathbf{a}_0\equiv\mathbf{a}\left(\mathbf{x}_0\right)
+\]
+其中仿射函数$\mathbf{a}:\mathbb{R}^n\rightarrow\mathbb{R}^m,\mathbf{a}\left(\mathbf{x}\right)=\mathbf{Lx}+\mathbf{a}_0$，则$\mathbf{a}_0$可用$\mathbf{f}\left(\mathbf{x}_0\right)$表示，使得函数$\mathbf{a}\left(\mathbf{x}\right)$变为：
+\begin{align*}
+\mathbf{a}\left(\mathbf{x}\right)&=\mathbf{Lx}+\mathbf{a}_0\\
+&=\mathbf{Lx}+\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{Lx}_0\\
+&=\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)+\mathbf{f}\left(\mathbf{x}_0\right)
+\end{align*}
+于是，我们就用$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$处的值构造了一个仿射函数。按照全微分的思想，我们进一步希望这一仿射函数$\mathbf{a}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$附近能近似代替原函数$\mathbf{f}\left(\mathbf{x}\right)$，即：
+\[\lim_{\mathbf{x}\to\mathbf{x}_0}\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{a}\left(\mathbf{x}\right)\right)=\mathbf{0}\]
+使用$\mathbf{f}\left(\mathbf{x}_0\right)$来表示$\mathbf{a}\left(\mathbf{x}\right)$，上式$\Leftrightarrow$
+\[\lim_{\mathbf{x}\to\mathbf{x}_0}\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)=\mathbf{0}
+\]
+其中，由定理\ref{thm:II.13.4}的推论$\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)=\mathbf{0}$，故上式$\Leftrightarrow$
+\[
+\lim_{\mathbf{x}\to\mathbf{x}_0}\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)=\mathbf{0}
+\]
+即函数$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$处连续。事实上，如果已知$\mathbf{L}$就是$\mathbf{f}$的导数，则以下定理已经得证。
+
+\begin{theorem}
+如果函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在点$\mathbf{x}_0\in\mathrm{dom}\mathbf{f}$处可微分，则它在该点处连续。
+\end{theorem}
+
+以上讨论明确了两个互为充要条件的命题：函数$\mathbf{f}$在$\mathbf{x}_0$处连续$\Leftrightarrow$函数$\mathbf{f}$在$\mathbf{x}_0$处等于某仿射函数。但是我们还未讨论，这一仿射函数$\mathbf{a}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$附近能近似代替原函数$\mathbf{f}\left(\mathbf{x}\right)$的条件，这需要再要求$\mathbf{f}\left(\mathbf{x}\right)-\mathbf{a}\left(\mathbf{x}\right)$趋于$\mathbf{0}$的速度快于$\mathbf{x}$趋于$\mathbf{x}_0$的速度（高阶无穷小的意义），即
+\begin{align*}
+&\lim_{\mathbf{x}\to\mathbf{x}_0}\frac{\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\-\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)}{\left\|\mathbf{x}-\mathbf{x}_0\right\|}=\mathbf{0}\\
+\Leftrightarrow&\mathbf{f}\left(\mathbf{x}\right)=\mathbf{f}\left(\mathbf{x}_0\right)+\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}\left(\mathbf{x}-\mathbf{x}_0\right)
+\end{align*}
+其中函数$\mathbf{z}\left(\mathbf{x}\right)$具有性质$\lim_{\mathbf{x}\to\mathbf{0}}\mathbf{z}\left(\mathbf{x}\right)=\mathbf{0}$。注意到上式就是全微分定义式。要使这一仿射函数$\mathbf{a}\left(\mathbf{x}\right)$满足要求，需且只需满足此要求的线性变换$\mathbf{L}$存在。因此，一个函数在某点可微分与其在某点存在导数是一回事，即“可导必可微、可微必可导”。
+
+\begin{definition}[雅可比矩阵]
+设函数$\mathbf{f}:\mathbb{R}^n\supset D\rightarrow\mathbb{R}^m$在$\mathbf{x}_0\in D$处可微分，则其全导数在标准基下的矩阵表示称为该函数的雅可比矩阵。
+\end{definition}
+
+我们来看函数$\mathbf{f}\left(x\right)$的雅可比矩阵具体等于什么。若$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$处连续，则总存在足够小的正实数$t$使得$\mathbf{x}_j=\mathbf{x}_0+t\mathbf{\hat{e}}_j\in D,j=1,\cdots,n$，其中$\left\{\mathbf{\hat{e}}_j\right\}$是$\mathbb{R}^n$的标准基。若$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$处还可微分，则存在全导数$\mathbf{L}\left(\mathbf{x}_0\right)$使得极限
+\[\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}_j\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\left(\mathbf{x}_0\right)\left(t\mathbf{\hat{e}}_j\right)}{t}=\mathbf{0},j=1,\cdots,n
+\]
+即
+\[
+\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}_j\right)-\mathbf{f}\left(\mathbf{x}_0\right)}{t}=\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{\hat{e}}_j,j=1,\cdots,n
+\]
+若$\mathbf{x}_0=\left(x_{01},\cdots,x_{0n}\right)^\intercal$，则$\mathbf{x}_i=\left(\cdots,x_{0i}+t,\cdots\right),i=1,\cdots,n$，故上式左边的极限就是偏导数$\frac{\partial\mathbf{f}}{\partial x_0i}$。而上式右边是线性变换$\mathbf{L}\left(\mathbf{x}_0\right)$在标准基下的矩阵的第$j$列的列向量。所以上式等价于如下等式
+\begin{align*}
+    \left(\mathbf{L}\left(\mathbf{x}_0\right)\right)&=\left(\left(\frac{\partial\mathbf{f}}{\partial x_1}\right),\cdots,\left(\frac{\partial\mathbf{f}}{\partial x_n}\right)\right)^\intercal\\
+    &=\left(\begin{array}{ccc}
+    \frac{\partial f_1}{\partial x_1}&\cdots&\frac{\partial f_1}{\partial x_n}\\
+    \vdots&\ddots&\vdots\\
+    \frac{\partial f_m}{\partial x_1}&\cdots&\frac{\partial f_m}{\partial x_n}
+    \end{array}\right)
+\end{align*}
+
+由于在给定基下，一个线性变换唯一对应一个矩阵，故只要函数$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}=\mathbf{x}_0$的全导数$\mathbf{L}\left(\mathbf{x}_0\right)$存在，则它是唯一的。那么，$\mathbf{L}\left(\mathbf{x}_0\right)$到底何时存在呢？
+
+\begin{theorem}
+若函数$\mathbf{f}:\mathbb{R}^n\supset D\rightarrow\mathbb{R}^m$的定义域$D$是开集，偏微分$\frac{\partial f_i}{\partial x_j},i=1,\cdots,n,j=1,\cdots,m$在$D$内都连续，则$\mathbf{f}$在$D$内均可微分。
+\end{theorem}
+\begin{proof}
+设$\mathbf{x}=\left(b_1,\cdots,b_n\right)^\intercal,\mathbf{x}_0=\left(a_1,\cdots,a_n\right)^\intercal\in D$，令$\mathbf{y}_k=\left(b_1,\cdots,b_k,a_{k+1},\cdots,a_n\right),k=0,\cdots,n$，则有$\mathbf{y}_0=\mathbf{x}_0,\mathbf{y}_n=\mathbf{x}$，且$\left\|\mathbf{y}_k-\mathbf{y}_{k-1}\right\|=\left|b_k-a_k\right|,k=1,\cdots,n$。故有$\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)=\sum_{k=1}^n\left(\mathbf{f}\left(\mathbf{y}_k\right)-\mathbf{f}\left(\mathbf{y}_{k-1}\right)\right),k=1,\cdots,n$。考察上式等号右边的求和项：
+\[\mathbf{f}\left(\mathbf{y}_k\right)-\mathbf{f}\left(\mathbf{y}_{k-1}\right)=\sum_{j=1}^m\left(f_j\left(\mathbf{y}_k\right)-f_j\left(\mathbf{y}_{k-1}\right)\right)\mathbf{\hat{e}}_j
+\]
+其中$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathbb{R}^n$的标准基。注意到点$\mathbf{y}_k$与$\mathbf{y}_{k-1}$之间的连线是长度为$\left|b_k-a_k\right|$、方向与第$k$个坐标轴$\mathbf{\hat{e}}_k$平行的有向线段。
+
+对上式右边的坐标函数应用微分中值定理。由命题条件，坐标函数的偏导数$\frac{\partial f_i}{\partial x_j}$在$D$内都连续，则坐标函数$f_i$本身在$D$内也连续，在$\mathbf{y}_k$与$\mathbf{y}_{k-1}$连线上必存在一点$c_k$使得
+\[\frac{f_i\left(\mathbf{y}_k\right)-f_i\left(\mathbf{y}_{k-1}\right)}{b_k-a_k}=\left.\frac{\partial f_i}{\partial x_k}\right|_{x_k=c_k}\]
+代入上一个求和式得：
+\begin{align*}
+\mathbf{f}\left(\mathbf{y}_k\right)-\mathbf{f}\left(\mathbf{y}_{k-1}\right)&=\sum_{j=1}^m\left.\frac{\partial f_j}{\partial x_k}\right|_{x_k=c_k}\left(b_k-a_k\right)\mathbf{\hat{e}}_j\\
+&=\left(b_k-a_k\right)\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=c_k},k=1,\cdots,n
+\end{align*}
+再代入上一个求和式得：
+\[\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)=\sum_{k=1}^n\left(b_k-a_k\right)\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=c_k}
+\]
+
+令线性变换$\mathbf{L}:\mathbb{R}^n\rightarrow \mathbb{R}^m$满足
+\begin{align*}
+\left(\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)\right)&=\left(\left(\left.\frac{\partial \mathbf{f}}{\partial x_1}\right|_{x_1=a_1}\right),\cdots,\left(\left.\frac{\partial \mathbf{f}}{\partial x_1}\right|_{x_n=a_n}\right)\right)\left(b_1-a_1,\cdots,b_n-a_n\right)^\intercal\\
+&=\sum_{k=1}^n\left(x_k-a_k\right)\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=a_k}
+\end{align*}
+则有
+\begin{align*}
+    \left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)\right\|&=\left\|\sum_{k=1}^n\left(\left.\frac{\partial \mathbf{f}}{\partial x_k}\right)|_{x_k=c_k}-\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=a_k}\right)\left(x_k-a_k\right)\right\|\\
+    &\leq\sum_{k=1}^n\left\|\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=c_k}-\left.\frac{\partial\mathbf{f}}{\partial x_k}\right|_{x_k=a_k}\right\|\left|x_k-a_k\right|\\
+    &\leq\sum_{k=1}^n\left\|\left.\frac{\partial\mathbf{f}}{\partial x_k}\right|_{x_k=c_k}-\left.\frac{\partial\mathbf{f}}{\partial x_k}\right|_{x_k=a_k}\right\|\left\|\mathbf{x}-\mathbf{x}_0\right\|
+\end{align*}
+由于上述的不等式总成立，则有当$\mathbf{x}\to\mathbf{x}_0$时$c_k\to a_k$。又由命题条件$\frac{\partial f_i}{\partial x_j}$在$D$同都连续，即极限
+\[
+\lim_{x_j\to a_k}\frac{\partial f_j}{\partial x_j}=\left.\frac{\partial f_i}{\partial x_j}\right|_{x_j=a_k},j=1,\cdots,n
+\]
+都存在，故以下极限等式成立：
+\[\lim_{\mathbf{x}\to\mathbf{x}_0}\frac{\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)}{\left\|\mathbf{x}-\mathbf{x}_0\right\|}=\mathbf{0}
+\]
+由全微分的定义，命题得证，且线性变换$\mathbf{L}$就是函数的全导数。
+\end{proof}
+
+
+
+刚才在介绍雅可比矩阵的时候，我们利用全微分的性质考虑过以下极限：
+\[
+\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}_i\right)-\mathbf{f}\left(\mathbf{x}_0\right)}{t},i=1,\cdots,n\]
+并知道它就是$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}_0=\left(x_{01},\cdots,x_{0n}\right)^\intercal$处对$x_{0i}$的偏导数，因为上式$\Leftrightarrow$
+\[
+\lim_{t\rightarrow 0}\frac{\mathbf{f}\left(\mathbf{x}_0+t\mathbf{\hat{e}}_i\right)-\mathbf{f}\left(\mathbf{x}_0\right)}{t},i=1,\cdots,n
+\]
+现在我们把$\mathbf{\hat{e}}_j$改为任意向量$y$，引入方向导数。
+
+\begin{definition}[对向量的导数、方向导数]
+函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$c对向量$\mathbf{y}\in\mathbb{R}^n$的导数是
+\[\frac{\partial\mathbf{f}\left(\mathbf{x}\right)}{\partial\mathbf{y}}=\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(\mathbf{x}\right)}{t}\]
+其中作为导函数的$\frac{\partial \mathbf{f}\left(\mathbf{x}\right)}{\partial\mathbf{y}}$的定义域是原函数$\mathbf{f}$的定义域的使该导数存在的子集。特别地，函数对单位向量$\mathbf{u},\left\|\mathbf{u}\right\|=1$的导数称为方向导数。
+\end{definition}
+
+以下定理使得函数对任意向量的导数可用该函数的全导数来计算。
+
+\begin{theorem}\label{thm:II.14.4}
+设函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在$\mathbf{x}\in\mathbb{R}^n$处可微，则
+\[\frac{\partial\mathbf{f}\left(\mathbf{x}\right)}{\partial\mathbf{y}}=\frac{d\mathbf{f}\left(x\right)}{d\mathbf{x}}\mathbf{y},\forall\mathbf{y}\in\mathbb{R}^n\]
+\end{theorem}
+\begin{proof}
+对$\mathbf{y}=\mathbf{0}$显然成立。若$\mathbf{y}\neq\mathbf{0}$，由全微分的近似意义，由自变量的增量$t\mathbf{y}$造成的函数增量$\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(\mathbf{x}\right)$满足
+\begin{align*}
+\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(\mathbf{x}\right)-\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\left(t\mathbf{y}\right)}{\left\|t\mathbf{y}\right\|}&=\mathbf{0}\\
+\Leftrightarrow\lim_{t\to 0}\frac{1}{\left\|\mathbf{y}\right\|}\left\|\frac{\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(x\right)}{t}-\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\mathbf{y}\right\|&=\mathbf{0}\\
+\Leftrightarrow\lim_{t\to 0}\frac{\mathbf{f}\left(\mathbf{x}+t\mathbf{y}\right)-\mathbf{f}\left(\mathbf{x}\right)}{t}&=\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\mathbf{y}
+\end{align*}
+\end{proof}
+
+我们比较一个函数$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x}_0$处的全微分及其在$\mathbf{x}_0$处对某向量$\mathbf{y}$的导数可以发现后者就是令前者中的$\mathbf{x}-\mathbf{x}_0=\mathbf{y}$。在全微分中，我们强调的是对任意$\mathbf{x}$（即点$\mathbf{x}_0$邻近的每处），而在对$\mathbf{y}$的导数中我们强调的是$\mathbf{x}_0$朝某个选定的向量$\mathbf{y}$的某处（$\mathbf{x}=\mathbf{x}_0+\mathbf{y}$）。留意到，函数在某点处对标准基向量的导数就是函数对该点相应分量的偏导数。
+
+方向导数的几何意义是函数在某点处朝相应方向的变化率。定理\ref{thm:II.14.4}表明，拿一个函数在某点处的全导数作用于一个单位向量，就可以得该函数在该点处朝该方向的变化率。这也是函数的全导数的重要几何意义。
+\end{document}

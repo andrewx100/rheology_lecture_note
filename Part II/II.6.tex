@@ -1,139 +1,96 @@
 \documentclass[main.tex]{subfiles}
-% 线性算符的特征值分解
+% 内积空间上的线性算符
 \begin{document}
-如果张量$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{V}$在$\mathcal{V}$的某组基$B=\left\{\mathbf{a}_i\right\}_{i=1}^n$下的表示矩阵是对角矩阵
-\[
-\left(\mathbf{T}\right)=\left(\begin{array}{ccc}
-\lambda_1&&\\
-&\ddots&\\
-&&\lambda_n
-\end{array}
-\right)\equiv D
-\]
-那么就有$\mathbf{Ta}_i=\lambda_i\mathbf{a}_i,i=1,\cdots,n$。$\mathbf{T}$的值域就能被$\lambda_i\neq 0$对应的那些$\mathbf{a}_i$线性生成，$\mathbf{T}$的核空间则被$\lambda_i=0$对应的那些$\mathbf{a}_i$线性生成。因此，如果我们找得到这样的基$B$和对角矩阵$D$，就能得知关于线性变换$\mathbf{T}$的很多性质。
+当我们为一个向量空间赋予了内积定义，这个空间上的线性算符的性质也相应增加了。
 
-\begin{definition}[特征值、特征向量、特征空间]
-设$\mathcal{V}$是数域$\mathbb{F}$上的向量空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是作用在$\mathcal{V}$上的线性算符。如果存在$\mathbf{a}\neq\mathbf{0}\in\mathcal{V},c\in\mathbb{F}$满足$\mathbf{Ta}=c\mathbf{a}$，则称$c$是$\mathbf{T}$的一个特征值，$\mathbf{a}$是$c$所对应的一个特征向量。$\mathbf{T}$的所有与$c$对应的特征向量组成$\mathbf{T}$的与$c$对应的特征空间。
+\subsection{伴随算符}
+\begin{definition}[伴随算符]\label{def:II.6.1}
+设$\mathcal{V}$是数域$\mathbb{F}$上的内积空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是$\mathcal{V}$上的线性算符。若另一线性算符$\mathbf{T}^*\in\mathcal{V}$满足$\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right),\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$，则称$\mathbf{T}^*$是$\mathbf{T}$的伴随算符（adjoint operator）。若$\mathbf{T}=\mathbf{T}^*$，则称$\mathbf{T}$是一个自伴随（self-adjoint）或厄米（hermitian）算符。
 \end{definition}
 
-\begin{theorem}
-设$\mathbf{V}$是数域$\mathbb{F}$上的有限维向量空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是作用在$\mathcal{V}$上的线性算符，以下命题相互等价：
-\begin{itemize}
-    \item $c\in\mathbb{F}$是$\mathbf{T}$的一个特征值
-    \item 线性算符$\left(\mathbf{T}-c\mathbf{I}\right)$不可逆
-    \item $\mathrm{det}\left(\mathbf{T}-c\mathbf{I}\right)=0$
-\end{itemize}
-\end{theorem}
-\begin{proof}
-证明1$\Leftrightarrow$2。设$\mathbf{a}\in\mathcal{V}$满足$\mathbf{Ta}=c\mathbf{a}\Leftrightarrow\left(\mathbf{T}-c\mathbf{I}\right)\mathbf{a}=\mathbf{0}$。满足条件的$\mathbf{a}$至少有$\mathbf{a}=\mathbf{0}$。设所有满足此条件的向量组成的空间是$C$，则$\left(\mathbf{T}-c\mathbf{I}\right)\mathbf{a}=\mathbf{0}\Leftrightarrow C$是$\left(\mathbf{T}-c\mathbf{I}\right)$的核空间。$C$不是只含一个零向量$\mathbf{0}\Leftrightarrow \left(\mathbf{T}-c\mathbf{I}\right)$不是双射$\Leftrightarrow$至少存在一个$\mathbf{a}\neq \mathbf{0}\Leftrightarrow c$是$\mathbf{T}$的一个特征值。
+对于有限维内积空间，每个线性算符有且只有一个伴随算符（证明见附录\S\ref{sec:VI.1}）。
 
-证明2$\Leftrightarrow$3。由定理\cite[p.~51]{周胜林2012线性代数}“$n\times n$矩阵$A$可逆当且仅当$\mathrm{det}A\neq 0$”直接得证。
-\end{proof}
+以下定理列举一些伴随算符的运算规律。
 
-$\mathrm{det}\left(\mathbf{T}-c\mathbf{I}\right)$是关于$c$的多项式，阶数与$\mathcal{V}$的维数相同。因此$\mathbf{T}$的特征值$c$是这个多项式的根。
-
-\begin{definition}
-设$A$是数域$\mathbb{F}$上的$n\times n$矩阵。若$c\in\mathbb{F}$使$\left(A-cI\right)$为不可逆矩阵，则称$c$是矩阵$A$的特征值。多项式$f\left(x\right)\equiv\mathrm{det}\left(xI-A\right)$称矩阵$A$的特征多项式。矩阵$A$的特征值$c$就是$f\left(c\right)=0$的根。
-\end{definition}
-
-\begin{definition}[可对角化线性算符]
-设$\mathbf{T}$是数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$的线性算符，若存在$\mathcal{V}$的一组基的基向量恰好都是$\mathbf{T}$的特征向量，则称$\mathbf{T}$是可对角化的线性算符。
-\end{definition}
-
-\begin{example}
-设矩阵
-\[A=\left(\begin{array}{ccc}3&1&-1\\2&2&-1\\2&2&0\end{array}\right)\]
-则其特征多项式
-\[\left|\begin{array}{ccc}x-3&-1&1\\-2&x-2&1\\-2&-2&x\end{array}\right|=x^3-5x^2+8x-4=\left(x-1\right)\left(x-2\right)^2\]
-可知$A$的特征值是$1,2$。若$A$是$\mathbb{R}^3$上的线性变换$\mathbf{T}$在标准基下的矩阵，由
-\[A-1I=A-I=\left(\begin{array}{ccc}2&1&-1\\2&1&-1\\2&2&-1\end{array}\right)\]
-得$\mathrm{rank}\left(A-I\right)=2$，即$\mathbf{T}-1\mathbf{I}$的零化度为1，由1对应的特征向量组成的子空间是1维的。同理可得由2对应的特征向量组成的子空间也是1维的。易验$\mathbf{a}_1=\left(1,0,2\right),\mathbf{a}_2=\left(1,1,2\right)$分别是1，2对应的特征向量。由于$\left\{\mathbf{a}_1,\mathbf{a}_2\right\}$无法成为$\mathbb{R}^3$的基，故$\mathbf{T}$不可对角化。
-\end{example}
-
-由上例可知，线性算符可对角化的条件，也特征空间的维数有关。
-
-\begin{lemma}
-设$\mathbf{T}$是数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$的线性算符，若$f$是一个多项式，则$f\left(\mathbf{T}\right)\mathbf{a}=f\left(c\right)\mathbf{a}\forall\mathbf{a}\in\mathcal{V}$。
-\end{lemma}
-\begin{proof}
-记$\mathbf{T}$的幂为复合线性变换$\mathbf{T}^n=\mathbf{T}\cdots\mathbf{T}$，则线性变换的多项式$f\left(\mathbf{T}\right)$的意义是明确的，且由线性变换的运算法则易证，略。
-\end{proof}
-
-\begin{lemma}
-设$\mathbf{T}$是数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$的线性算符，$c_1,\cdots,c_k$是$\mathbf{T}$的两两不同特征值。令$\mathcal{W}_i$是$c_i$对应的特征向量的空间，若$\mathcal{W}=\mathcal{W}_1+\cdots+\mathcal{W}_k$，则$\mathrm{dim}\mathcal{W}=\mathrm{dim}\mathcal{W}_1+\cdots+\mathrm{dim}\mathcal{W}_k$。若$B_i$是$\mathcal{W}_i$的一组基，则$B=\bigcup_{i=1}^nB_i$是$\mathcal{W}$的一组基。
-\end{lemma}
-\begin{proof}
-一般地$\mathrm{dim}\mathcal{W}\leq\mathrm{dim}\mathcal{W}_1+\cdots+\mathrm{dim}\mathcal{W}_k$。要证等号成立，就要找到$\mathbf{b}_i\in\mathcal{W}_i,i=1,\cdots,k$使得$\mathbf{b}_1+\cdots+\mathbf{b}_k=\mathbf{0}$。
-
-令$f$是任一多项式。由上面的引理有
-\[
-f\left(\mathbf{T}\right)\mathbf{0}=f\left(\mathbf{T}\right)\left(\sum_{i=1}^k\mathbf{b}_i\right)=\sum_{i=1}^kf\left(c_i\right)\mathbf{b}_i\]
-我们能够选择多项式$f_1,\cdots,f_k$使得$f_i\left(c_j\right)=\delta_{ij},i,j=1,\cdots,k$，则$\mathbf{0}=f_i\left(\mathbf{T}\right)\mathbf{0}=\sum_{j=1}^k\delta_{ij}\mathbf{b}_j=\mathbf{b}_i,i=1,\cdots,k$，从而找到了满足要求的$\mathbf{b}_i$。
-
-若$B_i$是$\mathcal{W}_i$的一组基，则$B=\bigcup_{i=1}^kB_i$线性生成$\mathcal{W}$，而且$B$是线性无关向量组，因为任一$\mathbf{B}$中向量的线性变换均可整理成$\sum_{i=1}^k\mathbf{b})i$的形式，其中$\mathbf{b_i}$是$B_i$的基向量的线性组合，且$\sum_{i=1}^k\mathbf{b}_i=\mathbf{0}$。
-\end{proof}
-
-\begin{theorem}
-设$\mathbf{T}$是数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$的线性算符，$c_1,\cdots,c_k$是$\mathbf{T}$的两两不同特征值，$\mathcal{W}_i$是$\mathbf{T}-c_i\mathbf{I}$的核空间，则以下命题两两等价。
+\begin{theorem}\label{thm:II.6.1}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，
 \begin{enumerate}
-    \item $\mathbf{T}$可对角化
-    \item $\mathbf{T}$的特征多项式是$f\left(x\right)=\left(x-c_1\right)^{d_1}\cdots\left(x-c_k\right)^{d_k}$且$\mathrm{dim}\mathcal{W}_i=d_i,i=1,\cdots,k$
-    \item $\mathrm{dim}\mathcal{W}_1+\cdots\mathrm{dim}\mathcal{W}_k=\mathrm{dim}\mathcal{W}$
+    \item $\left(\mathbf{T}+\mathbf{U}\right)^*=\mathbf{T}^*+\mathbf{U}^*,\forall\mathbf{T},\mathbf{U}\in\mathcal{L}\left(\mathcal{V}\right)$
+    \item $\left(\alpha\mathbf{T}\right)^*=\overline{\alpha}\mathbf{T}^*,\forall\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right),\alpha\in\mathbb{F}$
+    \item $\left(\mathbf{TU}\right)^*=\mathbf{U}^*\mathbf{T}^*,\forall\mathbf{T},\mathbf{U}\in\mathcal{L}\left(\mathcal{V}\right)$
+    \item $\left(\mathbf{T}^*\right)^*=\mathbf{T},\forall\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$
 \end{enumerate}
 \end{theorem}
 \begin{proof}
-由前面的引理，1$\Leftrightarrow$2已得证，且也易有2$\Rightarrow$3。若3成立，由引理有$\mathcal{V}=\sum_{i=1}^k\mathcal{W}_i$，即$\mathbf{T}$的特征向量线性生成$\mathcal{V}$。
+利用相关定义易证，留作练习。
 \end{proof}
 
-\begin{example}
-若$\mathbb{R}^3$上的线性算符$\mathbf{T}$在标准基下的矩阵
-\begin{align*}
-\left(\mathbf{T}\right)&=\left(\begin{array}{ccc}5&-6&-6\\-1&4&2\\3&-6&-4\end{array}\right)\\
-\mathrm{det}\left(x\mathbf{I}-\mathbf{T}\right)&=\left(x-2\right)^2\left(x-1\right),c_1=1,c_2=2\\
-A-I&=\left(\begin{array}{ccc}4&-6&6\\-1&4&2\\3&-6&5\end{array}\right),A-2I=\left(\begin{array}{ccc}3&-6&-6\\-1&2&2\\3&-6&-6\end{array}\right)\\
-\mathrm{rank}\left(A-I\right)&=2,\mathrm{rank}\left(A-2I\right)=1\\
-\mathrm{dim}\mathcal{W}_1&=1,\mathrm{dim}\mathcal{W}_2=2\\
-\therefore \mathrm{dim}\mathcal{W}_1+\mathrm{dim}\mathcal{W}_2&=\mathrm{dim}\mathcal{V}
-\end{align*}
-所以$\mathbf{T}$可对角化。具体地，找到$\mathcal{W}_1,\mathcal{W}_2$的基$B_1=\left\{\left(3,-1,3\right)\right\},B_2=\left\{\left(2,1,0\right),\left(2,0,1\right)\right\}$，则$\mathcal{V}$的基$B=B_1\cup B_2$。有基向作列形成的矩阵
-\[
-P=\left(\begin{array}{ccc}
-3&2&2\\-1&1&0\\3&0&2\end{array}\right)
-\]
-可将$A=\left(\mathbf{T}\right)$对角化，对角元素是$\mathbf{T}$的特征值：
-\[P^{-1}AP\equiv D=\left(\begin{array}{ccc}1&&\\&2&\\&&2\end{array}\right)\]
-\end{example}
+从上面的运算规律可以看出，线性算符的伴随与复数的共轭有些类似。例如在复数域$\mathbb{C}$上的内积空间$\mathcal{V}$上，任一线性算符$\mathbf{T}$都可以写成“虚部与实部”的形式，即$\mathbf{T}=\mathbf{U}_1+i\mathbf{U_2}$，其中$\mathbf{U}_1=\frac{1}{2}\left(\mathbf{T}+\mathbf{T}^*\right),\mathbf{U}_2=\frac{1}{2i}\left(\mathbf{T}-\mathbf{T}^*\right)$是自伴随算符。
 
-\begin{definition}[线性算符的不变量]
-设$\mathbf{T}$是作用于数域$\mathbb{F}$上向量空间$\mathcal{V}$的线性算符。$\mathbf{T}$的不变量是$\mathbf{T}$在任一基$B\subset\mathcal{V}$下的矩阵的特征多项式的系数。
-\end{definition}
+一对伴随算符在给定基下的坐标矩阵之间的关系是矩阵的共轭转置。以下我们给出证明，且在证明过程顺便告诉我们内积空间上的向量和线性算符如何通过内积来取得它们在某基下的坐标。
 
 \begin{theorem}
-设$A$是一个$n\times n$矩阵，$f\left(\lambda\right)=\mathrm{det}\left(A-\lambda I\right)$是其特征多项式，则$f\left(\lambda\right)$是一个$n$阶多项式，且具有如下形式
-\[
-f\left(\lambda\right)=\left(-1\right)^n\lambda^n+\left(-1\right)^{n-1}\mathrm{tr}\mathbf{A}\lambda^{n-1}+\cdots+\mathrm{det}A
-\]
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$B=\left\{\mathbf{\hat{e}}\right\}$是$\mathcal{V}$的一组规范正交基，线性算符$\mathbf{T}$及其伴随算符$\mathbf{T}^*$在$B$下的坐标分别是$T_{ij},T^\prime_{ij},i,j=1,\cdots,n$，则$T_{ij}=\overline{T^\prime_{ji}}$。
 \end{theorem}
 \begin{proof}
-作为练习\footnote{参考\cite[\S,p.~118]{周胜林2012线性代数}性质1.2中的式(1.2)的推导过程。更一般地可参考Cayley-Hamilton Theorem。}。
+设$\mathbf{a}\in\mathcal{V}$是$\mathcal{V}$中的任一向量，则$\mathbf{a}=\sum_{i=1}^n\alpha_i\mathbf{\hat{e}}_i$，其中$\alpha_i,i=1,\cdots,n$是$\mathbf{a}$在基$B$下的坐标，则$\alpha_i=\left(\mathbf{a}|\mathbf{\hat{e}}_i\right)$，因为
+\begin{align*}
+\left(\mathbf{a}|\mathbf{\hat{e}}_i\right)&=\left(\sum_{j=1}^n\alpha_j\mathbf{\hat{e}}_j|\mathbf{\hat{e}}_i\right)=\sum_{j=1}^n\alpha_j\left(\mathbf{\hat{e}}_i|\mathbf{\hat{e}}_j\right)
+\\&=\sum_{j=1}^n\alpha_j\delta_{ij}=\alpha_i
+\end{align*}
+
+由\S\ref{sec:II.4.2}可知，线性算符$\mathbf{T}$在给定基$B$下的坐标满足$T_{ij}$满足$\mathbf{T\hat{e}}_i=\sum_{j=1}^nT_{ji}\mathbf{\hat{e}}_j,i=1,\cdots,n$。同时每个$\mathbf{T\hat{e}}_i$作为一个向量其在基$B$下的坐标满足上面刚刚证明结论，故$\mathbf{T\hat{e}}_i=\sum_{j=1}^n\left(\mathbf{T\hat{e}}_i|\mathbf{\hat{e}}_j\right)\mathbf{\hat{e}}_j$。由于$\left\{\mathbf{\hat{e}}_j\right\}$线性无关，当$\mathbf{T}\neq\mathbf{0}$时比较上述两结果可得$T_{ij}=\left(\mathbf{T\hat{e}}_j|\mathbf{\hat{e}}_i\right)$。
+
+由伴随算符定义，
+\begin{align*}
+    T_{ji}=\left(\mathbf{T\hat{e}}_i|\mathbf{\hat{e}}_j\right)&=\left(\mathbf{\hat{e}}_i|\mathbf{T}^*\mathbf{\hat{e}}_j\right)\\
+    &=\overline{\left(\mathbf{T}^*\mathbf{\hat{e}}_j|\mathbf{\hat{e}}_i\right)}\\
+    &=\overline{T^\prime_{ij}}
+\end{align*}
 \end{proof}
 
-特别地，当$n=3$时，
-\[
-f\left(\lambda\right)=
--\lambda^3+\mathrm{tr}\left(A\right)\lambda^2-\frac{1}{2}\left[\mathrm{tr}^2\left(A\right)-\mathrm{tr}\left(A^2\right)\right]\lambda+\mathrm{det}\left(A\right)\]
+回顾线性变换的转置（\S\ref{sec:II.4.3}），如果由$\mathcal{V}$的每个向量$\mathbf{a}\in\mathcal{V}$定义一个相应的线性算符$f_\mathbf{a}\in\mathcal{V}^*,f_\mathbf{a}\left(\mathbf{b}\right)\equiv\left(\mathbf{a}|\mathbf{b}\right)$，则$\mathcal{V}$上的任一线性算符$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$与其转置$\mathbf{T}^\intercal\in\mathcal{L}\left(\mathcal{V}^*\right)$满足$\left(\mathbf{T}^\intercal f_\mathbf{a}\right)\left(\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{Tb}\right),\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$，同时$\mathbf{T}$与$\mathbf{T}^\intercal$在给定一对基$B\subset\mathcal{V}$与对偶基$B^*\subset\mathcal{V}^*$下的坐标矩阵互为矩阵的转置。比较而言，线性算符$\mathbf{T}$与其伴随算符$\mathbf{T}^*$满足$\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right),\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$，$\mathbf{T}$与$\mathbf{T}^*$在给定基$B$下的坐标矩阵之间互为矩阵的共轭转置。在这一比较下，线性算符的转置与伴随在是否需要共轭上的差别，来自它们生效的是内积的第一个向量还是第二个向量；内积定义中规定第二向量具有共轭线性，所以坐标矩阵需要共轭的是定义在内积的第二个向量的伴随算符。然而，线性变换的转置和伴随有本质的不同，因为$\mathbf{T}^\intercal\in\mathcal{L}\left(\mathcal{V}^*\right)$而$\mathbf{T}^*\in\mathcal{L}\left(\mathcal{V}\right)$，即它们属于不同的空间，作用于不同空间的向量。
+                                           
+%=======================================================
+\subsection{幺正算符}
 
-我们把
-\begin{align*}
-I_\mathbf{T}&=\mathrm{tr}\mathbf{T}\\
-II_\mathbf{T}&=\frac{1}{2}\left(\mathrm{tr}^2\mathbf{T}-\mathrm{tr}\mathbf{T}^2\right)\\
-III_\mathbf{T}&=\mathrm{det}\mathbf{T}
-\end{align*}
-称为张量$\mathbf{T}$的第一、第二和第三主不变量（principal invariants）。我们经常还使用
-\begin{align*}
-    J_1&=I_\mathbf{T}\\
-    J_2&=I_\mathbf{T}^2-2II_\mathbf{T}\\
-    J_3&=I_\mathbf{T}^3-3I_\mathbf{T}II_\mathbf{T}+3III_\mathbf{T}
-\end{align*}
-也被称为主不变量（main invariants），故在使用时要注意以具体定义为准。
+\begin{definition}[幺正算符]\label{def:II.6.2}
+设$\mathcal{V}$是数域$\mathbb{F}$上的内积空间，若线性算符$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$保持内积，即$\left(\mathbf{Ta}|\mathbf{Tb}\right)=\left(\mathbf{a}|\mathbf{b}\right),\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$，则称$\mathbf{T}$是一个幺正算符（unitary operator）。
+\end{definition}
+
+当一个映射$f:X\rightarrow Y$是由一个代数结构$X$到另一个同类型的代数结构$Y$的双射，且保持$X$上的运算操作规则时，称$f$是$X,Y$之间的一个同构映射（isomorphism）。如果$\mathcal{V}$不仅是一个向量空间，还是一个内积空间，那么$\mathcal{V}$上的同构映射不仅要保鬼地方$\mathcal{V}$的向量代数规则，还需保持$\mathcal{V}$上的内积运算规则。在此意义上，幺正算符是内积空间上的一种同构映射（幺正算符的双射性见以下定理）。
+
+\begin{theorem}\label{thm:II.6.3}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是一个线性算符，则以下命题相互等价：
+\begin{enumerate}
+    \item $\mathbf{T}$保持内积
+    \item $\mathbf{T}$是双射
+    \item $\mathbf{T}$把$\mathcal{V}$的某个规范正交基映射为另一个规范正交基
+    \item $\mathbf{T}$把$\mathcal{V}$的每个规范正交基映射为一个规范正交基
+\end{enumerate}
+\end{theorem}
+\begin{proof}
+1)$\Rightarrow$2)：由1)，$\left(\mathbf{Ta}|\mathbf{Ta}\right)=\left(\mathbf{a}|\mathbf{a}\right)\geq0\forall\mathbf{a}\in\mathcal{V}$，当且仅当$\mathbf{a}=\mathbf{0}$时取等号。故$\mathbf{T}$是非奇异的。由于$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{V}$，故$\mathbf{T}$是双射\footnote{这里用到了线性变换的维数定理及其推论。}。
+
+2)$\Rightarrow$3)：由于$\mathbf{T}$是内积空间上的同构映射，令$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组规范正交基，则由向量空间上的同构映射性质，$\left\{\mathbf{T\hat{e}}_i\right\}$是$\mathcal{V}$的一组基，且有$\left(\mathbf{T\hat{e}}_i|\mathbf{T\hat{e}}_j\right)=\left(\mathbf{\hat{e}}_i|\mathbf{\hat{e}}_j\right)=\delta_{ij},i,j=1,\cdots,\mathrm{dim}\mathcal{V}$，故$\left\{\mathbf{T\hat{e}}_i\right\}$是$\mathcal{V}$的一组规范正交基。
+
+3)$\Rightarrow$4)：显然易证；
+
+4)$\Rightarrow$1)：由4)，若已知$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组规范正交基，且$\left\{\mathbf{T\hat{e}}_i\right\}$也是规范正交基，则有$\left(\mathbf{T\hat{e}}_i|\mathbf{T\hat{e}}_j\right)=\delta_{ij}=\left(\mathbf{\hat{e}}_i|\mathbf{\hat{e}}_j\right)$。对任意$\mathbf{a},\mathbf{b}\in\mathcal{V}$，又有$\mathbf{a}=\sum_{i=1}^{n}\alpha_i\mathbf{\hat{e}}_i,\mathbf{b}=\sum_{i=1}^{n}\beta_i\mathbf{\hat{e}}_i,n\equiv\mathrm{dim}\mathcal{V}$，则$\left(\mathbf{a}|\mathbf{b}\right)=\sum_{i=1}^n\alpha_i\overline{\beta_j},\left(\mathbf{Ta}|\mathbf{Tb}\right)=\left(\sum_{i=1}^n\mathbf{T\hat{e}}_i|\sum_{j=1}^n\mathbf{T\hat{e}}_j\right)=\sum_{i=1}^n\alpha_i\overline{\beta_j}=\left(\mathbf{a}|\mathbf{b}\right)$，故$\mathbf{T}$保持内积。
+\end{proof}
+
+如果在内积空间$\mathcal{V}$上还定义了欧几里德范$\left\|\mathbf{a}\right\|^2\equiv\left(\mathbf{a}|\mathbf{a}\right),\forall\mathbf{a}\in\mathcal{V}$，当$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是一个幺正算符时，有$\left\|\mathbf{Ta}\right\|=\left\|\mathbf{a}\right\|\forall\mathbf{a}\in\mathcal{V}$，即幺正算符不改变向量长度。此外还易证，两个幺正算符的复合也是幺正算符，幺正算符必可逆，其逆算符也是幺正算符。特别地，恒等算符$\mathbf{I}$是幺正算符。
+
+下一条定理告诉我们幺正算符的伴随算符有何性质。
+
+\begin{theorem}\label{thm:II.6.4}
+设$\mathcal{V}$是数域$\mathbb{F}$上的内积空间，$\mathbf{U}\in\mathcal{L}\left(\mathcal{V}\right)$是线性算符，则$\mathbf{U}^*\mathbf{U}=\mathbf{I}\Leftrightarrow\mathbf{U}$是幺正算符。
+\end{theorem}
+\begin{proof}
+设$\mathbf{U}$是幺正算符，则$\mathbf{U}$可逆，且$\left(\mathbf{Ua}|\mathbf{b}\right)=\left(\mathbf{Ua}|\mathbf{UU}^{-1}\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{U}^{-1}\mathbf{b}\right),\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$。因此$\mathbf{U}^{-1}=\mathbf{U}^*$即$\mathbf{UU}^*=\mathbf{I}=\mathbf{U}^*\mathbf{U}$。
+
+设$\mathbf{U}^*\mathbf{U}=\mathbf{UU}^*=\mathbf{I}$，则$\mathbf{U}^{-1}=\mathbf{U}^*,\left(\mathbf{Ua}|\mathbf{Ub}\right)=\left(\mathbf{a}|\mathbf{U}^*\mathbf{Ub}\right)=\left(\mathbf{a}|\mathbf{Ib}\right)=\left(\mathbf{a}|\mathbf{b}\right),\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$。
+\end{proof}
+
+在矩阵代数中，有“正交矩阵”的概念。如果数域$\mathbb{F}$上的$n\times n$矩阵$A\in\mathbb{F}^{n\times n}$满足$A^\intercal A=I$，其中$I$是$n\times n$单位矩阵，则称矩阵$A$是正交矩阵（orthogonal matrix）。由上面的定理可知，只有在实数域$\mathbb{R}$上的内积空间上，幺正算符在给定基下的坐标矩阵是才是一个正交矩阵。因此，我们又把实数域上的幺正算符称为正交算符（orthogonal operator）。
 \end{document}

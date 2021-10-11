@@ -1,0 +1,95 @@
+\documentclass[main.tex]{subfiles}
+% VI.2.2 向量函数可微分的必要条件与充分条件
+\begin{document}
+\begin{theorem*}[必要条件之存在性]
+定理\ref{thm:II.12.3}：设函数$\mathbf{f}:\mathbb{R}^n\supseteq D\rightarrow\mathbb{R}^m$在点$\mathbf{x}_0\in D$处可微分，即存在线性变换$\mathbf{L}\in\mathcal{L}\left(\mathbb{R}^n,\mathbb{R}^m\right)$满足
+\[
+\lim_{\Delta\mathbf{x}\to\mathbf{0}}\frac{\mathbf{f}\left(\mathbf{x}_0+\Delta \mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\Delta\mathbf{x}}{\left\|\Delta\mathbf{x}\right\|}=\mathbf{0}
+\]
+则$\mathbf{f}$的每个坐标函数在$\mathbf{x}_0$处的每个偏导数
+\[
+\left.\frac{f_i\left(\mathbf{x}\right)}{\partial x_j}\right|_{\mathbf{x}=\mathbf{x}_0}，i=1,\cdots,m,j=1,\cdots,n
+\]
+都存在。若$\left\{\mathbf{\hat{e}}_1,\cdots\mathbf{\hat{e}}_n\right\},\left\{\mathbf{\hat{u}}_1,\cdots,\mathbf{\hat{u}}_m\right\}$分别是$\mathbb{R}^n,\mathbb{R}^m$的标准基，则
+\[
+\mathbf{L\hat{e}}_j=\sum_{i=1}^m\left(\left.\frac{\partial f_i\left(\mathbf{x}\right)}{\partial x_j}\right|_{\mathbf{x}=\mathbf{x}_0}\right)\mathbf{\hat{u}}_i,j=1,\cdots,n
+\]
+\end{theorem*}
+\begin{proof}
+由于函数$\mathbf{f}\left(\mathbf{x}\right)$在$\mathbf{x_0}$处可微分，对任一$j\in\left\{1,\cdots,n\right\}$，令$\Delta\mathbf{x}=t\mathbf{\hat{e}}_j,t\neq0,t\in\mathbb{R}$，则有
+\[
+\mathbf{f}\left(\mathbf{x}_0+t\mathbf{\hat{e}}_j\right)-\mathbf{f}\left(\mathbf{x}_0\right)=\mathbf{L}\left(t\mathbf{\hat{e}}_j\right)+\left\|t\mathbf{\hat{e}}_j\right\|\mathbf{z}\left(t\mathbf{\hat{e}}_j\right)
+\]
+其中$\mathbf{z}:\mathbb{R}^n\rightarrow\mathbb{R}^m$满足$\lim_{\mathbf{x}\to\mathbf{0}}\mathbf{z}\left(\mathbf{x}\right)=\mathbf{0}$。上式$\Leftrightarrow$
+\begin{align*}
+&\lim_{t\to0}\frac{\mathbf{f}\left(\mathbf{x}_0+t\mathbf{\hat{e}}_j\right)-\mathbf{f}\left(\mathbf{x}_0\right)-t\mathbf{L\hat{e}}_j}{t}=\lim_{t\to 0}t\mathbf{z}\left(t\mathbf{\hat{e}}_j\right)=\mathbf{0}\\
+\Leftrightarrow&\lim_{t\to0}\frac{\mathbf{f}\left(\mathbf{x}_0+t\mathbf{\hat{e}}_j\right)-f_i\left(\mathbf{x}_0\right)}{t}=\mathbf{L\hat{e}}_j\\
+\Leftrightarrow&\lim_{t\to0}\sum_{i=1}^n\frac{f_i\left(\mathbf{x}_0+t\mathbf{\hat{e}}_j\right)-f_i\left(\mathbf{x}_0\right)}{t}\mathbf{\hat{u}}_j=\mathbf{L\hat{e}}_j\\
+\Leftrightarrow&\lim_{t\to0}\sum_{i=1}^n\left.\frac{\partial f_i\left(\mathbf{x}\right)}{\partial x_j}\right|_{\mathbf{x}=\mathbf{x}_0}\mathbf{\hat{u}}_j=\mathbf{L\hat{e}}_j\quad\text{（偏导数的定义\ref{def:II.12.4}。）}
+\end{align*}
+上式对每一$j\in\left\{1,\cdots,n\right\}$都成立。
+\end{proof}
+
+\begin{theorem*}[必要条件之唯一性]
+定理\ref{thm:II.12.4}：设函数$\mathbf{f}:\mathbb{R}^n\supseteq D\rightarrow\mathbb{R}^m$在点$\mathbf{x}_0\in D$处可微分，即存在线性变换$\mathbf{L}\in\mathcal{L}\left(\mathbb{R}^n,\mathbb{R}^m\right)$满足
+\[
+\lim_{\Delta\mathbf{x}\to\mathbf{0}}\frac{\mathbf{f}\left(\mathbf{x}_0+\Delta \mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\Delta\mathbf{x}}{\left\|\Delta\mathbf{x}\right\|}=\mathbf{0}
+\]
+则$\mathbf{L}$是唯一的。
+\end{theorem*}
+\begin{proof}
+设线性变换$\mathbf{L}^\prime\in\mathcal{L}\left(\mathbb{R}^n,\mathbb{R}^m\right)$也满足
+\[
+\lim_{\Delta\mathbf{x}\to\mathbf{0}}\frac{\mathbf{f}\left(\mathbf{x}_0+\Delta \mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}^\prime\Delta\mathbf{x}}{\left\|\Delta\mathbf{x}\right\|}=\mathbf{0}
+\]
+令$\mathbf{A}=\mathbf{L}-\mathbf{L}^\prime$，则
+\begin{align*}
+   &\mathbf{A}\Delta\mathbf{x}=\mathbf{f}\left(\mathbf{x}+\Delta\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}\right)-\mathbf{L}\Delta\mathbf{x}-\left[\mathbf{f}\left(\mathbf{x}+\Delta\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}\right)-\mathbf{L}^\prime\left(\Delta\mathbf{x}\right)\right]\\
+   \Rightarrow&\left\|\mathbf{A}\Delta\mathbf{x}\right\|\leq\left\|\mathbf{f}\left(\mathbf{x}+\Delta\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}\right)-\mathbf{L}\Delta\mathbf{x}\right\|+\left\|\mathbf{f}\left(\mathbf{x}+\Delta\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}\right)-\mathbf{L}^\prime\Delta\mathbf{x}\right\|\quad\text{（三角不等式。）}\\
+   \Rightarrow&\lim_{\Delta\mathbf{x}\to\mathbf{0}}\frac{\left\|\mathbf{A}\Delta\mathbf{x}\right\|}{\left\|\Delta\mathbf{x}\right\|}=0\quad\text{（夹逼定理。）}\\
+\end{align*}
+由于$\Delta\mathbf{x}\to0$的路径不限，不仿考虑固定$\Delta\mathbf{x}\neq\mathbf{0}$，下式亦成立
+\[\lim_{t\to0}\frac{\left\|\mathbf{a}\left(t\Delta\mathbf{x}\right)\right|}{\left|t\Delta\mathbf{x}\right\|}=0\Leftrightarrow\lim_{t\to0}\frac{\left\|\mathbf{A}\Delta\mathbf{x}\right\|}{\left\|\Delta\mathbf{x}\right\|}=0\Rightarrow\mathbf{A}=\mathbf{0}\]
+\end{proof}
+
+\begin{theorem*}[充分条件]
+定理\ref{thm:II.12.5}：若函数$\mathbf{f}:\mathbb{R}^n\supset D\rightarrow\mathbb{R}^m$的定义域$D$是开集，偏微分$\frac{\partial f_i}{\partial x_j},i=1,\cdots,n,j=1,\cdots,m$在$D$内都连续，则$\mathbf{f}$在$D$内均可微分。
+\end{theorem*}
+\begin{proof}
+设$\mathbf{x}=\left(b_1,\cdots,b_n\right)^\intercal,\mathbf{x}_0=\left(a_1,\cdots,a_n\right)^\intercal\in D$，令$\mathbf{y}_k=\left(b_1,\cdots,b_k,a_{k+1},\cdots,a_n\right),k=0,\cdots,n$，则有$\mathbf{y}_0=\mathbf{x}_0,\mathbf{y}_n=\mathbf{x}$，且$\left\|\mathbf{y}_k-\mathbf{y}_{k-1}\right\|=\left|b_k-a_k\right|,k=1,\cdots,n$。故有$\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)=\sum_{k=1}^n\left(\mathbf{f}\left(\mathbf{y}_k\right)-\mathbf{f}\left(\mathbf{y}_{k-1}\right)\right),k=1,\cdots,n$。考察上式等号右边的求和项：
+\[\mathbf{f}\left(\mathbf{y}_k\right)-\mathbf{f}\left(\mathbf{y}_{k-1}\right)=\sum_{j=1}^m\left(f_j\left(\mathbf{y}_k\right)-f_j\left(\mathbf{y}_{k-1}\right)\right)\mathbf{\hat{e}}_j
+\]
+其中$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathbb{R}^n$的标准基。注意到点$\mathbf{y}_k$与$\mathbf{y}_{k-1}$之间的连线是长度为$\left|b_k-a_k\right|$、方向与第$k$个坐标轴$\mathbf{\hat{e}}_k$平行的有向线段。
+
+对上式右边的坐标函数应用微分中值定理。由命题条件，坐标函数的偏导数$\frac{\partial f_i}{\partial x_j}$在$D$内都连续，则坐标函数$f_i$本身在$D$内也连续，在$\mathbf{y}_k$与$\mathbf{y}_{k-1}$连线上必存在一点$c_k$使得
+\[\frac{f_i\left(\mathbf{y}_k\right)-f_i\left(\mathbf{y}_{k-1}\right)}{b_k-a_k}=\left.\frac{\partial f_i}{\partial x_k}\right|_{x_k=c_k}\]
+代入上一个求和式得：
+\begin{align*}
+\mathbf{f}\left(\mathbf{y}_k\right)-\mathbf{f}\left(\mathbf{y}_{k-1}\right)&=\sum_{j=1}^m\left.\frac{\partial f_j}{\partial x_k}\right|_{x_k=c_k}\left(b_k-a_k\right)\mathbf{\hat{e}}_j\\
+&=\left(b_k-a_k\right)\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=c_k},k=1,\cdots,n
+\end{align*}
+再代入上一个求和式得：
+\[\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)=\sum_{k=1}^n\left(b_k-a_k\right)\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=c_k}
+\]
+
+令线性变换$\mathbf{L}:\mathbb{R}^n\rightarrow \mathbb{R}^m$满足
+\begin{align*}
+\left(\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)\right)&=\left(\left(\left.\frac{\partial \mathbf{f}}{\partial x_1}\right|_{x_1=a_1}\right),\cdots,\left(\left.\frac{\partial \mathbf{f}}{\partial x_1}\right|_{x_n=a_n}\right)\right)\left(b_1-a_1,\cdots,b_n-a_n\right)^\intercal\\
+&=\sum_{k=1}^n\left(x_k-a_k\right)\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=a_k}
+\end{align*}
+则有
+\begin{align*}
+    \left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)\right\|&=\left\|\sum_{k=1}^n\left(\left.\frac{\partial \mathbf{f}}{\partial x_k}\right)|_{x_k=c_k}-\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=a_k}\right)\left(x_k-a_k\right)\right\|\\
+    &\leq\sum_{k=1}^n\left\|\left.\frac{\partial \mathbf{f}}{\partial x_k}\right|_{x_k=c_k}-\left.\frac{\partial\mathbf{f}}{\partial x_k}\right|_{x_k=a_k}\right\|\left|x_k-a_k\right|\\
+    &\leq\sum_{k=1}^n\left\|\left.\frac{\partial\mathbf{f}}{\partial x_k}\right|_{x_k=c_k}-\left.\frac{\partial\mathbf{f}}{\partial x_k}\right|_{x_k=a_k}\right\|\left\|\mathbf{x}-\mathbf{x}_0\right\|
+\end{align*}
+由于上述的不等式总成立，则有当$\mathbf{x}\to\mathbf{x}_0$时$c_k\to a_k$。又由命题条件$\frac{\partial f_i}{\partial x_j}$在$D$都连续，即极限
+\[
+\lim_{x_j\to a_k}\frac{\partial f_j}{\partial x_j}=\left.\frac{\partial f_i}{\partial x_j}\right|_{x_j=a_k},j=1,\cdots,n
+\]
+都存在，故以下极限等式成立：
+\[\lim_{\mathbf{x}\to\mathbf{x}_0}\frac{\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\mathbf{L}\left(\mathbf{x}-\mathbf{x}_0\right)}{\left\|\mathbf{x}-\mathbf{x}_0\right\|}=\mathbf{0}
+\]
+由全微分的定义，命题得证，且线性变换$\mathbf{L}$就是函数的全导数。
+\end{proof}
+\end{document}

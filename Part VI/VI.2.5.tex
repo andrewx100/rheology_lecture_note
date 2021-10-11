@@ -1,0 +1,85 @@
+\documentclass[main.tex]{subfiles}
+% 等距变换的表示定理
+\begin{document}
+\begin{lemma}\label{thm:isom_l1}
+设$\left(\mathcal{E},d\right)$是一个欧几里得空间，$\mathcal{V}$是其平移空间，$i:\mathcal{E}\rightarrow\mathcal{E}$是$\mathcal{E}$上的一个等距变换。记$\mathbf{u}^\prime=i\left(X+\mathbf{u}\right)-i\left(X\right),\mathbf{v}^\prime=i\left(X+\mathbf{v}\right)-i\left(X\right),\mathbf{u},\mathbf{u}^\prime,\mathbf{v},\mathbf{v}^\prime\in\mathcal{V},X\in\mathcal{E}$，则$\left(\mathbf{u}^\prime|\mathbf{v}^\prime\right)=\left(\mathbf{u}|\mathbf{v}\right)$对任意$\mathbf{u},\mathbf{u}^\prime,\mathbf{v},\mathbf{v}^\prime\in\mathcal{V}$均成立。
+\end{lemma}
+\begin{proof}
+利用欧几里得空间的定义和等距变换的定义，有
+\[
+\left(\mathbf{u}^\prime|\mathbf{u}^\prime\right)=d^2\left(i\left(X\right),i\left(X+\mathbf{u}\right)\right)=d^2\left(X,X+\mathbf{u}\right)=\left(\mathbf{u}|\mathbf{u}\right)
+\]
+同理有$\left(\mathbf{v}^\prime|\mathbf{v}^\prime\right)=\left(\mathbf{v}|\mathbf{v}\right)$。由内积的性质，$\left(\mathbf{u}-\mathbf{v}|\mathbf{u}-\mathbf{v}\right)=\left(\mathbf{u}|\mathbf{u}\right)+\left(\mathbf{v}|\mathbf{v}\right)-2\left(\mathbf{u}|\mathbf{v}\right)$，则
+\begin{align*}
+    2\left(\mathbf{u}^\prime|\mathbf{v}^\prime\right)&=\left(\mathbf{u}^\prime|\mathbf{u}^\prime\right)+\left(\mathbf{v}^\prime|\mathbf{v}^\prime\right)-\left(\mathbf{u}^\prime-\mathbf{v}^\prime|\mathbf{u}^\prime-\mathbf{v}^\prime\right)\\
+    &=\left(\mathbf{u}|\mathbf{u}\right)+\left(\mathbf{v}|\mathbf{v}\right)\\
+    &\quad-\left(i\left(X+\mathbf{u}\right)-i\left(X\right)-i\left(X+\mathbf{v}\right)+i\left(X\right)|i\left(X+\mathbf{u}\right)-i\left(X\right)-i\left(X+\mathbf{v}\right)+i\left(X\right)\right)\\
+    &=\left(\mathbf{u}|\mathbf{u}\right)+\left(\mathbf{v}|\mathbf{v}\right)\\
+    &\quad-d^2\left(i\left(X+\mathbf{v}\right),i\left(X+\mathbf{v}\right)+\left(i\left(X+\mathbf{u}\right)-i\left(X+\mathbf{v}\right)\right)\right)\\
+    &=\left(\mathbf{u}|\mathbf{u}\right)+\left(\mathbf{v}|\mathbf{v}\right)-d^2\left(X+\mathbf{v},X+\mathbf{u}\right)\\
+    &=\left(\mathbf{u}|\mathbf{u}\right)+\left(\mathbf{v}|\mathbf{v}\right)-\left(X+\mathbf{u}-\left(X+\mathbf{V}\right)|X+\mathbf{u}-\left(X+\mathbf{v}\right)\right)\\
+    &=\left(\mathbf{u}|\mathbf{u}\right)+\left(\mathbf{v}|\mathbf{v}\right)-\left(\mathbf{u}-\mathbf{v}|\mathbf{u}-\mathbf{v}\right)\\
+    &=2\left(\mathbf{u}|\mathbf{v}\right)
+\end{align*}
+\end{proof}
+
+\begin{lemma}\label{thm:isom_l2}
+设$\left(\mathcal{E},d\right)$是一个欧几里得空间，$\mathcal{V}$是其平移空间，$i:\mathcal{E}\rightarrow\mathcal{E}$是$\mathcal{E}$上的一个等距变换。定义关于一点$X\in\mathcal{E}$的映射$\mathbf{Q}_X:\mathcal{V}\rightarrow\mathcal{V},\mathbf{Q}_X\mathbf{u}=i\left(X+\mathbf{u}\right)-i\left(X\right)\forall\mathbf{u}\in\mathcal{V}$，则
+\begin{enumerate}
+    \item $\mathbf{Q}_X$与$X$的选择无关（故可略去下标$\mathbf{X}$）；
+    \item $\mathbf{Q}$是正交算符；
+    \item 对给定的$i$，$Q$唯一存在。
+    \end{enumerate}
+\end{lemma}
+\begin{proof}
+由命题中$\mathbf{Q}_X$的定义有
+\[
+\mathbf{Q}_X\left(Y-X\right)=i\left(Y\right)-i\left(X\right)\forall X,Y\in\mathcal{E}
+\]
+由引理\ref{thm:isom_l1}有
+\begin{align*}
+\left(\mathbf{Q}_X\mathbf{u}|\mathbf{Q}_X\mathbf{v}\right)&=\left(i\left(X+\mathbf{u}\right)-i\left(X\right)|i\left(X+\mathbf{u}\right)-i\left(X\right)\right)\\
+&=\left(\mathbf{u}|\mathbf{v}\right),\forall\mathbf{u},\mathbf{v}\in\mathcal{V}
+\end{align*}
+如果$\mathbf{Q}_X$是线性算符，则上述结论就证明了$\mathbf{Q}_X$是正交算符。以下进一步证明映射$\mathbf{Q}_X$是一个线性算符。由
+\begin{align*}
+    &\quad\left(\mathbf{Q}_X\left(\alpha_1\mathbf{u}_1+\alpha_2\mathbf{u}_2\right)-\mathbf{Q}_X\left(\alpha_1\mathbf{u}_1\right)-\mathbf{Q}_X\left(\alpha_2\mathbf{u}_2\right)|\mathbf{Q}_X\mathbf{v}\right)&\\
+    &=\left(i\left(X+\alpha_1\mathbf{u}_1+\alpha_2\mathbf{u}_2\right)-i\left(X\right)-\left[i\left(X+\alpha_1\mathbf{u}_1\right)-i\left(X\right)\right]-\left[i\left(X+\alpha_2\mathbf{u}_2\right)-i\left(X\right)\right]\right.\\
+    &\quad\left|i\left(X+\mathbf{v}\right)-i\left(X\right)\right)\\
+    &=\left(i\left(X+\alpha_1\mathbf{u}_1+\alpha_2\mathbf{u}_2\right)-i\left(X\right)|i\left(X+\mathbf{v}\right)-i\left(X\right)\right)\\
+    &\quad-\left(i\left(X+\alpha_1\mathbf{u}_1\right)-i\left(X\right)|i\left(X+\mathbf{v}\right)-i\left(X\right)\right)\\
+    &\quad-\left(i\left(X+\alpha_2\mathbf{u}_2\right)-i\left(X\right)|i\left(X+\mathbf{v}\right)-i\left(X\right)\right)\quad\text{（用到引理\ref{thm:isom_l1}）}\\
+    &=\left(\alpha_1\mathbf{u}_1+\alpha_2\mathbf{u}_2|\mathbf{v}\right)-\left(\alpha_1\mathbf{u}_1|\mathbf{v}\right)-\left(\alpha_2\mathbf{u}_2|\mathbf{v}\right)\\
+    &=0
+\end{align*}
+得
+\[\mathbf{Q}_X\left(\alpha_1\mathbf{u}_1+\alpha_2\mathbf{u}_2\right)-\mathbf{Q}_X\left(\alpha_1\mathbf{u}_1\right)-\mathbf{Q}_X\left(\alpha_2\mathbf{u}_2\right)=\mathbf{0}
+\]
+即$\mathbf{Q}_X$是线性算符。结合上一结论$\mathbf{Q}_X$就是正交算符。第2个命题得证。
+
+要证明$\mathbf{Q}_X$不依赖$X$的选择，设有另一$X^\prime\in\mathcal{E}$，则对任意$\mathbf{u}\in\mathcal{V}$有
+\begin{align*}
+\mathbf{Q}_{X^\prime}\mathbf{u}&=i\left(X^\prime+\mathbf{u}\right)-i\left(X^\prime\right)\\
+&=i\left(X+\left[\left(X^\prime-X\right)\mathbf{u}\right]\right)-i\left(X+\left(X^\prime-X\right)\right)\\
+&=\mathbf{Q}_X\left(\left(X^\prime-X\right)+\mathbf{u}\right)-\mathbf{Q}_X\left(X^\prime-X\right)\\
+&=\mathbf{Q}_X\left[\left(X^\prime-X\right)+\mathbf{u}-\left(X^\prime-X\right)\right]\\
+&=\mathbf{Q}_X\mathbf{u}
+\end{align*}
+即得证。
+
+至此，对于给定的$i$，$\mathbf{Q}$的存在性已证明。$\mathbf{Q}$的唯一性也是显然的。设另有线性算符$\mathbf{P}:\mathcal{V}\rightarrow\mathcal{V},\mathbf{P}\mathbf{u}=i\left(X+\mathbf{u}\right)-i\left(X\right)\forall\mathbf{u}\in\mathcal{V}$，则易验
+\[
+\left(\mathbf{P}-\mathbf{Q}\right)\mathbf{u}=\mathbf{Pu}-\mathbf{Qu}=\mathbf{0}
+\]
+\end{proof}
+\begin{theorem*}[等距变换的表示定理]
+定理\ref{II.9.1}：设$\left(\mathcal{E},d\right)$是一个欧几里德空间，$\mathcal{V}$是其平移空间，选定任一点$X_0\in\mathcal{E}$，则$\mathcal{E}$上的任一等距变换$i:\mathcal{E}\rightarrow\mathcal{E},i\in\mathcal{I}$都可表示为
+\[
+i\left(X\right)=i\left(X_0\right)+\mathbf{Q}_i\left(X-X_0\right)
+\]
+其中$\mathbf{Q}_i$是一个正交算符，关于$i$唯一存在。
+\end{theorem*}
+\begin{proof}
+由引理\ref{thm:isom_l2}，任一$\mathcal{E}$上的等距变换$i$都唯一对应一个$\mathcal{V}$上的正交算符$\mathbf{Q}$满足$\mathbf{Qu}=i\left(X+\mathbf{u}\right)-i\left(X\right)\forall X\in\mathcal{E},\mathbf{u}\in\mathcal{V}$。对任一$X\in\mathcal{E}$，可令$\mathbf{u}=X-X_0$，则对任一$i$存在唯一$\mathbf{Q}_i$满足$\mathbf{Q}_i\mathbf{u}=\mathbf{Q}_i\left(X-X_0\right)=i\left(X\right)-i\left(X_0\right)\Rightarrow i\left(X\right)=i\left(X_0\right)+\mathbf{Q}_i\left(X-X_0\right)$。
+\end{proof}
+\end{document}

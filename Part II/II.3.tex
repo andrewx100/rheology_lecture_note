@@ -1,16 +1,16 @@
 \documentclass[main.tex]{subfiles}
 % 内积空间
 \begin{document}
-在本节中，我们在向量空间的基础上再增加一些性质和运算法则，使得“正交基”、“单位向量”的概念得以引入，同时介绍其他重要概念。
+在本节中，我们在向量空间的基础上再增加一些性质和运算法则，使得“正交”、“单位向量”的概念得以引入，同时也介绍其他相关的概念。
 
-\begin{definition}[内积]
+\begin{definition}[内积]\label{def:II.3.1}
 数域$\mathbb{F}$上的向量空间$\mathcal{V}$中两向量$\mathbf{a},\mathbf{b}\in\mathcal{V}$的内积（inner product）记为$\left(\mathbf{a}|\mathbf{b}\right),\left(\cdot|\cdot\right):\mathcal{V}\times\mathcal{V}\rightarrow\mathbb{F}$，满足\footnote{上划线表示复数共轭}：$\forall\mathbf{a},\mathbf{b},\mathbf{c}\in\mathcal{V},\alpha\in\mathbb{F}$
-\begin{itemize}
+\begin{enumerate}
     \item $\left(\mathbf{a}|\mathbf{b}\right)=\overline{\left(\mathbf{b}|\mathbf{a}\right)}$
     \item $\left(\alpha\mathbf{a}|\mathbf{b}\right)=\alpha\left(\mathbf{a}|\mathbf{b}\right)$
     \item $\left(\mathbf{a}+\mathbf{b}|\mathbf{c}\right)=\left(\mathbf{a}|\mathbf{b}\right)+\left(\mathbf{a}|\mathbf{c}\right)$
     \item $\left(\mathbf{a}|\mathbf{a}\right)\in\mathbb{R}$且$\left(\mathbf{a}|\mathbf{a}\right)\geq0$，当且仅当$\mathbf{a}=\mathbf{0}$时取等号。
-\end{itemize}
+\end{enumerate}
 带有内积运算规定的向量空间叫做内积空间（inner product space）。
 \end{definition}
 
@@ -18,18 +18,24 @@
 \[\left(\mathbf{a}|\alpha\mathbf{b}+\mathbf{c}\right)=\overline{\alpha}\left(\mathbf{a}|\mathbf{b}\right)+\left(\mathbf{a}|\mathbf{c}\right)\]
 即从内积的后一个向量提出标量到内积之外时，这一标量要取复数共轭。
 
-内积的定义中设置复数共轭是必要的。否则将面临如下的矛盾：由$\left(\mathbf{a}|\mathbf{a}\right)>0\forall\mathbf{a}\neq\mathbf{0}$，竟然有$\left(i\mathbf{a}|i\mathbf{a}\right)=-1\left(\mathbf{a}|\mathbf{a}\right)>0$。但是，到底是规定从内积的前一个向量提出的标量要取复数共轭（很多物理书习惯），还是从内积的后一个向量提出的标量要取复数共轭（本讲义的定义方式，也是很多数学书的习惯）。这个惯例的不同，在数学上有时会造成重大的后果，但在流变学中并不重要。我们将会在线性泛函与对偶空间的时候再讲这件事，不感兴趣的同学可以忽略。
+内积的定义中设置复数共轭是必要的。否则将面临如下的矛盾：由$\left(\mathbf{a}|\mathbf{a}\right)>0\forall\mathbf{a}\neq\mathbf{0}$，竟然有$\left(i\mathbf{a}|i\mathbf{a}\right)=-1\left(\mathbf{a}|\mathbf{a}\right)>0$。但是，到底是规定从内积的前一个向量提出的标量要取复数共轭（很多物理书习惯），还是从内积的后一个向量提出的标量要取复数共轭（本讲义的定义方式，也是很多数学书的习惯）,这个惯例的不同，有时会造成重要的差别。我们可以把两种惯例的内积定义用不同的括号来区分，这两种惯例的内积的关系是：
+\[\left(\mathbf{x}|\mathbf{y}\right)\equiv\left\langle\mathbf{y}|\mathbf{x}\right\rangle\]
+上面的三角括号定义与量子力学中的狄拉克bra-ket标记的规定是相同的。由于本讲义的流变学部分不涉及复数域上的向量空间，因此不再详述，可参考\cite[\S1.3.1]{Hassani1999}。
 
 \begin{example}
-在$\mathbb{F}^n$上可定义这样的内积：对于$\mathbf{a}=\left(\alpha_1,\cdots,\alpha_n\right)^\intercal,\mathbf{b}=\left(\beta_1,\cdots,\beta_n\right)^\intercal\in\mathbb{F}$，$\left(\mathbf{a}|\mathbf{b}\right)\equiv\sum_j\alpha_j\overline{\beta_j}$，称为$\mathbb{F}^n$上的标准内积（standard inner product）。$\mathbb{R}^n$上的标准内积又可记为点乘（dot product）$\mathbf{a}\cdot\mathbf{b}$。
+\quad
+\begin{itemize}
+\item 在$\mathbb{F}^n$上可定义这样的内积：对于$\mathbf{a}=\left(\alpha_1,\cdots,\alpha_n\right)^\intercal,\mathbf{b}=\left(\beta_1,\cdots,\beta_n\right)^\intercal\in\mathbb{F}$，$\left(\mathbf{a}|\mathbf{b}\right)\equiv\sum_j\alpha_j\overline{\beta_j}$，称为$\mathbb{F}^n$上的标准内积（standard inner product）。$\mathbb{R}^n$上的标准内积又可记为点乘（dot product）$\mathbf{a}\cdot\mathbf{b}$。
+\item 记$\mathbb{C}\left(a,b\right)$为所有定义在实开区间$\left(a,b\right)$上的复数值一元函数的集合，若通过$\left(a,b\right)$上的恒正函数$w\left(x\right)$定义内积运算$\left(f|g\right)=\int_{a}^{b}w\left(x\right)f\left(x\right)\overline{g\left(x\right)}dx,\forall f,g\in\mathbb{C}\left(a,b\right)$，验证$\mathbb{C}\left(a,b\right)$是一个内积空间。
+\end{itemize}
 \end{example}
 
-由内积的一般定义可证明柯西--施瓦茨不等式（Cauchy--Schwarz inequality），故该不等式对任一满足内积定义的一般要求的具体定义都成立。
+由内积的一般定义可直接证明柯西--施瓦茨不等式（Cauchy--Schwarz inequality），故该不等式在任一内积空间上都成立。
 
 \begin{theorem}\label{thm:II.3.1}
 设$\mathcal{V}$是数域$\mathbb{F}$上的一个内积空间，则有$\forall\mathbf{a},\mathbf{b}\in\mathcal{V}$，
 \begin{enumerate}
-    \item 柯西--施瓦茨不等式$\left|\left(\mathbf{a}|\mathbf{b}\right)\right|\leq\left(\mathbf{a}|\mathbf{a}\right)\left(\mathbf{b}|\mathbf{b}\right)$
+    \item 柯西--施瓦茨不等式：$\left|\left(\mathbf{a}|\mathbf{b}\right)\right|\leq\left(\mathbf{a}|\mathbf{a}\right)\left(\mathbf{b}|\mathbf{b}\right)$
     \item $\left(\mathbf{a}|\mathbf{b}\right)=\mathrm{Re}\left(\mathbf{a}|\mathbf{b}\right)+\mathrm{Re}\left(\mathbf{a}|i\mathbf{b}\right)$
 \end{enumerate}
 \end{theorem}
@@ -48,28 +54,30 @@
 由$\left(\mathbf{a}|\mathbf{b}\right)=\mathrm{Re}\left(\mathbf{a}|\mathbf{b}\right)+i\mathrm{Im}\left(\mathbf{a}|\mathbf{b}\right)$和$\mathrm{Im}\left(\alpha\right)=\mathrm{Re}\left(-i\alpha\right)\forall\alpha\in\mathbb{F}$，有$\mathrm{Im}\left(\mathbf{a}|\mathbf{b}\right)=\mathrm{Re}\left(-i\left(\mathbf{a}|\mathbf{b}\right)\right)=\mathrm{Re}\left(\mathbf{a}|i\mathbf{b}\right)$，故$\left(\mathbf{a}|\mathbf{b}\right)=\mathrm{Re}\left(\mathbf{a}|\mathbf{b}\right)+i\mathrm{Re}\left(\mathbf{a}|i\mathbf{b}\right)$。
 \end{proof}
 
-除了内积空间，我们还可以为一个向量空间引入范（norm）的规定，得到赋范向量空间（normed vector space）。
+除了内积空间，我们还可以为一个向量空间引入范的规定，得到赋范向量空间。
 
 \begin{definition}[向量的范]\label{def:II.3.2}
-设$\mathcal{V}$是数域$\mathbb{F}$向量空间，则有$\forall\mathbf{x}\in\mathcal{V},\alpha\in\mathbb{F}$，
+设$\mathcal{V}$是数域$\mathbb{F}$向量空间，$\mathcal{V}$上的范（norm）作用于$\mathcal{V}$中的任一向量，记为$\left\|\mathbf{x}\right\|, \forall\mathbf{x}\in\mathcal{V}$，满足：
 \begin{enumerate}
-    \item 非负性：$\left\|\mathbf{x}\right\|\geq 0$
-    \item 调和性：$\left\|\alpha\mathbf{x}\right\|=\left|\alpha\right|\left\|\mathbf{x}\right\|$
-    \item 三角不等式：$\left\|\mathbf{x}+\mathbf{y}\right\|\leq\left\|\mathbf{x}\right\|+\left\|\mathbf{y}\right\|$
+    \item 非负性：$\left\|\mathbf{x}\right\|\geq 0,\forall\mathbf{x}\in\mathcal{V}$
+    \item 调和性：$\left\|\alpha\mathbf{x}\right\|=\left|\alpha\right|\left\|\mathbf{x}\right\|,\forall\mathbf{x}\in\mathcal{V},\alpha\in\mathbb{F}$
+    \item 三角不等式：$\left\|\mathbf{x}+\mathbf{y}\right\|\leq\left\|\mathbf{x}\right\|+\left\|\mathbf{y}\right\|,\forall\mathbf{x},\mathbf{y}\in\mathcal{V}$
 \end{enumerate}
-带有范的定义的向量空间叫赋范向量空间。
+带有范的定义的向量空间叫赋范向量空间（normed vector space）。
 \end{definition}
 
-我们注意到，赋范向量空间也有一个总成立的不等式——三角不等式。与内积空间的柯西--施瓦茨不等式不同，赋范向量空间的三角不等式是在范的定义中直接规定的，而无法法作为定理由之前两个规定证明出来。这说明我们主观上就希望向量的范满足这样的性质。这是因为，“范”是我们给于向量以“长度”的概念，并希望它能于欧几里德几何公设规定的性质相兼容。
+我们注意到，赋范向量空间也有一个总成立的不等式——三角不等式。与内积空间的柯西--施瓦茨不等式不同，赋范向量空间的三角不等式是在范的定义中直接规定的，而无法作为定理由之前两个规定证明出来。这说明我们主观上就希望向量的范满足这样的性质。这是因为，“范”是我们给于向量以“长度”的概念，并希望它能与欧几里得几何公设规定的性质相兼容。
 
-一个赋范向量空间$\mathcal{V}$中，范为1的向量称为单位向量（unit vector），在本讲义中单位向量会加一个小帽子来特别表示：$\left\|\hat{\mathbf{a}}\right\|=1,\hat{\mathbf{a}}\in\mathcal{V}$。赋范向量空间$\mathcal{V}$的任一向量$\mathcal{x}$均可通过$\hat{\mathbf{x}}=\mathbf{x}/\left\|\mathbf{x}\right\|$归一化为一个单位向量（由范的定义易验）。
+一个赋范向量空间$\mathcal{V}$中，范为1的向量称为单位向量（unit vector），在本讲义中单位向量会加一个小帽子来特别表示：$\left\|\hat{\mathbf{a}}\right\|=1,\hat{\mathbf{a}}\in\mathcal{V}$。赋范向量空间$\mathcal{V}$的任一向量$\mathbf{x}$均可通过$\hat{\mathbf{x}}=\mathbf{x}/\left\|\mathbf{x}\right\|$归一化为一个单位向量（由范的定义易验）。
 
-不管是内积的定义、还是范的定义，都没有具体规定计算方法。只要满足相应定义中的一般要求的任一种定义，都可作为内积或范。向量的范的其中一种常用的定义是：设$\mathcal{V}$是内积空间，向量$\mathbf{a}\in\mathcal{V}$的范$\left\|\mathbf{a}\right\|\equiv\left(\mathbf{a}|\mathbf{a}\right)^{\frac{1}{2}}$。我们把这一定义称为欧几里德范。其他范的定义则为非欧几里德范，例如在$\mathbb{R}^n$上，还可以有如下范的定义。对任一$\mathbf{x}=\left(x_1,\cdots,x_n\right)$，$\left\|\mathbf{x}\right\|=\mathrm{max}\left\{\left|x_1\right|,\cdots,\left|x_n\right|\right\}$。一般地，由于给一个向量空间引入内积定义的方式本身就可以有多种，依赖内积的范的定义也会有多种。对于有些向量空间，范的定义可以不依赖内积。
+不管是内积的定义、还是范的定义，都没有具体规定计算方法。只要满足定义的一般要求，我们可以为同一个向量空间赋予不同内积或范的规定。向量的范的其中一种常用的定义是：设$\mathcal{V}$是内积空间，向量$\mathbf{a}\in\mathcal{V}$的范$\left\|\mathbf{a}\right\|\equiv\left(\mathbf{a}|\mathbf{a}\right)^{\frac{1}{2}}$。我们把这一定义称为欧几里得范（Euclidean norm）。其他范的定义则为非欧几里得范，例如在$\mathbb{R}^n$上，还可以有如下范的定义。对任一$\mathbf{x}=\left(x_1,\cdots,x_n\right)$，$\left\|\mathbf{x}\right\|=\mathrm{max}\left\{\left|x_1\right|,\cdots,\left|x_n\right|\right\}$\footnote{请验证它满足定义\ref{def:II.3.2}。}。一般地，由于给一个向量空间引入内积定义的方式本身就可以有多种，依赖内积的范的定义也会有多种。对于有些向量空间，范的定义可以不依赖内积。
 
-以下定理说明，在一定条件下，我们能够用范的一般定义构造一个内积，使任何一个尚未定义内积的赋范空间成为一个内积空间。
+由于有限维向量空间上定义的不同的范之间是等价的（见\S\ref{sec:VI.1}），故我们实际只需以欧几里得范为代表进行后续的讨论，未经说明的话，一般提到有限维向量空间上的范都指欧几里得范。
+
+以下定理说明，在一定条件下，我们能够用范的一般定义构造一个内积，使任何一个尚未定义内积的赋范空间成为一个内积空间。而且特别地，这一种范就是欧几里得范。
 
 \begin{theorem}\label{thm:II.3.2}
-一个赋范向量空间是内积空间当且仅当该空间的范满足极化恒等式（polarization identity），即
+一个赋范向量空间是一个内积空间当且仅当该空间的范满足极化恒等式（polarization identity），即
 \[\left\|\mathbf{a}+\mathbf{b}\right\|^2+\left\|\mathbf{a}-\mathbf{b}\right\|^2=2\left\|\mathbf{a}\right\|^2+2\left\|\mathbf{b}\right\|^2\]
 \end{theorem}
 \begin{proof}
@@ -78,17 +86,17 @@
 \left(\mathbf{a}|\mathbf{b}\right)&=\frac{1}{4}\left\|\mathbf{a}+\mathbf{b}\right\|^2-\frac{1}{4}\left\|\mathbf{a}-\mathbf{b}\right\|^2+\frac{i}{4}\left\|\mathbf{a}+i\mathbf{b}\right\|^2-\frac{i}{4}\left\|\mathbf{a}-i\mathbf{b}\right\|^2\\
 &=\frac{1}{4}\sum_{n=1}^4i^n\left\|\mathbf{a}+i^n\mathbf{b}\right\|^2,\forall\mathbf{a},\mathbf{b}\in\mathcal{V}
 \end{align*}
-可验证上式满足内积定义，且$\left\|\mathbf{a}\right\|^2=\left(\mathbf{a}|\mathbf{a}\right)^{\frac{1}{2}}$。
+可验证上式满足内积定义，且$\left\|\mathbf{a}\right\|^2=\left(\mathbf{a}|\mathbf{a}\right)^{\frac{1}{2}}$，即该范就是欧几里德范。
 \end{proof}
 
 上面的等式在几何上等价于平行四边形法则（parallelogram law）。特别地，对于$\mathbf{a},\mathbf{b}\in\mathbb{R}^n$则有$\mathbf{a}\cdot\mathbf{b}=\frac{1}{4}\left\|\mathbf{a}+\mathbf{b}\right\|^2-\frac{1}{4}\left\|\mathbf{a}-\mathbf{b}\right\|^2$。
 
-柯西--施瓦茨不等式、三角不等式和极化恒等式在很多定理的证明中经常用到，但它们的含义及适用范围需要区分清楚。由定理\ref{thm:II.3.1}，柯西--施瓦茨不等式是对任一内积空间均成立的。由定义\ref{def:II.3.2}，三角不等式是对任一赋范向量空间均成立的。而由定理\ref{thm:II.3.2}可知，满足极化恒等式的赋范空间必然也是一个内积空间从而把两种空间统一起来。特别地，欧几里德范总满足柯西--施瓦茨不等式、三角不等式和极化恒等式。
+柯西--施瓦茨不等式、三角不等式和极化恒等式在很多定理的证明中经常用到，但它们的含义及适用范围需要区分清楚。由定理\ref{thm:II.3.1}，柯西--施瓦茨不等式是对任一内积空间均成立的。由定义\ref{def:II.3.2}，三角不等式是对任一赋范向量空间均成立的。而由定理\ref{thm:II.3.2}可知，满足极化恒等式的赋范空间必然也是一个内积空间从而把两种空间统一起来。特别地，欧几里得范即是同时满足三角不等式和极化恒等式的范。
 
 下面我们由内积空间的性质引入正交（orthogonal）及相关的概念。
 
 \begin{definition}[正交]\label{def:II.3.3}
-内积空间$\mathcal{V}$中的向量$\mathbf{a},\mathbf{b}\in\mathcal{V}$，若$\left(\mathbf{a}|\mathbf{b}\right)=0$，则称$\mathbf{a}$与$\mathbf{b}$是正交的。若$S$是$\mathcal{V}$的一个子集，且$S$中的向量两两正交，则称$S$是$\mathcal{V}$的一个正交集（orthogonal set）。若$\mathcal{V}$还是一个赋范向量空间，且$\mathcal{V}$的一个正交集$S$中的向量均满足$\left\|\hat{\mathbf{e}}\right\|=1\forall\hat{\mathbf{e}}\in S$则称$S$是规范正交集（orthonormal set）。
+内积空间$\mathcal{V}$中的向量$\mathbf{a},\mathbf{b}\in\mathcal{V}$，若$\left(\mathbf{a}|\mathbf{b}\right)=0$，则称$\mathbf{a}$与$\mathbf{b}$是正交的（orthogonal）。若$S$是$\mathcal{V}$的一个子集，且$S$中的向量两两正交，则称$S$是$\mathcal{V}$的一个正交集（orthogonal set）。若$\mathcal{V}$还是一个赋范向量空间，且$\mathcal{V}$的一个正交集$S$中的向量均满足$\left\|\hat{\mathbf{e}}\right\|=1\forall\hat{\mathbf{e}}\in S$则称$S$是规范正交集（orthonormal set）。
 \end{definition}
 
 \begin{example}\label{exp:II.3.2}\cite[“例题2.2”,p.~174]{周胜林2012线性代数}
@@ -112,7 +120,7 @@
 考察上式可验证$\mathbf{b}=\mathbf{0}\Leftrightarrow\beta_1=\cdots=\beta_m=0$。
 \end{proof}
 
-由定理\ref{thm:II.3.3}以及子空间、线性生成空间的定义（\ref{def:II.2.2}、\ref{def:II.2.4}），内积空间$\mathcal{V}$的正交集$S$总能线性生成$\mathcal{V}$的一个子空间。若内积空间$\mathcal{V}$的一组基$\mathcal{B}$是正交集，则称$\mathcal{B}$为$\mathcal{V}$的正交基（orthogonal basis）。如果$\mathcal{V}$是赋范内积空间，其一组基$\mathcal{B}$是规范正交集，则称$\mathcal{B}$是$\mathcal{V}$的一个规范正交基（orthonormal basis）。
+由定理\ref{thm:II.3.3}以及子空间、线性生成空间的定义（\ref{def:II.2.2}、\ref{def:II.2.4}），内积空间$\mathcal{V}$的正交集$S$总能线性生成$\mathcal{V}$的一个子空间。若内积空间$\mathcal{V}$的一组基$B$是正交集，则称$B$为$\mathcal{V}$的正交基（orthogonal basis）。如果$\mathcal{V}$是赋范内积空间，其一组基$B$是规范正交集，则称$B$是$\mathcal{V}$的一个规范正交基（orthonormal basis）。
 
 定理\ref{thm:II.3.3}的证明也给出了格拉姆--施密特正交化过程（Gram--Schmidt process），作为定理如下。
 
@@ -148,18 +156,6 @@
 只需要对采用格拉姆--施密特正交化过程得到的正交基，再对其基向量归一化即可。
 \end{proof}
 
-\begin{example}[$\mathbb{R}^n$内积空间]
-$n$元有序实数对的集合$\mathbb{R}^n$中可定义如下加法运算：
-\begin{align*}
-\left(x_1,\cdots,x_n\right)^\intercal+\left(y_1,\cdots,y_n\right)^\intercal=\left(x_1+y_1,\cdots,x_n+y_n\right)^\intercal,\\
-\alpha\left(x_1,\cdots,x_n\right)^\intercal=\left(\alpha x_1,\cdots,\alpha x_n\right)^\intercal,\forall x_i,y_i,\alpha\in\mathbb{R},i=1,\cdots,n
-\end{align*}
-可验证，带有上述运算规则的$\mathbb{R}^n$是一个向量空间。再引入如下内积运算：
-\[
-\left(x_1,\cdots,x_n\right)^\intercal\cdot\left(y_1,\cdots,y_n\right)^\intercal=\sum_{j=1}^nx_jy_j\]
-可验证，带有上述运算规则满足内积定义，$\mathbb{R}^n$成变一个内积空间。
-\end{example}
-
 \begin{example}
 考虑$\mathbb{R}^3$中的三个向量$\mathbf{b}_1=\left(3,0,4\right)^\intercal,\mathbf{b}_2=\left(-1,0,7\right)^\intercal,\mathbf{b}_3=\left(2,9,11\right)^\intercal$。首先可以验证它们线性无关，即
 \[
@@ -194,18 +190,21 @@ $n$元有序实数对的集合$\mathbb{R}^n$中可定义如下加法运算：
 \]
 叫克劳内克符号（Kronecker symbol）。
 
-在选取什么基之下，向量$\mathbf{x}=\left(x_1,\cdots,x_n\right)$在该基下的坐标就恰好是$x_1,\cdots,x_n$呢？这样的基$\left\{\mathbf{\hat{e}}_i\right\}$叫标准基，其中
+在选取什么基之下，向量$\mathbf{x}=\left(x_1,\cdots,x_n\right)$在该基下的坐标就恰好是$x_1,\cdots,x_n$呢？这样的基$\left\{\mathbf{\hat{e}}_i\right\}$叫标准基（standard basis），其中
 \[\mathbf{\hat{e}}_i=\left(e_{i,1},\cdots,e_{i,n}\right)^\intercal,e_{i,j}=\delta_{ij}\]
 标准基是一个规范正交基。
-
-在选定任一规范正交基$\left\{\hat{\mathbf{a}}\right\}$下，两向量$\mathbf{x}$和$\mathbf{y}\in\mathbb{R}^3$的标准内积计算，按定义有$\mathbf{x}\cdot\mathbf{y}=\sum_ix_iy_i$。另一方面，表达成给定基下的坐标后，则有
-\begin{align*}
-\mathbf{x}&=\sum_i\mu_i\mathbf{a}_i,\mathbf{y}=\sum_i\nu_i\mathbf{a}_i\\
-\mathbf{x}\cdot\mathbf{y}&=\sum_i\mu_i\mathbf{a}_i\cdot\left(\sum_j\nu_j\mathbf{a}_j\right)\\
-&=\sum_i\sum_j\left(\mu_i\mathbf{a}_i\right)\cdot\left(\nu_j\mathbf{a}_j\right)\\
-&=\sum_i\sum_j\mu_i\nu_j\left(\mathbf{a}_i\cdot\mathbf{a}_j\right)\\
-&=\sum_i\sum_j\mu_i\nu_j\delta_{ij}\\
-&=\sum_i\mu_i\nu_i
-\end{align*}
 \end{example}
+
+以下推导向量内积在给定基下的坐标计算公式。设$\mathcal{V}$是数域$\mathbb{F}$上的$n$维内积空间，$\left\{\mathbf{e}_i\right\}$是$\mathcal{V}$的一组基，则任意两个向量$\mathbf{a},\mathbf{b}$可表示为
+\[
+\mathbf{a}=\sum_{i=1}^n\alpha_i\mathbf{e}_i,\mathbf{b}=\sum_{i=1}^n\beta_i\mathbf{e}_i
+\]
+它们的内积
+\begin{align*}
+\left(\mathbf{a}|\mathbf{b}\right)&=\left(\sum_{i=1}^n\alpha_i\mathbf{e}_i\right|\left.\sum_{j=1}^n\beta_j\mathbf{e}_j\right)\\
+&=\sum_{i=1}^n\sum_{j=1}^n\alpha_i\overline{\beta_j}\left(\mathbf{e}_i|\mathbf{e}_j\right)\\
+&=\sum_{i=1}^n\sum_{j=1}^n\alpha_i\overline{\beta_j}G_{ij}
+\end{align*}
+其中，$G$为基$\left\{\mathbf{e}_i\right\}$的格拉姆矩阵（Gram matrix），即$G_{ij}=\left(\mathbf{e}_i|\mathbf{e}_j\right)$，则由内积定义有$G_{ij}=\overline{G_{ji}}$。若$\left\{\mathbf{e}_i\right\}$是正交基，则$G_{ij}=\overline{G_{ji}}\delta_{ij}$。若$\left\{\mathbf{e}_i\right\}$是规范正交基，则$G_{ij}=\delta_{ij}$。
+
 \end{document}

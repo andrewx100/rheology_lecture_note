@@ -1,41 +1,84 @@
 \documentclass[main.tex]{subfiles}
+% 线性代数部分定理证明
 \begin{document}
-本附录的内容并不新。在高等数学中我们已经学过邻域、去心邻域、内点、外点、边界点、聚点、孤立点、闭集、开集、连通集、区域、有界区域等概念\cite[\S 7.1,p.1]{华工高数2009下}。
+%===============================================
+\subsection{范的等价性}
+本节将证明有限维向量空间上的不同范的定义是等价的。
 
-\begin{definition}[开集]
-如果对于$\mathbb{R}^n$的子集$S$中一个元素$\mathbf{x}_0\in S$，存在正实数$\delta>0$使得只要$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$则$\mathbf{x}\in S$，就称$\mathbf{x}_0$在$S$内。所有这样的点$\mathbf{x}_0$的集合称为集合$S$的内部，记为$\mathrm{int}S$。如果$S$的所有元素都在$S$内（$S=\mathrm{int}S$），就称$S$是开集。一个含有某元素$\mathbf{x}_0$的开集$S$又可称为该点$\mathbf{x}_0$的一个邻域。
-\end{definition}
+\begin{lemma}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维向量空间，$n=\mathrm{dim}\mathcal{V}$，$\left\|\cdot\right\|$是定义在$\mathcal{V}$的一个范，$\left\|\cdot\right\|_\mathrm{E}\equiv\left(\mathbf{a}|\mathbf{a}\right)^\frac{1}{2}\forall\mathbf{a}\in\mathcal{V}$是定义在$\mathcal{V}$上的欧几里得范，则总存在正实数$k>0,K>0$使得$k\left\|\mathbf{x}\right\|_\mathrm{E}\leq\left\|\mathbf{x}\right\|\leq K\left\|\mathbf{x}\right\|_\mathrm{E},\forall\mathbf{x}\in\mathcal{V}$。
+\end{lemma}
+\begin{proof}
+选择$\mathcal{V}$的任意一组基$\left\{\mathbf{e}_i\right\}$，任一向量$\mathbf{x}\in\mathcal{V}$可表示成$\mathbf{x}=\sum_{i=1}^nx_i\mathbf{e}_i$。由范的一般定义有
+\begin{align*}
+    \left\|\mathbf{x}\right\|&=\left\|\sum_{i=1}^nx_i\mathbf{e}_i\right\|\\
+    &\leq\sum_{i=1}^n\left|x_i\right|\left\|\mathbf{e}_i\right\|\quad\text{（三角不等式，当且仅当}x_1=\cdots=x_n\text{时取等号。）}\\
+    &\leq\mathrm{max}\left\{\left|x_i\right|\right\}\sum_{i=1}^n\left\|\mathbf{e}_i\right|\quad\text{（非负实数求和的简易性质，当且仅当}\left|x_1\right|=\cdots\left|x_n\right|\text{时取等号。）}\\
+    &\leq\left(\sum_{i=1}^nx_i^2\right)^\frac{1}{2}\sum_{i=1}^n\left\|\mathbf{e}_i\right\|\quad\text{（当且仅当}n=1\text{时取等号。）}\\
+    &=K\left\|\mathbf{x}\right\|_\mathrm{E}
+\end{align*}
+其中$K=\sum_{i=1}^n\left\|\mathbf{e}_i\right\|>0$（基向量$\mathbf{e}_i\neq\mathbf{0}\forall i=1,\cdots,n$）。故总存在$K>0$使得$\left\|\mathbf{x}\right\|\leq K\left\|\mathbf{x}\right\|_\mathrm{E}\forall\mathbf{x}\in\mathcal{V}$。
 
-由定义，整个$\mathbb{R}^n$是一个开集。“空集是一个开集”虚真（vacuously true）。$\mathbb{R}^n$中的开集的交集也是开集。$\mathbb{R}^n$中的有限个开集的并集也是开集。这些结论都需要证明但此略。
+考虑一般范关于欧几里得范的函数：$f:\mathbb{R}\supset\left(0,+\infty\right]\rightarrow\mathbb{R},f\left(\left\|\mathbf{x}\right\|_\mathrm{E}\right)=\left\|\mathbf{x}\right\|,\forall\mathbf{x}\in\mathcal{V}$。则对任意$\mathbf{x},\mathbf{x}_0\in\mathcal{V}$，有$\left|\left\|\mathbf{x}\right\|_\mathrm{E}-\left\|\mathbf{x}_0\right\|_\mathrm{E}\right|\leq\left\|\mathbf{x}-\mathbf{x}_0\right\|_\mathrm{E}$，故总存在$k^\prime\leq1$使得$\left|\left\|\mathbf{x}\right\|_\mathrm{E}-\left\|\mathbf{x}_0\right\|_\mathrm{E}\right|=k^\prime\left\|\mathbf{x}-\mathbf{x}_0\right\|_\mathrm{E}$。前面又证明了，总存在$K^\prime>0$使得$\left\|\mathbf{x}-\mathbf{x}_0\right\|\leq K^\prime\left\|\mathbf{x}-\mathbf{x}_0\right\|_\mathrm{E}$。故对任意$\epsilon>0$，总可取$\delta=\frac{\epsilon k^\prime}{K^\prime}$，使得只要$\left|\left\|\mathbf{x}\right\|_\mathrm{E}-\left\|\mathbf{x}_0\right\|_\mathrm{E}\right|<\delta$，就有$\left\|\left\|\mathbf{x}\right\|-\left\|\mathbf{x}_0\right\|\right|\leq\left\|\mathbf{x}-\mathbf{x}_0\right\|\leq K^\prime\left\|\mathbf{x}-\mathbf{x}_0\right\|_\mathrm{E}=\frac{K^\prime}{k^\prime}\left|\left\|\mathbf{x}\right\|_\mathrm{E}-\left\|\mathbf{x}_0\right\|_\mathrm{E}\right|<\frac{K^\prime\delta}{k^\prime}=\epsilon$，即函数$f$是连续函数。
 
-\begin{definition}[闭集]
-如果集合$S\subset\mathbb{R}^n$中的点$\mathbf{x}_0$的每个邻域都含有至少一个$S$中的点（可以就是点$\mathbf{x}_0$本身），则称点$\mathbf{x}_0$是$S$的闭包中的点，所有这样的点$\mathbf{x}_0$的集合称$S$的闭包，记为$\mathrm{cl}S$。如果点$\mathbf{x}_0$的每个邻域都含有至少一个$S$中的与$\mathbf{x}_0$不同的点$\mathbf{x}$，则称$\mathbf{x}_0$是$S$的一个极限点。$S$的所有极限点的集合称$S$的导集。如果集合$S$包含它的所有极限点，则称集合$S$是闭集。若集合$S$等于其闭包（$S=\mathrm{cl}S$），则称$S$是闭集。
-\end{definition}
+由函数的极值定理，闭区间上的连续函数必存在最小值。故在闭区间$\left\|\mathbf{x}\right\|_\mathrm{E}\leq 1$范围内，$f$必存在最小值，即必存在$0\leq a\leq 1$使得$0<f\left(a\right)\leq\left\|\mathbf{x}\right\|\forall\mathbf{x}\in\left\{\mathbf{x}|\mathbf{x}\in\mathcal{V},\left\|\mathbf{x}\right\|_\mathrm{E}\leq1\right\}$。又因为对任一$\mathbf{x}\in\mathcal{V}$总有$\mathbf{\hat{x}}\equiv\frac{\mathbf{x}}{\left\|\mathbf{x}\right\|_\mathrm{E}}\in\left\{\mathbf{x}|\mathbf{x}\in\mathcal{V},\left\|\mathbf{x}\right\|_\mathrm{E}\leq1\right\}$。故总存在$k>0$使得
+\begin{align*}
+    &k\leq\left\|\mathbf{\hat{x}}\right\|\leq K\left\|\mathbf{\hat{x}}\right\|_\mathrm{E}\\
+    \Leftrightarrow&k\leq\frac{\left\|\mathbf{x}\right\|}{\left\|\mathbf{x}\right\|_\mathrm{E}}\leq K\\
+    \Leftrightarrow&k\left\|\mathbf{x}\right\|_\mathrm{E}\leq\left\|\mathbf{x}\right\|\leq K\left\|\mathbf{x}\right\|_\mathrm{E}
+\end{align*}
+\end{proof}
 
-由定义，整个$\mathbb{R}^n$是一个闭集。“空集是一个闭集”虚真。$\mathbb{R}^n$中的闭集的交集也是闭集。$\mathbb{R}^n$中的有限个闭集的并集也是闭集。
+\begin{lemma}
+如果存在$k>0,K>0$使得数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$上的任意两种范的定义$\left\|\cdot\right\|_1,\left\|\cdot\right\|_2$满足$k\left\|\mathbf{x}\right\|_1\leq\left\|\mathbf{x}\right\|_2\leq K\left\|\mathbf{x}\right\|_1,\forall\mathbf{x}\in\mathcal{V}$，则该不等式成立条件定义了两种范的定义之间的等价关系。
+\end{lemma}
+\begin{proof}
+自反性：显然满足。
 
-\begin{definition}[边界]
-如果对于$\mathbb{R}^n$的子集$S$中的一个元素$\mathbf{x}_0\in S$和任意正实数$\delta>0$，都存在至少一个$\mathbf{x}\in S$满足$\left\|\mathbf{x}-\mathbf{x}\right\|=\delta$（显然$\mathbf{x}\neq\mathbf{x}_0$）和至少一个$\mathbf{y}\notin S$满足$\left\|\mathbf{y}-\mathbf{x}\right\|=\delta$，则称$\mathbf{x}_0$是在$S$的边界上的点。所有这样的点$\mathbf{x}_0$的集合称为集合$S$的边界，常记为$\partial S$。
-\end{definition}
+对称性：只需令$k^\prime=\frac{1}{K},K^\prime=\frac{1}{k}$。
+
+传递性：设$\left\|\cdot\right\|_1,\left\|\cdot\right\|_2,\left\|\cdot\right\|_3$是$\mathcal{V}$上的三种范的定义，正实数$k,k^\prime,K,K^\prime$满足$k\left\|\mathbf{x}\right\|_1\leq\left\|\mathbf{x}\right\|_2\leq K\left\|\mathbf{x}\right\|_1,k^\prime\left\|\mathbf{x}\right\|_2\leq\left\|\mathbf{x}\right\|_3\leq K^\prime\left\|\mathbf{x}\right\|_2,\forall\mathbf{x}\in\mathcal{V}$，则总可取$0<k^{\prime\prime}=kk^\prime\leq KK^\prime=K^{\prime\prime}$使得$k^{\prime\prime}\left\|\mathbf{x}\right\|_1=kk^\prime\left\|\mathbf{x}\right|_1\leq k^\prime\left\|\mathbf{x}\right\|_2\leq\left\|\mathbf{x}\right\|_3\leq K^\prime\left\|\mathbf{x}\right\|_2\leq KK^\prime\left\|\mathbf{x}\right\|_1=K^{\prime\prime}\left\|\mathbf{x}\right\|_1$。
+\end{proof}
+
+\begin{theorem}\label{thm:VI.1.1}
+有限维向量空间上的任意两种范的定义等价。
+\end{theorem}
+\begin{proof}
+由以上两引理可知有限维向量空间上的任意一种范的定义均与欧几里得范等价。由等价关系性质本命题成立。
+\end{proof}
+
+%====================================================
+\subsection{伴随算符的唯一存在性}
+\begin{lemma}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，给定$\mathcal{V}$上的一个线性泛函$f\in\mathcal{V}^*$，则存在唯一一个向量$\mathbf{b}\in\mathcal{V}$满足$f\left(\mathbf{a}\right)=\left(\mathbf{a}|\mathbf{b}\right),\forall\mathbf{a}\in\mathcal{V}$。
+\end{lemma}
+\begin{proof}
+设$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一个规范正交基，$\mathbf{a}=\sum_i\alpha_i\mathbf{\hat{e}}_i$是$\mathcal{V}$中的任一向量，$f$是$\mathcal{V}^*$中的任一线性变换，则$f\left(\mathbf{a}\right)=\sum_i\alpha_if\left(\mathbf{\hat{e}}_i\right)$。若要找到一个向量$\mathbf{b}\in\mathcal{V}$满足$\left(\mathbf{a}|\mathbf{b}\right)=f\left(\mathbf{a}\right)$，则要求等号左边
+$\left(\mathbf{a}|\mathbf{b}\right)=\sum_i\alpha_i\overline{\beta_i}$等于等号右边$f\left(\mathbf{a}\right)=\sum_i\alpha_if\left(\mathbf{\hat{e}}_i\right)$，且需对任意$\mathbf{a}\in\mathbf{V}$成立。这相当于要求$\overline{\beta_j}=f\left(\mathbf{\hat{e}}_j\right)$，即$\mathbf{b}=\sum_j\overline{f\left(\mathbf{\hat{e}}_j\right)}\mathbf{\hat{e}}_j$。这就证明了$\mathbf{b}$的存在性。
+
+设$\mathbf{c}\in\mathcal{V}$也满足$\left(\mathbf{a}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{c}\right),\forall\mathbf{a}\in\mathcal{V}$，则$\left(\mathbf{a}|\mathbf{b}-\mathbf{c}\right)=0,\forall\mathbf{a}\in\mathcal{V}\Leftrightarrow\mathbf{b}=\mathbf{c}$，故$\mathbf{b}$是唯一的。
+\end{proof}
 
 \begin{theorem}
-一个集合是闭集当且仅当它包含所有其边界上的点。
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，对$\mathcal{V}$上的任一线性算符$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$有且只有一个伴随算符$\mathbf{T}^*\in\mathcal{L}\left(\mathcal{V}\right)$。
 \end{theorem}
+\begin{proof}
+给定任意向量$\mathbf{b}\in\mathcal{V}$，均可定义一个线性泛函$f\in\mathcal{V}^*,f\left(\mathbf{a}\right)\equiv\left(\mathbf{Ta}|\mathbf{b}\right),\forall\mathbf{a}\in\mathcal{V}$。由前一条引理，每一个这样的线性泛函都唯一对应一个$\mathbf{b}^\prime\in\mathcal{V}$满足$f\left(\mathbf{a}\right)=\left(\mathbf{a}|\mathbf{b}^\prime\right)$。因此，对每一个线性变换$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$，都可以定义一个映射$\mathbf{T}^*:\mathcal{V}\rightarrow\mathcal{V}$来将$\mathcal{V}$中的每一个向量$\mathcal{b}$如上所述地对应到$\mathcal{V}$中的另一个向量$\mathbf{b}^\prime$，且这个映射$\mathbf{T}^*$是一个线性算符，因为对任意$\gamma\in\mathbb{F},\mathbf{b},\mathbf{c}\in\mathcal{V}$，
+\begin{align*}
+    \left(\mathbf{a}|\mathbf{T}^*\left(\gamma\mathbf{b}+\mathbf{c}\right)\right)&=\left(\mathbf{Ta}|\gamma\mathbf{b}+\mathbf{c}\right)\\
+    &=\overline{\gamma}\left(\mathbf{Ta}|\mathbf{b}\right)+\left(\mathbf{Ta}|\mathbf{c}\right)\\
+    &=\overline{\gamma}\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)+\left(\mathbf{a}|\mathbf{T}^*\mathbf{c}\right)\\
+    &=\left(\mathbf{a}|\gamma\mathbf{T}^*\mathbf{b}+\mathbf{T}^*\mathbf{c}\right),\forall\mathbf{a}\in\mathcal{V}\\
+    \Leftrightarrow\mathbf{T}^*\left(\gamma\mathbf{b}+\mathbf{c}\right)&=\gamma\mathbf{T}^*\mathbf{b}+\mathbf{T}^*\mathbf{c}
+\end{align*}
 
-\begin{corollary}
-一个集合是闭集当且仅当它包含其所有极限点。
-\end{corollary}
+现证明$\mathbf{T}^*$是唯一的。设另一线性算符$\mathbf{U}\in\mathcal{L}\left(\mathcal{V}\right)$满足命题条件即$\left(\mathbf{Ta}|\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)=\left(\mathbf{a}|\mathbf{Ub}\right)$，则$0=\left(\mathbf{a}|\mathbf{T}^*\mathbf{b}\right)-\left(\mathbf{a}|\mathbf{Ub}\right)=\left(\mathbf{a}|\left(\mathbf{T}^*-\mathbf{U}\right)\mathbf{b}\right),\forall\mathbf{a},\mathbf{b}\in\mathcal{V}\Leftrightarrow\mathbf{T}^*=\mathbf{U}$，故$\mathbf{T}^*$是唯一的。
+\end{proof}
 
-\begin{corollary}
-一个集合是开集当且仅当它不包含其任何边界上的点。
-\end{corollary}
+\subsection{线性算符的行列式}
 
-\begin{definition}[孤立点]
-如果对于点$\mathbf{x}_0\in S\subset\mathbf{R}^n$，存在正实数$\delta>0$使得$\left\{\mathbf{x}|\left\|\mathbf{x}-\mathbf{x}_0\right\|=\delta\right\}\cap S=\left\{\mathbf{x}_0\right\}$，则称$\mathbf{x}_0$是$S$的一个孤立点。
-\end{definition}
 
-\begin{example}
-设$S=\left(0,1\right]\cup\left\{2\right\}$，则$\mathrm{int}S=\left(0,1\right)$，$\partial S=\left\{0,1,2\right\}$，$S$的所有极限点是$\left[0,1\right]$。$2$是$S$的一个孤立点。
-\end{example}
+
+
 
 \end{document}

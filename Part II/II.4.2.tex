@@ -1,55 +1,51 @@
 \documentclass[main.tex]{subfiles}
 % 线性变换的坐标矩阵
 \begin{document}
-在之前的内容里，我们主要介绍了向量和线性变换的代数定义。在以往的《线性代数》课里我们主要学习的“向量”都是$N\times 1$矩阵（列向量）或$1\times N$矩阵（行向量），实际上这些只是3维实坐标空间$\mathbb{R}^3$空间的向量。在\S\ref{sec:II.2}中我们明确了，一般意义的$n$维向量与$n$维坐标空间$\mathbb{F}^n$建立一一对应关系的方式是通过选定的某组基，使得后者为前者的坐标。此时，一个$n$维向量与一个$\mathbb{F}^n$的$n$元组的具体对应关系是依赖基的选择的。在未指定基的时候，不能直接用一个$n$元数组指代一个向量。
+在之前的内容里，我们主要介绍了向量和线性变换的代数定义。在以往的《线性代数》课里我们主要学习的“向量”都是$n\times 1$矩阵（列向量）或$1\times n$矩阵（行向量），实际上这些只是3维实坐标空间$\mathbb{R}^3$空间的向量。在\S\ref{sec:II.2}中我们明确了，要在一个数域$\mathbb{F}$上的$n$维向量空间$\mathcal{V}$与$n$维坐标空间$\mathbb{F}^n$之间建立一一对应关系，可以通过选定$\mathcal{V}$的某组基，把$\mathcal{V}$中的向量表示成该基下的坐标——$\mathbb{F}^n$中的一个$n$元组。于是，这一一一对应关系是依赖$\mathcal{V}$的基的选择的。在未指定基的时候，不能直接用$\mathbb{F}^n$中的一个$n$元数组指代$\mathcal{V}$中的一个向量。
 
 我们还知道，线性变换本身也是一个向量；线性变换的空间也有基和维数，因此相应地也应该有选定基下的坐标。下面我们将会看到，线性变换在选定基下的坐标可以表示为一个矩阵\cite[\S7.3“3”,p.~178]{周胜林2012线性代数}。
 
-考虑数域$\mathbb{F}$上的$N$维向量空间$\mathcal{V}_N$的一组基$B=\{\mathbf{a}_i\}_{i=1}^N$，任一向量$\mathbf{x}\in\mathcal{V}$可表示成$\mathbf{x}=\sum_{i=1}^N\xi_i\mathbf{a}_i,\xi_i\in\mathbb{F},i=1,\cdots,N$。我们在\S\ref{sec:II.2}中说明过，向量$\mathbf{x}$在基$B$下的坐标可表示为由$\left\{\xi_i\right\}$组成的$N\times 1$矩阵$\left(\xi_1,\cdots,\xi_N\right)^\intercal$。
+考虑数域$\mathbb{F}$上的$N$维向量空间$\mathcal{V}_N$的一组基$B=\{\mathbf{a}_i\}_{i=1}^n$，任一向量$\mathbf{x}\in\mathcal{V}$可表示成$\mathbf{x}=\sum_{i=1}^n\xi_i\mathbf{a}_i,\xi_i\in\mathbb{F},i=1,\cdots,n$。我们在\S\ref{sec:II.2}中说明过，向量$\mathbf{x}$在基$B$下的坐标可表示为由$\left\{\xi_i\right\}$组成的$n\times 1$矩阵$\left(\xi_1,\cdots,\xi_n\right)^\intercal$。
 
-设$\mathcal{V}_N,\mathcal{W}_M$分别是数域$\mathbb{F}$上的$N$、$M$维向量空间，线性变换$\mathbf{A}\in\mathcal{L}\left(\mathcal{V}_N,\mathcal{W}_M\right)$将$\mathcal{V}_N$的一组基$B_\mathcal{V}=\{\mathbf{a}_i\}_{i=1}^N$映射到$\mathcal{W}_M$中的$N$个向量$\mathbf{w}_k=\mathbf{Aa}_k,k=1,\cdots,N$。如果我们选取$\mathcal{W}_M$的一组基$B_\mathcal{W}=\{\mathbf{b}_j\}_{j=1}^M$，则$\mathbf{w}_k$又可表示为$\mathbf{w}_k=\sum_{j=1}^M\alpha_{jk}\mathbf{b}_j,k=1,\cdots,N$。此时，向量$\mathbf{w}_k$的坐标$\alpha_{jk}$需要两个下标来统一表示，它们构成一个$M\times N$矩阵\footnote{我们用双下标的标量数组$\left\{\alpha_{ij}\right\},i=1,\cdots,N,j=1,\cdots,M$来表示如下$N\times M$矩阵
-\[\left(\alpha_{ij}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1M}\\\vdots&&\vdots\\\alpha_{N1}&\cdots&\alpha_{NM}\end{array}\right)\]}
-\[\left(\mathbf{A}\right)=\left(\alpha_{jk}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1N}\\\vdots&&\vdots\\\alpha_{M1}&\cdots&\alpha_{MN}\end{array}\right)\]
-我们称矩阵$\left(\mathbf{A}\right)$或$\left(\alpha_{jk}\right)$是线性变换$\mathbf{A}$在基$B_\mathcal{V}$与$B_\mathcal{W}$下的表示矩阵。$\alpha_{jk}$称为$\mathbf{A}$的在基$B_\mathcal{V}$与$B_\mathcal{W}$下的坐标或分量。
-\[\left(\alpha_{ij}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1M}\\\vdots&&\vdots\\\alpha_{N1}&\cdots&\alpha_{NM}\end{array}\right)\]
-需要注意的是， 同一个向量或同一个线性变换在不同的基下的坐标一般是不同的。
+设$\mathcal{V}_n,\mathcal{W}_m$分别是数域$\mathbb{F}$上的$n$、$m$维向量空间，线性变换$\mathbf{A}\in\mathcal{L}\left(\mathcal{V}_n,\mathcal{W}_m\right)$将$\mathcal{V}_n$的一组基$B_\mathcal{V}=\{\mathbf{a}_i\}_{i=1}^n$映射到$\mathcal{W}_m$中的$n$个向量$\mathbf{w}_k=\mathbf{Aa}_k,k=1,\cdots,n$。如果我们选取$\mathcal{W}_m$的一组基$B_\mathcal{W}=\{\mathbf{b}_j\}_{j=1}^m$，则$\mathbf{w}_k$又可表示为$\mathbf{w}_k=\sum_{j=1}^m\alpha_{jk}\mathbf{b}_j,k=1,\cdots,n$。此时，向量$\mathbf{w}_k$的坐标$\alpha_{jk}$需要两个下标来统一表示，它们构成一个$m\times n$矩阵
+\[\left(\mathbf{A}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1N}\\\vdots&&\vdots\\\alpha_{M1}&\cdots&\alpha_{MN}\end{array}\right)\]
+我们称矩阵$\left(\mathbf{A}\right)$是线性变换$\mathbf{A}$在基$B_\mathcal{V}$与$B_\mathcal{W}$下的坐标矩阵（coordinate matrix）。$\alpha_{jk}$称为$\mathbf{A}$的在基$B_\mathcal{V}$与$B_\mathcal{W}$下的坐标。
 
-继续上面的讨论，若给定线性变换$\mathbf{A}:\mathcal{V}_N\rightarrow\mathcal{W}_M$、向量$\mathbf{x}\in\mathcal{V}_N$、$\mathbf{y}\in\mathcal{W}_M$和基向量$\{\mathbf{a}_i\}_{i=1}^N\subset\mathcal{V}_N,\{\mathbf{b}_j\}_{j=1}^M\subset\mathcal{W}_M$，则$\mathbf{x}$和$\mathbf{y}$可分别表示为$\mathbf{x}=\sum_{i=1}^N\xi_i\mathbf{a}_i$、$\mathbf{y}=\sum_{j=1}^M\eta_j\mathbf{b}_j$。若$\mathbf{A}$在基$\left\{\mathbf{a}_i\right\},\left\{\mathbf{b}_j\right\}$下的表示矩阵为$\left(\alpha_{ji}\right)$，则线性关系式$\mathbf{y}=\mathbf{Ax}$恰好可以写成关于$\mathbf{x}$、$\mathbf{y}$和$\mathbf{A}$的矩阵之间的乘法关系，推算如下：
+由于向量和线性变换是抽象的一般概念，但基和坐标又是向量空间和线性变换的一般属性，故不管以什么具体数学对象作向量和线性变换，都可以在给定基下变成矩阵运算\footnote{像例\ref{exp:II.2.1}和例\ref{exp:II.4.2}中的那种$\mathcal{C}^\infty$空间的维数是无穷，$\mathcal{C}^\infty$空间的任一组基都有无穷个基向量。把$\mathcal{C}^\infty$空间的向量（函数）用一组基向量（函数）来表出，将得到一个无穷级数。因此这种空间上的向量和线性变换无法表示有限维矩阵。更多关于函数空间作为无穷维向量空间的知识可参见其他数学资料\cite{Hassani1999}。本讲义不再涉及，默认只讨论有限维向量空间。}。若给定线性变换$\mathbf{A}:\mathcal{V}_n\rightarrow\mathcal{W}_m$、向量$\mathbf{x}\in\mathcal{V}_n$、$\mathbf{y}\in\mathcal{W}_m$和基向量$\{\mathbf{a}_i\}_{i=1}^n\subset\mathcal{V}_n,\{\mathbf{b}_j\}_{j=1}^m\subset\mathcal{W}_m$，则$\mathbf{x}$和$\mathbf{y}$可分别表示为$\mathbf{x}=\sum_{i=1}^n\xi_i\mathbf{a}_i$、$\mathbf{y}=\sum_{j=1}^m\eta_j\mathbf{b}_j$。若$\mathbf{A}$在基$\left\{\mathbf{a}_i\right\},\left\{\mathbf{b}_j\right\}$下的表示矩阵为$\left(\alpha_{ji}\right)$，则线性关系式$\mathbf{y}=\mathbf{Ax}$恰好可以写成关于$\mathbf{x}$、$\mathbf{y}$和$\mathbf{A}$的矩阵之间的乘法关系，推算如下：
 \begin{equation*}
 \begin{split}
     \mathbf{y}&=\mathbf{Ax}\\
-    &=\mathbf{A}\sum_{i=1}^N\xi_i\mathbf{a}_i=\sum_{i=1}^N\xi_i\left(\sum_{j=1}^M\alpha_{ji}\mathbf{b}_j\right)\quad\text{仅利用线性变换定义中规定的性质}\\
-    &=\sum_{j=1}^M\left(\sum_{i=1}^N\xi_i\alpha_{ji}\right)\mathbf{b}_j\quad\text{变换求和顺序}\\
-    &=\sum_{j=1}^M\eta_j\mathbf{b}_j\\
+    &=\mathbf{A}\sum_{i=1}^n\xi_i\mathbf{a}_i=\sum_{i=1}^n\xi_i\left(\sum_{j=1}^m\alpha_{ji}\mathbf{b}_j\right)\quad\text{仅利用线性变换定义中规定的性质}\\
+    &=\sum_{j=1}^m\left(\sum_{i=1}^n\xi_i\alpha_{ji}\right)\mathbf{b}_j\quad\text{变换求和顺序}\\
+    &=\sum_{j=1}^m\eta_j\mathbf{b}_j\\
     \Leftrightarrow\\
-    \eta_j&=\sum_{i=1}^N\alpha_{ji}\xi_i,j=1,\cdots,M
+    \eta_j&=\sum_{i=1}^n\alpha_{ji}\xi_i,j=1,\cdots,m
 \end{split}
 \end{equation*}
 最后这个表达式恰为以下矩阵乘法的计算法则：
-\[\left(\begin{array}{ccc}\eta_1\\\vdots\\\eta_M\end{array}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1N}\\\vdots&&\vdots\\\alpha_{M1}&\cdots&\alpha_{MN}\end{array}\right)\left(\begin{array}{ccc}\xi_1\\\vdots\\\xi_N\end{array}\right)\]
-或可写成
-\[\left(\mathbf{y}\right)=\left(\mathbf{A}\right)\left(\mathbf{x}\right)\]
-这就是线性变换$\mathbf{y}=\mathbf{Ax}$在给定基下的坐标运算法则。
+\[\left(\begin{array}{ccc}\eta_1\\\vdots\\\eta_m\end{array}\right)=\left(\begin{array}{ccc}\alpha_{11}&\cdots&\alpha_{1n}\\\vdots&&\vdots\\\alpha_{m1}&\cdots&\alpha_{mn}\end{array}\right)\left(\begin{array}{ccc}\xi_1\\\vdots\\\xi_n\end{array}\right)\]
+这就是式子$\mathbf{y}=\mathbf{Ax}$在给定基下的坐标运算法则。
 
-上面的讨论也同时说明，任一个数域$\mathbb{F}$上的一个$M\times N$矩阵$A$都通过
+上面的讨论也同时说明，数域$\mathbb{F}$上的任一$m\times n$矩阵$A$都通过
 \[
-\mathbf{A}\left(\sum_{i=1}^N\xi_i\mathbf{a}_i\right)=\sum_{i=1}^M\left(\sum_{j=1}^N\alpha_{ji}\xi_i\right)\mathbf{b}_j
+\mathbf{A}\left(\sum_{i=1}^n\xi_i\mathbf{a}_i\right)=\sum_{i=1}^m\left(\sum_{j=1}^n\alpha_{ji}\xi_i\right)\mathbf{b}_j
 \]
-定义了一个线性变换$\mathbf{A}:\mathcal{V}_N\rightarrow\mathcal{W}_M,\mathbf{A}\in\mathcal{L}\left(\mathcal{V}_N,\mathcal{W}_M\right)$，使后者在$\mathcal{V}_N$的某组基$\{\mathbf{a}_i\}_{i=1}^N$和$\mathcal{W}_N$的某组基$\{\mathbf{b}_j\}_{j=1}^M$下的矩阵表示恰为矩阵$A$。总结成定理如下。
+定唯一确定了一个线性变换$\mathbf{A}:\mathcal{V}_n\rightarrow\mathcal{W}_m,\mathbf{A}\in\mathcal{L}\left(\mathcal{V}_n,\mathcal{W}_m\right)$，使后者在$\mathcal{V}_n$的某组基$\{\mathbf{a}_i\}_{i=1}^n$和$\mathcal{W}_n$的某组基$\{\mathbf{b}_j\}_{j=1}^m$下的矩阵表示恰为矩阵$A$。总结成定理如下。
 
 \begin{theorem}\label{thm:II.4.9}
-设$\mathcal{V}_N$和$\mathcal{W}_M$是数域$\mathbb{F}$上的有限维向量空间。$B_\mathcal{V}$和$B_\mathcal{W}$分别是$\mathcal{V}_N$和$\mathcal{W}_M$的一组基。对每个线性变换$\mathbf{T}:\mathcal{V}_N\rightarrow\mathcal{W}_M$都存在唯一一个$\mathbb{F}$上的$M\times N$矩阵$T$使得$\left(\mathbf{Ta}\right)_{B_\mathcal{W}}=T\left(\mathbf{a}\right)_{B_\mathcal{V}}\forall\mathbf{a}\in\mathcal{V}_N$。其中$\left(\cdot\right)_B$表示以$B$为基的矩阵表示。
+设$\mathcal{V}_n$和$\mathcal{W}_m$是数域$\mathbb{F}$上的有限维向量空间。$B_\mathcal{V}$和$B_\mathcal{W}$分别是$\mathcal{V}_n$和$\mathcal{W}_m$的一组基。对每个线性变换$\mathbf{T}:\mathcal{V}_n\rightarrow\mathcal{W}_m$都存在唯一一个$\mathbb{F}$上的$m\times n$矩阵$T$使得$\left(\mathbf{Ta}\right)_{B_\mathcal{W}}=T\left(\mathbf{a}\right)_{B_\mathcal{V}}\forall\mathbf{a}\in\mathcal{V}_n$。其中$\left(\cdot\right)_B$表示以$B$为基的矩阵表示。
 \end{theorem}
 
 \begin{theorem}\label{thm:II.4.10}
-设$\mathcal{V}_N$和$\mathcal{W}_M$是数域$\mathbb{F}$上的有限维向量空间。在给定任意$\mathcal{V}_N$的基$B_\mathcal{V}$和$\mathcal{W}_M$的基$B_\mathcal{W}$下，从线性变换$\mathbf{T}:\mathcal{V}_N\rightarrow\mathcal{W}_M$到其在上述基下的矩阵表示的对应关系是一个同构映射。
+设$\mathcal{V}_n$和$\mathcal{W}_m$是数域$\mathbb{F}$上的有限维向量空间。在给定任意$\mathcal{V}_n$的基$B_\mathcal{V}$和$\mathcal{W}_m$的基$B_\mathcal{W}$下，从线性变换$\mathbf{T}:\mathcal{V}_n\rightarrow\mathcal{W}_m$到其在上述基下的矩阵表示的对应关系是一个同构映射。
 \end{theorem}
 \begin{proof}
-定理\ref{thm:II.4.9}中的关系式定义了一个由$\mathcal{L}\left(\mathcal{V}_N,\mathcal{W}_M\right)$到$\mathbb{F}^{M\times N}$的单射。再由矩阵运算法则易证满射。此略。此外，由于$\mathbb{F}^{M\times N}$在通常的矩运算定义下是一个向量空间，故这一映射是同态映射+双射=同构映射。
+定理\ref{thm:II.4.9}中的关系式定义了一个由$\mathcal{L}\left(\mathcal{V}_n,\mathcal{W}_m\right)$到$\mathbb{F}^{m\times n}$的单射。再由矩阵运算法则易证满射。此略。此外，由于$\mathbb{F}^{m\times n}$在通常的矩运算定义下是一个向量空间，故这一映射是同态映射+双射=同构映射。
 \end{proof}
 
-其实，以上两条定理几乎是与定理\ref{thm:II.4.4}及其推论重复的。总之我们可以简单地说，当确定了基的选择时，每个线性变换都唯一对应一个相应维数的矩阵，反之亦然。而且，线性变换的向量代数运算结果与矩阵的加法和标量乘法运算结果直接对应。通过下面的讨论，我们进一步获得复合变换与矩阵乘法的对应。
+其实，以上两条定理几乎是与定理\ref{thm:II.4.4}及其推论重复的。总之我们可以简单地说，当确定了基的选择时，每个线性变换都唯一对应一个相应维数的矩阵，反之亦然。而且，线性变换的向量代数运算结果与矩阵的加法和标量乘法运算结果直接对应。需要注意的是， 同一个向量或同一个线性变换在不同的基下的坐标一般是不同的。我们从上面的讨论也同时知道线性变换$\mathbf{A}\in\mathcal{L}\left(\mathcal{V}_n,\mathcal{W}_m\right)$在基$\left\{\mathbf{a}_i\right\}\subset\mathcal{V}_m,\left\{\mathbf{b}_j\right\}\subset\mathcal{W}_m$下的坐标$\alpha_{ij}$必满足$\mathbf{Ab}=\sum_{j=1}^m\alpha_{ji}\mathbf{b}$。
 
+通过以下定理，我们进一步获得线性变换的复合与矩阵乘法的对应。
 \begin{theorem}\label{thm:II.4.11}
 设$\mathcal{V},\mathcal{W},\mathcal{Z}$是$\mathbb{F}$上的有限维向量空间，$\left\{\mathbf{e}_i\right\},\left\{\mathbf{f}_j\right\},\left\{\mathbf{g}_k\right\}$分别是$\mathcal{V},\mathcal{W},\mathcal{Z}$的基，$\mathbf{T}:\mathcal{V}\rightarrow\mathcal{W},\mathbf{U}:\mathcal{W}\rightarrow\mathcal{Z}$是线性变换。则复合线性变换$\mathbf{C}=\mathbf{TU}$在$\left\{\mathbf{e}_i\right\},\left\{\mathbf{g}_k\right\}$下的表示矩阵
 \[\left(\mathbf{C}\right)=\left(\mathbf{U}\right)\left(\mathbf{T}\right)\]
@@ -61,11 +57,9 @@
 
 定理\ref{thm:II.4.11}就是复合线性变换在给定基下的坐标运算法则。
 
-对于线性算符$\mathbf{T},\mathbf{U}\in\mathcal{L}\left(\mathcal{V}\right)$，由定理\ref{thm:II.4.8}有$\left(\mathbf{U}\right)\left(\mathbf{T}\right)=\left(\mathbf{T}\right)\left(\mathbf{U}\right)=\left(\mathbf{I}\right)$。易证在给定$\mathcal{V}$的任意一组基下，恒等变换的矩阵表示都是单位矩阵$I$，即$\left(\mathbf{I}\right)\equiv I$（不依赖基的选择），其中
-\[I=\begin{pmatrix}1&0&0\\0&1&0\\0&0&1\end{pmatrix}\]
-总结为如下定理：
+对于线性算符$\mathbf{T},\mathbf{U}\in\mathcal{L}\left(\mathcal{V}\right)$，由定理\ref{thm:II.4.8}有$\left(\mathbf{U}\right)\left(\mathbf{T}\right)=\left(\mathbf{T}\right)\left(\mathbf{U}\right)=\left(\mathbf{I}\right)$。易证在给定$\mathcal{V}$的任意一组基下，恒等变换的矩阵表示都是单位矩阵$I$，即$\left(\mathbf{I}\right)\equiv I$（不依赖基的选择）。总结为如下定理：
 \begin{theorem}
-恒等变换$\mathbf{I}:\mathcal{V}_N\rightarrow\mathcal{V}_N$在任意一组基下的矩阵表示都是单位矩阵$I_N$。
+恒等变换$\mathbf{I}:\mathcal{V}_n\rightarrow\mathcal{V}_n$在任意一组基下的矩阵表示都是单位矩阵$I_n$。
 \end{theorem}
 因此，$\left(\mathbf{U}\right)\left(\mathbf{T}\right)=\left(\mathbf{T}\right)\left(\mathbf{U}\right)=I$。据此易验，可逆线性变换（线性算符）的矩阵与其逆变换的矩阵之间也互逆，即$\left(\mathbf{T}^{-1}\right)=\left(\mathbf{T}\right)^{-1}$。
 
@@ -116,7 +110,7 @@ S_{N1}&\cdots&S_{NN}
 
 接下来，我们看线性变换的矩阵在不同基下的变换公式。
 
-\begin{theorem}\label{II.4.14}
+\begin{theorem}\label{thm:II.4.14}
 设$\mathcal{V}_N$、$\mathcal{W}_M$分别是数域$\mathbb{F}$上的$N$、$M$维向量空间，$\left\{\mathbf{a}_i\right\},\left\{\mathbf{a}^\prime_i\right\}\in\mathcal{V}_N$是$\mathcal{V}_N$的两组基，基变换公式为$\mathbf{a}^\prime_j=\sum_{i=1}^NS_{ij}\mathbf{a}_i$；$\left\{\mathbf{b}_j\right\},\left\{\mathbf{b}^\prime_j\right\}$是$\mathcal{W}_M$的两组基，基变换公式为$\mathbf{b}^\prime_j=\sum_{i=1}^MT_{ij}\mathbf{b}_i$。线性变换$\mathbf{A}:\mathcal{V}_N\rightarrow\mathcal{W}_M$在$\left\{\mathbf{a}_i\right\},\left\{\mathbf{b}_i\right\}$下的矩阵表示为$\left(\mathbf{A}\right)$，在$\left\{\mathbf{a}^\prime_i\right\},\left\{\mathbf{b}^\prime_i\right\}$下的矩阵表示为$\left(\mathbf{A}\right)^\prime$。则有
 \begin{align*}
     \left(\mathbf{A}\right)&=T\left(\mathbf{A}\right)^\prime S^{-1}\\
@@ -140,5 +134,39 @@ A_{ij}=\sum_{l=1}^M\sum_{k=1}^NT_{il}A^\prime_{lk}S^{-1}_{kj}
 \Leftrightarrow \left(\mathbf{A}\right)=T\left(\mathbf{A}\right)^\prime S^{-1}
 \]
 由$T^{-1}\left(\mathbf{A}\right)S=T^{-1}T\left(\mathbf{A}\right)^\prime S^{-1}S=\left(\mathbf{A}\right)^\prime$，可得$\left(\mathbf{A}\right)^\prime=T^{-1}\left(\mathbf{A}\right)S$。
+\end{proof}
+
+有了基变换和坐标变换公式，我们可以验证任何基于抽象的向量和线性变换的运算结果是否依赖基的选择。以下定理及其证明可作为一个示例。
+
+\begin{theorem}\label{thm:II.4.15}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，则$\mathcal{V}$上的内积不依赖基的选择。
+\end{theorem}
+\begin{proof}
+设$\left\{\mathbf{e}\right\},\left\{\mathbf{e}^\prime\right\}$是$\mathcal{V}$的任意两组基，任意向量$\mathcal{u}\in\mathcal{V}$在这两组基下的坐标表示惯例为：$\mathbf{u}=\sum_{i=1}^nu\mathbf{e}_i=\sum_{i=1}^nu^\prime\mathbf{e}^\prime_i$。设由基$\left\{\mathbf{e}\right\}$到$\left\{\mathbf{e}^\prime\right\}$的过度矩阵坐标是$S_{ij}$，即
+\[
+\mathbf{e}_j^\prime=\sum_{i=1}^nS_{ij}\mathbf{e}_i,j=1,\cdots,n\]
+则有：
+\[u_i=\sum_{i=1}^nS_{ij}v_j,i=1,\cdots,n\]
+记$G_{ij}=\left(\mathbf{e}_i|\mathbf{e}_j\right),G_{ij}^\prime=\left(\mathbf{e}^\prime_i|\mathbf{e}^\prime_j\right),i,j=1,\cdots,n$，称基$\left\{\mathbf{e}_i\right\},\left\{\mathbf{e}^\prime_i\right\}$的格拉姆矩阵（Gramian matrix），则两组基之间的格拉姆矩阵变换关系为：
+\begin{align*}
+    G^\prime_{ij}&=\left(\mathbf{e}^\prime_i|\mathbf{e}^\prime_j\right)\\
+    &=\left(\sum_{k=1}^n S_{ki}\mathbf{e}_k\right|\left.\sum_{l=1}^n S_{lj}\mathbf{e}_l\right)\\
+    &=\sum_{k=1}^n\sum_{l=1}^nS_{ki}\overline{S_{lj}}\left(\mathbf{e}_k|\mathbf{e}_l\right)\\
+    &=\sum_{k=1}^n\sum_{l=1}^nS_{ki}\overline{S_{lj}}G_{kl}
+\end{align*}
+故任意两向量$\mathbf{u},\mathbf{v}\in\mathcal{V}$的内积
+\begin{align*}
+    \left(\mathbf{u}|\mathbf{v}\right)&=\sum_{i=1}^n\sum_{j=1}^nu_i\overline{v_j}G_{ij}\\
+    &=\sum_{i=1}^n\sum_{j=1}^n\left(\sum_{k=1}^nS_{ik}u_k^\prime\right)\overline{\left(\sum_{l=1}^nS_{jl}v_l^\prime\right)}G_{ij}\quad\text{（利用了坐标变换公式。）}\\
+    &=\sum_{i=1}^n\sum_{j=1}^n\sum_{k=1}^n\sum_{l=1}^nu_k^\prime\overline{v_k^\prime}S_{ik}\overline{S_{jl}}G_{ij}\\
+    &=\sum_{k=1}^n\sum_{l=1}^nu_k^\prime\overline{v_l^\prime}G_{kl^\prime}\quad\text{（利用格拉姆矩阵的坐标变换公式。）}
+\end{align*}
+可见两向量内积在任意两组基下的计算结果是相等的。
+\end{proof}
+\begin{corollary}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维赋范向量空间，则$\mathcal{V}$上的范不依赖基的选择。
+\end{corollary}
+\begin{proof}
+由$\mathcal{V}$上的内积不依赖基的选择易证$\mathcal{V}$上的欧几里得范不依赖基的选择。再由范的等价性（定理\ref{thm:VI.1.1}）易证该命题。
 \end{proof}
 \end{document}

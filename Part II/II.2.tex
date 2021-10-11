@@ -4,7 +4,7 @@
 为一个的集合添加一些性质和运算法则，可以形成不同类型的空间，乃至不同的数学分支。在本节中我们介绍其中一种空间——向量空间（又称线性空间\cite{周胜林2012线性代数}）。
 
 \begin{definition}[向量空间]\label{def:II.2.1}
-数域$\mathbb{F}$上的向量空间$\mathcal{V}$是向量的集合，且满足：
+数域$\mathbb{F}$上的向量空间（vector space）$\mathcal{V}$是向量（vector）的集合，且满足：
 \begin{enumerate}
 \item 加法运算。$\forall\mathbf{a},\mathbf{b},\mathbf{c}\in \mathcal{V}$：
 \begin{enumerate}
@@ -12,7 +12,7 @@
     \item 交换律：$\mathbf{a}+\mathbf{b}=\mathbf{b}+\mathbf{a}$
     \item 结合律：$\left(\mathbf{a}+\mathbf{b}\right)+\mathbf{c}=\mathbf{a}+\left(\mathbf{b}+\mathbf{c}\right)$
     \item 恒等元素：$\exists \bm{0}\in\mathcal{V}:\mathbf{a}+\bm{0}=\mathbf{a}$
-    \item 逆：$\forall a\in\mathcal{V},\exists -\mathbf{a}:\mathbf{a}+-\mathbf{a}=\bm{0}$
+    \item 逆：$\forall \mathbf{a}\in\mathcal{V},\exists -\mathbf{a}:\mathbf{a}+\left(-\mathbf{a}\right)=\bm{0}$
 \end{enumerate}
 \item 标量乘法运算。$\forall\alpha,\beta\in\mathbb{F},\mathbf{a},\mathbf{b}\in\mathcal{V}$：
 \begin{enumerate}
@@ -28,32 +28,30 @@
 \end{enumerate}
 \end{definition}
 
-在定义\ref{def:II.2.1}中，数域$\mathbb{F}$可以是实数域$\mathbb{R}$或复数域$\mathbb{C}$，它是关于标量乘的运算规定中的标量所属的数域。
+在定义\ref{def:II.2.1}中，数域$\mathbb{F}$可以是实数域$\mathbb{R}$或复数域$\mathbb{C}$，它是关于标量乘的运算规定中的标量所属的数域。任何非空集合，只要具备定义\ref{def:II.2.1}的运算法则，就是一个向量空间，其元素就是向量。因此，向量是抽象的一般概念。大一的《线性代数与解析几何》课本中的“向量”和“矩阵”，都只是特例。
 
 \begin{example}\label{exp:II.2.1}
-请根据定义\ref{def:II.2.1}验证
+\quad
 \begin{itemize}
-    \item $\mathbb{R}$是$\mathbb{R}$上的向量空间。
-    \item $\mathbb{C}$是$\mathbb{R}$上的向量空间。
-    \item $\mathbb{C}$是$\mathbb{C}$上的向量空间。
-    \item $\mathbb{R}$不是$\mathbb{C}$上的向量空间。
-    \item 函数$f:\left(a,b\right)\subset \mathbb{R}\rightarrow\mathbb{C}$的集合是数域$\mathbb{C}$上的向量空间。
-    \item $\mathbb{R}^n$是所有实数$n$元组$\{a\}=\left(\alpha_1,\cdots,\alpha_n\right),\alpha_i\in\mathbb{R},i=1,\cdots,n$的集合。若$\forall \{a\},\{b\}\in\mathbb{R}^n$：
+    \item $\mathbb{R}^n$是所有有序实数$n$元组$\left(a_i\right)=\left(\alpha_1,\cdots,\alpha_n\right),\alpha_i\in\mathbb{R},i=1,\cdots,n$的集合。若$\forall \left(a_i\right),\left(b_i\right)\in\mathbb{R}^n$：
     \begin{enumerate}
-        \item $\{a\}+\{b\}=\left(\alpha_1+\beta_1,\cdots,\alpha_n+\beta_n\right)$；
-        \item $\alpha\{a\}=\left(\alpha\alpha_1,\cdots,\alpha\alpha_n\right),\forall\alpha\in\mathbb{R}$；
-        \item $\{0\}=\left(0,\cdots,0\right)$；
-        \item $-\{a\}=\left(-\alpha_1,\cdots-\alpha_n\right)$；
+        \item $\left(a_i\right)+\left(b_i\right)=\left(\alpha_1+\beta_1,\cdots,\alpha_n+\beta_n\right)$；
+        \item $\alpha\left(a_i\right)=\left(\alpha\alpha_1,\cdots,\alpha\alpha_n\right),\forall\alpha\in\mathbb{R}$；
+        \item $\left(0\right)=\left(0,\cdots,0\right)$；
+        \item $-\left(a_i\right)=\left(-\alpha_1,\cdots-\alpha_n\right)$；
     \end{enumerate}
-    则$\mathbb{R}^n$连同上述的运算规定形成$\mathbb{R}$上的向量空间，又称为实坐标空间。
-    \item 数域$\mathbb{F}$上的所有$m\times n$矩阵的集合$\mathcal{M}^{m\times n}$（连同矩阵的加法和矩阵的标量乘法规定\footnote{见\cite{周胜林2012线性代数}\S 2.1矩阵与矩阵的运算}）是一个向量空间。其零向量是$m\times n$全零矩阵。
+    则$\mathbb{R}^n$连同上述的运算规定形成数域$\mathbb{R}$上的一个向量空间，又称为实坐标空间。符号$\mathbb{R}$或$\mathbb{C}$既可表示数域，又可表示一个一维实或复坐标空间。可以验证，一维实坐标空间$\mathbb{R}$不是数域$\mathbb{C}$上的向量空间。
+    \item 数域$\mathbb{F}$上的所有$m\times n$矩阵的集合$\mathbb{F}^{m\times n}$（连同矩阵的加法和矩阵的标量乘法规定\footnote{见\cite{周胜林2012线性代数}\S 2.1矩阵与矩阵的运算}）是一个向量空间。其零向量是$m\times n$全零矩阵。
+    \item 在开区间$\left(a,b\right)$上的所有实值一元连续函数的集合是实数域上的向量空间。
+    \item 验证：记$\mathcal{C}^n\left(a,b\right)$为开区间$\left(a,b\right)$上的所有$n$阶连续可导实值一元函数的集合，它是实数域上的向量空间。
+    \item 验证：记$\mathcal{C}^\infty\left(a,b\right)$为开区间$\left(a,b\right)$上的所有光滑实值一元函数的集合，它是实数域上的向量空间。
 \end{itemize}
 \end{example}
 
 接下来，我们将逐步发现，定义\ref{def:II.2.1}中的性质和运算法则将进一步导致向量空间有一定的维数。首先，由于“封闭性”的要求，一个向量空间内的任一向量总能被这一向量空间中的其他向量按所规定的运算法则表达出来。具体地，若$\mathcal{V}$是数域$\mathbb{F}$上的向量空间，$\mathbf{a}_1,\cdots,\mathbf{a}_n\in\mathcal{V}$，$\alpha_1,\cdots,\alpha_n\in\mathbb{F}$，则依据线性空间的封闭性，$\sum_{i=1}^n\alpha_i\mathbf{a}_i$也属于$\mathcal{V}$，即也是一个向量，该向量可以用前面这个求和表达式来表达。由此可引入如下定义。
 
 \begin{definition}[线性组合、线性表出、线性无关]\label{def:II.2.2}
-若$\mathcal{V}$是$\mathbb{F}$上的向量空间，$\mathbf{a}_1,\cdots,\mathbf{a}_n\in\mathcal{V}$。若$\alpha_1,\cdots,\alpha_n\in\mathbb{F}$，则$\sum_{i=1}^n\alpha_i\mathbf{a}_i$称为这$n$个向量$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_n\right\}$的线性组合。令$\mathbf{b}=\sum_{i=1}^n\alpha_i\mathbf{a}_i$，则称$\mathbf{b}$被$\left\{\mathbf{a}_i\right\}$线性表出\footnote{集合$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_n\right\}\subset\mathcal{V}$可写为$\left\{\mathbf{a}_i\right\}_{i=1}^n$或$\left\{\mathbf{a}_i\right\}$，$\left\{\mathbf{a}_i\right\}$的一个有序序列则记为$\left(\mathbf{a}_i\right)$。}。若$\sum_{i=1}^n\alpha_i\mathbf{a}_i=\bm{0}$当且仅当$\alpha_i=0\forall i$，则称向量$\left\{\mathbf{a}_i\right\}$线性无关。反之，若存在某不全为零的$\alpha_i,i=1,\cdots,n$使得$\sum_{i=1}^n\alpha_i\mathbf{a}_i=\bm{0}$则称向量$\left\{\mathbf{a}_i\right\}$线性相关。
+若$\mathcal{V}$是$\mathbb{F}$上的向量空间，$\mathbf{a}_1,\cdots,\mathbf{a}_n\in\mathcal{V}$。若$\alpha_1,\cdots,\alpha_n\in\mathbb{F}$，则$\sum_{i=1}^n\alpha_i\mathbf{a}_i$称为这$n$个向量$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_n\right\}$的线性组合（linear combination）。令$\mathbf{b}=\sum_{i=1}^n\alpha_i\mathbf{a}_i$，则称$\mathbf{b}$被$\left\{\mathbf{a}_i\right\}$线性表出\footnote{集合$\left\{\mathbf{a}_1,\cdots,\mathbf{a}_n\right\}\subset\mathcal{V}$可写为$\left\{\mathbf{a}_i\right\}_{i=1}^n$或$\left\{\mathbf{a}_i\right\}$，$\left\{\mathbf{a}_i\right\}$的一个有序序列则记为$\left(\mathbf{a}_i\right)$。}。若$\sum_{i=1}^n\alpha_i\mathbf{a}_i=\bm{0}$当且仅当$\alpha_i=0\forall i$，则称向量$\left\{\mathbf{a}_i\right\}$线性无关（linear independent）。反之，若存在某不全为零的一组$\left\{\alpha_i\right\},\alpha_i\in\mathbb{F},i=1,\cdots,n$使得$\sum_{i=1}^n\alpha_i\mathbf{a}_i=\bm{0}$则称向量$\left\{\mathbf{a}_i\right\}$线性相关（linear dependent）。
 \end{definition}
 
 由定义\ref{def:II.2.2}易得如下结论（证明略）：
@@ -64,7 +62,7 @@
     \item 一个向量组$S$是线性无关向量组当且仅当$S$的所有子集都是线性无关向量组。
 \end{enumerate}
 
-可见，封闭性是一个好性质。向量空间定义中的封闭性要求保证了向量可类似于我们习惯的数字那样被用作数学表达和运算。因此，封闭性是一个很重要的性质。那么，一个向量空间之内，会不会有一部分子集本身就满足了封闭性呢（就好像复数与实数之间的关系）？我们通过考察$\mathbb{C}^n$和$\mathbb{R}^n$可以举出很多正面的例子。一般地，如果一个向量空间的子集本身也满足封闭性，那么它自己也是一个向量空间（即满足定义\ref{def:II.2.1}）。
+向量空间定义中的封闭性要求保证了向量可类似于我们习惯的数字那样被用作数学表达和运算。因此，封闭性是一个很重要的性质。那么，一个向量空间之内，会不会有一部分子集本身就满足了封闭性呢（就好像复数与实数之间的关系）？我们通过考察$\mathbb{C}^n$和$\mathbb{R}^n$可以举出很多正面的例子。一般地，如果一个向量空间的子集本身也满足封闭性，那么它自己也是一个向量空间（即满足定义\ref{def:II.2.1}）。
 
 \begin{definition}[子空间]\label{def:II.2.3}
 令$\mathcal{V}$是数域$\mathbb{F}$上的一个向量空间，如果$\mathcal{V}$的子集$\mathcal{W}\subseteq\mathcal{V}$也是一个向量空间（并与$\mathcal{V}$采用相同的加法和标量乘定义），则称$\mathcal{W}$是$\mathcal{V}$的一个子空间（subspace）。
@@ -92,10 +90,10 @@
 从上面的例子看到，一个向量空间与其子空间之间的关系，暗示了某种维度的概念。我们首先可以明确“一个向量空间维数”的一般意义，但需要先引入“基”的概念。
 
 \begin{definition}[基]\label{def:II.2.5}
-如果向量空间$\mathcal{V}$是其子空间$\mathcal{B}$的线性生成空间（即$\mathcal{V}=\mathrm{span}\mathcal{B}$，且$\mathcal{B}$内的所有向量线性无关，则称$\mathcal{B}$是$\mathcal{V}$的一组基（basis）。如果$\mathcal{B}$含有有限个向量，则称$\mathcal{V}$是有限维向量空间。
+如果向量空间$\mathcal{V}$是其子空间$B$的线性生成空间（即$\mathcal{V}=\mathrm{span}B$，且$B$内的所有向量线性无关，则称$B$是$\mathcal{V}$的一组基（basis）。如果$B$含有有限个向量，则称$\mathcal{V}$是有限维向量空间。
 \end{definition}
 
-上一定义仅引入了“有限维”的概念，但没有具体涉及到“维数是几”的问题。因为按定义，$\mathcal{V}$内可以找出不止一组基，而这些基是否必然都具有相同个数的向量？只有当这个问题的答案是肯定的，我们才能通过把这一向量个数定义为$\mathcal{V}$的维数，来使得向量空间具有唯一确定的维数。下面的定理解决了这个问题。
+上一定义仅引入了“有限维”的概念，但没有具体涉及到“维数是几”的问题。因为按定义，$\mathcal{V}$内可能可以找出不止一组基，而这些基是否必然都具有相同个数的向量？只有当这个问题的答案是肯定的，我们才能通过把这一向量个数定义为$\mathcal{V}$的维数，来使得向量空间具有唯一确定的维数。下面的定理解决了这个问题。
 
 \begin{theorem}\label{thm:II.2.1}
 有限维向量空间的每组基具有相同个数的线性无关向量。
@@ -124,24 +122,24 @@
 \begin{example}
 验证以下命题——
 \begin{itemize}
-    \item 如果把一维实坐标空间$\mathbb{R}$看作是实数域$\mathbb{R}$上的向量空间，则1是其一组基，故一维实坐标空间$\mathbb{R}$是实数域$\mathbb{R}$上的一维向量空间。
-    \item 如果把一维复坐标空间$\mathbb{C}$看作是实数域$\mathbb{R}$上的向量空间，则1和$i$是其一组基，故一维复坐标空间$\mathbb{C}$是实数域$\mathbb{R}$上的二维向量空间。
-    \item 如果把一维复坐标空间$\mathbb{C}$看作是复数域$\mathbb{C}$上的向量空间，则1是其一组基，故一维复坐标空间$\mathbb{C}$是复数域$\mathbb{C}$上的一维向量空间。
+    \item 如果把一维实坐标空间$\mathbb{R}$看作是实数域$\mathbb{R}$上的向量空间，则$\left\{1\right\}$是其一组基，故一维实坐标空间$\mathbb{R}$是实数域$\mathbb{R}$上的一维向量空间。
+    \item 如果把一维复坐标空间$\mathbb{C}$看作是实数域$\mathbb{R}$上的向量空间，则$\left\{1,i\right\}$是其一组基，故一维复坐标空间$\mathbb{C}$是实数域$\mathbb{R}$上的二维向量空间。
+    \item 如果把一维复坐标空间$\mathbb{C}$看作是复数域$\mathbb{C}$上的向量空间，则$\left\{1\right\}$是其一组基，故一维复坐标空间$\mathbb{C}$是复数域$\mathbb{C}$上的一维向量空间。
 \end{itemize}
 \end{example}
 
 现在我们已经明确了向量空间的维数的概念。那么一个向量空间$\mathcal{V}$的子空间$\mathcal{W}$本身也是一个向量空间，也有它的维数。$\mathrm{dim}\mathcal{V}$与$\mathrm{dim}\mathcal{W}$的关系是怎样的呢？回顾例\ref{exp:II.2.2}中，三维实坐标空间的子空间是一个平面。这是否暗示，$\mathrm{dim}\mathcal{W}\leq\mathrm{dim}\mathcal{V}$呢？答案是肯定的，且当且仅当$\mathcal{W}=\mathcal{V}$时取等号，证明此略，在此提到这件事只为了让读者放心地按照例\ref{exp:II.2.2}所暗示那般，一般性地理解向量空间及其子空间的维数关系。
 
-到此为止，我们未具体地阐明“向量”是什么，也未具体地规定加法和标量乘法如何进行。“这种抽象性使我们可以把不同的数学对象统一到线性空间这一概念之下。”\cite[p.~167]{周胜林2012线性代数}不过，通过引入“坐标”的概人记，我们又使得任一抽象向量都能用一组有序数组来唯一地表示，从而使抽象的向量之间的运算得以由具体的有序数组的运算来代替（就像我们以往在《线性代数》课中所熟悉的那样）。
+到此为止，我们未具体地阐明“向量”是什么，也未具体地规定加法和标量乘法如何进行。“这种抽象性使我们可以把不同的数学对象统一到线性空间这一概念之下。”\cite[p.~167]{周胜林2012线性代数}不过，通过引入“坐标”的概念，我们又使得任一抽象向量都能用一组有序数组来唯一地表示，从而使抽象的向量之间的运算得以由具体的有序数组的运算来代替（就像我们以往在《线性代数》课中所熟悉的那样）。
 
-\begin{definition}[向量在给定有序基下的坐标]\label{def:II.2.7}若$\mathcal{V}$是一个$n$维向量空间，$\mathcal{V}$内的一组线性无关的有序向量序列$\left(\mathbf{a}_i\right)$线性生成整个$\mathcal{V}$，则称这组有序向量序列$\mathcal{B}$为$\mathcal{V}$的一组有序基（ordered basis）。由定义\ref{def:II.2.5}，任一向量$\mathbf{x}\in\mathcal{V}$均可表达为$\mathbf{x}=\sum_{i=1}^nx_i\mathbf{a}_i$，进而，任一$\mathbf{x}\in\mathcal{V}$在给定有序基下都唯一对应$\mathbb{F}^n$中的一个有序$n$元数组$\left(x_i\right)$\footnote{这里的唯一性可再次参考\cite[“(3)的证明”，p.~171]{周胜林2012线性代数}。}，我们称这一有序$n$元数组$\left(x_i\right)$为向量$\mathbf{x}$在有序基$\mathcal{B}$下的坐标（coordinate）或分量（component）。
+\begin{definition}[向量在给定有序基下的坐标]\label{def:II.2.7}若$\mathcal{V}$是一个$n$维向量空间，$\mathcal{V}$内的一组线性无关的有序向量序列$\left(\mathbf{a}_i\right)$线性生成整个$\mathcal{V}$，则称这组有序向量序列$B$为$\mathcal{V}$的一组有序基（ordered basis）。由定义\ref{def:II.2.5}，任一向量$\mathbf{x}\in\mathcal{V}$均可表达为$\mathbf{x}=\sum_{i=1}^nx_i\mathbf{a}_i$，进而，任一$\mathbf{x}\in\mathcal{V}$在给定有序基下都唯一对应$\mathbb{F}^n$中的一个有序$n$元数组$\left(x_i\right)$\footnote{这里的唯一性可再次参考\cite[“(3)的证明”，p.~171]{周胜林2012线性代数}。}，我们称这一有序$n$元数组$\left(x_i\right)$为向量$\mathbf{x}$在有序基$B$下的坐标（coordinate）。
 \end{definition}
 
 基的原始定义仅要求基是一个集合，没有有序性的规定。用一组基表出一个$n$维向量所使用的$n$个标量也只是一个集合。在给定一组基下，向量与这个标量集合也是唯一对应的。只不过，我们希望所定义的“坐标”是一个有序序列，所以定义\ref{def:II.2.7}才特别增加了“有序”的要求。
 
 有了坐标的定义，在给定基下，$n$维向量空间$\mathcal{V}$中的一个向量就与$\mathbb{F}^n$中的一个有序$n$元数组形成了一一对应的关系。由封闭性，没有一个向量不对应一个数组，反之亦然。
 
-易验，向量的加法和标量乘法所得到的新向量所对应的坐标，就是原向量坐标按照$\mathbb{F}^n$上的加法和标量乘法运算的结果\footnote{“利用基和坐标可把线性空间的运算变得更具体。”\cite[p.173]{周胜林2012线性代数}。}。但是要注意，$n$维实坐标空间$\mathbb{R}^n$中的一个向量$\mathbf{x}\in\mathbb{R}^n$本身就是一个有序实数$n$元组$\mathbf{x}=\left(x_1,\cdots,x_n\right),x_i\in\mathbb{R},i=1,\cdots,n$。在选定$\mathbb{F}^n$某组基$\mathcal{B}=\left\{\mathbf{e}_1,\cdots,\mathbf{e}_n\right\}$下（这些基向量本身也都是有序实数$n$元组)，向量$\mathbf{x}$的坐标可能又是另一个不同的有序实数$n$元组$\left(\chi_1,\cdots,\chi_n\right)$。正确的表示是$\mathbf{x}=\sum_{i=1}^{n}\chi_i\mathbf{e_i}$，或称向量$\mathbf{x}$在基$\mathcal{B}$下的坐标是$\left(\chi_1,\cdots,\chi_n\right)$，但不能写成$\mathbf{x}=\left(\chi_1,\cdots,\chi_n\right)$\footnote{这里的概念区分可参见\cite[例题2.1,p.~173]{周胜林2012线性代数}。}。
+易验，向量的加法和标量乘法所得到的新向量所对应的坐标，就是原向量坐标按照$\mathbb{F}^n$上的加法和标量乘法运算的结果\footnote{“利用基和坐标可把线性空间的运算变得更具体。”\cite[p.173]{周胜林2012线性代数}。}。但是要注意，$n$维实坐标空间$\mathbb{R}^n$中的一个向量$\mathbf{x}\in\mathbb{R}^n$本身就是一个有序实数$n$元组$\mathbf{x}=\left(x_1,\cdots,x_n\right),x_i\in\mathbb{R},i=1,\cdots,n$。在选定$\mathbb{F}^n$某组基$B=\left\{\mathbf{e}_1,\cdots,\mathbf{e}_n\right\}$下（这些基向量本身也都是有序实数$n$元组)，向量$\mathbf{x}$的坐标可能又是另一个不同的有序实数$n$元组$\left(\chi_1,\cdots,\chi_n\right)$。正确的表示是$\mathbf{x}=\sum_{i=1}^{n}\chi_i\mathbf{e_i}$，或称向量$\mathbf{x}$在基$B$下的坐标是$\left(\chi_1,\cdots,\chi_n\right)$，但不能写成$\mathbf{x}=\left(\chi_1,\cdots,\chi_n\right)$\footnote{这里的概念区分可参见\cite[例题2.1,p.~173]{周胜林2012线性代数}。}。
 
-在本讲义中，无论是向量$\mathbf{x}$本身还是其中某基的下的坐标，都一律写成$n\times 1$矩阵（列向量）；为方便，在文字段落中表示为$1\times n$矩阵（行向量）的转置，即$\mathbf{x}=\left(x_1,\cdots,x_n\right)^\intercal$。这里的转置可直接按以前在《线性代数》课中学过的意义来理解。但本讲义会对“转置”的概念进行正式的定义。
+在本讲义中，无论是$n$维向量$\mathbf{x}$本身还是其在某基的下的坐标，都一律写成$n\times 1$矩阵（列向量）；为方便，在文字段落中表示为$1\times n$矩阵（行向量）的转置，即$\mathbf{x}=\left(x_1,\cdots,x_n\right)^\intercal$。这里的转置可直接按以前在《线性代数》课中学过的意义来理解。但本讲义会对“转置”的概念进行正式的定义。
 \end{document}

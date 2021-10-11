@@ -1,0 +1,41 @@
+\documentclass[main.tex]{subfiles}
+% VI.2.3 复合函数求导的链式法则
+\begin{document}
+\begin{theorem*}
+定理\ref{thm:II.12.7}：如果函数$\mathbf{f}:\mathbb{R}^n\supseteq D\rightarrow\mathbb{R}^m$在$\mathbf{x}_0\in D$处可微分；函数$\mathbf{g}:\mathbb{R}^n\supset E\rightarrow\mathbb{R}^p$在$\mathbf{f}\left(\mathbf{x}_0\right)\in E\cap D$处可微分，则复合函数$\mathbf{g}\circ\mathbf{f}$在$\mathbf{x}_0$处可微分，且其全导数
+\[
+\left.\frac{d\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}=\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}
+\]
+\end{theorem*}
+\begin{proof}
+首先证明$\mathbf{x}_0$处于复合函数$\mathbf{g}\circ\mathbf{f}$的定义域内。由于$\mathbf{f}\left(\mathbf{x}_0\right)\in\mathrm{dom}\mathbf{g}$且$\mathbf{g}$在$\mathbf{f}\left(\mathbf{x}_0\right)$处可微分，故总存在正实数$\delta^\prime$使得只要$\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|<\delta^\prime$就有$\mathbf{f}\left(\mathbf{x}\right)\in\mathrm{dom}\mathbf{g}$。又因为$\mathbf{x}_0\in\mathrm{dom}\mathbf{f}$且$\mathbf{f}$在$\mathbf{x}_0$处可微分，故总存在正实数$\delta$使得只要$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$则$\mathbf{x}\in\mathrm{dom}\mathbf{f}$，同时还必存在$\delta^\prime>0$使得这一$\delta$选择下的$\mathbf{x}$满足$\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|<\delta^\prime$。所以任一满足$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$的$\mathbf{x}$均在复合函数$\mathbf{g}\circ\mathbf{f}$的定义域内。
+
+按照全微分和全导数的定义，由于函数$\mathbf{f}$和$\mathbf{g}$分别在$\mathbf{x}_0$和$\mathbf{f}\left(\mathbf{x}_0\right)$可导，故存在函数$\mathbf{z}_1$、$\mathbf{z}_2$满足$\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)=\mathbf{0}$、$\lim_{\mathbf{f}\left(\mathbf{x}\right)\to\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)=\mathbf{0}$，且
+\begin{align*}
+\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)&=\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\\
+\mathbf{g}\left(\mathbf{f}\left(\mathbf{x}\right)\right)-\mathbf{g}\left(\mathbf{f}\left(\mathbf{x}_0\right)\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)&=\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)
+\end{align*}
+把$\mathbf{g}\left(\mathbf{f}\left(\mathbf{x}\right)\right)$记为$\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)$，并把上面的第一条式子代入第二条，得
+\begin{align*}
+&\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)-\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left[\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right]\\
+=&\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)\\
+\Leftrightarrow&\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)-\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)\\
+=&\left\|\mathbf{x}-\mathbf{x}_0\right\|\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)
+\end{align*}
+由三角不等式，又有\footnote{
+此处用到定理\ref{thm:II.11.3}。
+}
+\begin{align*}
+    \left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|&=\left\|\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\\
+    &\leq \left\|\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)\right\|+\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\\
+    &\leq k\left\|\mathbf{x}-\mathbf{x}_0\right\|+\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|
+\end{align*}
+故
+\begin{align*}
+    &\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)-\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)\\
+    \leq&\left\|\mathbf{x}-\mathbf{x}_0\right\|\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)+\left(k\left\|\mathbf{x}-\mathbf{x}_0\right\|+\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\right)\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)\\
+    \leq&\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\{\left\|\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|+\left(k+\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\right)\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)\right\}
+\end{align*}
+由于函数$\mathbf{f}$在$\mathbf{x}_0$处连续，即极限$\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{f}\left(\mathbf{x}\right)=\mathbf{f}\left(\mathbf{x}_0\right)$，故上式最后的大括号在$\mathbf{x}\to\mathbf{x}_0$时趋于$\mathbf{0}$。按照全微分和全导数的定义，命题得证。
+\end{proof}
+\end{document}

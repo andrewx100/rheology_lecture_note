@@ -1,41 +1,38 @@
 \documentclass[main.tex]{subfiles}
+% VI.2.4 反函数定理和隐函数定理
 \begin{document}
-本节我们将证明反函数定理。
 \begin{lemma}\label{thm:inv_func_l1}
-线性变换$\mathbf{L}:\mathcal{V}_n\rightarrow\mathcal{W}_m$是单射当且仅当存在正实数$m>0$满足$\left\|\mathbf{Lx}\right\|\geq m \left\|\mathbf{x}\right\|\forall\mathbf{x}\in\mathcal{V}_n$。
+线性变换$\mathbf{L}:\mathcal{V}_n\rightarrow\mathcal{W}_m$是单射当且仅当存在正实数$p>0$满足$\left\|\mathbf{Lx}\right\|\geq p \left\|\mathbf{x}\right\|\forall\mathbf{x}\in\mathcal{V}_n$。
 \end{lemma}
 \begin{proof}
 如果$\mathbf{L}$不是单射，则存在$\mathbf{x}_0\neq\mathbf{0}$满足$\mathbf{Lx}_0=\mathbf{0}$，即有$\left\|\mathbf{Lx}_0\right\|=0<m\left\|\mathbf{x}\right\|$。故其逆否命题成立。
 
-如果$\mathbf{L}$是单射，则其存在逆$\mathbf{L}^{-1}$满足$\mathbf{L}^{-1}\mathbf{L}=\mathbf{I}$且$\mathbf{L}^{-1}$也是线性变换。由定理\ref{thm:II.13.4}，$\exists k>0, \left\|\mathbf{L}^{-1}\mathbf{y}\right\|\leq k\left\|\mathbf{y}\right\|\forall\mathbf{y}\in\mathcal{W}_m$。令$m=1/k$则有$m\left\|\mathbf{x}\right\|=m\left\|\mathbf{L}^{-1}\mathbf{Lx}\right\|\leq mk\left\|\mathbf{Lx}\right\|=\left\|\mathbf{Lx}\right\|$
+如果$\mathbf{L}$是单射，则其存在逆$\mathbf{L}^{-1}$满足$\mathbf{L}^{-1}\mathbf{L}=\mathbf{I}_\mathcal{V}$且$\mathbf{L}^{-1}$也是线性变换。由定理\ref{thm:II.11.3}，$\exists k>0, \left\|\mathbf{L}^{-1}\mathbf{y}\right\|\leq k\left\|\mathbf{y}\right\|\forall\mathbf{y}\in\mathcal{W}_m$。令$p=1/k$则有$p\left\|\mathbf{x}\right\|=m\left\|\mathbf{L}^{-1}\mathbf{Lx}\right\|\leq pk\left\|\mathbf{Lx}\right\|=\left\|\mathbf{Lx}\right\|$
 \end{proof}
 
-在之前的定义中，函数连续可微定义为其自然基下的所有偏导数皆连续。这里我们通过极限的$\epsilon-\delta$语言重新定义一个向量函数连续可微的含义。
-
-首先讨论“导函数”的正式定义。设$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$是可微函数，记其导函数为$\mathbf{L}:\mathbb{R}^n\rightarrow\mathcal{L}\left(\mathbb{R}^n,\mathbb{R}^m\right),$
-\[
-\mathbf{L}\left(\mathbf{x}\right)\equiv\left.\frac{d\mathbf{f}\left(\mathbf{x}^\prime\right)}{d\mathbf{x}^\prime}\right|_{\mathbf{x^\prime}=\mathbf{x}}
-\]
-注意，$\mathbf{L}\left(\mathbf{x}\right)$的函数值是一个线性变换，但未必是一个线性函数（即$\mathbf{L}$未必是一个从$\mathbb{R}^n$到$\mathcal{L}\left(\mathbb{R}^n,\mathbb{R}^m\right)$的线性变换）。
-
 \begin{lemma}\label{thm:inv_func_l2}
-设$\mathbf{f}:\mathbb{R}_n\rightarrow\mathbb{R}_m$是可微函数，且在$\mathbf{x}_0$处连续可微。再假设$\mathbf{f}$在$\mathbf{x}_0$处的导数$\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}$是单射。则存在$\delta>0$和$M>0$使得只要$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$就有
+设$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$是可微函数，且在$\mathbf{x}_0$处连续可微。再假设$\mathbf{f}$在$\mathbf{x}_0$处的导数$\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}$是单射。则存在$\delta>0$和$M>0$使得只要$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$就有
 \[
 \left\|\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\mathbf{y}\right\|\geq M\left\|\mathbf{y}\right\|\forall\mathbf{y}\in\mathbb{R}^n
 \]
 \end{lemma}
 \begin{proof}
-记函数$\mathbf{f}$的导函数为$\mathbf{L}$。由引理\ref{thm:inv_func_l1}，存在$m>0$使得$\left\|\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{y}\right\|\geq m\left\|\mathbf{y}\right\|\forall\mathbf{y}\in\mathbb{R}^n$。同时，由于$\mathbf{f}$在$\mathbf{x}_0$处连续可微，故对任一正实数——此处选择$m/2>0$——存在$\delta>0$使得只要$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$就有$\left\|\mathbf{L}\left(\mathbf{x}\right)-\mathbf{L}\left(\mathbf{x}_0\right)\right\|\leq m/2$。由线性变换的范的定义，有不等式
+记函数$\mathbf{f}$的导函数为$\mathbf{L}$。由引理\ref{thm:inv_func_l1}，存在$p>0$使得$\left\|\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{y}\right\|\geq p\left\|\mathbf{y}\right\|\forall\mathbf{y}\in\mathbb{R}^n$。同时，由于$\mathbf{f}$在$\mathbf{x}_0$处连续可微，故对任一正实数——此处选择$p/2>0$——存在$\delta>0$使得只要$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$就有$\left\|\mathbf{L}\left(\mathbf{x}\right)-\mathbf{L}\left(\mathbf{x}_0\right)\right\|\leq p/2$。由线性变换的范的定义，有不等式
 \[
-\left\|\left(\mathbf{L}\left(\mathbf{x}\right)-\mathbf{L}\left(\mathbf{x}_0\right)\right)\mathbf{y}\right\|\leq\left\|\mathbf{L}\left(\mathbf{x}\right)-\mathbf{L}\left(\mathbf{x}_0\right)\right\|\left\|\mathbf{y}\right\|\leq\frac{m}{2}\left\|\mathbf{y}\right\|\]
+\left\|\left(\mathbf{L}\left(\mathbf{x}\right)-\mathbf{L}\left(\mathbf{x}_0\right)\right)\mathbf{y}\right\|\leq\left\|\mathbf{L}\left(\mathbf{x}\right)-\mathbf{L}\left(\mathbf{x}_0\right)\right\|\left\|\mathbf{y}\right\|\leq\frac{p}{2}\left\|\mathbf{y}\right\|\]
 由三角不等式又有
-\[
-\left\|\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{y}\right\|-\left\|\left(\mathbf{L}\left(\mathbf{x}\right)-\mathbf{L}\left(\mathbf{x}_0\right)\right)\mathbf{y}\right\|\leq\left\|\mathbf{L}\left(\mathbf{x}\right)\right\|\]
-不等号左边可代入上面两个不等式关系，即
-\[
-\left\|\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{y}\right\|-\left\|\left(\mathbf{L}\left(\mathbf{x}\right)-\mathbf{L}\left(\mathbf{x}_0\right)\right)\mathbf{y}\right\|\geq m\left\|\mathbf{y}\right\|-\frac{m}{2}\left\|\mathbf{y}\right\|=\frac{m}{2}\left\|\mathbf{y}\right\|
-\]
-故存在$M=m/2>0$满足命题。
+\begin{align*}
+\left\|\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{y}\right\|&=\left\|\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{y}+\mathbf{L}\left(\mathbf{x}\right)\mathbf{y}-\mathbf{L}\left(\mathbf{x}\right)\mathbf{y}\right\|\\
+&\leq\left\|\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{y}-\mathbf{L}\left(\mathbf{x}\right)\mathbf{y}\right\|+\left\|\mathbf{L}\left(\mathbf{x}\right)\mathbf{y}\right\|\\
+\Leftrightarrow\left\|\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{y}\right\|-\left\|\mathbf{L}\left(\mathbf{x}\right)\mathbf{y}-\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{y}\right\|&\leq\left\|\mathbf{L}\left(\mathbf{x}\right)\mathbf{y}\right\|
+\end{align*}
+上式不等号左边可代入刚刚确定的结论：$\left\|\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{y}\right\|\leq p\left\|\mathbf{y}\right\|, -\left\|\mathbf{L}\left(\mathbf{x}\right)\mathbf{y}-\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{y}\right\|\geq-\frac{p}{2}$，得
+\begin{align*}
+\left\|\mathbf{L}\left(\mathbf{x}\right)\mathbf{y}\right\|&\geq\left\|\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{y}\right\|-\left\|\mathbf{L}\left(\mathbf{x}\right)\mathbf{y}-\mathbf{L}\left(\mathbf{x}_0\right)\mathbf{y}\right\|\\
+&\geq p\left\|\mathbf{y}\right\|-\frac{p}{2}\left\|\mathbf{y}\right\|=\frac{p}{2}\left\|\mathbf{y}\right\|
+\end{align*}
+
+故存在$M=p/2>0$满足命题。
 \end{proof}
 
 \begin{lemma}\label{thm:inv_func_l3}
@@ -133,7 +130,7 @@
 
 接下来我们将证明：
 \begin{enumerate}[label=\roman*]
-\item\label{thm:inv_func_sub2_sub1} 如果$\widetilde{M}=M^\prime\delta_/2$，那么上述的$\mathbf{x}^\prime$在$B$的内部（即不在$B$的边界上）；
+\item\label{thm:inv_func_sub2_sub1} 如果$\widetilde{M}=M^\prime\delta/2$，那么上述的$\mathbf{x}^\prime$在$B$的内部（即不在$B$的边界上）；
 \item\label{thm:inv_func_sub2_sub2} 这一$\mathbf{y}^\prime$就是$\mathbf{y}$。
 \end{enumerate}
 上面两条若得证，则给定任一$\mathbf{y}_1\in\mathbf{f}\left(N\right)$，总有正实数$\widetilde{M}$（且具体地$\widetilde{M}=M^\prime\delta_1/2$）使得开集$C=\left\{\mathbf{y}|\left\|\mathbf{y}-\mathbf{y}_1\right\|<\widetilde{M}\right\}$在$\mathbf{f}\left(N\right)$的内部。\ref{thm:inv_func_sub2}也就得证了。
@@ -156,15 +153,15 @@
 \[
 g\left(\mathbf{x}\right)=\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{y}\right\|^2=\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{y}\right)\cdot\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{y}\right)\]
 则$\mathbf{x}^\prime$应使得该函数的一阶导数等于零，即$\left.\frac{dg\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}^\prime}=\mathbf{0}$（零变换）。由零变换性质和链式法则，对任一$\mathbf{z}\in\mathbb{R}^n$，
-\[0=\left.\frac{dg\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{mathbf{x}=\mathbf{x}^\prime}\mathbf{z}=2\left(\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{y}\right)\cdot\left(\mathbf{L}\left(\mathbf{x}^\prime\right)\mathbf{z}\right)\]
+\[0=\left.\frac{dg\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}^\prime}\mathbf{z}=2\left(\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{y}\right)\cdot\left(\mathbf{L}\left(\mathbf{x}^\prime\right)\mathbf{z}\right)\]
 由于$\mathbf{L}\left(\mathbf{x}\right)$在$N$上的每个值都是双射（同构）线性变换，故有且只有一个向量$\mathbf{z}\in\mathbb{R}^n$满足$\mathbf{L}\left(\mathbf{x}^\prime\right)\mathbf{z}=\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{y}$。故上式$\Leftrightarrow$
 \[0=2\left(\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{y}\right)\cdot\left(\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{y}\right)\Leftrightarrow\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{y}=\mathbf{0}\]
 即，只要$\mathbf{x}^\prime\in N$是使$\mathbf{y}^\prime=\mathbf{f}\left(\mathbf{x}^\prime\right)$到任一$\mathbf{y}\in \mathbf{f}\left(N\right)$的距离最短的点，则$\mathbf{f}\left(\mathbf{x}^\prime\right)=\mathbf{y}^\prime=\mathbf{y}$。\ref{thm:inv_func_sub2_sub2}证毕。\ref{thm:inv_func_sub2}证毕。
 
 \ref{thm:inv_func_sub3}的证明：按照导数的定义，相当于要证明对任一$\mathbf{x}\in N$，极限
-\[\lim_{\mathbf{f}\left(\mathbf{x}^\prime\right)\to\mathbf{f}\left(\mathbf{x}\right)}\frac{\mathbf{x}^\prime-\mathbf{x}-\mathbf{L}^{-1}\left(x\right)\left(\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{f}\left(\mathbf{x}\right)\right)}{\left\|\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{f}\left(\mathbf{x}\right)\right\|}=\mathbf{0}\]
+\[\lim_{\mathbf{f}\left(\mathbf{x}^\prime\right)\to\mathbf{f}\left(\mathbf{x}\right)}\frac{\mathbf{x}^\prime-\mathbf{x}-\mathbf{L}^{-1}\left(\mathbf{x}\right)\left(\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{f}\left(\mathbf{x}\right)\right)}{\left\|\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{f}\left(\mathbf{x}\right)\right\|}=\mathbf{0}\]
 令未求极限前的比增量为$\mathbf{s}$，即
-\[\mathbf{s}=\frac{\mathbf{x}^\prime-\mathbf{x}-\mathbf{L}^{-1}\left(x\right)\left(\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{f}\left(\mathbf{x}\right)\right)}{\left\|\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{f}\left(\mathbf{x}\right)\right\|}\]
+\[\mathbf{s}=\frac{\mathbf{x}^\prime-\mathbf{x}-\mathbf{L}^{-1}\left(\mathbf{x}\right)\left(\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{f}\left(\mathbf{x}\right)\right)}{\left\|\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{f}\left(\mathbf{x}\right)\right\|}\]
 
 由于$\mathbf{L}\left(\mathbf{x}\right)$在$\mathbf{x}\in N$内都有定义，故极限
 \[\lim_{\mathbf{x}^\prime\to\mathbf{x}}\frac{\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{f}\left(\mathbf{x}\right)-\mathbf{L}\left(\mathbf{x}\right)\left(\mathbf{x}^\prime-\mathbf{x}\right)}{\left\|\mathbf{x}^\prime-\mathbf{x}\right\|}=\mathbf{0}\]
@@ -180,7 +177,7 @@ g\left(\mathbf{x}\right)=\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{y}\rig
 \[0\geq-\frac{\left\|\mathbf{x}^\prime-\mathbf{x}\right\|}{\left\|\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{f}\left(\mathbf{x}\right)\right\|}\geq-\frac{1}{M}\]
 即$-\frac{\left\|\mathbf{x}^\prime-\mathbf{x}\right\|}{\left\|\mathbf{f}\left(\mathbf{x}^\prime\right)-\mathbf{f}\left(\mathbf{x}\right)\right\|}$是有界的。
 
-又由定理\ref{thm:II.13.4}的推论，线性变换都是连续函数，故由复合函数的连续性，极限$\lim_{\mathbf{x}^\prime\to\mathbf{x}}\mathbf{L}^{-1}\left(\mathbf{x}\right)\mathbf{r}=\mathbf{L}^{-1}\left(\mathbf{x}\right)\lim_{\mathbf{x}^\prime\to\mathbf{x}}\mathbf{r}=\mathbf{0}$。
+又由定理\ref{thm:II.11.3}的推论，线性变换都是连续函数，故由复合函数的连续性，极限$\lim_{\mathbf{x}^\prime\to\mathbf{x}}\mathbf{L}^{-1}\left(\mathbf{x}\right)\mathbf{r}=\mathbf{L}^{-1}\left(\mathbf{x}\right)\lim_{\mathbf{x}^\prime\to\mathbf{x}}\mathbf{r}=\mathbf{0}$。
 
 由于一个有界函数与一个有极限的函数的积的极限等于那个有极限的函数的极限\footnote{这个基本定理可由极限的$\delta-\epsilon$语言证明，很多地方有，此略。}，故$\lim_{\mathbf{x}^\prime\to\mathbf{x}}\mathbf{s}=\mathbf{0}$。又由于当$\mathbf{x}^\prime\to\mathbf{x}$时$\mathbf{f}\left(\mathbf{x}^\prime\right)\to\mathbf{f}\left(\mathbf{x}\right)$，由$\mathbf{s}$的形式有$\lim_{\mathbf{x}^\prime\to\mathbf{x}}\mathbf{s}=\mathbf{0}\Leftrightarrow\lim_{\mathbf{f}\left(\mathbf{x}^\prime\right)\to\mathbf{f}\left(\mathbf{x}\right)}\mathbf{s}=\mathbf{0}$。\ref{thm:inv_func_sub3}证毕。
 

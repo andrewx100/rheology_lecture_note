@@ -1,97 +1,78 @@
 \documentclass[main.tex]{subfiles}
-% 张量与张量积
+% 正规算符及其谱分解
 \begin{document}
-张量是比向量更一般的数学概念。张量满足向量的代数定义，故它也是一个抽象向量，类似向量作为向量空间的元素是一个不依赖基的选择的量，张量也是一个不依赖基的选择的量。$N$维向量在任一基下的矩阵是$N\times 1$矩阵，但$n$阶张量在选定任一基下的矩阵是$N^n$矩阵。我们之前介绍的线性算符，就是2阶张量。在连续介质力学中，我们一般只涉及到实数域上的线性算符，同时很少涉及到2阶以上的张量。之前所说的向量都是指1阶张量。我们在本课中仍然用“向量”表达1阶张量的意思，而把2阶张量简称为“张量”。
-
-\begin{definition}[两个向量的张量积]
-两个向量$\mathbf{v},\mathbf{w}\in\mathcal{V}$的张量积$\mathbf{v}\otimes\mathbf{w}\in\mathcal{L}\left(\mathcal{V}\right)$是一个二阶张量满足：
-\[\left(\mathbf{v}\otimes\mathbf{w}\right)\mathbf{u}=\mathbf{v}\left(\mathbf{w}\cdot\mathbf{u}\right),\forall\mathbf{u}\in\mathcal{V}\]
+\begin{definition}[正规算符]
+设$\mathcal{V}$是数域$\mathbb{F}$上的内积空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是一个线性算符，如果$\mathbf{TT}^*=\mathbf{T}^*\mathbf{T}$，则称$\mathbf{T}$是正规算符（normal operator）。
 \end{definition}
 
-易验证张量积满足线性变换的代数规则。
-
-并非每个张量都能表示成两个向量的向量积。我们把$\mathcal{V}$的两个向量的向量积的集合记为$\mathcal{V}\otimes\mathcal{V}$，由张量积的定义易知，$\mathcal{V}\otimes\mathcal{V}$是线性算符的集合。因此$\mathcal{V}\otimes\mathcal{V}$是$\mathcal{L}\left(\mathcal{V}\right)$的子集。
-
-下面的例子给出了两个向量的张量积的坐标计算方法。
-
-\begin{example}
-设向量$\mathbf{v},\mathbf{w}\in\mathcal{V}_N$且$\left\{\mathbf{e}_i\right\}$是$\mathcal{V}_N$的一组基，则有：
-\[\mathbf{v}=\sum_{i=1}^Nv_i\mathbf{e}_i,\mathbf{w}=\sum_{i=1}^Nw_i\mathbf{e}_i\]
-\begin{align*}
-\mathbf{v}\otimes\mathbf{w}&=\left(\sum_{i=1}^Nv_i\mathbf{e}_i\right)\otimes\left(\sum_{j=1}^Nw_j\mathbf{e}_j\right)\\&=\sum_{i=1}^N\sum_{j=1}^Nv_iw_j\mathbf{e}_i\otimes\mathbf{e}_j
-\end{align*}
-\end{example}
-
-由上例，可见两向量的张量积可由基的张量积线性表出。且$\left\{\mathbf{\hat{e}}_i\otimes\mathbf{\hat{e}}_j\right\}$有$N\times N$个。如果它们是线性无关的，那它就是$\mathcal{L}\left(\mathcal{V}\right)$的一组基了。但很可惜，一般地，它们并不一定是线性无关的。回顾定理\ref{thm:II.4.3}证明和上面的张量积定义，就可以直接证明如下定理。
+自伴随算符和幺正算符都是正规算符。正规算符的特征值分解有十分方便的性质，见如下定理。
 
 \begin{theorem}
-设$\mathcal{V}_N$、$\mathcal{W}_M$分别是数域$\mathbb{F}$上的$N$、$M$维向量空间，$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}_N$的一组基，$\left\{\mathbf{\hat{f}}_j\right\}$是$\mathcal{W}_N$的一组基。当且仅当$\left\{\mathbf{\hat{e}}_i\right\}$是规范正交基时，$\left\{\mathbf{\hat{f}}_j\otimes\mathbf{\hat{e}}_i\right\}$是$\mathcal{L}\left(\mathcal{V}_N,\mathcal{W}_M\right)$的基。
-\end{theorem}
-
-因此，对于$\mathcal{L}\left(\mathcal{V}\right)$的情况，就是简单地需要$\left\{\mathbf{\hat{e}}_i\right\}$是$\mathcal{V}$的一组规范正交基，$\left\{\mathbf{\hat{e}}_i\otimes\mathbf{\hat{e}}_j\right\}$才是$\mathcal{L}\left(\mathcal{V}\right)$的一组基。
-
-\begin{definition}
-两个张量的复合积就是它们作为两个线性变换的复合变换。
-\end{definition}
-
-下面介绍的是有限维内积空间$\mathcal{V}$上的张量才有的概念。
-
-\begin{definition}[张量的转置]\footnote{这里定义的“转置”对应的是复数域上线性算符的伴随（adjoint）的概念，后者也仅是复数域上线性算符的转置（transpose）的一个特例。这里使用“转置”一词只是遵循大部分流变学文本的惯例。}
-设$\mathcal{V}$是实数域$\mathbb{R}$上的有限维内积空间，张量$\mathbf{A},\mathbf{B}\in\mathcal{L}\left(\mathcal{V}\right)$。若对于$\mathbf{u},\mathbf{v}\in\mathcal{V}$有$\left(\mathbf{Au}|\mathbf{v}\right)=\left(\mathbf{u}|\mathbf{Bv}\right)$，则称$\mathbf{B}$是$\mathbf{A}$的转置，记为$\mathbf{B}\equiv\mathbf{A}^\intercal$。
-\end{definition}
-
-\begin{theorem}
-任一张量总存在唯一一个转置。
-\end{theorem}
-
-\begin{definition}[对称张量与斜称张量]
-如果张量$\mathbf{A}=\mathbf{A}^\intercal$，则称$\mathbf{A}$是对称张量。如果$\mathbf{A}^\intercal=-\mathbf{A}$，则称$\mathbf{A}$是斜称张量。
-\end{definition}
-
-\begin{theorem}
-任何一个张量$\mathbf{A}$均可以写成一个对称张量$\mathbf{A}^\mathrm{s}$与一个斜称张量$\mathbf{A}^\mathrm{ss}$之和：
-\[\mathbf{A}=\mathbf{A}^\mathrm{s}+\mathbf{A}^\mathrm{ss}\]
-其中
-\[\begin{split}\mathbf{A}^\mathrm{s}&=\frac{1}{2}\left(\mathbf{A}+\mathbf{A}^\intercal\right)\\\mathbf{A}^\mathrm{ss}&=\frac{1}{2}\left(\mathbf{A}-\mathbf{A}^\intercal\right)\end{split}\]
-\end{theorem}
-
-\begin{definition}[正交张量]\footnote{这里的正交张量对应复数域上的幺正算符（unitary operator）的概念。}
-若张量$\mathbf{A}$满足$\mathbf{AA}^\intercal=\mathbf{I}$其中$\mathbf{I}$是单位张量（即恒等算符），则称$\mathbf{A}$是正交张量。
-\end{definition}
-
-\begin{definition}[张量的迹]
-张量的迹是一个实函数$\mathrm{tr}:\mathcal{L}\left(\mathcal{V}\right)\rightarrow\mathbb{R}$满足：
-\begin{itemize}
-    \item 线性：$\mathrm{tr}\left(\alpha\mathbf{S}+\beta\mathbf{T}\right)=\alpha\mathrm{tr}\mathbf{S}+\beta\mathrm{tr}\mathbf{T},\forall\alpha,\beta\in\mathbb{R},\mathbf{S},\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$
-    \item $\mathrm{tr}\left(\mathbf{u}\otimes \mathbf{v}\right)=\mathbf{u}\cdot\mathbf{v}\forall\mathbf{u},\mathbf{v}\in\mathcal{V}$
-\end{itemize}
-\end{definition}
-
-可以证明，满足上述条件的迹运算只有一种\cite[\S Appendix]{Coleman1966}，且张量的迹不依赖基的选择，特以定理列出。
-
-\begin{theorem}
-张量的迹不依赖基的选择。
+设$\mathcal{V}$是数域$\mathbb{F}$上的内积空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是一个正规算符，则$\mathcal{V}$中必有一组规范正交基是$\mathbf{T}$的特征向量。
 \end{theorem}
 \begin{proof}
-把一个张量用两个选定的基表示出来，并通过基的过渡矩阵相联系来求证。此略
+见附录。
 \end{proof}
 
-\begin{definition}[两个张量的标量积]
-两个张量$\mathbf{A},\mathbf{B}\in\mathcal{L}\left(\mathcal{V}\right)$的内积或标量积，记为$\mathbf{A}:\mathbf{B}$，是一个标量。这一运算是一个由$\mathcal{L}\left(\mathcal{V}\right)$到$\mathbb{R}$的映射，定义为：$\mathbf{A}:\mathbf{B}=\mathrm{tr}\left(\mathbf{A}^\intercal\mathbf{B}\right)$。
-\end{definition}
+由此定理可知，正规算符必可对角化。此外，对于幺正算符$\mathbf{U}$，其行列式的绝对值为1：由$\mathbf{U}^*\mathbf{U}=\mathbf{I}$，$\mathrm{det}\left(\mathbf{UU}^*\right)=1=\mathrm{det}\mathbf{U}\mathrm{det}\left(\mathbf{U}^*\right)=\left(\mathrm{det}\mathbf{U}\right)^2$。
 
-易验证张量的标量积满足内积一般定义，故带有张量的标量积规定的空间$\mathcal{L}\left(\mathcal{V}\right)$是一个内积空间。
+在内积空间上，我们可以把正规算符展开成一系列正交投影算符的线性组合，由此我们可以定义这类线性算符的初等函数，扩大线性算符的运算性质。我们先引入正交投影算符的概念。
+
+\begin{definition}[最好近似]
+设$\mathcal{V}$是数域$\mathbb{F}$上的赋范内积空间，$\mathcal{W}$是$\mathcal{V}$的子空间，如果对$\mathcal{V}$中的向量$\mathbf{b}\in\mathcal{V}$，有$\mathcal{W}$中的一个向量$\mathbf{a}\in\mathcal{W}$满足$\left\|\mathbf{b}-\mathbf{a}\right\|\leq\left\|\mathbf{b}-\mathbf{c}\right\|\forall\mathbf{c}\mathcal{W}$，则称$\mathbf{a}$是$\mathbf{b}$在$\mathcal{W}$中的最好近似（best approximation）。
+\end{definition}
 
 \begin{theorem}
-设$\mathcal{V}$是$\mathbb{R}$上的向量空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是$\mathcal{V}$上的一个张量。则$\mathbf{T}$在$\mathcal{V}$的任意基下的表示矩阵的行列式都相等。
+设$\mathcal{V}$是数域$\mathbb{F}$上的赋范内积空间，$\mathcal{W}$是$\mathcal{V}$的子空间，则
+\begin{enumerate}
+    \item $\mathbf{a}\in\mathcal{W}$是$\mathbf{b}\in\mathcal{V}$在$\mathcal{W}$中的最好近似$\Leftrightarrow\mathbf{b}-\mathbf{a}$与$\mathcal{W}$中所有向量都正交
+    \item 若$\mathbf{a}\in\mathcal{W}$是$\mathbf{b}\in\mathcal{V}$的一个最好近似，则$\mathbf{a}$是唯一的
+    \item 若$\mathcal{W}$是有限维的，且$\left\{\mathbf{e}_k\right\}$是$\mathcal{W}$的一组正交基，则向量
+    \[\mathbf{a}=\sum_k\frac{\left(\mathbf{b}|\mathbf{e}_k\right)}{\left(\mathbf{e}_k|\mathbf{e}_k\right)}\mathbf{e}_k\]
+    是$\mathbf{b}$在$\mathcal{W}$的（唯一）一个最好近似，$\forall\mathbf{b}\in\mathcal{V}$。
+\end{enumerate}
 \end{theorem}
-\begin{proof}
-设$A$、$B$是$\mathbf{T}$在$\mathcal{V}$的两组基下的表示矩阵。$P$是这两组基的过渡矩阵，则有$A=P^{-1}BP$。故$\mathrm{det}\left(A\right)=\mathrm{det}\left(P^{-1}BP\right)=\mathrm{det}\left(P^{-1}\right)\mathrm{det}\left(B\right)\mathrm{det}\left(P\right)=\mathrm{det}\left(B\right)$
-\end{proof}
 
-由这一性质，我们可以直接称张量在任一基下的矩阵的行列式为这个张量的行列式。
+上面的定理解决了存在唯一性问题，使得我们可以进一步把“最好近似”定义为“正交投影”。
 
-\begin{definition}
-设$\mathcal{V}$是$\mathbb{R}$上的向量空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是$\mathcal{V}$上的一个张量。则$\mathbf{T}$的行列式$\mathrm{det}\mathbf{T}$是其在$\mathcal{V}$的任意基下的表示矩阵的行列。
+\begin{definition}[正交投影算符]
+设$\mathcal{V}$是数域$\mathbb{F}$上的赋范内积空间，$\mathcal{W}$是$\mathcal{V}$的子空间，若$\mathbf{b}\in\mathcal{V}$在$\mathcal{W}$中有最好近似$\mathbf{a}\in\mathcal{W}$，则称$\mathbf{a}$是$\mathbf{b}$在$\mathcal{W}$中的正交投影（orthogonal projection）。由$\mathcal{V}$到$\mathcal{W}$的映射$\mathbf{E}:\mathcal{V}\rightarrow\mathcal{W},\left(\mathbf{Eb}|\mathbf{b}\right)=0\forall\mathbf{b}\in\mathcal{V}$称向量空间$\mathcal{V}$到其子空间$\mathcal{W}$的正交投影。
 \end{definition}
+
+我们可证明映射$\mathbf{E}$是一个线性算符，而且是幂等的，即$\mathbf{E}^n=\mathbf{E}$。
+
+以下定理给出正规算符的谱分解。
+
+\begin{theorem}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是一个正规算符，$\theta_1,\cdots,\theta_k$为$\mathbf{T}$的两两不同特征值，分别对应特征空间$\mathcal{W}_1,\cdots,\mathcal{W}_k$，记$\mathbf{E}_i$为$\mathcal{V}$到$\mathcal{W}_i$的正交投影，则$\mathbf{T}=\theta_1\mathbf{E}_1+\cdots+\theta_k\mathbf{E}_k$，称$\mathbf{T}$的一个谱分解（spectral decomposition）
+\end{theorem}
+
+\begin{corollary}
+设表达式$e_j\left(x\right)\equiv\prod_{i}\left(\frac{x-\theta_i}{\theta_j-\theta_i}\right)$，则该表达式应用于正规算符就得到其谱分解的各个正交投影算符，$\mathbf{E}_j=e_j\left(\mathbf{T}\right)$。
+\end{corollary}
+
+上面的定理和推论分别定义了一个正规算符的谱分解形式，以及具体获得其中的正交投应算符的计算公式。值得注意的是，正规算符的谱分解一般没有唯一性。有了正规算符的一个谱分解，我们证明对任一初等表达式$f\left(x\right)$，$f\left(\mathbf{T}\right)=\sum_{i=1}^kf\left(\theta_i\right)\mathbf{E}_i$，可视为“正规算符的函数”的计算定义。
+
+针对正规算符的特征值性质，我们还可以由如下定理进一步区分自伴随算符、幺正算符和非负算符。
+
+\begin{theorem}
+设$\mathcal{V}$是数域$\mathbb{F}$上的$n$维内积空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是一个正规算符，$\left\{\lambda_i\right\}$是$\mathbf{T}$的特征值，则
+\begin{enumerate}
+    \item $\lambda_i\in\mathbb{R}\forall i=1,\cdots,n\Leftrightarrow\mathbf{T}$是自伴随算符
+    \item $\lambda_i\geq 0\forall i=1,\cdots,n\Leftrightarrow\left(\mathbf{Ta}|\mathbf{a}\right)\geq0\forall\mathbf{a}\in\mathcal{V}$，称为非负算符（non-negative operator）
+    \item $\left|\lambda_i\right|=1\forall i=1,\cdots,n\Leftrightarrow\mathbf{T}$是幺正算符
+\end{enumerate}
+\end{theorem}
+
+以下性质类似“正实数的平方根是非负实数”。
+
+\begin{theorem}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是一个正规算符，则必存在唯一非负算符$\mathbf{N}\in\mathcal{L}\left(\mathcal{V}\right)$满足$\mathbf{T}=\mathbf{N}^2$。
+\end{theorem}
+
+以下性质类似“复数$z$可分解为$z=\rho e^{i\theta}$”。
+
+\begin{theorem}
+设$\mathcal{V}$是数域$\mathbb{F}$上的有限维内积空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是一个线性算符，则总存在幺正算符$\mathbf{U}$和唯一一个非负算符$\mathbf{N}$满足$\mathbf{T}=\mathbf{UN}$，称为$\mathbf{T}$的极分解（polar decomposition）。如果$\mathbf{T}$可逆，则连$\mathbf{U}$也是唯一的。如果$\mathbf{T}$是正规算符，则$\mathbf{UN}=\mathbf{NU}$。
+\end{theorem}
 \end{document}

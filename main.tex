@@ -74,6 +74,7 @@ sorting=none
 \newtheorem{definition}{定义}
 \newtheorem*{definition*}{定义}
 \newtheorem{theorem}{定理}
+\newtheorem*{theorem*}{定理}
 \newtheorem{lemma}{引理}
 \newtheorem{corollary}{推论}[theorem]
 \newtheorem{example}{例}
@@ -95,26 +96,17 @@ sorting=none
 
 \usepackage{datetime2}
 
-\title{《聚合物流变学基础》讲义}
+\title{流变学}
 \author{孙尉翔\\mswxsun@scut.edu.cn}
 %=====================================================================================================================
 \begin{document}
-\begin{titlepage}
-\maketitle
-\end{titlepage}
 
 \part*{前言}\label{sec:preface}
 \subfile{preface.tex}
 
 \newpage\tableofcontents
 
-\newpage\part{引入}
-\section{流变学的定义和研究内容}\label{sec:I.1}
-\subfile{Part I/I.1.tex}
-\section{聚合物流体的复杂流动现象}\label{sec:I.2}
-\subfile{Part I/I.2.tex}
-\section{学习方法建议与参考书目}\label{sec:I.3}
-\subfile{Part I/I.3.tex}
+\newpage\part{引言}
 
 \newpage\part{数学准备}
 \section{集合与映射}\label{sec:II.1}
@@ -129,37 +121,39 @@ sorting=none
 \section{线性变换}\label{sec:II.4}
 \subsection{线性变换的定义和基本性质}\label{sec:II.4.1}
 \subfile{Part II/II.4.1.tex}
+
 \subsection{线性变换的坐标矩阵}\label{sec:II.4.2}
 \subfile{Part II/II.4.2.tex}
+
 \subsection{线性变换的转置}\label{sec:II.4.3}
 \subfile{Part II/II.4.3.tex}
-\subsection{线性算符的不变量}
-\subfile{Part II/II.4.4.tex}
 
-\section{内积空间上的线性算符}\label{sec:II.6}
+\section{基变换与坐标变换}\label{sec:II.5}
 \subfile{Part II/II.5.tex}
 
-\section{正规算符的谱分解}\label{sec:II.7}
-%\subfile{Part II/II.6.tex}
+\section{内积空间上的线性算符}\label{sec:II.6}
+\subfile{Part II/II.6.tex}
 
-\section{欧几里德几何}
+\section{线性算符的行列式、迹和特征值}\label{sec:II.7}
+\subfile{Part II/II.7.tex}
+
+\section{正规算符及其谱分解}\label{sec:II.8}
+\subfile{Part II/II.8.tex}
+
+\section{欧几里得空间}
 \subfile{Part II/II.9.tex}
 
 \section{向量函数及其图像}
 \subfile{Part II/II.10.tex}
 
-\section{函数的极限与连续性}
+\section{向量函数的极限与连续性}
 \subfile{Part II/II.11.tex}
 
-\section{全微分与全导数}
+\section{向量函数的微分与导数}
 \subfile{Part II/II.12.tex}
 
-\section{链式法则、反函数定理、隐函数定理}
+\section{曲线、曲面和积分定理}
 \subfile{Part II/II.13.tex}
-
-\section{标量与向量场的积分定理}
-
-\section{雷诺传输定理}
 
 \newpage\part{连续介质力学基础}
 \section{标架与参考系}
@@ -204,11 +198,29 @@ sorting=none
 \section{屈服应力流体}
 
 \newpage\part{附录}
-\section{实数集的拓扑概念}
+\section{线性代数部分定理的证明}\label{sec:VI.1}
 \subfile{Part VI/VI.1.tex}
 
-\section{反函数定理的证明}\label{sect:VI.2}
-\subfile{Part VI/VI.2.tex}
+\section{向量函数微积分部分的证明}\label{sec:VI.2}
+\subsection{$\mathbb{R}^n$空间上的一些拓扑概念}
+\subfile{Part VI/VI.2.1.tex}
+
+\subsection{向量函数可微分的必要条件与充分条件}
+\subfile{Part VI/VI.2.2.tex}
+
+\subsection{复合函数求导的链式法则}
+\subfile{Part VI/VI.2.3.tex}
+
+\subsection{反函数定理和隐函数定理}
+\subfile{Part VI/VI.2.4.tex}
+
+\subsection{等距变换的表示定理}
+\subfile{Part VI/VI.2.5.tex}
+
+\section{曲线坐标系}
+\subfile{Part VI/VI.4.tex}
+
+
 
 \newpage\part*{参考文献}
 \printbibliography[heading=none]

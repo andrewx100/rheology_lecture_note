@@ -1,0 +1,131 @@
+\documentclass[main.tex]{subfiles}
+% 链式法则、反函数定理、隐函数定理
+\begin{document}
+\begin{theorem}[链式法则]
+如果函数$\mathbf{f}:\mathbb{R}^n\supseteq D\rightarrow\mathbb{R}^m$在$\mathbf{x}_0\in D\mathbf{f}$处可微分；函数$\mathbf{g}:\mathbb{R}^n\supset E\rightarrow\mathbb{R}^p$在$\mathbf{f}\left(\mathbf{x}_0\right)\in E\cap D$处可微分，则复合函数$\mathbf{g}\circ\mathbf{f}$在$\mathbf{x}_0$处可微分，且其全导数
+\[
+\left.\frac{d\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}=\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}
+\]
+\end{theorem}
+\begin{proof}
+首先证明$\mathbf{x}_0$处于复合函数$\mathbf{g}\circ\mathbf{f}$的定义域内。由于$\mathbf{f}\left(\mathbf{x}_0\right)\in\mathrm{dom}\mathbf{g}$且$\mathbf{g}$在$\mathbf{f}\left(\mathbf{x}_0\right)$处可微分，故总存在正实数$\delta^\prime$使得只要$\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|<\delta^\prime$就有$\mathbf{f}\left(\mathbf{x}\right)\in\mathrm{dom}\mathbf{g}$。又因为$\mathbf{x}_0\in\mathrm{dom}\mathbf{f}$且$\mathbf{f}$在$\mathbf{x}_0$处可微分，故总存在正实数$\delta$使得只要$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$则$\mathbf{x}\in\mathrm{dom}\mathbf{f}$，同时还必存在$\delta^\prime>0$使得这一$\delta$选择下的$\mathbf{x}$满足$\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|<\delta^\prime$。所以任一满足$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$的$\mathbf{x}$均在复合函数$\mathbf{g}\circ\mathbf{f}$的定义域内。
+
+按照全微分和全导数的定义，由于函数$\mathbf{f}$和$\mathbf{g}$分别在$\mathbf{x}_0$和$\mathbf{f}\left(\mathbf{x}_0\right)$可导，故存在函数$\mathbf{z}_1$、$\mathbf{z}_2$满足$\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)=\mathbf{0}$、$\lim_{\mathbf{f}\left(\mathbf{x}\right)\to\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)=\mathbf{0}$，且
+\begin{align*}
+\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)&=\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\\
+\mathbf{g}\left(\mathbf{f}\left(\mathbf{x}\right)\right)-\mathbf{g}\left(\mathbf{f}\left(\mathbf{x}_0\right)\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)&=\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)
+\end{align*}
+把$\mathbf{g}\left(\mathbf{f}\left(\mathbf{x}\right)\right)$记为$\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)$，并把上面的第一条式子代入第二条，得
+\begin{align*}
+&\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)-\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left[\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right]\\
+=&\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)\\
+\Leftrightarrow&\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)-\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)\\
+=&\left\|\mathbf{x}-\mathbf{x}_0\right\|\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)
+\end{align*}
+由三角不等式，又有\footnote{
+此处用到定理\ref{thm:II.10.6}。
+}
+\begin{align*}
+    \left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|&=\left\|\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\\
+    &\leq \left\|\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)\right\|+\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\\
+    &\leq k\left\|\mathbf{x}-\mathbf{x}_0\right\|+\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|
+\end{align*}
+故
+\begin{align*}
+    &\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)-\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)\\
+    \leq&\left\|\mathbf{x}-\mathbf{x}_0\right\|\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)+\left(k\left\|\mathbf{x}-\mathbf{x}_0\right\|+\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\right)\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)\\
+    \leq&\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\{\left\|\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|+\left(k+\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\right)\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)\right\}
+\end{align*}
+由于函数$\mathbf{f}$在$\mathbf{x}_0$处连续，即极限$\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{f}\left(\mathbf{x}\right)=\mathbf{f}\left(\mathbf{x}_0\right)$，故上式最后的大括号在$\mathbf{x}\to\mathbf{x}_0$时趋于$\mathbf{0}$。按照全微分和全导数的定义，命题得证。
+\end{proof}
+
+\begin{theorem}[反函数定理] 
+设函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^n$是连续可微函数，且在$\mathbf{x}_0$处其导数$\mathbf{L}\left(\mathbf{x}_0\right)$可逆。则在$\mathbf{x}_0$的某邻域$N$上，函数$\mathbf{f}$有连续可微的逆函数$\mathbf{f}^{-1}$；$N$的像集$\mathbf{f}\left(\mathbf{N}\right)$是开集；且$\mathbf{f}^{-1}$在$\mathbf{f}\left(\mathbf{x}_0\right)$处的导数是$\mathbf{f}$在$\mathbf{x}_0$的导数的逆变换，即
+\[\left.\frac{d\mathbf{f}^{-1}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}=\mathbf{L}^{-1}\left(\mathbf{x}_0\right)\]
+\end{theorem}
+\begin{proof}
+详见\S\ref{sec:VI.2}。
+\end{proof}
+
+如果$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$由函数$\mathbf{F}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^m$隐含定义，我们常常把$\mathbf{F}$写成这样一种映射：$\mathbf{F}:\mathbb{R}^n\times\mathbb{R}^m\rightarrow\mathbb{R}^m$，$\mathbf{F}\left(\mathbf{x},\mathbf{f}\left(\mathbf{x}\right)\right)=\mathbf{0}\forall\mathbf{x}\in\mathbb{R}^n$。此时，我们记
+\[\left.\frac{\partial \mathbf{F}\left(\mathbf{x},\mathbf{y}\right)}{\partial \mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0,\mathbf{y}=\mathbf{y}_0}=\left.\frac{d\mathbf{F}\left(\mathbf{x},\mathbf{y}_0\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\]
+引入这个记法有两个用处，一是为了以下例子，这个例子是后文引入物质导数的一个基础；二是为了引入隐函数定理。
+
+\begin{example}\label{exp:II.15.1}
+设函数$\mathbf{f}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^p$的定义域为$D=\mathrm{dom}\mathbf{f}$，若函数$\mathbf{g}:\mathbb{R}^m\rightarrow\mathbb{R}^n$满足$\mathrm{dom}\mathbf{g}=D$，则总可以构建函数$\mathbf{h}:\mathbb{R}^m\rightarrow\mathbb{R}^{m+n}$使得$\mathrm{dom}\mathbf{h}=D$且
+\begin{align*}
+    \mathbf{h}\left(\mathbf{x}\right)&=\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)\forall\mathbf{x}\in D\\
+    h_i\left(\mathbf{x}\right)&=\left\{\begin{array}{ll}
+    g_i\left(\mathbf{x}\right),&i=1,\cdots,n\\
+    x_{i-n},&i=n+1,\cdots,n+m
+    \end{array}\right.
+\end{align*}
+这时，$\mathbf{f}\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)=\mathbf{f}\left(\mathbf{h}\left(\mathbf{x}\right)\right)$。若$\mathbf{g}$在某处可微分则$\mathbf{h}$在该处也可微分。由链式法则定理，在该处有
+\begin{align*}
+    \frac{d\mathbf{f}\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)}{d\mathbf{x}}&=\frac{d\mathbf{h}\left(\mathbf{x}\right)}{d\mathbf{x}}\\
+    &=\left.\frac{d\mathbf{f}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{h}\left(\mathbf{x}\right)}\frac{d\mathbf{h}\left(\mathbf{x}\right)}{d\mathbf{x}}\\
+    &=\left(\begin{array}{cccccc}
+    \frac{\partial f_1}{\partial h1}&\cdots&\frac{\partial f_1}{\partial h_n}&\frac{\partial f_1}{\partial h_{n+1}}&\cdots&\frac{\partial f_1}{\partial h_{n+m}}\\
+    \vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
+    \frac{\partial f_p}{\partial h_1}&\cdots&\frac{\partial f_p}{\partial h_n}&\frac{\partial f_p}{\partial h_{n+1}}&\cdots&\frac{\partial f_p}{\partial h_{n+m}}
+    \end{array}\right)\left(\begin{array}{ccc}
+    \frac{\partial h_1}{\partial y_1}&\cdots&\frac{\partial h_1}{\partial y_m}\\
+    \vdots&\ddots&\vdots\\
+    \frac{\partial h_n}{\partial y_1}&\cdots&\frac{\partial h_1}{\partial y_m}\\
+    \frac{\partial h_{n+1}}{\partial y_1}&\cdots&\frac{\partial h_{n+1}}{\partial y_m}\\
+    \vdots&\ddots&\vdots\\
+    \frac{\partial h_{n+m}}{\partial y_1}&\cdots&\frac{\partial h_{n+m}}{\partial y_m}
+    \end{array}\right)
+    &=C
+\end{align*}
+其中矩阵$C$的分量
+\[
+    C_{ij}=\sum_{k=1}^{n+m}\frac{\partial f_i}{\partial h_k}\frac{\partial h_k}{\partial x_j},i=1,\cdots,p,j=1,\cdots,m
+\]
+注意到
+\begin{align*}
+    \frac{\partial f_i}{\partial h_k}\frac{\partial h_k}{\partial x_j}=\left\{\begin{array}{ll}
+    \frac{\partial f_i}{\partial g_k}\frac{\partial g_k}{x_j},&k=1,\cdots,n\\
+    \frac{\partial f_i}{\partial x_k-n}\delta_{k-n,j},&k=n+1,\cdots,n+m
+    \end{array}\right.,i=1,\cdots,p,j=1,\cdots,m
+\end{align*}
+故
+\begin{align*}
+C_{ij}&=\sum_{k=1}^{n}\frac{\partial f_i}{\partial g_k}\frac{\partial g_k}{\partial x_j}+\sum_{j=1}^m\frac{\partial f_i}{\partial x_j}\\
+\Leftrightarrow\frac{d\mathbf{f}\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)}{d\mathbf{x}}&=\left.\frac{\partial \mathbf{f}\left(\mathbf{y},\mathbf{x}\right)}{\partial \mathbf{y}}\right|_{\mathbf{y}=\mathbf{g}\left(\mathbf{x}\right)}\frac{\partial\mathbf{g}\left(\mathbf{x}\right)}{\partial \mathbf{x}}+\frac{\partial \mathbf{f}\left(\mathbf{y},\mathbf{x}\right)}{\partial\mathbf{x}}
+\end{align*}
+\end{example}
+
+\begin{theorem}[隐函数定理]
+设$\mathbf{F}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^m$是连续可导函数，且对$\mathbf{x}_0\in\mathbf{R}^n$和$\mathbf{y}_0\in\mathbf{R}^m$有
+\begin{itemize}
+    \item $\mathbf{F}\left(\mathbf{x}_0,\mathbf{y}_0\right)=\mathbf{0}$；
+    \item 导数$\left.\frac{\partial \mathbf{F}\left(\mathbf{x},\mathbf{y}\right)}{\partial \mathbf{y}}\right|_{\mathbf{x}=\mathbf{x}_0,\mathbf{y}=\mathbf{y}_0}$可逆；
+\end{itemize}
+则$\mathbf{x}_0$的某邻域$N$存在由$\mathbf{F}$隐函定义的连续可微函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$满足$\mathbf{F}\left(\mathbf{x},\mathbf{f}\left(\mathbf{x}\right)\right))=\mathbf{0}\forall\mathbf{x}\in N$，且在$N$上有
+\[\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}}=-\left[\left.\frac{\partial\mathbf{F}\left(\mathbf{x},\mathbf{y}\right)}{\partial\mathbf{y}}\right|_{\mathbf{x}=\mathbf{x},\mathbf{y}=\mathbf{f}\left(\mathbf{x}\right)}\right]^{-1}\left.\frac{\partial\mathbf{F}\left(\mathbf{x},\mathbf{y}\right)}{\partial\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x},\mathbf{y}=\mathbf{f}\left(\mathbf{x}\right)}\]
+上式中的“$-1$”是指线性变换的逆。
+\end{theorem}
+
+\begin{example}
+设函数$\mathbf{F}:\mathbb{R}^4\rightarrow\mathbb{R}^2$，$\mathbf{F}\left(u,v,x,y\right)=\left(F_1,F_2\right)$，$\mathbf{F}=\mathbf{0}$隐含定义了$\left(x,y\right)=\mathbf{f}\left(u,v\right),\mathbf{f}:\mathbf{R}^2\rightarrow\mathbf{R}^2$，则
+\begin{align*}
+    &\frac{\partial \mathbf{F}}{\partial u}=\mathbf{0},\frac{\partial \mathbf{F}}{\partial v}=\mathbf{0}\\
+    \Leftrightarrow&\left\{\begin{array}{l}
+    \frac{\partial F_1}{\partial u}+\frac{\partial F_1}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial F_1}{\partial y}\frac{\partial y}{\partial u}=0\\
+    \frac{\partial F_2}{\partial u}+\frac{\partial F_2}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial F_2}{\partial y}\frac{\partial y}{\partial u}=0
+    \end{array}\right.,\left\{\begin{array}{l}
+    \frac{\partial F_1}{\partial v}+\frac{\partial F_1}{\partial x}\frac{\partial x}{\partial v}+\frac{\partial F_1}{\partial y}\frac{\partial y}{\partial v}=0\\
+    \frac{\partial F_2}{\partial v}+\frac{\partial F_2}{\partial x}\frac{\partial x}{\partial v}+\frac{\partial F_2}{\partial y}\frac{\partial y}{\partial v}=0
+    \end{array}\right.\\
+    \Leftrightarrow&\left(\begin{array}{cc}
+    \frac{\partial F_1}{\partial u}&\frac{\partial F_1}{\partial v}\\\frac{\partial F_2}{\partial u}&\frac{\partial F_2}{\partial v}\end{array}\right)_+\left(\begin{array}{cc}
+    \frac{\partial F_1}{\partial x}&\frac{\partial F_1}{\partial y}\\\frac{\partial F_2}{\partial x}&\frac{\partial F_2}{\partial y}\end{array}\right)\left(\begin{array}{cc}
+    \frac{\partial x}{\partial u}&\frac{\partial x}{\partial v}\\\frac{\partial y}{\partial u}&\frac{\partial y}{\partial v}\end{array}\right)=0\\
+    \Leftrightarrow&\left(\begin{array}{cc}
+    \frac{\partial x}{\partial u}&\frac{\partial x}{\partial v}\\\frac{\partial y}{\partial u}&\frac{\partial y}{\partial v}\end{array}\right)=-\left(\begin{array}{cc}
+    \frac{\partial F_1}{\partial x}&\frac{\partial F_1}{\partial y}\\\frac{\partial F_2}{\partial x}&\frac{\partial F_2}{\partial y}\end{array}\right)^{-1}\left(\begin{array}{cc}
+    \frac{\partial F_1}{\partial u}&\frac{\partial F_1}{\partial v}\\\frac{\partial F_2}{\partial u}&\frac{\partial F_2}{\partial v}\end{array}\right)
+\end{align*}
+\end{example}
+\end{document}

@@ -1,5 +1,5 @@
 \documentclass[main.tex]{subfiles}
-% 线性算符的行列式、迹、特征值分解
+% 线性算符的标量参数
 \begin{document}
 在\S\ref{sec:II.4.1}中我们介绍了线性算符（定义\ref{def:II.4.3}）。本节我们以引入线性算符的行列式、特征值、不变量等几种取值不依赖基的选择的标量参数。
 
@@ -41,7 +41,7 @@ D\left(a_1,\cdots,\gamma a_i+a^\prime_i,\cdots,a_n\right)=\gamma D\left(a_1,\cdo
 
 %===========================================================
 \subsection{线性算符的迹}
-从线性算符的行列式定义过程我们发现，与本科线性代数课上直接定义成一个运算公式不同，我们总是先定义代数规则，再去证明这样的代数规则只唯一对应一个具体的运算公式。线性算符的迹也可按类似的方式重新定义。不过，既然已经通过行列式的例子来了解这种思想，此处关于迹的定义仍采用简化的方式。值得注意的是，迹是定义在内积空间上的线性算符上的。
+从线性算符的行列式定义过程我们发现，与本科线性代数课上直接定义成一个运算公式不同，我们总是先定义代数规则，再去证明这样的代数规则只唯一对应一个具体的运算公式。线性算符的迹也可按类似的方式重新定义。不过，既然已经通过行更列式的例子来了解这种思想，此处关于迹的定义仍采用简化的方式。值得注意的是，迹是定义在内积空间上的线性算符上的。
 
 \begin{definition}[线性算符的迹]
 设$\mathbf{A}$是数域$\mathbb{F}$上的内积空间$\mathbf{V}$上的线性算符，$\mathbf{A}$的迹（trace）$\mathrm{tr}\mathbf{A}=\sum_k\left(\mathbf{A}\mathbf{\hat{e}}_k|\mathbf{\hat{e}}_k\right)$，其中$\left\{\mathbf{\hat{e}}_k\right\}$是$\mathcal{V}$的一组规范正交基。
@@ -59,15 +59,15 @@ D\left(a_1,\cdots,\gamma a_i+a^\prime_i,\cdots,a_n\right)=\gamma D\left(a_1,\cdo
 
 我们在此还可通过迹来定义$\mathcal{L}\left(\mathcal{V}\right)$空间上的一种内积。
 
-\begin{definition}[线性算符的标准内积]
-设$\mathbf{A},\mathbf{B}$是数域$\mathbb{F}$上的内积空间$\mathbf{V}$上的任意两个线性算符，令$\left(\mathbf{A}|\mathbf{B}\right)\equiv\mathrm{tr}\left(\mathbf{A}^*\mathbf{B}\right)$，可验证，该定义满足内积规定，称为线性算符的标准内积，以经常记作$\mathbf{A}:\mathbf{B}$
-\end{definition}
+\begin{theorem}
+设$\mathbf{A},\mathbf{B}$是数域$\mathbb{F}$上的内积空间$\mathbf{V}$上的任意两个线性算符，令$\left(\mathbf{A}|\mathbf{B}\right)\equiv\mathrm{tr}\left(\mathbf{A}^*\mathbf{B}\right)$，可验证，该定义满足内积规定。
+\end{theorem}
 
 %======================================================================
 \subsection{线性算符的特征值}
 如果一个数域$\mathbb{F}$上的有限维向量空间$\mathcal{V}$上的线性算符$\mathbf{T}$在基$\left\{\mathbf{a}_i\right\}$下的坐标矩阵是对角矩阵，
 \[\left(\mathbf{T}\right)=\left(\begin{array}{ccc}\lambda_1&&\\&\ddots&\\&&\lambda_n\end{array}\right),\lambda_i\in\mathbb{F},i=1,\cdots,n\]
-那么就有$\mathbf{Ta}_i=\lambda_i \mathbf{a}_i,i=1,\cdots,n$，$\mathbf{T}$的值域就是由$\lambda_i\neq 0$对应的$\mathbf{a}_i$线性生成的，$\lambda_i\neq 0$的个数就是$\mathrm{rank}\mathbf{T}$，$\mathbf{T}$的很多性质就能确定了。为了这一目标，我们先讨论一般的形如$\mathbf{Ta}=\lambda\mathbf{a}$的情况。
+那么就有$\mathbf{Ta}_i=\lambda_i \mathbf{a}_i,i=1,\cdots,n$，$\mathbf{T}$的值域就是由$\lambda_\neq 0$对应的$\mathbf{a}_i$线性生成的，$\lambda_i\neq 0$的个数就是$\mathrm{rank}\mathbf{T}$，……$\mathbf{T}$的很多性质就能确定了。为了这一目标，我们先讨论一般的形如$\mathbf{Ta}=\lambda\mathbf{a}$的情况。
 
 \begin{definition}[特征值、特征向量、特征空间]
 设$\mathcal{V}$是数域$\mathbb{F}$上的有限维向量空间，$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$是一个线性算符。若存在$\mathbf{a}\neq\mathbf{0},\mathbf{a}\in\mathcal{V},\gamma\in\mathbb{F}$满足$\mathbf{Ta}=\gamma\mathbf{a}$，则称$\gamma$是$\mathbf{T}$的一个特征值（characteristic value），$\mathbf{a}$是$\mathbf{T}$的一个对应特征值$\gamma$的特征向量（characteristic vector）。$\mathbf{T}$的所有不同的特征向量的集合称为$\mathbf{T}$的特征空间（characteristic space）。
@@ -113,7 +113,7 @@ D\left(a_1,\cdots,\gamma a_i+a^\prime_i,\cdots,a_n\right)=\gamma D\left(a_1,\cdo
 \end{enumerate}
 \end{theorem}
 
-以上定理中的命题之间的等价性几乎是直接的\cite[\S5.2“矩阵可对角化的条件”,p.123]{周胜林2012线性代数}，第5条命题是为了定义“可对角化的线性变换”而设。如果$\mathbf{T}$可对角化，我们就有$n$个特征值$\left\{\gamma_i\right\}_{i=1}^n$，但它们之间有可能有重复的（即$\mathbf{T}$的特征多项式有重根）。设$\theta_1,\cdots,\theta_k$为$\mathbf{T}$的两两不同特征值，第$j$个特征值重复$d_j$次，则$\mathbf{T}$的对角化坐标矩阵可以写成
+以上定理中的命题之间的等价性几乎是直接的\cite[\S5.2“矩阵可对角化的条件”,p.123]{周胜林2012线性代数}，第5条命题是为了定义“可对角化的线性变换”而设。如果$\mathbf{T}$可对角化，我们就有$n$个特征值$\left\{\gamma_i\right)_{i=1}^n$，但它们之间有可能有重复的（即$\mathbf{T}$的特征多项式有重根）。设$\theta_1,\cdots,\theta_k$为$\mathbf{T}$的两两不同特征值，第$j$个特征值重复$d_j$次，则$\mathbf{T}$的对角化坐标矩阵可以写成
 \[\left(\mathbf{T}\right)=\left(\begin{array}{ccc}\theta_1I_1&&\\&\ddots&\\&&\theta_kI_k\end{array}\right)\]
 其中$I_j$是$d_j\times d_j$单位矩阵。由之前关于特征值的知识可知，每个两两不同特征值的重复次数$d_j$就是它对应的特征空间的维数，进而有$d_1+\cdots+d_k=n$。易验在相同的基下，算符$\mathbf{T}-\theta_j\mathbf{I},j=1,\cdots,k$的坐标矩阵也都是对角矩阵，它们各将含有$d_j$个零在对角线上。$\mathbf{T}-\theta_i\mathbf{I}$的零化度就是$d_i$。
 
@@ -122,7 +122,7 @@ D\left(a_1,\cdots,\gamma a_i+a^\prime_i,\cdots,a_n\right)=\gamma D\left(a_1,\cdo
 \begin{theorem}
 \begin{enumerate}
     \item 线性算符的的转置的特征值与原线性算符的特征值相同
-    \item 设$\left\{\lambda_i\right\}$是线性算符$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$的$n$个特征值，则$\mathrm{tr}\mathbf{T}=\sum_{i=1}^n\lambda_i$，$\mathrm{det}\mathbf{T}=\prod_{i=1}^n\lambda_i$，$\mathrm{det}\left(\mathbf{T}-\lambda\mathbf{I}\right)=\lambda^n-\mathrm{tr}\mathbf{T}\lambda^{n-1}+\cdots+\left(-1\right)^n\mathrm{det}\mathbf{T}$
+    \item 设$\left\{\lambda_i\right\}$是线性算符$\mathbf{T}\in\mathcal{L}\left(\mathcal{V}\right)$的$n$个特征值，则$\mathbf{T}=\sum_{i=1}^n\lambda+i$，$\mathrm{det}\mathbf{T}=\prod_{i=1}^n\lambda_i$，$\mathrm{det}\left(\mathbf{T}-\lambda\mathbf{I}\right)=\lambda^n-\mathrm{tr}\mathbf{T}\lambda^{n-1}+\cdots+\left(-1\right)^n\mathrm{det}\mathbf{T}$
 \end{enumerate}
 \end{theorem}
 \begin{proof}

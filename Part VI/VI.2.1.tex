@@ -1,0 +1,41 @@
+\documentclass[main.tex]{subfiles}
+% {$\mathbb{R}^n$空间上的一些拓扑概念。
+\begin{document}
+本附录的内容并不新。在高等数学中我们已经学过邻域、去心邻域、内点、外点、边界点、聚点、孤立点、闭集、开集、连通集、区域、有界区域等概念\cite[\S 7.1,p.1]{华工高数2009下}。
+
+\begin{definition}[开集]
+如果对于$\mathbb{R}^n$的子集$S$中一个元素$\mathbf{x}_0\in S$，存在正实数$\delta>0$使得只要$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$则$\mathbf{x}\in S$，就称$\mathbf{x}_0$在$S$内。所有这样的点$\mathbf{x}_0$的集合称为集合$S$的内部，记为$\mathrm{int}S$。如果$S$的所有元素都在$S$内（$S=\mathrm{int}S$），就称$S$是开集。一个含有某元素$\mathbf{x}_0$的开集$S$又可称为该点$\mathbf{x}_0$的一个邻域。
+\end{definition}
+
+由定义，整个$\mathbb{R}^n$是一个开集。“空集是一个开集”虚真（vacuously true）。$\mathbb{R}^n$中的开集的交集也是开集。$\mathbb{R}^n$中的有限个开集的并集也是开集。这些结论都需要证明但此略。
+
+\begin{definition}[闭集]
+如果集合$S\subset\mathbb{R}^n$中的点$\mathbf{x}_0$的每个邻域都含有至少一个$S$中的点（可以就是点$\mathbf{x}_0$本身），则称点$\mathbf{x}_0$是$S$的闭包中的点，所有这样的点$\mathbf{x}_0$的集合称$S$的闭包，记为$\mathrm{cl}S$。如果点$\mathbf{x}_0$的每个邻域都含有至少一个$S$中的与$\mathbf{x}_0$不同的点$\mathbf{x}$，则称$\mathbf{x}_0$是$S$的一个极限点。$S$的所有极限点的集合称$S$的导集。如果集合$S$包含它的所有极限点，则称集合$S$是闭集。若集合$S$等于其闭包（$S=\mathrm{cl}S$），则称$S$是闭集。
+\end{definition}
+
+由定义，整个$\mathbb{R}^n$是一个闭集。“空集是一个闭集”虚真。$\mathbb{R}^n$中的闭集的交集也是闭集。$\mathbb{R}^n$中的有限个闭集的并集也是闭集。
+
+\begin{definition}[边界]
+如果对于$\mathbb{R}^n$的子集$S$中的一个元素$\mathbf{x}_0\in S$和任意正实数$\delta>0$，都存在至少一个$\mathbf{x}\in S$满足$\left\|\mathbf{x}-\mathbf{x}\right\|=\delta$（显然$\mathbf{x}\neq\mathbf{x}_0$）和至少一个$\mathbf{y}\notin S$满足$\left\|\mathbf{y}-\mathbf{x}\right\|=\delta$，则称$\mathbf{x}_0$是在$S$的边界上的点。所有这样的点$\mathbf{x}_0$的集合称为集合$S$的边界，常记为$\partial S$。
+\end{definition}
+
+\begin{theorem}
+一个集合是闭集当且仅当它包含所有其边界上的点。
+\end{theorem}
+
+\begin{corollary}
+一个集合是闭集当且仅当它包含其所有极限点。
+\end{corollary}
+
+\begin{corollary}
+一个集合是开集当且仅当它不包含其任何边界上的点。
+\end{corollary}
+
+\begin{definition}[孤立点]
+如果对于点$\mathbf{x}_0\in S\subset\mathbf{R}^n$，存在正实数$\delta>0$使得$\left\{\mathbf{x}|\left\|\mathbf{x}-\mathbf{x}_0\right\|=\delta\right\}\cap S=\left\{\mathbf{x}_0\right\}$，则称$\mathbf{x}_0$是$S$的一个孤立点。
+\end{definition}
+
+\begin{example}
+设$S=\left(0,1\right]\cup\left\{2\right\}$，则$\mathrm{int}S=\left(0,1\right)$，$\partial S=\left\{0,1,2\right\}$，$S$的所有极限点是$\left[0,1\right]$。$2$是$S$的一个孤立点。
+\end{example}
+\end{document}

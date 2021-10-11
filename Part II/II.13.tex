@@ -1,131 +1,90 @@
 \documentclass[main.tex]{subfiles}
-% 链式法则、反函数定理、隐函数定理
+% 曲线、曲面和积分定理
 \begin{document}
-\begin{theorem}[链式法则]
-如果函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$在$\mathbf{x}_0\in\mathrm{dom}\mathbf{f}$处可微分；函数$\mathbf{g}:\mathbb{R}^n\rightarrow\mathbb{R}^p$在$\mathbf{f}\left(\mathbf{x}_0\right)\in\mathrm{dom}\mathbf{g}$处可微分，则复合函数$\mathbf{g}\circ\mathbf{f}$在$\mathbf{x}_0$处可微分，且其全导数
-\[
-\left.\frac{d\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}=\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}
+本节的内容在大一的高等数学课中已经学过\cite[第九章]{华工高数2009下}，以下只是使用向量函数微积分的语言重新复述一次。本节默认讨论前题是在3维欧几里德空间中选取基本坐标系，使得任一点的位置向量直接可用平移空间中标准基下的坐标表示，从而与$\mathbb{R}^3$一一对应。
+
+\subsection{曲线积分}
+设函数$\mathbf{g}:\mathbb{R}\supset I\rightarrow\mathbb{R}^3$在连通区域$I$上分段连续可微，则以$\mathbf{g}\left(t\right),t\in I$为参数方程的像集$\mathbf{g}\left(I\right)$是$\mathbb{R}^3$中的一条可求弧长（rectifiable）的曲线，可记为曲线$\mathcal{C}$。
+
+导数$\left.\frac{d\mathbf{g}\left(t\right)}{dt}\right|_{t=t_0}$是曲线$\mathcal{C}$在点$\mathbf{g}\left(t_0\right)$处的切向量。可定义$\mathbf{\hat{t}}\equiv\frac{d\mathbf{g}/dt}{\left\|d\mathbf{g}/dt\right\|}$为曲线$\mathcal{C}$的单位切向量（unit tangent vector）。
+
+曲线有两种弧微元：$d\mathbf{l}\equiv\left(d\mathbf{g}/dt\right)dt$是曲线的弧向量微元；$dl\equiv\left\|d\mathbf{g}/dt\right\|dt$是弧长微元。它们的关系是$d\mathbf{l}=\mathbf{\hat{t}}dl$。
+
+曲线的长度
+\[L\left(\mathcal{C}\right)=\int_\mathcal{C}dl=\int_a^b\left\|d\mathbf{g}/dt\right\|dt
 \]
-\end{theorem}
-\begin{proof}
-首先证明$\mathbf{x}_0$处于复合函数$\mathbf{g}\circ\mathbf{f}$的定义域内。由于$\mathbf{f}\left(\mathbf{x}_0\right)\in\mathrm{dom}\mathbf{g}$且$\mathbf{g}$在$\mathbf{f}\left(\mathbf{x}_0\right)$处可微分，故总存在正实数$\delta^\prime$使得只要$\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|<\delta^\prime$就有$\mathbf{f}\left(\mathbf{x}\right)\in\mathrm{dom}\mathbf{g}$。又因为$\mathbf{x}_0\in\mathrm{dom}\mathbf{f}$且$\mathbf{f}$在$\mathbf{x}_0$处可微分，故总存在正实数$\delta$使得只要$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$则$\mathbf{x}\in\mathrm{dom}\mathbf{f}$，同时还必存在$\delta^\prime>0$使得这一$\delta$选择下的$\mathbf{x}$满足$\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|<\delta^\prime$。所以任一满足$\left\|\mathbf{x}-\mathbf{x}_0\right\|<\delta$的$\mathbf{x}$均在复合函数$\mathbf{g}\circ\mathbf{f}$的定义域内。
 
-按照全微分和全导数的定义，由于函数$\mathbf{f}$和$\mathbf{g}$分别在$\mathbf{x}_0$和$\mathbf{f}\left(\mathbf{x}_0\right)$可导，故存在函数$\mathbf{z}_1$、$\mathbf{z}_2$满足$\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)=\mathbf{0}$、$\lim_{\mathbf{f}\left(\mathbf{x}\right)\to\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)=\mathbf{0}$，且
-\begin{align*}
-\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)&=\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\\
-\mathbf{g}\left(\mathbf{f}\left(\mathbf{x}\right)\right)-\mathbf{g}\left(\mathbf{f}\left(\mathbf{x}_0\right)\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)&=\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)
-\end{align*}
-把$\mathbf{g}\left(\mathbf{f}\left(\mathbf{x}\right)\right)$记为$\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)$，并把上面的第一条式子代入第二条，得
-\begin{align*}
-&\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)-\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left[\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right]\\
-=&\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)\\
-\Leftrightarrow&\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)-\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)\\
-=&\left\|\mathbf{x}-\mathbf{x}_0\right\|\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)
-\end{align*}
-由三角不等式，又有\footnote{
-此处用到定理\ref{thm:II.13.4}。
-}
-\begin{align*}
-    \left\|\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right\|&=\left\|\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)+\left\|\mathbf{x}-\mathbf{x}_0\right\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\\
-    &\leq \left\|\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)\right\|+\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\\
-    &\leq k\left\|\mathbf{x}-\mathbf{x}_0\right\|+\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|
-\end{align*}
-故
-\begin{align*}
-    &\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}\right)-\mathbf{g}\circ\mathbf{f}\left(\mathbf{x}_0\right)-\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\left(\mathbf{x}-\mathbf{x}_0\right)\\
-    \leq&\left\|\mathbf{x}-\mathbf{x}_0\right\|\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)+\left(k\left\|\mathbf{x}-\mathbf{x}_0\right\|+\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\right)\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)\\
-    \leq&\left\|\mathbf{x}-\mathbf{x}_0\right\|\left\{\left\|\left.\frac{d\mathbf{g}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|+\left(k+\left\|\mathbf{z}_1\left(\mathbf{x}-\mathbf{x}_0\right)\right\|\right)\mathbf{z}_2\left(\mathbf{f}\left(\mathbf{x}\right)-\mathbf{f}\left(\mathbf{x}_0\right)\right)\right\}
-\end{align*}
-由于函数$\mathbf{f}$在$\mathbf{x}_0$处连续，即极限$\lim_{\mathbf{x}\to\mathbf{x}_0}\mathbf{f}\left(\mathbf{x}\right)=\mathbf{f}\left(\mathbf{x}_0\right)$，故上式最后的大括号在$\mathbf{x}\to\mathbf{x}_0$时趋于$\mathbf{0}$。按照全微分和全导数的定义，命题得证。
-\end{proof}
-
-\begin{theorem}[反函数定理] 
-设函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^n$是连续可微函数，且在$\mathbf{x}_0$处其导数$\mathbf{L}\left(\mathbf{x}_0\right)$可逆。则在$\mathbf{x}_0$的某邻域$N$上，函数$\mathbf{f}$有连续可微的逆函数$\mathbf{f}^{-1}$；$N$的像集$\mathbf{f}\left(\mathbf{N}\right)$是开集；且$\mathbf{f}^{-1}$在$\mathbf{f}\left(\mathbf{x}_0\right)$处的导数是$\mathbf{f}$在$\mathbf{x}_0$的导数的逆变换，即
-\[\left.\frac{d\mathbf{f}^{-1}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{f}\left(\mathbf{x}_0\right)}=\mathbf{L}^{-1}\left(\mathbf{x}_0\right)\]
-\end{theorem}
-\begin{proof}
-详见\S\ref{sect:VI.2}。
-\end{proof}
-
-如果$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$由函数$\mathbf{F}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^m$隐含定义，我们常常把$\mathbf{F}$写成这样一种映射：$\mathbf{F}:\mathbb{R}^n\times\mathbb{R}^m\rightarrow\mathbb{R}^m$，$\mathbf{F}\left(\mathbf{x},\mathbf{f}\left(\mathbf{x}\right)\right)=\mathbf{0}\forall\mathbf{x}\in\mathbb{R}^n$。此时，我们记
-\[\left.\frac{\partial \mathbf{F}\left(\mathbf{x},\mathbf{y}\right)}{\partial \mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0,\mathbf{y}=\mathbf{y}_0}=\left.\frac{d\mathbf{F}\left(\mathbf{x},\mathbf{y}_0\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}_0}\]
-引入这个记法有两个用处，一是为了以下例子，这个例子是后文引入物质导数的一个基础；二是为了引入隐函数定理。
-
-\begin{example}\label{exp:II.15.1}
-设函数$\mathbf{f}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^p$的定义域为$D=\mathrm{dom}\mathbf{f}$，若函数$\mathbf{g}:\mathbb{R}^m\rightarrow\mathbb{R}^n$满足$\mathrm{dom}\mathbf{g}=D$，则总可以构建函数$\mathbf{h}:\mathbb{R}^m\rightarrow\mathbb{R}^{m+n}$使得$\mathrm{dom}\mathbf{h}=D$且
-\begin{align*}
-    \mathbf{h}\left(\mathbf{x}\right)&=\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)\forall\mathbf{x}\in D\\
-    h_i\left(\mathbf{x}\right)&=\left\{\begin{array}{ll}
-    g_i\left(\mathbf{x}\right),&i=1,\cdots,n\\
-    x_{i-n},&i=n+1,\cdots,n+m
-    \end{array}\right.
-\end{align*}
-这时，$\mathbf{f}\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)=\mathbf{f}\left(\mathbf{h}\left(\mathbf{x}\right)\right)$。若$\mathbf{g}$在某处可微分则$\mathbf{h}$在该处也可微分。由链式法则定理，在该处有
-\begin{align*}
-    \frac{d\mathbf{f}\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)}{d\mathbf{x}}&=\frac{d\mathbf{h}\left(\mathbf{x}\right)}{d\mathbf{x}}\\
-    &=\left.\frac{d\mathbf{f}\left(\mathbf{y}\right)}{d\mathbf{y}}\right|_{\mathbf{y}=\mathbf{h}\left(\mathbf{x}\right)}\frac{d\mathbf{h}\left(\mathbf{x}\right)}{d\mathbf{x}}\\
-    &=\left(\begin{array}{cccccc}
-    \frac{\partial f_1}{\partial h1}&\cdots&\frac{\partial f_1}{\partial h_n}&\frac{\partial f_1}{\partial h_{n+1}}&\cdots&\frac{\partial f_1}{\partial h_{n+m}}\\
-    \vdots&\ddots&\vdots&\vdots&\ddots&\vdots\\
-    \frac{\partial f_p}{\partial h_1}&\cdots&\frac{\partial f_p}{\partial h_n}&\frac{\partial f_p}{\partial h_{n+1}}&\cdots&\frac{\partial f_p}{\partial h_{n+m}}
-    \end{array}\right)\left(\begin{array}{ccc}
-    \frac{\partial h_1}{\partial y_1}&\cdots&\frac{\partial h_1}{\partial y_m}\\
-    \vdots&\ddots&\vdots\\
-    \frac{\partial h_n}{\partial y_1}&\cdots&\frac{\partial h_1}{\partial y_m}\\
-    \frac{\partial h_{n+1}}{\partial y_1}&\cdots&\frac{\partial h_{n+1}}{\partial y_m}\\
-    \vdots&\ddots&\vdots\\
-    \frac{\partial h_{n+m}}{\partial y_1}&\cdots&\frac{\partial h_{n+m}}{\partial y_m}
-    \end{array}\right)
-    &=C
-\end{align*}
-其中矩阵$C$的分量
+如果定义在曲线$\mathcal{C}$上的函数$\mathbf{f}:\mathbb{R}\supset\mathcal{L}\rightarrow\mathbb{R}^n$是“单位弧长的性质”，则该性质在曲线$\mathcal{C}$上的总和是对弧长的曲线积分\cite[p.~133,定理9.1.1]{华工高数2009下}
 \[
-    C_{ij}=\sum_{k=1}^{n+m}\frac{\partial f_i}{\partial h_k}\frac{\partial h_k}{\partial x_j},i=1,\cdots,p,j=1,\cdots,m
+\int_\mathcal{C}\mathbf{f}\left(\mathbf{g}\right)dl=\int_{a}^{b}\mathbf{f}\left(\mathbf{g}\left(t\right)\right)\left\|d\mathbf{g}/dt\right\|dt
 \]
-注意到
-\begin{align*}
-    \frac{\partial f_i}{\partial h_k}\frac{\partial h_k}{\partial x_j}=\left\{\begin{array}{ll}
-    \frac{\partial f_i}{\partial g_k}\frac{\partial g_k}{x_j},&k=1,\cdots,n\\
-    \frac{\partial f_i}{\partial x_k-n}\delta_{k-n,j},&k=n+1,\cdots,n+m
-    \end{array}\right.,i=1,\cdots,p,j=1,\cdots,m
-\end{align*}
-故
-\begin{align*}
-C_{ij}&=\sum_{k=1}^{n}\frac{\partial f_i}{\partial g_k}\frac{\partial g_k}{\partial x_j}+\sum_{j=1}^m\frac{\partial f_i}{\partial x_j}\\
-\Leftrightarrow\frac{d\mathbf{f}\left(\mathbf{g}\left(\mathbf{x}\right),\mathbf{x}\right)}{d\mathbf{x}}&=\left.\frac{\partial \mathbf{f}\left(\mathbf{y},\mathbf{x}\right)}{\partial \mathbf{y}}\right|_{\mathbf{y}=\mathbf{g}\left(\mathbf{x}\right)}\frac{\partial\mathbf{g}\left(\mathbf{x}\right)}{\partial \mathbf{x}}+\frac{\partial \mathbf{f}\left(\mathbf{y},\mathbf{x}\right)}{\partial\mathbf{x}}
-\end{align*}
-\end{example}
+例如，曲线$\mathcal{C}$的线密度是函数$\rho\left(\mathbf{g}\right)$，则曲线$\mathcal{C}$的总质量
+\[
+m\left(\mathcal{C}\right)=\int_\mathcal{C}\rho dl=\int_a^b\rho\left(\mathbf{g}\left(t\right)\right)\left\|d\mathbf{g}/dt\right\|dt
+\]
 
-\begin{theorem}[隐函数定理]
-设$\mathbf{F}:\mathbb{R}^{n+m}\rightarrow\mathbb{R}^m$是连续可导函数，且对$\mathbf{x}_0\in\mathbf{R}^n$和$\mathbf{y}_0\in\mathbf{R}^m$有
-\begin{itemize}
-    \item $\mathbf{F}\left(\mathbf{x}_0,\mathbf{y}_0\right)=\mathbf{0}$；
-    \item 导数$\left.\frac{\partial \mathbf{F}\left(\mathbf{x},\mathbf{y}\right)}{\partial \mathbf{y}}\right|_{\mathbf{x}=\mathbf{x}_0,\mathbf{y}=\mathbf{y}_0}$可逆；
-\end{itemize}
-则$\mathbf{x}_0$的某邻域$N$存在由$\mathbf{F}$隐函定义的连续可微函数$\mathbf{f}:\mathbb{R}^n\rightarrow\mathbb{R}^m$满足$\mathbf{F}\left(\mathbf{x},\mathbf{f}\left(\mathbf{x}\right)\right))=\mathbf{0}\forall\mathbf{x}\in N$，且在$N$上有
-\[\left.\frac{d\mathbf{f}\left(\mathbf{x}\right)}{d\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x}}=-\left[\left.\frac{\partial\mathbf{F}\left(\mathbf{x},\mathbf{y}\right)}{\partial\mathbf{y}}\right|_{\mathbf{x}=\mathbf{x},\mathbf{y}=\mathbf{f}\left(\mathbf{x}\right)}\right]^{-1}\left.\frac{\partial\mathbf{F}\left(\mathbf{x},\mathbf{y}\right)}{\partial\mathbf{x}}\right|_{\mathbf{x}=\mathbf{x},\mathbf{y}=\mathbf{f}\left(\mathbf{x}\right)}\]
-上式中的“$-1$”是指线性变换的逆。
-\end{theorem}
+如果定义在曲线$\mathcal{C}$上的函数$\mathbf{h}:\mathbb{R}^3\supset\mathcal{L}\rightarrow\mathbb{R}^3$是“作用在弧上的量”，则曲线$\mathcal{C}$所受的总作用是对坐标的曲线积分\cite[p.~140,定理9.2.1]{华工高数2009下}
+\[
+\int_\mathcal{C}\mathbf{h}\left(\mathbf{g}\right)\cdot d\mathbf{l}=\int_a^b\mathbf{h}\left(\mathbf{g}\left(t\right)\right)\cdot\frac{d\mathbf{g}}{dt}dt=\int_\mathcal{C}\mathbf{h}\cdot\mathbf{\hat{t}}dl
+\]
+可见，曲线上的函数对坐标的曲线积分是这个函数与切向量点乘后对弧长的曲线积分。换句话说，作用$\mathbf{h}$在曲线$\mathcal{C}$上的总量是其在曲线每点的切方向上的投影分量的总和。例如，曲线$\mathcal{C}$是一个质点的运动轨迹，力场$\mathbf{F}\left(\mathbf{r},t\right)$对该质点做的总功
+\[W\left(\mathcal{C}\right)=\int_\mathcal{C}\mathbf{F}\cdot d\mathbf{l}=\int_a^b\mathbf{F}\left(\mathbf{g}\left(t\right),t\right)\cdot \frac{d\mathbf{g}}{dt}dt
+\]
 
-\begin{example}
-设函数$\mathbf{F}:\mathbb{R}^4\rightarrow\mathbb{R}^2$，$\mathbf{F}\left(u,v,x,y\right)=\left(F_1,F_2\right)$，$\mathbf{F}=\mathbf{0}$隐含定义了$\left(x,y\right)=\mathbf{f}\left(u,v\right),\mathbf{f}:\mathbf{R}^2\rightarrow\mathbf{R}^2$，则
-\begin{align*}
-    &\frac{\partial \mathbf{F}}{\partial u}=\mathbf{0},\frac{\partial \mathbf{F}}{\partial v}=\mathbf{0}\\
-    \Leftrightarrow&\left\{\begin{array}{l}
-    \frac{\partial F_1}{\partial u}+\frac{\partial F_1}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial F_1}{\partial y}\frac{\partial y}{\partial u}=0\\
-    \frac{\partial F_2}{\partial u}+\frac{\partial F_2}{\partial x}\frac{\partial x}{\partial u}+\frac{\partial F_2}{\partial y}\frac{\partial y}{\partial u}=0
-    \end{array}\right.,\left\{\begin{array}{l}
-    \frac{\partial F_1}{\partial v}+\frac{\partial F_1}{\partial x}\frac{\partial x}{\partial v}+\frac{\partial F_1}{\partial y}\frac{\partial y}{\partial v}=0\\
-    \frac{\partial F_2}{\partial v}+\frac{\partial F_2}{\partial x}\frac{\partial x}{\partial v}+\frac{\partial F_2}{\partial y}\frac{\partial y}{\partial v}=0
-    \end{array}\right.\\
-    \Leftrightarrow&\left(\begin{array}{cc}
-    \frac{\partial F_1}{\partial u}&\frac{\partial F_1}{\partial v}\\\frac{\partial F_2}{\partial u}&\frac{\partial F_2}{\partial v}\end{array}\right)_+\left(\begin{array}{cc}
-    \frac{\partial F_1}{\partial x}&\frac{\partial F_1}{\partial y}\\\frac{\partial F_2}{\partial x}&\frac{\partial F_2}{\partial y}\end{array}\right)\left(\begin{array}{cc}
-    \frac{\partial x}{\partial u}&\frac{\partial x}{\partial v}\\\frac{\partial y}{\partial u}&\frac{\partial y}{\partial v}\end{array}\right)=0\\
-    \Leftrightarrow&\left(\begin{array}{cc}
-    \frac{\partial x}{\partial u}&\frac{\partial x}{\partial v}\\\frac{\partial y}{\partial u}&\frac{\partial y}{\partial v}\end{array}\right)=-\left(\begin{array}{cc}
-    \frac{\partial F_1}{\partial x}&\frac{\partial F_1}{\partial y}\\\frac{\partial F_2}{\partial x}&\frac{\partial F_2}{\partial y}\end{array}\right)^{-1}\left(\begin{array}{cc}
-    \frac{\partial F_1}{\partial u}&\frac{\partial F_1}{\partial v}\\\frac{\partial F_2}{\partial u}&\frac{\partial F_2}{\partial v}\end{array}\right)
-\end{align*}
-\end{example}
+\subsection{曲面积分}
+设函数$\mathbf{g}:\mathbb{R}^2\supset D\rightarrow\mathbb{R}^3$在由分段连续边界包围的连通区域$D$上连续可微，则以$\mathbf{g}\left(\mathbf{u}\right),\mathbf{u}\in D$为参数方程的像集$\mathbf{g}\left(D\right)$是$\mathbb{R}^3$中的一个可求面积的曲面，记为曲面$\mathcal{S}$。
+
+当且仅当导数
+\[
+\left.\frac{d\mathbf{g}\left(\mathbf{u}\right)}{d\mathbf{u}}\right|_{\mathbf{u}=\mathbf{u}_0}
+\]
+存在且满秩时，曲面$\mathcal{S}$在点$\mathbf{g}\left(\mathbf{u}_0\right)$处有切平面，或称曲面在此处是光滑的（smooth）。此时
+\[
+\left.\left(\frac{\partial \mathbf{g}}{\partial u_1}\times\frac{\partial \mathbf{g}}{\partial u_2}\right)\right|_{\mathbf{u}=\mathbf{u}_0}
+\]
+是曲面$\mathcal{S}$在点$\mathbf{g}\left(\mathbf{u}_0\right)$处的法向量，
+\[
+\mathbf{\hat{n}}\equiv\left.\left(\frac{\frac{\partial \mathbf{g}}{\partial u_1}\times\frac{\partial\mathbf{g}}{\partial u_2}}{\left\|\frac{\partial\mathbf{g}}{\partial u_1}\times\frac{\partial\mathbf{g}}{\partial u_2}\right\|}\right)\right|_{\mathbf{u}=\mathbf{u}_0}
+\]
+是曲面$\mathcal{S}$在点$\mathbf{g}\left(\mathbf{u}_0\right)$处的单位法向量。
+
+曲面有两种面微元：$d\boldsymbol{\sigma}=\left(\frac{\partial\mathbf{g}}{\partial u_1}\times\frac{\partial\mathbf{g}}{\partial u_2}\right)d\sigma_D$是有向曲面微元；$d\sigma=\left\|\frac{\partial\mathbf{g}}{\partial u_1}\times\frac{\partial\mathbf{g}}{\partial u_2}\right\|d\sigma_D$是面积微元。它们的关系是$d\boldsymbol{\sigma}=\mathbf{\hat{n}}d\sigma$。其中$d\sigma_D=du_1du_2$是参数域$D$上的二重积分微元。
+
+曲面$\mathcal{S}$的面积
+\[
+A\left(\mathcal{S}\right)=\int_\mathcal{S}d\sigma=\int_D\left\|\frac{\partial\mathbf{g}}{\partial u_1}\times\frac{\partial\mathbf{g}}{\partial u_2}\right\|d\sigma_D
+\]
+
+“单位面积的性质”$\mathbf{f}:\mathbb{R}^3\supset \mathcal{S}\rightarrow\mathbb{R}^n$在曲面$\mathcal{S}$上的总和是第一型曲面积分\cite[p.~165,定理9.4.1]{华工高数2009下}
+\[
+\int_\mathcal{S}\mathbf{f}\left(\mathbf{g}\right)d\sigma=\int_D\mathbf{f}\left(\mathbf{g}\left(\mathbf{u}\right)\right)\left\|\frac{\partial\mathbf{g}}{\partial u_1}\times\frac{\partial\mathbf{g}}{\partial u_2}\right\|d\sigma_D
+\]
+
+“作用场”$\mathbf{h}:\mathbb{R}^3\supset\mathcal{S}\rightarrow\mathbb{R}^3$在曲面上的总作用是第二型曲面积分或对坐标的曲面积分\cite[p.~170,第五节]{华工高数2009下}
+\[
+\int_\mathcal{S}\mathbf{h}\cdot d\boldsymbol{\sigma}=\int_D\mathbf{h}\left(\mathbf{g}\left(\mathbf{u}\right)\right)d\sigma_D=\int_\mathcal{S}\mathbf{h}\cdot\mathbf{\hat{n}}d\sigma
+\]
+
+\subsection{积分换元公式\cite[p.~116,“五”]{华工高数2009下}}
+设$\mathcal{U}\subset\mathbb{R}^3$是由分段光滑边界包围的连通区域，则以参数方程$\mathbf{g}:\mathbb{R}^3\supset \mathcal{U}\rightarrow\Omega\subset\mathbb{R}^3$规定的像集$\Omega=\mathbf{g}\left(\mathcal{U}\right)$是一个经过形变后的三维区域。当且仅当导数
+\[
+\left.\frac{d\mathbf{g}\left(\mathbf{r}\right)}{d\mathbf{r}}\right|_{\mathbf{r}=\mathbf{r}_0}
+\]
+存在且满秩时，区域$\Omega$在点$\mathbf{r}_0$处是光滑的。此时
+\[
+\left|\frac{\partial \mathbf{g}}{\partial r_3}\cdot\left(\frac{\partial\mathbf{g}}{\partial r_1}\times\frac{\partial\mathbf{g}}{\partial r_2}\right)\right|\equiv\left|\mathrm{det}\left(\frac{\partial\mathbf{g}}{\partial\mathbf{r}}\right)\right|
+\]
+是由向量$\frac{\partial\mathbf{g}}{\partial r_1},\frac{\partial\mathbf{g}}{\partial r_2},\frac{\partial\mathbf{g}}{\partial r_3}$所搭成的平行六面体的体积。$dV_\Omega=\left|\mathrm{det}\left(d\mathbf{g}/d\mathbf{r}\right)\right|dV_\mathcal{U}$是$\mathcal{U}$的体积元$dV_\mathcal{U}$与$\Omega$的体积元$dV_\Omega$之间的转换关系。区域$\Omega$的体积
+\[
+V\left(\Omega\right)=\int_\Omega dV_\Omega=\int_\mathcal{U}\left|\mathrm{det}\left(\frac{d\mathbf{g}}{d\mathbf{r}}\right)\right|dV_\mathcal{U}
+\]
+“单位体积的性质”$\mathbf{f}:\mathbb{R}^3\supset\mathcal{U}\rightarrow\mathbb{R}^3$在区域$\Omega$的总和为
+\[
+\mathbf{F}\left(\Omega\right)=\int_\Omega\mathbf{f}\left(\mathbf{g}\right)dV_\Omega=\int_\mathcal{U}\mathbf{f}\left(\mathbf{g}\left(\mathbf{r}\right)\right)\left|\mathrm{det}\left(\frac{d\mathbf{g}}{d\mathbf{r}}\right)\right|dV_\mathcal{U}
+\]
+上式就是积分换元公式。
+
+\subsection{积分定理}
+
+
 \end{document}
